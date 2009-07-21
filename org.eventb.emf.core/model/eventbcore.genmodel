@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eventb.emf.core/src"
+    editDirectory="/org.eventb.emf.core/src" modelPluginID="org.eventb.emf.core" modelName="Eventbcore"
+    importerID="org.eclipse.emf.importer.ecore" containmentProxies="true" complianceLevel="5.0"
+    copyrightFields="false" language="">
+  <foreignModel>eventbcore.ecore</foreignModel>
+  <genPackages prefix="Core" basePackage="org.eventb.emf" disposableProviderFactory="true"
+      contentTypeIdentifier="" fileExtensions="prj" ecorePackage="eventbcore.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="eventbcore.ecore#//AttributeType">
+      <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//AttributeType/Boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//AttributeType/Handle"/>
+      <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//AttributeType/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//AttributeType/Long"/>
+      <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//AttributeType/String"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBObject">
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getContaining">
+        <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getContaining/eClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getAllContained">
+        <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getAllContained/eClass"/>
+        <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getAllContained/resolve"/>
+      </genOperations>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getURI"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//EventBElement/extensions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//EventBElement/attributes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBCommented">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBCommented/comment"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBCommentedElement"/>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBExpression/expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBCommentedExpressionElement"/>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBNamed/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamedCommentedElement"/>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBPredicate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBPredicate/predicate"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamedCommentedPredicateElement"/>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBDerived">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBDerived/theorem"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamedCommentedDerivedPredicateElement"/>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBAction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBAction/action"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamedCommentedActionElement"/>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamedCommentedComponentElement"/>
+    <genClasses ecoreClass="eventbcore.ecore#//Project">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//Project/components"/>
+    </genClasses>
+    <genClasses ecoreClass="eventbcore.ecore#//Extension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//Extension/extensionId"/>
+    </genClasses>
+    <genClasses ecoreClass="eventbcore.ecore#//StringToAttributeMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//StringToAttributeMapEntry/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//StringToAttributeMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="eventbcore.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//Attribute/value"/>
+    </genClasses>
+    <nestedGenPackages prefix="Machine" basePackage="org.eventb.emf.core" disposableProviderFactory="true"
+        fileExtensions="bum" ecorePackage="eventbcore.ecore#//machine">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="eventbcore.ecore#//machine/Convergence">
+        <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//machine/Convergence/ordinary"/>
+        <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//machine/Convergence/convergent"/>
+        <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//machine/Convergence/anticipated"/>
+      </genEnums>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Machine">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Machine/refines"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//machine/Machine/refinesNames"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Machine/sees"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//machine/Machine/seesNames"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Machine/variables"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Machine/invariants"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Machine/variant"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Machine/events"/>
+      </genClasses>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Variable"/>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Invariant"/>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Variant"/>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Event">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//machine/Event/convergence"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//machine/Event/extended"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Event/refines"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//machine/Event/refinesNames"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Event/parameters"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Event/guards"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Event/witnesses"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//machine/Event/actions"/>
+      </genClasses>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Parameter"/>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Guard"/>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Witness"/>
+      <genClasses ecoreClass="eventbcore.ecore#//machine/Action"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Context" basePackage="org.eventb.emf.core" disposableProviderFactory="true"
+        fileExtensions="buc" ecorePackage="eventbcore.ecore#//context">
+      <genClasses ecoreClass="eventbcore.ecore#//context/Context">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference eventbcore.ecore#//context/Context/extends"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//context/Context/extendsNames"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//context/Context/sets"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//context/Context/constants"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//context/Context/axioms"/>
+      </genClasses>
+      <genClasses ecoreClass="eventbcore.ecore#//context/Constant"/>
+      <genClasses ecoreClass="eventbcore.ecore#//context/CarrierSet"/>
+      <genClasses ecoreClass="eventbcore.ecore#//context/Axiom"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

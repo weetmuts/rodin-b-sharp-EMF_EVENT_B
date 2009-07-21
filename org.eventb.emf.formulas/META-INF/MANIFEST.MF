@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Event-B Formula EMF Model
+Bundle-SymbolicName: org.eventb.emf.formulas;singleton:=true
+Bundle-Version: 1.0.1
+Bundle-ClassPath: .
+Bundle-Vendor: Heinrich-Heine University Dusseldorf
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.eventb.emf.formulas,
+ org.eventb.emf.formulas.util
+Require-Bundle: org.eventb.emf.core;bundle-version="[1.0.0,1.1.0)";visibility:=reexport
+Bundle-ActivationPolicy: lazy

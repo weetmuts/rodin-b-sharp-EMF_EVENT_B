@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eventb.emf.feature"
+      label="Event-B EMF framework"
+      version="1.0.1"
+      provider-name="ECS Southampton, UK and Heinrich-Heine University Dusseldorf">
+
+   <description url="http://www.example.com/description">
+      A framework which offers an abstraction of the Rodin database. It provides an EMF model for Event-B models and necessary tools.
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <update label="Heinrich-Heine University Düsseldorf (Beta Releases)" url="http://www.stups.uni-duesseldorf.de/update-beta/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="equivalent"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.4.2" match="equivalent"/>
+      <import plugin="org.eclipse.emf.edit" version="2.4.2" match="equivalent"/>
+      <import plugin="org.eventb.ui" version="1.0.0" match="equivalent"/>
+      <import plugin="org.eventb.core" version="1.0.0" match="equivalent"/>
+      <import plugin="org.rodinp.core" version="1.0.0" match="equivalent"/>
+   </requires>
+
+   <plugin
+         id="org.eventb.emf.core"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eventb.emf.formulas"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eventb.emf.persistence"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+</feature>

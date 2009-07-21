@@ -1,0 +1,792 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.eventb.emf.core.impl;
+
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eventb.emf.core.Attribute;
+import org.eventb.emf.core.AttributeType;
+import org.eventb.emf.core.CoreFactory;
+import org.eventb.emf.core.CorePackage;
+import org.eventb.emf.core.EventBAction;
+import org.eventb.emf.core.EventBCommented;
+import org.eventb.emf.core.EventBCommentedElement;
+import org.eventb.emf.core.EventBCommentedExpressionElement;
+import org.eventb.emf.core.EventBDerived;
+import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.EventBExpression;
+import org.eventb.emf.core.EventBNamed;
+import org.eventb.emf.core.EventBNamedCommentedActionElement;
+import org.eventb.emf.core.EventBNamedCommentedComponentElement;
+import org.eventb.emf.core.EventBNamedCommentedDerivedPredicateElement;
+import org.eventb.emf.core.EventBNamedCommentedElement;
+import org.eventb.emf.core.EventBNamedCommentedPredicateElement;
+import org.eventb.emf.core.EventBObject;
+import org.eventb.emf.core.EventBPredicate;
+import org.eventb.emf.core.Extension;
+import org.eventb.emf.core.Project;
+import org.eventb.emf.core.context.ContextPackage;
+import org.eventb.emf.core.context.impl.ContextPackageImpl;
+import org.eventb.emf.core.machine.MachinePackage;
+import org.eventb.emf.core.machine.impl.MachinePackageImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class CorePackageImpl extends EPackageImpl implements CorePackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBCommentedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBCommentedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBCommentedExpressionElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedCommentedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBPredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedCommentedPredicateElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBDerivedEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedCommentedDerivedPredicateElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBActionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedCommentedActionElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedCommentedComponentElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass projectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass extensionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringToAttributeMapEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum attributeTypeEEnum = null;
+
+	/**
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * package URI value.
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.ecore.EPackage.Registry
+	 * @see org.eventb.emf.core.CorePackage#eNS_URI
+	 * @see #init()
+	 * @generated
+	 */
+	private CorePackageImpl() {
+		super(eNS_URI, CoreFactory.eINSTANCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static boolean isInited = false;
+
+	/**
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #eNS_URI
+	 * @see #createPackageContents()
+	 * @see #initializePackageContents()
+	 * @generated
+	 */
+	public static CorePackage init() {
+		if (isInited) return (CorePackage)EPackage.Registry.INSTANCE.getEPackage(CorePackage.eNS_URI);
+
+		// Obtain or create and register package
+		CorePackageImpl theCorePackage = (CorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof CorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new CorePackageImpl());
+
+		isInited = true;
+
+		// Obtain or create and register interdependencies
+		MachinePackageImpl theMachinePackage = (MachinePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI) instanceof MachinePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI) : MachinePackage.eINSTANCE);
+		ContextPackageImpl theContextPackage = (ContextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ContextPackage.eNS_URI) instanceof ContextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ContextPackage.eNS_URI) : ContextPackage.eINSTANCE);
+
+		// Create package meta-data objects
+		theCorePackage.createPackageContents();
+		theMachinePackage.createPackageContents();
+		theContextPackage.createPackageContents();
+
+		// Initialize created meta-data
+		theCorePackage.initializePackageContents();
+		theMachinePackage.initializePackageContents();
+		theContextPackage.initializePackageContents();
+
+		// Mark meta-data to indicate it can't be changed
+		theCorePackage.freeze();
+
+		return theCorePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBObject() {
+		return eventBObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBElement() {
+		return eventBElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventBElement_Extensions() {
+		return (EReference)eventBElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventBElement_Attributes() {
+		return (EReference)eventBElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBCommented() {
+		return eventBCommentedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBCommented_Comment() {
+		return (EAttribute)eventBCommentedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBCommentedElement() {
+		return eventBCommentedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBExpression() {
+		return eventBExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBExpression_Expression() {
+		return (EAttribute)eventBExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBCommentedExpressionElement() {
+		return eventBCommentedExpressionElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamed() {
+		return eventBNamedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBNamed_Name() {
+		return (EAttribute)eventBNamedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamedCommentedElement() {
+		return eventBNamedCommentedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBPredicate() {
+		return eventBPredicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBPredicate_Predicate() {
+		return (EAttribute)eventBPredicateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamedCommentedPredicateElement() {
+		return eventBNamedCommentedPredicateElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBDerived() {
+		return eventBDerivedEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBDerived_Theorem() {
+		return (EAttribute)eventBDerivedEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamedCommentedDerivedPredicateElement() {
+		return eventBNamedCommentedDerivedPredicateElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBAction() {
+		return eventBActionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBAction_Action() {
+		return (EAttribute)eventBActionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamedCommentedActionElement() {
+		return eventBNamedCommentedActionElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamedCommentedComponentElement() {
+		return eventBNamedCommentedComponentElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProject() {
+		return projectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProject_Components() {
+		return (EReference)projectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExtension() {
+		return extensionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExtension_ExtensionId() {
+		return (EAttribute)extensionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStringToAttributeMapEntry() {
+		return stringToAttributeMapEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringToAttributeMapEntry_Key() {
+		return (EAttribute)stringToAttributeMapEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStringToAttributeMapEntry_Value() {
+		return (EReference)stringToAttributeMapEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttribute() {
+		return attributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Type() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAttribute_Value() {
+		return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAttributeType() {
+		return attributeTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CoreFactory getCoreFactory() {
+		return (CoreFactory)getEFactoryInstance();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isCreated = false;
+
+	/**
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void createPackageContents() {
+		if (isCreated) return;
+		isCreated = true;
+
+		// Create classes and their features
+		eventBObjectEClass = createEClass(EVENT_BOBJECT);
+
+		eventBElementEClass = createEClass(EVENT_BELEMENT);
+		createEReference(eventBElementEClass, EVENT_BELEMENT__EXTENSIONS);
+		createEReference(eventBElementEClass, EVENT_BELEMENT__ATTRIBUTES);
+
+		eventBCommentedEClass = createEClass(EVENT_BCOMMENTED);
+		createEAttribute(eventBCommentedEClass, EVENT_BCOMMENTED__COMMENT);
+
+		eventBCommentedElementEClass = createEClass(EVENT_BCOMMENTED_ELEMENT);
+
+		eventBExpressionEClass = createEClass(EVENT_BEXPRESSION);
+		createEAttribute(eventBExpressionEClass, EVENT_BEXPRESSION__EXPRESSION);
+
+		eventBCommentedExpressionElementEClass = createEClass(EVENT_BCOMMENTED_EXPRESSION_ELEMENT);
+
+		eventBNamedEClass = createEClass(EVENT_BNAMED);
+		createEAttribute(eventBNamedEClass, EVENT_BNAMED__NAME);
+
+		eventBNamedCommentedElementEClass = createEClass(EVENT_BNAMED_COMMENTED_ELEMENT);
+
+		eventBPredicateEClass = createEClass(EVENT_BPREDICATE);
+		createEAttribute(eventBPredicateEClass, EVENT_BPREDICATE__PREDICATE);
+
+		eventBNamedCommentedPredicateElementEClass = createEClass(EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT);
+
+		eventBDerivedEClass = createEClass(EVENT_BDERIVED);
+		createEAttribute(eventBDerivedEClass, EVENT_BDERIVED__THEOREM);
+
+		eventBNamedCommentedDerivedPredicateElementEClass = createEClass(EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT);
+
+		eventBActionEClass = createEClass(EVENT_BACTION);
+		createEAttribute(eventBActionEClass, EVENT_BACTION__ACTION);
+
+		eventBNamedCommentedActionElementEClass = createEClass(EVENT_BNAMED_COMMENTED_ACTION_ELEMENT);
+
+		eventBNamedCommentedComponentElementEClass = createEClass(EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT);
+
+		projectEClass = createEClass(PROJECT);
+		createEReference(projectEClass, PROJECT__COMPONENTS);
+
+		extensionEClass = createEClass(EXTENSION);
+		createEAttribute(extensionEClass, EXTENSION__EXTENSION_ID);
+
+		stringToAttributeMapEntryEClass = createEClass(STRING_TO_ATTRIBUTE_MAP_ENTRY);
+		createEAttribute(stringToAttributeMapEntryEClass, STRING_TO_ATTRIBUTE_MAP_ENTRY__KEY);
+		createEReference(stringToAttributeMapEntryEClass, STRING_TO_ATTRIBUTE_MAP_ENTRY__VALUE);
+
+		attributeEClass = createEClass(ATTRIBUTE);
+		createEAttribute(attributeEClass, ATTRIBUTE__TYPE);
+		createEAttribute(attributeEClass, ATTRIBUTE__VALUE);
+
+		// Create enums
+		attributeTypeEEnum = createEEnum(ATTRIBUTE_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private boolean isInitialized = false;
+
+	/**
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void initializePackageContents() {
+		if (isInitialized) return;
+		isInitialized = true;
+
+		// Initialize package
+		setName(eNAME);
+		setNsPrefix(eNS_PREFIX);
+		setNsURI(eNS_URI);
+
+		// Obtain other dependent packages
+		MachinePackage theMachinePackage = (MachinePackage)EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI);
+		ContextPackage theContextPackage = (ContextPackage)EPackage.Registry.INSTANCE.getEPackage(ContextPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theMachinePackage);
+		getESubpackages().add(theContextPackage);
+
+		// Create type parameters
+
+		// Set bounds for type parameters
+
+		// Add supertypes to classes
+		eventBObjectEClass.getESuperTypes().add(ecorePackage.getEModelElement());
+		eventBElementEClass.getESuperTypes().add(this.getEventBObject());
+		eventBCommentedElementEClass.getESuperTypes().add(this.getEventBElement());
+		eventBCommentedElementEClass.getESuperTypes().add(this.getEventBCommented());
+		eventBCommentedExpressionElementEClass.getESuperTypes().add(this.getEventBCommentedElement());
+		eventBCommentedExpressionElementEClass.getESuperTypes().add(this.getEventBExpression());
+		eventBNamedCommentedElementEClass.getESuperTypes().add(this.getEventBCommentedElement());
+		eventBNamedCommentedElementEClass.getESuperTypes().add(this.getEventBNamed());
+		eventBNamedCommentedPredicateElementEClass.getESuperTypes().add(this.getEventBNamedCommentedElement());
+		eventBNamedCommentedPredicateElementEClass.getESuperTypes().add(this.getEventBPredicate());
+		eventBNamedCommentedDerivedPredicateElementEClass.getESuperTypes().add(this.getEventBNamedCommentedPredicateElement());
+		eventBNamedCommentedDerivedPredicateElementEClass.getESuperTypes().add(this.getEventBDerived());
+		eventBNamedCommentedActionElementEClass.getESuperTypes().add(this.getEventBNamedCommentedElement());
+		eventBNamedCommentedActionElementEClass.getESuperTypes().add(this.getEventBAction());
+		eventBNamedCommentedComponentElementEClass.getESuperTypes().add(this.getEventBNamedCommentedElement());
+		projectEClass.getESuperTypes().add(this.getEventBNamedCommentedElement());
+		extensionEClass.getESuperTypes().add(this.getEventBElement());
+		attributeEClass.getESuperTypes().add(this.getEventBObject());
+
+		// Initialize classes and features; add operations and parameters
+		initEClass(eventBObjectEClass, EventBObject.class, "EventBObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = addEOperation(eventBObjectEClass, this.getEventBObject(), "getContaining", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(eventBObjectEClass, null, "getAllContained", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEBoolean(), "resolve", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType(ecorePackage.getEObject());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
+		addEOperation(eventBObjectEClass, null, "getURI", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(eventBElementEClass, EventBElement.class, "EventBElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEventBElement_Extensions(), this.getExtension(), null, "extensions", null, 0, -1, EventBElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventBElement_Attributes(), this.getStringToAttributeMapEntry(), null, "attributes", null, 0, -1, EventBElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getEventBElement_Attributes().getEKeys().add(this.getStringToAttributeMapEntry_Key());
+
+		initEClass(eventBCommentedEClass, EventBCommented.class, "EventBCommented", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEventBCommented_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, EventBCommented.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBCommentedElementEClass, EventBCommentedElement.class, "EventBCommentedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBExpressionEClass, EventBExpression.class, "EventBExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEventBExpression_Expression(), ecorePackage.getEString(), "expression", "\"\"", 1, 1, EventBExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBCommentedExpressionElementEClass, EventBCommentedExpressionElement.class, "EventBCommentedExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBNamedEClass, EventBNamed.class, "EventBNamed", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEventBNamed_Name(), ecorePackage.getEString(), "name", null, 1, 1, EventBNamed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBNamedCommentedElementEClass, EventBNamedCommentedElement.class, "EventBNamedCommentedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBPredicateEClass, EventBPredicate.class, "EventBPredicate", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEventBPredicate_Predicate(), ecorePackage.getEString(), "predicate", "\"true\"", 1, 1, EventBPredicate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBNamedCommentedPredicateElementEClass, EventBNamedCommentedPredicateElement.class, "EventBNamedCommentedPredicateElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBDerivedEClass, EventBDerived.class, "EventBDerived", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEventBDerived_Theorem(), ecorePackage.getEBoolean(), "theorem", "false", 1, 1, EventBDerived.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBNamedCommentedDerivedPredicateElementEClass, EventBNamedCommentedDerivedPredicateElement.class, "EventBNamedCommentedDerivedPredicateElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBActionEClass, EventBAction.class, "EventBAction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEventBAction_Action(), ecorePackage.getEString(), "action", null, 1, 1, EventBAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBNamedCommentedActionElementEClass, EventBNamedCommentedActionElement.class, "EventBNamedCommentedActionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBNamedCommentedComponentElementEClass, EventBNamedCommentedComponentElement.class, "EventBNamedCommentedComponentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProject_Components(), this.getEventBNamedCommentedComponentElement(), null, "components", null, 0, -1, Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(extensionEClass, Extension.class, "Extension", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExtension_ExtensionId(), ecorePackage.getEString(), "extensionId", null, 1, 1, Extension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringToAttributeMapEntryEClass, Map.Entry.class, "StringToAttributeMapEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringToAttributeMapEntry_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStringToAttributeMapEntry_Value(), this.getAttribute(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAttribute_Type(), this.getAttributeType(), "type", "", 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Value(), ecorePackage.getEJavaObject(), "value", null, 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(attributeTypeEEnum, AttributeType.class, "AttributeType");
+		addEEnumLiteral(attributeTypeEEnum, AttributeType.BOOLEAN);
+		addEEnumLiteral(attributeTypeEEnum, AttributeType.HANDLE);
+		addEEnumLiteral(attributeTypeEEnum, AttributeType.INTEGER);
+		addEEnumLiteral(attributeTypeEEnum, AttributeType.LONG);
+		addEEnumLiteral(attributeTypeEEnum, AttributeType.STRING);
+
+		// Create resource
+		createResource(eNS_URI);
+	}
+
+} //CorePackageImpl
