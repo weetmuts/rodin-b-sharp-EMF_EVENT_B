@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            class="org.eventb.emf.structuredEditor.EventBStructuredEditor"
+            contributorClass="org.eventb.emf.structuredEditor.EventBStructuredEditorActionBarContributor"
+            default="false"
+            extensions="core,buc,bum"
+            icon="icons/full/obj16/EventBStructuredEditor.gif"
+            id="org.eventb.emf.structuredEditor.editorID"
+            name="%_UI_EventBStructuredEditor_label">
+            <contentTypeBinding contentTypeId="org.eventb.core.machineFile"/>
+         	<contentTypeBinding contentTypeId="org.eventb.core.contextFile"/>
+      </editor>
+   </extension>
+
+<!-- CUSTOM ADDED SECTION -->
+
+<!-- Property view contributors -->
+    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="org.eventb.emf.structuredEditor.editorID"
+            labelProvider="org.eventb.emf.edit.properties.ElementLabelProvider"
+            typeMapper="org.eventb.emf.edit.properties.ElementTypeMapper">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="common"/>
+         <propertyCategory category="project"/>
+         <propertyCategory category="context"/>
+         <propertyCategory category="machine"/>
+         <propertyCategory category="event"/>
+      </propertyContributor>
+   </extension>
+   
+<!-- Property tabs -->   
+         <!--"ac.soton.umlb.umlbMetamodel.commonDiagramUtilities.UMLBPropertiesView"-->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="org.eventb.emf.structuredEditor.editorID">
+         <!-- Common Tabs-->
+         <propertyTab
+               	category="common"
+               	id="common.tab.overview"
+               	label="%tab.Overview"/>
+               	
+         <!-- Machine Tabs-->              	
+         <propertyTab
+               	category="machine"
+               	id="machine.tab.variables"
+               	label="%tab.Variables"
+               	afterTab="common.tab.overview"
+               	/>        	               	               	
+         <propertyTab
+              	category="machine"
+               	id="machine.tab.invariants"
+               	label="%tab.Invariants"
+               	afterTab="machine.tab.variables"
+               	/>
+         <propertyTab
+               	category="machine"
+              	id="machine.tab.events"
+               	label="%tab.Events"
+               	afterTab="machine.tab.invariants"
+               	/>
+               	
+         <!-- Event Tabs-->                	
+        <propertyTab
+               	category="event"
+               	id="event.tab.parameters"
+               	label="%tab.Parameters"
+               	afterTab="common.tab.overview"
+               	/>
+         <propertyTab
+               	category="event"
+               	id="event.tab.guards"
+               	label="%tab.Guards"
+               	afterTab="event.tab.parameters"
+               	/> 
+         <propertyTab
+               	category="event"
+               	id="event.tab.actions"
+               	label="%tab.Actions"
+               	afterTab="event.tab.guards"
+               	/>
+               	
+         <!-- Context Tabs-->              	
+         <propertyTab
+               	category="context"
+               	id="context.tab.sets"
+               	label="%tab.Sets"
+               	afterTab="common.tab.overview"
+               	/>  
+         <propertyTab
+               	category="context"
+               	id="context.tab.constants"
+               	label="%tab.Constants"
+               	afterTab="context.tab.sets"
+               	/>   
+         <propertyTab
+               	category="context"
+               	id="context.tab.axioms"
+               	label="%tab.Axioms"
+               	afterTab="context.tab.axioms"
+               	/> 
+               	                              
+         <propertyTab
+               	category="domain"
+                id="domain.tab"
+                label="%tab.Domain"
+                afterTab="event.tab.actions"
+                />
+               
+      </propertyTabs>
+   </extension>
+
+<!-- properties -->
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="org.eventb.emf.structuredEditor.editorID">
+            
+         <!-- property sections in the 'Overview' tab - common -->
+         <propertySection
+               id="common.section.name"
+               tab="common.tab.overview"
+               filter="org.eventb.emf.edit.propertySections.textFields.EventBNamedElementNamePropertySection"
+               class="org.eventb.emf.edit.propertySections.textFields.EventBNamedElementNamePropertySection">
+         </propertySection>
+         <propertySection
+               id="common.section.comment"
+               tab="common.tab.overview"
+               afterSection="common.section.name"
+               filter="org.eventb.emf.edit.propertySections.textFields.EventBCommentedCommentPropertySection"
+               class="org.eventb.emf.edit.propertySections.textFields.EventBCommentedCommentPropertySection">
+         </propertySection>  
+		 <!-- property sections in the 'Overview' tab - machine -->               
+         <propertySection
+               id="machine.section.variant"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="org.eventb.emf.edit.propertySections.editTables.MachineVariantPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.MachineVariantPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.refines"
+               tab="common.tab.overview"
+               afterSection="machine.section.variant"
+               class="org.eventb.emf.edit.propertySections.editTables.MachineRefinesNamesPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.MachineRefinesNamesPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.sees"
+               tab="common.tab.overview"
+               afterSection="machine.section.refines"
+               class="org.eventb.emf.edit.propertySections.editTables.MachineSeesNamesPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.MachineSeesNamesPropertySection">
+         </propertySection>
+
+		 <!-- property sections in the 'Overview' tab - event -->          
+         <propertySection
+               id="event.section.convergence"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="org.eventb.emf.edit.propertySections.enumerations.EventConvergencePropertySection"
+               filter="org.eventb.emf.edit.propertySections.enumerations.EventConvergencePropertySection">
+         </propertySection>
+         <propertySection
+               id="event.section.extended"
+               tab="common.tab.overview"
+               afterSection="event.section.convergence"
+               class="org.eventb.emf.edit.propertySections.enumerations.EventExtendedPropertySection"
+               filter="org.eventb.emf.edit.propertySections.enumerations.EventExtendedPropertySection">
+         </propertySection>
+         <propertySection
+               id="event.section.refines"
+               tab="common.tab.overview"
+               afterSection="event.section.extended"
+               class="org.eventb.emf.edit.propertySections.editTables.EventRefinesNamesPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.EventRefinesNamesPropertySection">
+         </propertySection>
+
+		 <!-- property sections in the 'Overview' tab - context -->
+         <propertySection
+               id="context.section.extends"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="org.eventb.emf.edit.propertySections.editTables.ContextExtendsNamesPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.ContextExtendsNamesPropertySection">
+         </propertySection>
+         
+		 <!-- property sections in the 'Overview' tab - predicate --> 		          
+         <propertySection
+               id="predicate.section.predicate"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="org.eventb.emf.edit.propertySections.textFields.EventBPredicatePredicatePropertySection"
+               filter="org.eventb.emf.edit.propertySections.textFields.EventBPredicatePredicatePropertySection">
+         </propertySection> 
+         <propertySection
+               id="predicate.section.derived"
+               tab="common.tab.overview"
+               afterSection="predicate.section.predicate"
+               class="org.eventb.emf.edit.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection"
+               filter="org.eventb.emf.edit.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection">
+         </propertySection>
+
+		 <!-- property sections in the 'Overview' tab - action --> 
+         <propertySection
+               id="action.section.action"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="org.eventb.emf.edit.propertySections.textFields.ActionActionPropertySection"
+               filter="org.eventb.emf.edit.propertySections.textFields.ActionActionPropertySection">
+         </propertySection> 
+
+		 <!-- property sections in the 'Overview' tab - expression --> 
+         <propertySection
+               id="expression.section.expression"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="org.eventb.emf.edit.propertySections.textFields.EventBExpressionExpressionPropertySection"
+               filter="org.eventb.emf.edit.propertySections.textFields.EventBExpressionExpressionPropertySection">
+         </propertySection> 
+                  
+         <!-- in the machine tabs -->
+         <propertySection
+               id="machine.section.variables"
+               tab="machine.tab.variables"
+               class="org.eventb.emf.edit.propertySections.editTables.MachineVariablesPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.MachineVariablesPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.invariants"
+               tab="machine.tab.invariants"
+               class="org.eventb.emf.edit.propertySections.editTables.MachineInvariantsPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.MachineInvariantsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.events"
+               tab="machine.tab.events"
+               class="org.eventb.emf.edit.propertySections.editTables.MachineEventsPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.MachineEventsPropertySection">
+         </propertySection>  
+         
+                  
+         <!-- in the event tabs -->
+         <propertySection
+               id="event.section.parameters"
+               tab="event.tab.parameters"
+               class="org.eventb.emf.edit.propertySections.editTables.EventParametersPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.EventParametersPropertySection">
+         </propertySection>
+         		<!-- n.b.witnesses are in with the parameters -->
+         <propertySection
+               id="event.section.witnesses"
+               tab="event.tab.parameters"
+               afterSection="event.section.parameters"
+               class="org.eventb.emf.edit.propertySections.editTables.EventWitnessesPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.EventWitnessesPropertySection">
+         </propertySection> 
+         <propertySection
+               id="event.section.guards"
+               tab="event.tab.guards"
+               class="org.eventb.emf.edit.propertySections.editTables.EventGuardsPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.EventGuardsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="event.section.actions"
+               tab="event.tab.actions"
+               class="org.eventb.emf.edit.propertySections.editTables.EventActionsPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.EventActionsPropertySection">
+         </propertySection>
+         
+                  
+         <!-- in the context tabs -->
+         <propertySection
+               id="context.section.sets"
+               tab="context.tab.sets"
+               class="org.eventb.emf.edit.propertySections.editTables.ContextSetsPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.ContextSetsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="context.section.constants"
+               tab="context.tab.constants"
+               class="org.eventb.emf.edit.propertySections.editTables.ContextConstantsPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.ContextConstantsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="context.section.axioms"
+               tab="context.tab.axioms"
+               class="org.eventb.emf.edit.propertySections.editTables.ContextAxiomsPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.ContextAxiomsPropertySection">
+         </propertySection>
+      </propertySections>
+   </extension>
+
+</plugin>
