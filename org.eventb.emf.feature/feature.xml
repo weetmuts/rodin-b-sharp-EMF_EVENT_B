@@ -139,7 +139,7 @@ Inc. in the United States, other countries, or both.
    </license>
 
    <url>
-      <update label="Heinrich-Heine University Düsseldorf (Beta Releases)" url="http://www.stups.uni-duesseldorf.de/update/"/>
+      <update label="Heinrich-Heine University Düsseldorf" url="http://www.stups.uni-duesseldorf.de/update/"/>
    </url>
 
    <requires>
