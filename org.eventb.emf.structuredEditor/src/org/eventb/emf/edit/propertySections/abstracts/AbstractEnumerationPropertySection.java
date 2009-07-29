@@ -35,7 +35,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
-import org.eventb.emf.edit.properties.NameUtils;
+import org.eventb.emf.core.util.NameUtils;
 import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
 
 /**

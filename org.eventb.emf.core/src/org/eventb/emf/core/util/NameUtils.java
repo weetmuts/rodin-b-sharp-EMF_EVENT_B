@@ -1,4 +1,4 @@
-package org.eventb.emf.edit.properties;
+package org.eventb.emf.core.util;
 
 import java.util.ArrayList;
 import java.util.List;

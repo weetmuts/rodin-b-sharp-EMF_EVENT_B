@@ -69,7 +69,7 @@ import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
-import org.eventb.emf.edit.properties.NameUtils;
+import org.eventb.emf.core.util.NameUtils;
 import org.eventb.emf.edit.properties.SetValuesDialog;
 import org.eventb.emf.edit.properties.TextChangeHelper;
 import org.eventb.eventBKeyboard.EventBTextModifyListener;

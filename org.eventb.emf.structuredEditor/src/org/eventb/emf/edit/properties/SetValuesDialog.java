@@ -41,6 +41,7 @@ import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.EventBPredicate;
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.Convergence;
+import org.eventb.emf.core.util.NameUtils;
 import org.eventb.eventBKeyboard.EventBTextModifyListener;
 import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
 
