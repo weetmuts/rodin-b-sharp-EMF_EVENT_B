@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eventb.emf.emerging.feature"
+      label="Event-B EMF Emerging Features"
+      version="0.0.1"
+      provider-name="University of Southampton">
+
+   <description>
+      Provides teamworking support to allow several modellers to be
+working on an Event-B project at the same time. (Currently this
+feature just enables the standard EMF Compare facilities to be
+used on Rodin Event-B Machines and Contexts).
+   </description>
+
+   <copyright>
+      Copyright (c) 2009 University of Southampton. All rights reserved.
+   </copyright>
+
+   <license>
+      [Enter License Description here.]
+   </license>
+
+   <url>
+      <update label="Rodin" url="http://rodin-b-sharp.sourceforge.net/updates"/>
+   </url>
+
+   <requires>
+      <import feature="org.eventb.emf.feature" version="1.1.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eventb.emf.teamwork"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eventb.emf.structuredEditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
