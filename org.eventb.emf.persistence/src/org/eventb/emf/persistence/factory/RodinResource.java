@@ -10,7 +10,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.persistence.synchroniser.SyncManager;
@@ -20,7 +20,21 @@ import org.rodinp.core.IRodinProject;
 import org.rodinp.core.RodinCore;
 import org.rodinp.core.RodinDBException;
 
-public class RodinResource extends ResourceImpl {
+/**
+ * 
+ * This is the serialisation of Event-B models from EMF into the Rodin database
+ * We overload save and load directly as we are not interested in input or
+ * output streams (because we load/save through the Rodin API)
+ * 
+ * We extend XMIResourceImpl (rather than ResourceImpl). This allows clients to
+ * call the I/O stream versions of save and load to obtain the model content in
+ * EMF's default XMI stream. For example, EMF compare uses this.
+ * 
+ * @author cfs/ff
+ * 
+ */
+
+public class RodinResource extends XMIResourceImpl {
 
 	private IRodinFile rodinFile;
 	private IRodinProject rodinProject;
@@ -63,6 +77,9 @@ public class RodinResource extends ResourceImpl {
 					// rodinFile.getRoot(), this, null);
 				} catch (RodinDBException e) {
 					throw new IOException("Error while loading rodin file: " + e.getLocalizedMessage());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 				// success
 				setTimeStamp(System.currentTimeMillis());

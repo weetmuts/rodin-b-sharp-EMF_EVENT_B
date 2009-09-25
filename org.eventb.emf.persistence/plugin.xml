@@ -111,10 +111,10 @@
       <tool
             class="org.eventb.emf.persistence.factory.ModelUpdateTool"
             id="modelupdatetool"
-            name="EventB EMF Persistence Model Updater">
+            name="%tool.name.0">
          <extractor
                class="org.eventb.emf.persistence.factory.ModelUpdateTool"
-               name="EventB EMF Persistence Model Extractor">
+               name="%extractor.name.0">
             <inputType
                   id="org.eventb.core.machineFile">
             </inputType>
