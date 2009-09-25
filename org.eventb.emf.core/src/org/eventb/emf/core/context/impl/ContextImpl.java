@@ -411,6 +411,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 	@Override
 	public EObject eResolveProxy(InternalEObject proxy){
 		if (proxy != null && proxy.eIsProxy()){
+			if (eResource()==null) return proxy;
 			try{
 				URI uri=null;
 				String fragment = proxy.eProxyURI().fragment();

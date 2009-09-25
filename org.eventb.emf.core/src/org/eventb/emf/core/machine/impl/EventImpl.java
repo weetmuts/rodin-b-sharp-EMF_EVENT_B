@@ -607,6 +607,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 	@Override
 	public EObject eResolveProxy(InternalEObject proxy){
 		if (proxy != null && proxy.eIsProxy()){
+			if (eResource()==null) return proxy;
 			try{
 				 URI uri=null;
 				 if (proxy instanceof Event && getRefines().contains(proxy)){
