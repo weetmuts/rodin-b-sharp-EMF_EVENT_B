@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name.0
 Bundle-SymbolicName: org.eventb.emf.persistence;singleton:=true
-Bundle-Version: 1.1.0
+Bundle-Version: 1.1.1
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.4.0,4.0.0)",
  org.eventb.core;bundle-version="[1.0.0,2.0.0)",
@@ -15,3 +15,4 @@ Export-Package: org.eventb.emf.persistence,
  org.eventb.emf.persistence.synchroniser
 Bundle-Activator: org.eventb.emf.persistence.PersistencePlugin
 Bundle-Localization: plugin
+Bundle-Vendor: %providerName
