@@ -88,8 +88,9 @@ public class ElementLabelProvider extends LabelProvider {
 	 *
 	 * @param umlbelement the selected diagram part
 	 * @return the label for the properties window.
+	 * @generated NOT
 	 */
-	private String getLabelForElement(final EventBElement element){
+	protected String getLabelForElement(final EventBElement element){
 		String elementName = null;
 		if (element instanceof EventBNamed){
 			elementName = ((EventBNamed)element).getName();

@@ -9,12 +9,17 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
+ org.eventb.emf.edit.properties,
+ org.eventb.emf.edit.propertySections.abstracts,
+ org.eventb.emf.edit.propertySections.editTables,
+ org.eventb.emf.edit.propertySections.enumerations,
+ org.eventb.emf.edit.propertySections.textFields,
  org.eventb.emf.structuredEditor
 Require-Bundle: org.eventb.emf.core;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
  org.eclipse.emf.edit.ui;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="[3.4.0,4.0.0)";visibility:=reexport,
- org.eclipse.ui.views.properties.tabbed;bundle-version="[3.4.0,4.0.0)",
+ org.eclipse.ui.views.properties.tabbed;bundle-version="[3.4.0,4.0.0)";visibility:=reexport,
  org.eventb.eventBKeyboard;bundle-version="[2.7.0,3.0.0)",
  org.eclipse.emf.transaction;bundle-version="[1.2.0,2.0.0)",
  org.eventb.core;bundle-version="[0.9.2,2.0.0)"
