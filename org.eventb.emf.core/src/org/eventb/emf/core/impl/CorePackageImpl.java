@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -15,7 +19,10 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.AttributeType;
 import org.eventb.emf.core.CoreFactory;
@@ -37,9 +44,13 @@ import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.EventBPredicate;
 import org.eventb.emf.core.Extension;
 import org.eventb.emf.core.Project;
+
 import org.eventb.emf.core.context.ContextPackage;
+
 import org.eventb.emf.core.context.impl.ContextPackageImpl;
+
 import org.eventb.emf.core.machine.MachinePackage;
+
 import org.eventb.emf.core.machine.impl.MachinePackageImpl;
 
 /**
@@ -299,6 +310,15 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 */
 	public EReference getEventBElement_Attributes() {
 		return (EReference)eventBElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBElement_Reference() {
+		return (EAttribute)eventBElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -604,6 +624,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		eventBElementEClass = createEClass(EVENT_BELEMENT);
 		createEReference(eventBElementEClass, EVENT_BELEMENT__EXTENSIONS);
 		createEReference(eventBElementEClass, EVENT_BELEMENT__ATTRIBUTES);
+		createEAttribute(eventBElementEClass, EVENT_BELEMENT__REFERENCE);
 
 		eventBCommentedEClass = createEClass(EVENT_BCOMMENTED);
 		createEAttribute(eventBCommentedEClass, EVENT_BCOMMENTED__COMMENT);
@@ -724,12 +745,21 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		addEOperation(eventBObjectEClass, null, "getURI", 1, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(eventBObjectEClass, null, "getURI", 1, 1, IS_UNIQUE, IS_ORDERED);
+		ETypeParameter t1 = addETypeParameter(op, "URI");
+		g1 = createEGenericType(t1);
+		initEOperation(op, g1);
 
 		initEClass(eventBElementEClass, EventBElement.class, "EventBElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventBElement_Extensions(), this.getExtension(), null, "extensions", null, 0, -1, EventBElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEventBElement_Attributes(), this.getStringToAttributeMapEntry(), null, "attributes", null, 0, -1, EventBElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getEventBElement_Attributes().getEKeys().add(this.getStringToAttributeMapEntry_Key());
+		initEAttribute(getEventBElement_Reference(), ecorePackage.getEString(), "reference", "", 1, 1, EventBElement.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(eventBElementEClass, ecorePackage.getEString(), "getReferenceWithoutResolving", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(eventBElementEClass, null, "setReference", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newReference", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eventBCommentedEClass, EventBCommented.class, "EventBCommented", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEventBCommented_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, EventBCommented.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -742,7 +772,12 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		initEClass(eventBCommentedExpressionElementEClass, EventBCommentedExpressionElement.class, "EventBCommentedExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(eventBNamedEClass, EventBNamed.class, "EventBNamed", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEventBNamed_Name(), ecorePackage.getEString(), "name", null, 1, 1, EventBNamed.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventBNamed_Name(), ecorePackage.getEString(), "name", "", 1, 1, EventBNamed.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		addEOperation(eventBNamedEClass, ecorePackage.getEString(), "getName1", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(eventBNamedEClass, null, "setName1", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "newName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eventBNamedCommentedElementEClass, EventBNamedCommentedElement.class, "EventBNamedCommentedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

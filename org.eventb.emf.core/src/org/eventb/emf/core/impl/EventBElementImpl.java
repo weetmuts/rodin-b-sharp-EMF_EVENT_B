@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -9,14 +13,18 @@ package org.eventb.emf.core.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
@@ -31,6 +39,7 @@ import org.eventb.emf.core.Extension;
  * <ul>
  *   <li>{@link org.eventb.emf.core.impl.EventBElementImpl#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eventb.emf.core.impl.EventBElementImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.eventb.emf.core.impl.EventBElementImpl#getReference <em>Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,6 +65,26 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * @ordered
 	 */
 	protected EMap<String, Attribute> attributes;
+
+	/**
+	 * The default value of the '{@link #getReference() <em>Reference</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReference()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String REFERENCE_EDEFAULT = "";
+
+	/**
+	 * The cached value of the '{@link #getReference() <em>Reference</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReference()
+	 * @generated
+	 * @ordered
+	 */
+	protected String reference = REFERENCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,6 +134,41 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getReference() {
+		return reference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getReferenceWithoutResolving() {
+		if (this.eIsProxy()){
+			return ((InternalEObject)this).eProxyURI().fragment();
+		}else{
+			return reference;
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReference(String newReference) {
+		if (this.eIsProxy()){
+			((InternalEObject)this).eProxyURI().appendFragment(newReference);
+		}else{
+			reference = newReference;
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -129,6 +193,8 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				if (coreType) return getAttributes();
 				else return getAttributes().map();
+			case CorePackage.EVENT_BELEMENT__REFERENCE:
+				return getReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,8 +249,26 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				return extensions != null && !extensions.isEmpty();
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
+			case CorePackage.EVENT_BELEMENT__REFERENCE:
+				return REFERENCE_EDEFAULT == null ? reference != null : !REFERENCE_EDEFAULT.equals(reference);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (reference: ");
+		result.append(reference);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EventBElementImpl

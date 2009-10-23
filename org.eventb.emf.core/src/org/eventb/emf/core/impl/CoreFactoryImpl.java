@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -12,15 +16,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eventb.emf.core.*;
-import org.eventb.emf.core.Attribute;
-import org.eventb.emf.core.AttributeType;
-import org.eventb.emf.core.CoreFactory;
-import org.eventb.emf.core.CorePackage;
-import org.eventb.emf.core.Extension;
-import org.eventb.emf.core.Project;
 
 /**
  * <!-- begin-user-doc -->

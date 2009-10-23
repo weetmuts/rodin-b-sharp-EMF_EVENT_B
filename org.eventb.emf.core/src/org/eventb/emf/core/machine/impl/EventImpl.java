@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -18,13 +22,16 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eventb.emf.core.CorePackage;
+import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
+
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.Convergence;
 import org.eventb.emf.core.machine.Event;
@@ -176,23 +183,6 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Returns the name of this element.
-	 * This is either the actual name attribute or, if the element is a proxy,
-	 * the proxy URI fragment.
-	 * (this works because name is used as the intrinsic ID)
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getName() {
-		if (this.eIsProxy()){
-			return ((InternalEObject)this).eProxyURI().fragment();
-		}else{
-			return name;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -304,7 +294,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 			//get the current BEvent at the given index (using basicGet to avoid resolving)
 			Event event = ((BasicEList<Event>)getRefines()).basicGet(index);
 			//return the name of the referenced element (either from the unresolved URI fragment or from the resolved element's name)
-			return event.eIsProxy() ? ((InternalEObject)event).eProxyURI().fragment() : event.getName();
+			return event.getName();
 		}catch (Exception e){
 			return null;
 		}
@@ -331,7 +321,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = MachineFactory.eINSTANCE.createEvent();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Event.class.getName()+"."+newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Event>)getRefines()).setUnique(index, proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -351,7 +341,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 	 * @custom
 	 */
 	protected void addRefinesName(String newName) {
-		addRefinesName(((BasicEList<Event>)getRefines()).size(),newName);
+		addRefinesName(((BasicEList<Event>)getRefines()).size(), Event.class.getName()+"."+newName);
 	}
 	
 	/**
@@ -368,7 +358,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 	protected void addRefinesName(int index, String newName) {
 		Event proxy = MachineFactory.eINSTANCE.createEvent();
 		//add the new proxy (using addUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Event.class.getName()+"."+newName));
 		((BasicEList<Event>)getRefines()).addUnique(index, proxy);
 	}
 

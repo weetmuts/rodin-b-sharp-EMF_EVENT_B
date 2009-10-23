@@ -5,22 +5,58 @@
     nsURI="http://emf.eventb.org/models/core" nsPrefix="core">
   <eClassifiers xsi:type="ecore:EClass" name="EventBObject" abstract="true" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
     <eOperations name="getContaining" lowerBound="1" eType="#//EventBObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EventBObject bObject = this;&#xA;while (!eClass.isSuperTypeOf(bObject.eClass()))&#xA;&#x9;if (bObject.eContainer() instanceof EventBObject) bObject=(EventBObject)bObject.eContainer();&#xA;&#x9;else return null;&#xA;return bObject;"/>
+        <details key="documentation" value="returns the nearest container of this element that is a sub-type eClass&#xD;or null if no container of that type&#xA;@param &#x9;the EClass that is the super-type of the returned elements&#xA;@return &#x9;containing EventBObject that is a sub-type of eClass&#xA;"/>
+      </eAnnotations>
       <eParameters name="eClass" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     </eOperations>
     <eOperations name="getAllContained">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="EList&lt;EObject> typeObjects = new BasicEList&lt;EObject>();&#xA;typeObjects.add(null);&#x9;//include the null object&#xA;for (TreeIterator&lt;EObject>trit = EcoreUtil.getAllContents(this, resolve); trit.hasNext();){&#xA;&#x9;EObject o = trit.next();&#xA;&#x9;if (eClass.isSuperTypeOf(o.eClass())) typeObjects.add(o);&#xA;}&#xA;return typeObjects;"/>
+        <details key="documentation" value="returns a list of elements that sub-type eClass and&#xD;that are contained (directly or indirectly) by this element&#xA;@param  eClass - &#x9;the EClass that is the super-type of the returned elements&#xD;@param resolve - &#x9;whether to resolve proxies&#xA;"/>
+      </eAnnotations>
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eGenericType>
       <eParameters name="eClass" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
       <eParameters name="resolve" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
-    <eOperations name="getURI" lowerBound="1"/>
+    <eOperations name="getURI" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (eIsProxy()){&#xA;&#x9;return ((InternalEObject)this).eProxyURI();&#xA;}else{&#xA;&#x9;return eResource().getURI();&#xA;}"/>
+        <details key="documentation" value="returns the URI of this element.&#xD;(If the element is not loaded, the URI is obtained from the proxy without loading the element)"/>
+      </eAnnotations>
+      <eGenericType eTypeParameter="#//EventBObject/getURI/URI"/>
+      <eTypeParameters name="URI"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBElement" abstract="true" eSuperTypes="#//EventBObject">
+    <eOperations name="getReferenceWithoutResolving" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (this.eIsProxy()){&#xA;&#x9;return ((InternalEObject)this).eProxyURI().fragment();&#xA;}else{&#xA;&#x9;return reference;&#xA;}"/>
+        <details key="documentation" value="Returns the 'reference' attribute of this element.&#xD;If this element is a proxy, the reference is obtained from the proxy URI fragment. Otherwise the value of the reference attribute is returned"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="setReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (this.eIsProxy()){&#xA;&#x9;((InternalEObject)this).eProxyURI().appendFragment(newReference);&#xA;}else{&#xA;&#x9;reference = newReference;&#xA;}"/>
+        <details key="documentation" value="Sets the 'reference' attribute of this element.&#xD;If this element is a proxy, the reference is seet in the proxy URI fragment. Otherwise the value of the reference attribute is set."/>
+      </eAnnotations>
+      <eParameters name="newReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
         eType="#//Extension" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//StringToAttributeMapEntry" containment="true" eKeys="#//StringToAttributeMapEntry/key"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        defaultValueLiteral="" iD="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="supressedGetVisibility" value="true"/>
+        <details key="supressedSetVisibility" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBCommented" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -34,8 +70,21 @@
   <eClassifiers xsi:type="ecore:EClass" name="EventBCommentedExpressionElement" abstract="true"
       eSuperTypes="#//EventBCommentedElement #//EventBExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventBNamed" abstract="true">
+    <eOperations name="getName1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="if (this instanceof &lt;%org.eventb.emf.core.EventBElement%>){&#xA;&#x9;String reference = ((EventBElement)this).getReferenceWithoutResolving();&#xA;&#x9;return reference.substring(reference.lastIndexOf(&quot;.&quot;)+1);&#xA;}else&#xA;&#x9;return null;"/>
+        <details key="documentation" value="&lt;getName() should be changed to call this method>&#xD;&#xD;If this is not a subclass of EventBElement this method returns null.&#xD;Returns this element's name or, if it is a proxy, the name being referenced.&#xD;The name is derived from the element's 'reference' attribute which&#xD; includes the element type to ensure that references are unique within a resource.&#xD;(Calling this method will not resolve any unresolved proxies)."/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="setName1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="((EventBElement)this).setReference(this.eClass().toString()+&quot;.&quot;+newName);"/>
+        <details key="documentation" value="&lt;setName() should be changed to call this method>&#xD;&#xD;If this is not a subclass of EventBElement this method does nothing.&#xD;Sets the name of this element or, if it is a proxy, the name being referenced. &#xD;The name is stored in the 'reference' attribute which also contains the element's &#xD;type to ensure that references are unique winthin a resource.&#xD;(Calling this method will not resolve any unresolved proxies).&#xD;&#xD;"/>
+      </eAnnotations>
+      <eParameters name="newName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
+        volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBNamedCommentedElement" abstract="true"
       eSuperTypes="#//EventBCommentedElement #//EventBNamed"/>

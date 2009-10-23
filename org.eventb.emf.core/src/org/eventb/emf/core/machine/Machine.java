@@ -1,13 +1,19 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
 package org.eventb.emf.core.machine;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eventb.emf.core.EventBNamedCommentedComponentElement;
+
 import org.eventb.emf.core.context.Context;
 
 /**
@@ -39,7 +45,7 @@ public interface Machine extends EventBNamedCommentedComponentElement {
 	 * The list contents are of type {@link org.eventb.emf.core.machine.Machine}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Refines</em>' reference isn't clear,
+	 * If the meaning of the '<em>Refines</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->

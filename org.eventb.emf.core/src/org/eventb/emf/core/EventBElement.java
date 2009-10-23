@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -19,6 +23,7 @@ import org.eclipse.emf.common.util.EMap;
  * <ul>
  *   <li>{@link org.eventb.emf.core.EventBElement#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eventb.emf.core.EventBElement#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.eventb.emf.core.EventBElement#getReference <em>Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,5 +64,47 @@ public interface EventBElement extends EventBObject {
 	 * @generated
 	 */
 	EMap<String, Attribute> getAttributes();
+
+	/**
+	 * Returns the value of the '<em><b>Reference</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reference</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reference</em>' attribute.
+	 * @see org.eventb.emf.core.CorePackage#getEventBElement_Reference()
+	 * @model default="" id="true" required="true" changeable="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel supressedGetVisibility='true' supressedSetVisibility='true'"
+	 * @generated
+	 */
+	String getReference();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Returns the 'reference' attribute of this element.
+	 * If this element is a proxy, the reference is obtained from the proxy URI fragment. Otherwise the value of the reference attribute is returned
+	 * <!-- end-model-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\treturn ((InternalEObject)this).eProxyURI().fragment();\n}else{\n\treturn reference;\n}'"
+	 * @generated
+	 */
+	String getReferenceWithoutResolving();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Sets the 'reference' attribute of this element.
+	 * If this element is a proxy, the reference is seet in the proxy URI fragment. Otherwise the value of the reference attribute is set.
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\t((InternalEObject)this).eProxyURI().appendFragment(newReference);\n}else{\n\treference = newReference;\n}'"
+	 * @generated
+	 */
+	void setReference(String newReference);
 
 } // EventBElement

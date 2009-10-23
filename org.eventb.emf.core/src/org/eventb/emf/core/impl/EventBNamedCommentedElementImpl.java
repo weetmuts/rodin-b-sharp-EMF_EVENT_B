@@ -1,15 +1,19 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
 package org.eventb.emf.core.impl;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eventb.emf.core.CorePackage;
+import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.EventBNamedCommentedElement;
 
@@ -35,17 +39,7 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
+	protected static final String NAME_EDEFAULT = "";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,11 +62,24 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * returns the name of this element by calling getName1()
+	 * (getName1() is defined in model and generated)
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated not
 	 */
 	public String getName() {
-		return name;
+		return getName1();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * sets the name of this element by calling setName1()
+	 * (setName1() is defined in model and generated)
+	 * <!-- end-user-doc -->
+	 * @generated not
+	 */
+	public void setName(String newName) {
+		setName1(newName);
 	}
 
 	/**
@@ -80,11 +87,21 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__NAME, oldName, name));
+	public String getName1() {
+		if (this instanceof EventBElement){
+			String reference = ((EventBElement)this).getReferenceWithoutResolving();
+			return reference.substring(reference.lastIndexOf(".")+1);
+		}else
+			return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName1(String newName) {
+		((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+"."+newName);
 	}
 
 	/**
@@ -140,7 +157,7 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
 		}
 		return super.eIsSet(featureID);
 	}
@@ -175,22 +192,6 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //EventBNamedCommentedElementImpl

@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -128,13 +132,22 @@ public interface CorePackage extends EPackage {
 	int EVENT_BELEMENT__ATTRIBUTES = EVENT_BOBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BELEMENT__REFERENCE = EVENT_BOBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Event BElement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BELEMENT_FEATURE_COUNT = EVENT_BOBJECT_FEATURE_COUNT + 2;
+	int EVENT_BELEMENT_FEATURE_COUNT = EVENT_BOBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eventb.emf.core.impl.EventBCommentedImpl <em>Event BCommented</em>}' class.
@@ -200,6 +213,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BCOMMENTED_ELEMENT__ATTRIBUTES = EVENT_BELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_ELEMENT__REFERENCE = EVENT_BELEMENT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -283,6 +305,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BCOMMENTED_EXPRESSION_ELEMENT__ATTRIBUTES = EVENT_BCOMMENTED_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_EXPRESSION_ELEMENT__REFERENCE = EVENT_BCOMMENTED_ELEMENT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -377,6 +408,15 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_ELEMENT__ATTRIBUTES = EVENT_BCOMMENTED_ELEMENT__ATTRIBUTES;
 
 	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE = EVENT_BCOMMENTED_ELEMENT__REFERENCE;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -467,6 +507,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__ATTRIBUTES = EVENT_BNAMED_COMMENTED_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__REFERENCE = EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -568,6 +617,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__ATTRIBUTES = EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__REFERENCE = EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -680,6 +738,15 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__ATTRIBUTES = EVENT_BNAMED_COMMENTED_ELEMENT__ATTRIBUTES;
 
 	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__REFERENCE = EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -753,6 +820,15 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__ATTRIBUTES = EVENT_BNAMED_COMMENTED_ELEMENT__ATTRIBUTES;
 
 	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__REFERENCE = EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -815,6 +891,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int PROJECT__ATTRIBUTES = EVENT_BNAMED_COMMENTED_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__REFERENCE = EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -888,6 +973,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENSION__ATTRIBUTES = EVENT_BELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION__REFERENCE = EVENT_BELEMENT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1042,6 +1136,17 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEventBElement_Attributes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eventb.emf.core.EventBElement#getReference <em>Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reference</em>'.
+	 * @see org.eventb.emf.core.EventBElement#getReference()
+	 * @see #getEventBElement()
+	 * @generated
+	 */
+	EAttribute getEventBElement_Reference();
 
 	/**
 	 * Returns the meta object for class '{@link org.eventb.emf.core.EventBCommented <em>Event BCommented</em>}'.
@@ -1414,6 +1519,14 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_BELEMENT__ATTRIBUTES = eINSTANCE.getEventBElement_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT_BELEMENT__REFERENCE = eINSTANCE.getEventBElement_Reference();
 
 		/**
 		 * The meta object literal for the '{@link org.eventb.emf.core.impl.EventBCommentedImpl <em>Event BCommented</em>}' class.

@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -111,23 +115,6 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Returns the name of this element.
-	 * This is either the actual name attribute or, if the element is a proxy,
-	 * the proxy URI fragment.
-	 * (this works because name is used as the intrinsic ID)
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getName() {
-		if (this.eIsProxy()){
-			return ((InternalEObject)this).eProxyURI().fragment();
-		}else{
-			return name;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -172,7 +159,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 			//get the current Context at the given index (using basicGet to avoid resolving)
 			Context context = ((BasicEList<Context>)getExtends()).basicGet(index);
 			//return the name of the referenced element (either from the unresolved URI fragment or from the resolved element's name)
-			return context.eIsProxy() ? ((InternalEObject)context).eProxyURI().fragment() : context.getName();
+			return context.getName();
 		}catch (Exception e){
 			return null;
 		}
@@ -198,7 +185,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = ContextFactory.eINSTANCE.createContext();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Context>)getExtends()).setUnique(index,proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -218,7 +205,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * @custom
 	 */
 	protected void addExtendsName(String newName) {
-		addExtendsName(((BasicEList<Context>)getExtends()).size(),newName);
+		addExtendsName(((BasicEList<Context>)getExtends()).size(), Context.class.getName()+"."+newName);
 	}
 
 	/**
@@ -235,7 +222,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 	protected void addExtendsName(int index, String newName) {
 		Context proxy = ContextFactory.eINSTANCE.createContext();
 		//add the new proxy (using setUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
 		((BasicEList<Context>)getExtends()).addUnique(index, proxy);
 	}
 
@@ -414,11 +401,12 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 			if (eResource()==null) return proxy;
 			try{
 				URI uri=null;
-				String fragment = proxy.eProxyURI().fragment();
+				String reference = proxy.eProxyURI().fragment();
+				String name = reference.substring(reference.lastIndexOf(".")+1);
 				if (proxy instanceof Context && getExtends().contains(proxy)){
-					uri = eResource().getURI().trimSegments(1).appendSegment(fragment)
+					uri = eResource().getURI().trimSegments(1).appendSegment(name)
 						.appendFileExtension(External.getString("FileExtensions.context"))
-						.appendFragment(fragment);
+						.appendFragment(reference);
 				}
 				if (uri!=null) proxy.eSetProxyURI(uri);
 			}catch (Exception e){

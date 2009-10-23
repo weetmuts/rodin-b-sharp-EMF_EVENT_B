@@ -1,6 +1,10 @@
 /**
- * <copyright>
- * </copyright>
+ * Copyright (c) 2006, 2009 
+ * University of Southampton, Heinrich-Heine University Dusseldorf and others.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  *
  * $Id$
  */
@@ -18,6 +22,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -28,6 +33,7 @@ import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.externalisation.External;
 import org.eventb.emf.core.impl.EventBNamedCommentedComponentElementImpl;
+
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.Invariant;
 import org.eventb.emf.core.machine.Machine;
@@ -138,23 +144,6 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * Returns the name of this element.
-	 * This is either the actual name attribute or, if the element is a proxy,
-	 * the proxy URI fragment.
-	 * (this works because name is used as the intrinsic ID)
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getName() {
-		if (this.eIsProxy()){
-			return ((InternalEObject)this).eProxyURI().fragment();
-		}else{
-			return name;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * Returns the Machines that are refined by this one.
 	 * WARNING: THIS RETURNS A RESOLVING LIST - ACCESSING ITS CONTENTS RESOLVES PROXIES IF NECESSARY AND MAY RESULT IN LOADING THE REFINED MACHINE
 	 * <!-- end-user-doc -->
@@ -176,7 +165,6 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-
 	public EList<String> getRefinesNames() {
 		List<String> refinesNamesData = new ArrayList<String>();
 		for (int i = 0 ; i < getRefines().size(); i++){
@@ -202,7 +190,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			//get the current Machine at the given index (using basicGet to avoid resolving)
 			Machine machine = ((BasicEList<Machine>)getRefines()).basicGet(index);
 			//return the name of the referenced element (either from the unresolved URI fragment or from the resolved element's name)
-			return machine.eIsProxy() ? ((InternalEObject)machine).eProxyURI().fragment() : machine.getName();
+			return machine.getName();
 		}catch (Exception e){
 			return null;
 		}
@@ -229,7 +217,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = MachineFactory.eINSTANCE.createMachine();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Machine>)getRefines()).setUnique(index, proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -249,7 +237,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * @custom
 	 */
 	protected void addRefinesName(String newName) {
-		addRefinesName(((BasicEList<Machine>)getRefines()).size(),newName);
+		addRefinesName(((BasicEList<Machine>)getRefines()).size(), Context.class.getName()+"."+newName);
 	}
 	
 	/**
@@ -266,7 +254,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	protected void addRefinesName(int index, String newName) {
 		Machine proxy = MachineFactory.eINSTANCE.createMachine();
 		//add the new proxy (using setUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
 		((BasicEList<Machine>)getRefines()).addUnique(index,proxy);
 	}
 
@@ -293,7 +281,6 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-
 	public EList<String> getSeesNames() {
 		List<String> seesNamesData = new ArrayList<String>();
 		for (int i = 0 ; i < getSees().size(); i++){
@@ -319,7 +306,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			//get the current Context at the given index (using basicGet to avoid resolving)
 			Context context = ((BasicEList<Context>)getSees()).basicGet(index);
 			//return the name of the referenced element (either from the unresolved URI fragment or from the resolved element's name)
-			return context.eIsProxy() ? ((InternalEObject)context).eProxyURI().fragment() : context.getName();
+			return context.getName();
 		}catch (Exception e){
 			return null;
 		}
@@ -346,7 +333,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = ContextFactory.eINSTANCE.createContext();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Context>)getSees()).setUnique(index, proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -366,7 +353,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * @custom
 	 */
 	protected void addSeesName(String newName) {
-		addSeesName(((BasicEList<Context>)getSees()).size(),newName);
+		addSeesName(((BasicEList<Context>)getSees()).size(), Context.class.getName()+"."+newName);
 	}
 
 	/**
@@ -383,7 +370,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	protected void addSeesName(int index, String newName) {
 		Context proxy = ContextFactory.eINSTANCE.createContext();
 		//add the new proxy (using setUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
 		((BasicEList<Context>)getSees()).addUnique(index, proxy);
 	}
 
@@ -639,15 +626,16 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 		  if (eResource()==null) return proxy;
 		  try{
 			 URI uri=null;
-			 String fragment = proxy.eProxyURI().fragment();
+			 String reference = proxy.eProxyURI().fragment();
+			 String name = reference.substring(reference.lastIndexOf(".")+1);
 			 if (proxy instanceof Machine && getRefines().contains(proxy)){
-				 uri = eResource().getURI().trimSegments(1).appendSegment(fragment)
+				 uri = eResource().getURI().trimSegments(1).appendSegment(name)
 				 	.appendFileExtension(External.getString("FileExtensions.machine"))
-				 	.appendFragment(fragment); //$NON-NLS-1$
+				 	.appendFragment(reference); //$NON-NLS-1$
 			 }else if (proxy instanceof Context && getSees().contains(proxy)){
-				 uri = eResource().getURI().trimSegments(1).appendSegment(fragment)
+				 uri = eResource().getURI().trimSegments(1).appendSegment(name)
 				 	.appendFileExtension(External.getString("FileExtensions.context"))
-				 	.appendFragment(fragment); //$NON-NLS-1$
+				 	.appendFragment(reference); //$NON-NLS-1$
 			 }
 			 if (uri!=null) proxy.eSetProxyURI(uri);
 		  }catch (Exception e){
