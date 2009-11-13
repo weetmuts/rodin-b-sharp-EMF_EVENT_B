@@ -112,7 +112,7 @@ public class EventSynchroniser extends AbstractSynchroniser {
 			if (extended && INITIALISATION.equals(emfEvent.getName())) {
 				if (refinesNames.size() > 0) {
 					/*
-					 * Grumbel grumbel, special cases...
+					 * Grumble grumble, special cases...
 					 * Workaround for bug / design decision
 					 * http://sourceforge.net/tracker/?func=detail&atid=651669&aid=2810797&group_id=108850
 					 * 
