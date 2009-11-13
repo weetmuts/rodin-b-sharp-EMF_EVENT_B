@@ -68,7 +68,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	protected abstract Set<IAttributeType> getHandledAttributeTypes();
 
 	@SuppressWarnings("unchecked")
-	public EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public <T extends EventBElement> EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 		// create EMF node
 		final EventBElement eventBElement = createEventBElement();
 
