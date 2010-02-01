@@ -66,7 +66,7 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	 * returns the name of this element by calling getName1()
 	 * (getName1() is defined in model and generated)
 	 * <!-- end-user-doc -->
-	 * @generated not
+	 * @generated NOT
 	 */
 	public String getName() {
 		return getName1();
@@ -77,7 +77,7 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	 * sets the name of this element by calling setName1()
 	 * (setName1() is defined in model and generated)
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setName(String newName) {
 		setName1(newName);
