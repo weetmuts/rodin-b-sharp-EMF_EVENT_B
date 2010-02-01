@@ -182,8 +182,11 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * eGet gets a feature of an object via a feature ID.
+	 * This has been customised for feature ID= 3 (reference attribute)
+	 * to prevent it resolving proxies if resolve is false;
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
@@ -194,15 +197,21 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				if (coreType) return getAttributes();
 				else return getAttributes().map();
 			case CorePackage.EVENT_BELEMENT__REFERENCE:
-				return getReference();
+				return resolve? getReference() : getReferenceWithoutResolving();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * eSet sets a feature of an object via a feature ID.
+	 * This has been customised for feature ID= 3 (reference attribute)
+	 * Although reference is supposed to be unsettable, we allow it to be set here
+	 * because it is called by reflective methods. 
+	 * In particular, the default XMI serialisation expects to be able to
+	 *  set attributes that have been persisted during load.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -214,6 +223,9 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				return;
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				((EStructuralFeature.Setting)getAttributes()).set(newValue);
+				return;
+			case CorePackage.EVENT_BELEMENT__REFERENCE:
+				setReference(newValue.toString());
 				return;
 		}
 		super.eSet(featureID, newValue);
