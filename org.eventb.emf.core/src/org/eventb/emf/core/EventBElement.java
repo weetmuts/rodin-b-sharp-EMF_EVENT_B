@@ -70,8 +70,8 @@ public interface EventBElement extends EventBObject {
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Reference</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * Each element has a reference which is constructed from the element type and the element name.
+	 * This can be used to uniquely reference the element from other components. 
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' attribute.
@@ -100,7 +100,7 @@ public interface EventBElement extends EventBObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Sets the 'reference' attribute of this element.
-	 * If this element is a proxy, the reference is seet in the proxy URI fragment. Otherwise the value of the reference attribute is set.
+	 * If this element is a proxy, the reference is set in the proxy URI fragment. Otherwise the value of the reference attribute is set.
 	 * <!-- end-model-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\t((InternalEObject)this).eProxyURI().appendFragment(newReference);\n}else{\n\treference = newReference;\n}'"
 	 * @generated
