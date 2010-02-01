@@ -51,12 +51,7 @@
         eType="#//StringToAttributeMapEntry" containment="true" eKeys="#//StringToAttributeMapEntry/key"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
-        defaultValueLiteral="" iD="true">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="supressedGetVisibility" value="true"/>
-        <details key="supressedSetVisibility" value="true"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+        defaultValueLiteral="" iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBCommented" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
