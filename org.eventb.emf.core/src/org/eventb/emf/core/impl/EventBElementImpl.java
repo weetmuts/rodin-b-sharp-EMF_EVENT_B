@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eventb.emf.core.Attribute;
@@ -79,12 +80,13 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	/**
 	 * The cached value of the '{@link #getReference() <em>Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * To ensure a reference is always present, this is set with a UUID at creation.
 	 * <!-- end-user-doc -->
 	 * @see #getReference()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected String reference = REFERENCE_EDEFAULT;
+	protected String reference = EcoreUtil.generateUUID(); //was REFERENCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
