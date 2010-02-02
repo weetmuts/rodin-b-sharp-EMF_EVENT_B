@@ -77,7 +77,6 @@ public interface EventBElement extends EventBObject {
 	 * @return the value of the '<em>Reference</em>' attribute.
 	 * @see org.eventb.emf.core.CorePackage#getEventBElement_Reference()
 	 * @model default="" id="true" required="true" changeable="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel supressedGetVisibility='true' supressedSetVisibility='true'"
 	 * @generated
 	 */
 	String getReference();

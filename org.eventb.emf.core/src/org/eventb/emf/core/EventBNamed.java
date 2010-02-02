@@ -84,7 +84,7 @@ public interface EventBNamed extends EObject {
 	 * 
 	 * 
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='((EventBElement)this).setReference(this.eClass().toString()+\".\"+newName);'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+\".\"+newName);'"
 	 * @generated
 	 */
 	void setName1(String newName);
