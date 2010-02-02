@@ -441,7 +441,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 			case MachinePackage.EVENT__CONVERGENCE:
 				return getConvergence();
 			case MachinePackage.EVENT__EXTENDED:
-				return isExtended() ? Boolean.TRUE : Boolean.FALSE;
+				return isExtended();
 			case MachinePackage.EVENT__REFINES:
 				return getRefines();
 			case MachinePackage.EVENT__REFINES_NAMES:
@@ -471,7 +471,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 				setConvergence((Convergence)newValue);
 				return;
 			case MachinePackage.EVENT__EXTENDED:
-				setExtended(((Boolean)newValue).booleanValue());
+				setExtended((Boolean)newValue);
 				return;
 			case MachinePackage.EVENT__REFINES:
 				getRefines().clear();
