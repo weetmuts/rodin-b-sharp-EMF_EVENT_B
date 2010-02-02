@@ -103,7 +103,7 @@ public abstract class EventBNamedCommentedDerivedPredicateElementImpl extends Ev
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__THEOREM:
-				return isTheorem() ? Boolean.TRUE : Boolean.FALSE;
+				return isTheorem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,7 +117,7 @@ public abstract class EventBNamedCommentedDerivedPredicateElementImpl extends Ev
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__THEOREM:
-				setTheorem(((Boolean)newValue).booleanValue());
+				setTheorem((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
