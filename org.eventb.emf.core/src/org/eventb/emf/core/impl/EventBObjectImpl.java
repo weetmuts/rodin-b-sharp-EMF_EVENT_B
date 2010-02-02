@@ -55,7 +55,6 @@ public abstract class EventBObjectImpl extends EModelElementImpl implements Even
 	}
 
 	/**
-	 *
 	 * <!-- begin-user-doc -->
 	 * returns the nearest container of this element that is a sub-type eClass
 	 * or null if no container of that type
@@ -74,7 +73,6 @@ public abstract class EventBObjectImpl extends EModelElementImpl implements Even
 	}
 
 	/**
-	 *
 	 * <!-- begin-user-doc -->
 	 * returns a list of elements that sub-type eClass and
 	 * that are contained (directly or indirectly) by this element
