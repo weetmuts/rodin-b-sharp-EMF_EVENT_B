@@ -58,17 +58,16 @@ public interface EventBNamed extends EObject {
 	 * <!-- begin-model-doc -->
 	 * <getName() should be changed to call this method>
 	 * 
-	 * If this is not a subclass of EventBElement this method returns null.
+	 * Assumes this is a subclass of EventBElement.
 	 * Returns this element's name or, if it is a proxy, the name being referenced.
 	 * The name is derived from the element's 'reference' attribute which
 	 *  includes the element type to ensure that references are unique within a resource.
 	 * (Calling this method will not resolve any unresolved proxies).
 	 * <!-- end-model-doc -->
-	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this instanceof <%org.eventb.emf.core.EventBElement%>){\n\tString reference = ((EventBElement)this).getReferenceWithoutResolving();\n\treturn reference.substring(reference.lastIndexOf(\".\")+1);\n}else\n\treturn null;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='assert (this instanceof <%org.eventb.emf.core.EventBElement%>);\nString reference = ((EventBElement)this).getReferenceWithoutResolving();\nreturn reference.substring(reference.lastIndexOf(\".\")+1);'"
 	 * @generated
 	 */
-	String getName1();
+	String doGetName();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,6 +86,6 @@ public interface EventBNamed extends EObject {
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+\".\"+newName);'"
 	 * @generated
 	 */
-	void setName1(String newName);
+	void doSetName(String newName);
 
 } // EventBNamed

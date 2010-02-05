@@ -251,6 +251,7 @@ public class CoreSwitch<T> {
 			case CorePackage.EXTENSION: {
 				Extension extension = (Extension)theEObject;
 				T result = caseExtension(extension);
+				if (result == null) result = caseAbstractExtension(extension);
 				if (result == null) result = caseEventBElement(extension);
 				if (result == null) result = caseEventBObject(extension);
 				if (result == null) result = caseEModelElement(extension);
@@ -268,6 +269,15 @@ public class CoreSwitch<T> {
 				T result = caseAttribute(attribute);
 				if (result == null) result = caseEventBObject(attribute);
 				if (result == null) result = caseEModelElement(attribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CorePackage.ABSTRACT_EXTENSION: {
+				AbstractExtension abstractExtension = (AbstractExtension)theEObject;
+				T result = caseAbstractExtension(abstractExtension);
+				if (result == null) result = caseEventBElement(abstractExtension);
+				if (result == null) result = caseEventBObject(abstractExtension);
+				if (result == null) result = caseEModelElement(abstractExtension);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -557,6 +567,21 @@ public class CoreSwitch<T> {
 	 * @generated
 	 */
 	public T caseAttribute(Attribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Extension</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Extension</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractExtension(AbstractExtension object) {
 		return null;
 	}
 

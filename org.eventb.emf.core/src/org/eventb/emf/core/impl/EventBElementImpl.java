@@ -12,6 +12,7 @@ package org.eventb.emf.core.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -21,11 +22,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
@@ -55,7 +58,7 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Extension> extensions;
+	protected EList<AbstractExtension> extensions;
 
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' map.
@@ -80,13 +83,12 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	/**
 	 * The cached value of the '{@link #getReference() <em>Reference</em>}' attribute.
 	 * <!-- begin-user-doc -->
-	 * To ensure a reference is always present, this is set with a UUID at creation.
 	 * <!-- end-user-doc -->
 	 * @see #getReference()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	protected String reference = EcoreUtil.generateUUID(); //was REFERENCE_EDEFAULT;
+	protected String reference = REFERENCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,9 +114,9 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Extension> getExtensions() {
+	public EList<AbstractExtension> getExtensions() {
 		if (extensions == null) {
-			extensions = new EObjectContainmentEList.Resolving<Extension>(Extension.class, this, CorePackage.EVENT_BELEMENT__EXTENSIONS);
+			extensions = new EObjectContainmentEList.Resolving<AbstractExtension>(AbstractExtension.class, this, CorePackage.EVENT_BELEMENT__EXTENSIONS);
 		}
 		return extensions;
 	}
@@ -158,12 +160,24 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReference(String newReference) {
+	public void doSetReference(String newReference) {
 		if (this.eIsProxy()){
 			((InternalEObject)this).eProxyURI().appendFragment(newReference);
 		}else{
 			reference = newReference;
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReference(String newReference) {
+		String oldReference = reference;
+		reference = newReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BELEMENT__REFERENCE, oldReference, reference));
 	}
 
 	/**
@@ -207,13 +221,8 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	/**
 	 * <!-- begin-user-doc -->
 	 * eSet sets a feature of an object via a feature ID.
-	 * This has been customised for feature ID= 3 (reference attribute)
-	 * Although reference is supposed to be unsettable, we allow it to be set here
-	 * because it is called by reflective methods. 
-	 * In particular, the default XMI serialisation expects to be able to
-	 *  set attributes that have been persisted during load.
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -221,17 +230,18 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 		switch (featureID) {
 			case CorePackage.EVENT_BELEMENT__EXTENSIONS:
 				getExtensions().clear();
-				getExtensions().addAll((Collection<? extends Extension>)newValue);
+				getExtensions().addAll((Collection<? extends AbstractExtension>)newValue);
 				return;
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				((EStructuralFeature.Setting)getAttributes()).set(newValue);
 				return;
 			case CorePackage.EVENT_BELEMENT__REFERENCE:
-				setReference(newValue.toString());
+				setReference((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -246,6 +256,9 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				return;
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				getAttributes().clear();
+				return;
+			case CorePackage.EVENT_BELEMENT__REFERENCE:
+				setReference(REFERENCE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);

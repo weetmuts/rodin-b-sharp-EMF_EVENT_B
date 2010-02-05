@@ -68,7 +68,7 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * @generated not
 	 */
 	public String getName() {
-		return getName1();
+		return doGetName();
 	}
 
 	/**
@@ -79,7 +79,7 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * @generated not
 	 */
 	public void setName(String newName) {
-		setName1(newName);
+		doSetName(newName);
 	}
 
 	/**
@@ -87,12 +87,11 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName1() {
-		if (this instanceof EventBElement){
-			String reference = ((EventBElement)this).getReferenceWithoutResolving();
-			return reference.substring(reference.lastIndexOf(".")+1);
-		}else
-			return null;
+	@SuppressWarnings("cast")
+	public String doGetName() {
+		assert (this instanceof EventBElement);
+		String reference = ((EventBElement)this).getReferenceWithoutResolving();
+		return reference.substring(reference.lastIndexOf(".")+1);
 	}
 
 	/**
@@ -100,7 +99,7 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName1(String newName) {
+	public void doSetName(String newName) {
 		((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+"."+newName);
 	}
 

@@ -25,7 +25,7 @@
     <eOperations name="getURI" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="if (eIsProxy()){&#xA;&#x9;return ((InternalEObject)this).eProxyURI();&#xA;}else{&#xA;&#x9;return eResource().getURI();&#xA;}"/>
-        <details key="documentation" value="returns the URI of this element.&#xD;(If the element is not loaded, the URI is obtained from the proxy without loading the element)"/>
+        <details key="documentation" value="returns the URI of this element.&#xD;(If the element is not loaded, the URI is obtained from the proxy without loading the element)&#xD;&#xD;[AFTER RE-GENERATING REMOVE THE TYPE PARAMETER &lt;URI>]"/>
       </eAnnotations>
       <eGenericType eTypeParameter="#//EventBObject/getURI/URI"/>
       <eTypeParameters name="URI"/>
@@ -38,7 +38,7 @@
         <details key="documentation" value="Returns the 'reference' attribute of this element.&#xD;If this element is a proxy, the reference is obtained from the proxy URI fragment. Otherwise the value of the reference attribute is returned"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="setReference">
+    <eOperations name="doSetReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="if (this.eIsProxy()){&#xA;&#x9;((InternalEObject)this).eProxyURI().appendFragment(newReference);&#xA;}else{&#xA;&#x9;reference = newReference;&#xA;}"/>
         <details key="documentation" value="Sets the 'reference' attribute of this element.&#xD;If this element is a proxy, the reference is seet in the proxy URI fragment. Otherwise the value of the reference attribute is set."/>
@@ -46,12 +46,12 @@
       <eParameters name="newReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
-        eType="#//Extension" containment="true"/>
+        eType="#//AbstractExtension" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//StringToAttributeMapEntry" containment="true" eKeys="#//StringToAttributeMapEntry/key"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
-        defaultValueLiteral="" iD="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""
+        iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBCommented" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -65,13 +65,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="EventBCommentedExpressionElement" abstract="true"
       eSuperTypes="#//EventBCommentedElement #//EventBExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventBNamed" abstract="true">
-    <eOperations name="getName1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eOperations name="doGetName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="if (this instanceof &lt;%org.eventb.emf.core.EventBElement%>){&#xA;&#x9;String reference = ((EventBElement)this).getReferenceWithoutResolving();&#xA;&#x9;return reference.substring(reference.lastIndexOf(&quot;.&quot;)+1);&#xA;}else&#xA;&#x9;return null;"/>
-        <details key="documentation" value="&lt;getName() should be changed to call this method>&#xD;&#xD;If this is not a subclass of EventBElement this method returns null.&#xD;Returns this element's name or, if it is a proxy, the name being referenced.&#xD;The name is derived from the element's 'reference' attribute which&#xD; includes the element type to ensure that references are unique within a resource.&#xD;(Calling this method will not resolve any unresolved proxies)."/>
+        <details key="body" value="assert (this instanceof &lt;%org.eventb.emf.core.EventBElement%>);&#xA;String reference = ((EventBElement)this).getReferenceWithoutResolving();&#xA;return reference.substring(reference.lastIndexOf(&quot;.&quot;)+1);"/>
+        <details key="documentation" value="&lt;getName() should be changed to call this method>&#xD;&#xD;Assumes this is a subclass of EventBElement.&#xD;Returns this element's name or, if it is a proxy, the name being referenced.&#xD;The name is derived from the element's 'reference' attribute which&#xD; includes the element type to ensure that references are unique within a resource.&#xD;(Calling this method will not resolve any unresolved proxies)."/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="setName1">
+    <eOperations name="doSetName">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+&quot;.&quot;+newName);"/>
         <details key="documentation" value="&lt;setName() should be changed to call this method>&#xD;&#xD;If this is not a subclass of EventBElement this method does nothing.&#xD;Sets the name of this element or, if it is a proxy, the name being referenced. &#xD;The name is stored in the 'reference' attribute which also contains the element's &#xD;type to ensure that references are unique winthin a resource.&#xD;(Calling this method will not resolve any unresolved proxies).&#xD;&#xD;"/>
@@ -107,10 +107,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
         eType="#//EventBNamedCommentedComponentElement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Extension" eSuperTypes="#//EventBElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionId" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Extension" eSuperTypes="#//AbstractExtension"/>
   <eClassifiers xsi:type="ecore:EEnum" name="AttributeType">
     <eLiterals name="Boolean" literal="Boolean"/>
     <eLiterals name="Handle" value="1" literal="IRodinElement"/>
@@ -127,6 +124,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//AttributeType"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractExtension" abstract="true" eSuperTypes="#//EventBElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eSubpackages name="machine" nsURI="http://emf.eventb.org/models/core/machine" nsPrefix="machine">
     <eClassifiers xsi:type="ecore:EClass" name="Machine" eSuperTypes="#//EventBNamedCommentedComponentElement">

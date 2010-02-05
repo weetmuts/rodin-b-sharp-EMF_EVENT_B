@@ -63,24 +63,24 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * returns the name of this element by calling getName1()
-	 * (getName1() is defined in model and generated)
+	 * returns the name of this element by calling doGetName()
+	 * (doGetName() is defined in model and generated)
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getName() {
-		return getName1();
+		return doGetName();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * sets the name of this element by calling setName1()
-	 * (setName1() is defined in model and generated)
+	 * sets the name of this element by calling doSetName()
+	 * (doSetName() is defined in model and generated)
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void setName(String newName) {
-		setName1(newName);
+		doSetName(newName);
 	}
 
 	/**
@@ -88,12 +88,10 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName1() {
-		if (this instanceof EventBElement){
-			String reference = ((EventBElement)this).getReferenceWithoutResolving();
-			return reference.substring(reference.lastIndexOf(".")+1);
-		}else
-			return null;
+	public String doGetName() {
+		assert (this instanceof EventBElement);
+		String reference = ((EventBElement)this).getReferenceWithoutResolving();
+		return reference.substring(reference.lastIndexOf(".")+1);
 	}
 
 	/**
@@ -101,7 +99,7 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName1(String newName) {
+	public void doSetName(String newName) {
 		((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+"."+newName);
 	}
 

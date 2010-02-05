@@ -33,8 +33,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//EventBElement/attributes"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/reference"/>
       <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/getReferenceWithoutResolving"/>
-      <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/setReference">
-        <genParameters ecoreParameter="eventbcore.ecore#//EventBElement/setReference/newReference"/>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/doSetReference">
+        <genParameters ecoreParameter="eventbcore.ecore#//EventBElement/doSetReference/newReference"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBCommented">
@@ -47,9 +47,9 @@
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBCommentedExpressionElement"/>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamed">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBNamed/name"/>
-      <genOperations ecoreOperation="eventbcore.ecore#//EventBNamed/getName1"/>
-      <genOperations ecoreOperation="eventbcore.ecore#//EventBNamed/setName1">
-        <genParameters ecoreParameter="eventbcore.ecore#//EventBNamed/setName1/newName"/>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBNamed/doGetName"/>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBNamed/doSetName">
+        <genParameters ecoreParameter="eventbcore.ecore#//EventBNamed/doSetName/newName"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamedCommentedElement"/>
@@ -69,9 +69,7 @@
     <genClasses ecoreClass="eventbcore.ecore#//Project">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//Project/components"/>
     </genClasses>
-    <genClasses ecoreClass="eventbcore.ecore#//Extension">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//Extension/extensionId"/>
-    </genClasses>
+    <genClasses ecoreClass="eventbcore.ecore#//Extension"/>
     <genClasses ecoreClass="eventbcore.ecore#//StringToAttributeMapEntry">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//StringToAttributeMapEntry/key"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//StringToAttributeMapEntry/value"/>
@@ -79,6 +77,9 @@
     <genClasses ecoreClass="eventbcore.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//Attribute/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//Attribute/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="eventbcore.ecore#//AbstractExtension">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//AbstractExtension/extensionId"/>
     </genClasses>
     <nestedGenPackages prefix="Machine" basePackage="org.eventb.emf.core" disposableProviderFactory="true"
         extensibleProviderFactory="true" childCreationExtenders="true" fileExtensions="bum"

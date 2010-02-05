@@ -36,6 +36,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.eventb.emf.core.context.ContextPackage;
 import org.eventb.emf.core.context.util.ContextAdapterFactory;
+import org.eventb.emf.core.provider.CoreItemProviderAdapterFactory;
 import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 
 /**

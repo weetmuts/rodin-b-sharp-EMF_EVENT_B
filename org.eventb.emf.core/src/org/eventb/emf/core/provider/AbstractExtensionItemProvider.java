@@ -26,18 +26,17 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.CorePackage;
-import org.eventb.emf.core.Extension;
 
 /**
- * This is the item provider adapter for a {@link org.eventb.emf.core.Extension} object.
+ * This is the item provider adapter for a {@link org.eventb.emf.core.AbstractExtension} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExtensionItemProvider
-	extends AbstractExtensionItemProvider
+public class AbstractExtensionItemProvider
+	extends EventBElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -50,7 +49,7 @@ public class ExtensionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionItemProvider(AdapterFactory adapterFactory) {
+	public AbstractExtensionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,19 +64,31 @@ public class ExtensionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addExtensionIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns Extension.gif.
+	 * This adds a property descriptor for the Extension Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Extension"));
+	protected void addExtensionIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractExtension_extensionId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractExtension_extensionId_feature", "_UI_AbstractExtension_type"),
+				 CorePackage.Literals.ABSTRACT_EXTENSION__EXTENSION_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -88,10 +99,10 @@ public class ExtensionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Extension)object).getReference();
+		String label = ((AbstractExtension)object).getReference();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Extension_type") :
-			getString("_UI_Extension_type") + " " + label;
+			getString("_UI_AbstractExtension_type") :
+			getString("_UI_AbstractExtension_type") + " " + label;
 	}
 
 	/**
@@ -104,6 +115,12 @@ public class ExtensionItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(AbstractExtension.class)) {
+			case CorePackage.ABSTRACT_EXTENSION__EXTENSION_ID:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

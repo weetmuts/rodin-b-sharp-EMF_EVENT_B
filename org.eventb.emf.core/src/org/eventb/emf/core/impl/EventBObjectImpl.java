@@ -98,6 +98,8 @@ public abstract class EventBObjectImpl extends EModelElementImpl implements Even
 	 * returns the URI of this element.
 	 * (If the element is not loaded, the URI is obtained from the proxy without loading the element)
 	 *
+	 * [AFTER RE-GENERATING REMOVE THE TYPE PARAMETER <URI>]
+	 * 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

@@ -938,6 +938,70 @@ public interface CorePackage extends EPackage {
 	int PROJECT_FEATURE_COUNT = EVENT_BNAMED_COMMENTED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eventb.emf.core.impl.AbstractExtensionImpl <em>Abstract Extension</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eventb.emf.core.impl.AbstractExtensionImpl
+	 * @see org.eventb.emf.core.impl.CorePackageImpl#getAbstractExtension()
+	 * @generated
+	 */
+	int ABSTRACT_EXTENSION = 19;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EXTENSION__EANNOTATIONS = EVENT_BELEMENT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EXTENSION__EXTENSIONS = EVENT_BELEMENT__EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EXTENSION__ATTRIBUTES = EVENT_BELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EXTENSION__REFERENCE = EVENT_BELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EXTENSION__EXTENSION_ID = EVENT_BELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Abstract Extension</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EXTENSION_FEATURE_COUNT = EVENT_BELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eventb.emf.core.impl.ExtensionImpl <em>Extension</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -954,7 +1018,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION__EANNOTATIONS = EVENT_BELEMENT__EANNOTATIONS;
+	int EXTENSION__EANNOTATIONS = ABSTRACT_EXTENSION__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -963,7 +1027,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION__EXTENSIONS = EVENT_BELEMENT__EXTENSIONS;
+	int EXTENSION__EXTENSIONS = ABSTRACT_EXTENSION__EXTENSIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' map.
@@ -972,7 +1036,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION__ATTRIBUTES = EVENT_BELEMENT__ATTRIBUTES;
+	int EXTENSION__ATTRIBUTES = ABSTRACT_EXTENSION__ATTRIBUTES;
 
 	/**
 	 * The feature id for the '<em><b>Reference</b></em>' attribute.
@@ -981,7 +1045,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION__REFERENCE = EVENT_BELEMENT__REFERENCE;
+	int EXTENSION__REFERENCE = ABSTRACT_EXTENSION__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -990,7 +1054,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION__EXTENSION_ID = EVENT_BELEMENT_FEATURE_COUNT + 0;
+	int EXTENSION__EXTENSION_ID = ABSTRACT_EXTENSION__EXTENSION_ID;
 
 	/**
 	 * The number of structural features of the '<em>Extension</em>' class.
@@ -999,7 +1063,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION_FEATURE_COUNT = EVENT_BELEMENT_FEATURE_COUNT + 1;
+	int EXTENSION_FEATURE_COUNT = ABSTRACT_EXTENSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eventb.emf.core.impl.StringToAttributeMapEntryImpl <em>String To Attribute Map Entry</em>}' class.
@@ -1092,7 +1156,7 @@ public interface CorePackage extends EPackage {
 	 * @see org.eventb.emf.core.impl.CorePackageImpl#getAttributeType()
 	 * @generated
 	 */
-	int ATTRIBUTE_TYPE = 19;
+	int ATTRIBUTE_TYPE = 20;
 
 
 	/**
@@ -1376,17 +1440,6 @@ public interface CorePackage extends EPackage {
 	EClass getExtension();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eventb.emf.core.Extension#getExtensionId <em>Extension Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Extension Id</em>'.
-	 * @see org.eventb.emf.core.Extension#getExtensionId()
-	 * @see #getExtension()
-	 * @generated
-	 */
-	EAttribute getExtension_ExtensionId();
-
-	/**
 	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To Attribute Map Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1451,6 +1504,27 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttribute_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.eventb.emf.core.AbstractExtension <em>Abstract Extension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Extension</em>'.
+	 * @see org.eventb.emf.core.AbstractExtension
+	 * @generated
+	 */
+	EClass getAbstractExtension();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eventb.emf.core.AbstractExtension#getExtensionId <em>Extension Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extension Id</em>'.
+	 * @see org.eventb.emf.core.AbstractExtension#getExtensionId()
+	 * @see #getAbstractExtension()
+	 * @generated
+	 */
+	EAttribute getAbstractExtension_ExtensionId();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eventb.emf.core.AttributeType <em>Attribute Type</em>}'.
@@ -1735,14 +1809,6 @@ public interface CorePackage extends EPackage {
 		EClass EXTENSION = eINSTANCE.getExtension();
 
 		/**
-		 * The meta object literal for the '<em><b>Extension Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXTENSION__EXTENSION_ID = eINSTANCE.getExtension_ExtensionId();
-
-		/**
 		 * The meta object literal for the '{@link org.eventb.emf.core.impl.StringToAttributeMapEntryImpl <em>String To Attribute Map Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1793,6 +1859,24 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE__VALUE = eINSTANCE.getAttribute_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eventb.emf.core.impl.AbstractExtensionImpl <em>Abstract Extension</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eventb.emf.core.impl.AbstractExtensionImpl
+		 * @see org.eventb.emf.core.impl.CorePackageImpl#getAbstractExtension()
+		 * @generated
+		 */
+		EClass ABSTRACT_EXTENSION = eINSTANCE.getAbstractExtension();
+
+		/**
+		 * The meta object literal for the '<em><b>Extension Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_EXTENSION__EXTENSION_ID = eINSTANCE.getAbstractExtension_ExtensionId();
 
 		/**
 		 * The meta object literal for the '{@link org.eventb.emf.core.AttributeType <em>Attribute Type</em>}' enum.

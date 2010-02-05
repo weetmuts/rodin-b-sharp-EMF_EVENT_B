@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EMap;
 public interface EventBElement extends EventBObject {
 	/**
 	 * Returns the value of the '<em><b>Extensions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eventb.emf.core.Extension}.
+	 * The list contents are of type {@link org.eventb.emf.core.AbstractExtension}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extensions</em>' containment reference list isn't clear,
@@ -46,7 +46,7 @@ public interface EventBElement extends EventBObject {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<Extension> getExtensions();
+	EList<AbstractExtension> getExtensions();
 
 	/**
 	 * Returns the value of the '<em><b>Attributes</b></em>' map.
@@ -75,8 +75,9 @@ public interface EventBElement extends EventBObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' attribute.
+	 * @see #setReference(String)
 	 * @see org.eventb.emf.core.CorePackage#getEventBElement_Reference()
-	 * @model default="" id="true" required="true" changeable="false"
+	 * @model default="" id="true" required="true"
 	 * @generated
 	 */
 	String getReference();
@@ -99,11 +100,21 @@ public interface EventBElement extends EventBObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Sets the 'reference' attribute of this element.
-	 * If this element is a proxy, the reference is set in the proxy URI fragment. Otherwise the value of the reference attribute is set.
+	 * If this element is a proxy, the reference is seet in the proxy URI fragment. Otherwise the value of the reference attribute is set.
 	 * <!-- end-model-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\t((InternalEObject)this).eProxyURI().appendFragment(newReference);\n}else{\n\treference = newReference;\n}'"
 	 * @generated
 	 */
-	void setReference(String newReference);
+	void doSetReference(String newReference);
+
+	/**
+	 * Sets the value of the '{@link org.eventb.emf.core.EventBElement#getReference <em>Reference</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reference</em>' attribute.
+	 * @see #getReference()
+	 * @generated
+	 */
+	void setReference(String value);
 
 } // EventBElement
