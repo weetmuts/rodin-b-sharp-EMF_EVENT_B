@@ -254,7 +254,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	protected void addRefinesName(int index, String newName) {
 		Machine proxy = MachineFactory.eINSTANCE.createMachine();
 		//add the new proxy (using setUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Machine.class.getName()+"."+newName));
 		((BasicEList<Machine>)getRefines()).addUnique(index,proxy);
 	}
 
