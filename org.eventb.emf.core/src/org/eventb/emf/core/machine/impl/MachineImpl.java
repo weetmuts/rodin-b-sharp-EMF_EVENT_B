@@ -33,6 +33,7 @@ import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.externalisation.External;
 import org.eventb.emf.core.impl.EventBNamedCommentedComponentElementImpl;
+import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
 
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.Invariant;
@@ -628,6 +629,13 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			 URI uri=null;
 			 String reference = proxy.eProxyURI().fragment();
 			 String name = reference.substring(reference.lastIndexOf(".")+1);
+			 
+			 // if resolved already in the parent, do not resolve again
+			 if (eContainer() != null)
+				 for (EObject component : eContainer().eContents())
+					 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
+						 return component;
+			 
 			 if (proxy instanceof Machine && getRefines().contains(proxy)){
 				 uri = eResource().getURI().trimSegments(1).appendSegment(name)
 				 	.appendFileExtension(External.getString("FileExtensions.machine"))
