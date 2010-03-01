@@ -607,6 +607,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 				 }
 				 if (uri!=null) proxy.eSetProxyURI(uri);
 			}catch (Exception e){
+				e.printStackTrace();
 				return proxy;
 			}
 		}

@@ -418,6 +418,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 				}
 				if (uri!=null) proxy.eSetProxyURI(uri);
 			}catch (Exception e){
+				e.printStackTrace();
 				return proxy;
 			}
 		}
