@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -42,6 +43,7 @@ import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.Variable;
 import org.eventb.emf.core.machine.Variant;
+import org.rodinp.core.RodinCore;
 
 /**
  * <!-- begin-user-doc -->
@@ -637,17 +639,17 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 						 return component;
 			 
 			 if (proxy instanceof Machine && getRefines().contains(proxy)){
-				 uri = eResource().getURI().trimSegments(1).appendSegment(name)
+				 uri = getURI().trimSegments(1).appendSegment(name)
 				 	.appendFileExtension(External.getString("FileExtensions.machine"))
 				 	.appendFragment(reference); //$NON-NLS-1$
 			 }else if (proxy instanceof Context && getSees().contains(proxy)){
-				 uri = eResource().getURI().trimSegments(1).appendSegment(name)
+				 uri = getURI().trimSegments(1).appendSegment(name)
 				 	.appendFileExtension(External.getString("FileExtensions.context"))
 				 	.appendFragment(reference); //$NON-NLS-1$
 			 }
 			 if (uri!=null) proxy.eSetProxyURI(uri);
 		  }catch (Exception e){
-			  e.printStackTrace();
+				RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
 			  return proxy;
 		  }
 	  }

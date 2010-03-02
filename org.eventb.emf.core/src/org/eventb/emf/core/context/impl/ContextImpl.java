@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -36,6 +37,7 @@ import org.eventb.emf.core.context.ContextPackage;
 import org.eventb.emf.core.externalisation.External;
 import org.eventb.emf.core.impl.EventBNamedCommentedComponentElementImpl;
 import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
+import org.rodinp.core.RodinCore;
 
 /**
  * <!-- begin-user-doc -->
@@ -412,13 +414,13 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 							 return component;
 				 
 				if (proxy instanceof Context && getExtends().contains(proxy)){
-					uri = eResource().getURI().trimSegments(1).appendSegment(name)
+					uri = getURI().trimSegments(1).appendSegment(name)
 						.appendFileExtension(External.getString("FileExtensions.context"))
 						.appendFragment(reference);
 				}
 				if (uri!=null) proxy.eSetProxyURI(uri);
 			}catch (Exception e){
-				e.printStackTrace();
+ 				RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
 				return proxy;
 			}
 		}

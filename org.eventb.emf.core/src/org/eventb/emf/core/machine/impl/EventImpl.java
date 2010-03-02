@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -22,16 +23,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eventb.emf.core.CorePackage;
-import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
-
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.Convergence;
 import org.eventb.emf.core.machine.Event;
@@ -41,6 +39,7 @@ import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.Parameter;
 import org.eventb.emf.core.machine.Witness;
+import org.rodinp.core.RodinCore;
 
 /**
  * <!-- begin-user-doc -->
@@ -602,12 +601,14 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 				 URI uri=null;
 				 if (proxy instanceof Event && getRefines().contains(proxy)){
 					 Machine refinedMachine = ((MachineImpl)eContainer).getRefines().get(0);
-					 uri = refinedMachine.eResource().getURI()
+					 uri = refinedMachine.getURI()
 					 	.appendFragment(proxy.eProxyURI().fragment());
+//					 uri = refinedMachine.eResource().getURI()
+//					 	.appendFragment(proxy.eProxyURI().fragment());
 				 }
 				 if (uri!=null) proxy.eSetProxyURI(uri);
 			}catch (Exception e){
-				e.printStackTrace();
+ 				RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
 				return proxy;
 			}
 		}
