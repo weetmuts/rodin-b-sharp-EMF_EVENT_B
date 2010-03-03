@@ -1897,6 +1897,6 @@ public interface CorePackage extends EPackage {
 	 * The URI will be corrected (if possible) when an attempt is made to resolve it
 	 * @custom
 	 */
-	 final URI dummyURI = URI.createURI("platform:/resource/project/file.extension");
+	 final URI dummyURI = URI.createURI("platform:/RESOURCE/PROJECT/DUMMY.URI");
 	 
 } //CorePackage

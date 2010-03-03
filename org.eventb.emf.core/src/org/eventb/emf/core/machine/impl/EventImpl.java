@@ -597,18 +597,18 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 	public EObject eResolveProxy(InternalEObject proxy){
 		if (proxy != null && proxy.eIsProxy()){
 			if (eResource()==null) return proxy;
-			try{
+			try {
 				 URI uri=null;
 				 if (proxy instanceof Event && getRefines().contains(proxy)){
 					 Machine refinedMachine = ((MachineImpl)eContainer).getRefines().get(0);
 					 uri = refinedMachine.getURI()
 					 	.appendFragment(proxy.eProxyURI().fragment());
-//					 uri = refinedMachine.eResource().getURI()
-//					 	.appendFragment(proxy.eProxyURI().fragment());
 				 }
 				 if (uri!=null) proxy.eSetProxyURI(uri);
-			}catch (Exception e){
- 				RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
+			} catch (Exception e){
+				RodinCore.getPlugin().getLog().log(
+						new Status(Status.ERROR, "org.eventb.emf.core",
+								"Cannot resolve: " + proxy, e));
 				return proxy;
 			}
 		}
