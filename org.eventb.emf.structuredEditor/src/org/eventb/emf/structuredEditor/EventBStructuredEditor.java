@@ -1620,7 +1620,7 @@ public class EventBStructuredEditor extends MultiPageEditorPart implements IEdit
 		SaveAsDialog saveAsDialog = new SaveAsDialog(getSite().getShell());
 		saveAsDialog.setOriginalName(this.getEditorInput().getName());
 		saveAsDialog.create();
-		saveAsDialog.setMessage("(use extensions '.xmm' and '.xmc' to save in EMF default XMI serialisation)", IMessageProvider.INFORMATION);
+		saveAsDialog.setMessage("(append extension '.xmb' to save in EMF default XMI serialisation)", IMessageProvider.INFORMATION);
 		saveAsDialog.open();
 		IPath path = saveAsDialog.getResult();
 		if (path != null) {
