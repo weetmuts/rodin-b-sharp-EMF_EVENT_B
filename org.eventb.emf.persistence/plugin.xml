@@ -3,15 +3,31 @@
 <plugin>
    <extension-point id="org.eventb.emf.persistence.synchroniser" name="Persistency synchronisers" schema="schema/org.eventb.emf.persistence.synchroniser.exsd"/>
 
-   <extension
+   <!--extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.emf.ecore.xmi"
+            alias-for="org.eventb.core.machineFile"
+            file-extensions="xmb"
+            id="machineFileXMI"
+            name="%eventBMachineFileXMI"
+            priority="normal"/>
+      <-file-association
+            content-type="org.eventb.core.machineFile"
+            file-extensions="xmb">
+      </file-association->
+   </extension-->
+
+    <extension
          point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eventb.emf.persistence.factory.RodinResourceFactory"
+            type="xmb">
+      </parser>
       <parser
             class="org.eventb.emf.persistence.factory.RodinResourceFactory"
             type="bum">
       </parser>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
       <parser
             class="org.eventb.emf.persistence.factory.RodinResourceFactory"
             type="buc">
