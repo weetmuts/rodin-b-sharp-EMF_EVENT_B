@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -30,6 +33,8 @@ import org.rodinp.core.RodinDBException;
  * call the I/O stream versions of save and load to obtain the model content in
  * EMF's default XMI stream. For example, EMF compare uses this.
  * 
+ * If file extension is "xmb", default xmi serialisation is used.
+ * 
  * @author cfs/ff
  * 
  */
@@ -38,7 +43,14 @@ public class RodinResource extends XMIResourceImpl {
 
 	private IRodinFile rodinFile;
 	private IRodinProject rodinProject;
+	private IFile file;
+	private IProject project;
 	private Map<IInternalElement, EventBObject> map;
+	private boolean isXmi = false;
+
+	public boolean isXMI() {
+		return isXmi;
+	}
 
 	/**
 	 * Returns a record of the persistence as a map from rodin elements to EMF
@@ -52,18 +64,55 @@ public class RodinResource extends XMIResourceImpl {
 
 	@Override
 	public void setURI(final URI uri) {
+		String projectName;
 		super.setURI(uri);
 		final int segmentCount = uri.segmentCount();
-		final String projectName = URI.decode(uri.segment(segmentCount - 2));
-		final String fileName = URI.decode(uri.segment(segmentCount - 1));
+		if ("platform".equals(uri.scheme())) {
+			projectName = URI.decode(uri.segment(segmentCount - 2));
+			final String fileName = URI.decode(uri.segment(segmentCount - 1));
+			final String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+			rodinProject = RodinCore.getRodinDB().getRodinProject(projectName);
+			project = (IProject) rodinProject.getCorrespondingResource();
 
-		rodinProject = RodinCore.getRodinDB().getRodinProject(projectName);
-		rodinFile = rodinProject.getRodinFile(fileName);
-		map = new HashMap<IInternalElement, EventBObject>();
+			if ("xmb".equals(fileExtension)) {
+				isXmi = true;
+				file = project.getFile(fileName);
+				rodinFile = null;
+				map = null;
+			} else {
+				rodinFile = rodinProject.getRodinFile(fileName);
+				file = rodinFile.getResource();
+				map = new HashMap<IInternalElement, EventBObject>();
+				isXmi = false;
+			}
+		} else if (null == uri.scheme()) {
+			projectName = null;
+			final String fileName = URI.decode(uri.segment(segmentCount - 1));
+			final String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+			//rodinProject = RodinCore.getRodinDB().getRodinProject(projectName);
+			//project = (IProject) rodinProject.getCorrespondingResource();
+
+			if ("xmb".equals(fileExtension)) {
+				isXmi = true;
+				//file = project.getFile(fileName);
+				rodinFile = null;
+				map = null;
+			} else {
+				rodinFile = rodinProject.getRodinFile(fileName);
+				file = rodinFile.getResource();
+				map = new HashMap<IInternalElement, EventBObject>();
+				isXmi = false;
+			}
+		}
+
 	}
 
 	@Override
 	public void load(final Map<?, ?> options) throws IOException {
+		if (isXmi) {
+			super.load(options);
+			return;
+		}
 		try {
 			isLoading = true;
 
@@ -96,6 +145,10 @@ public class RodinResource extends XMIResourceImpl {
 
 	@Override
 	public void save(final Map<?, ?> options) throws IOException {
+		if (isXmi) {
+			super.save(options);
+			return;
+		}
 		if (!isLoaded || isLoading) // || !isModified )
 			return;
 
@@ -143,6 +196,13 @@ public class RodinResource extends XMIResourceImpl {
 		return rodinFile;
 	}
 
+	public IResource getUnderlyingResource() {
+		if (file == null) {
+			return project;
+		} else
+			return file;
+	}
+
 	/**
 	 * Returns whether this resource exists.
 	 * 
@@ -151,14 +211,14 @@ public class RodinResource extends XMIResourceImpl {
 	 */
 	private boolean exists() throws IOException {
 		// valid project?
-		if (rodinProject == null) {
+		if (rodinProject == null && project == null) {
 			throw new IOException("Invalid project name: " + uri.segment(uri.segmentCount() - 2));
 		}
 		// valid file for RodinFile?
-		if (rodinFile == null) {
+		if (rodinFile == null && file == null) {
 			throw new IOException("Invalid file name: " + uri.segment(uri.segmentCount() - 1));
 		}
 		// does file exist?
-		return rodinFile.exists();
+		return rodinFile == null ? file.exists() : rodinFile.exists();
 	}
 }
