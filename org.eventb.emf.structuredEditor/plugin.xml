@@ -15,7 +15,7 @@
             class="org.eventb.emf.structuredEditor.EventBStructuredEditor"
             contributorClass="org.eventb.emf.structuredEditor.EventBStructuredEditorActionBarContributor"
             default="false"
-            extensions="core,buc,bum"
+            extensions="core,buc,bum,xmm,xmc"
             icon="icons/full/obj16/EventBStructuredEditor.gif"
             id="org.eventb.emf.structuredEditor.editorID"
             name="%_UI_EventBStructuredEditor_label">
