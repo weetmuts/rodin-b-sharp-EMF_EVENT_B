@@ -32,7 +32,7 @@ public class RodinResourceFactory implements Resource.Factory {
 	}
 
 	public void removeResource(final RodinResource resource) {
-		IResource key = resource.getRodinFile().getUnderlyingResource();
+		IResource key = resource.getUnderlyingResource();
 		Collection<RodinResource> collection = handledResources.get(key);
 
 		if (collection != null) {
@@ -45,7 +45,7 @@ public class RodinResourceFactory implements Resource.Factory {
 	}
 
 	private void addNewResource(final RodinResource resource) {
-		IResource key = resource.getRodinFile().getUnderlyingResource();
+		IResource key = resource.getUnderlyingResource();
 		Collection<RodinResource> collection = handledResources.get(key);
 
 		if (collection == null) {
