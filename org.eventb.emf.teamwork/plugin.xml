@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   
+   <!-- Navigator actions -->
 
-   <extension
-         point="org.eclipse.compare.contentMergeViewers">
-      <contentTypeBinding
-            contentMergeViewerId="org.eclipse.emf.compare.ui.contentmergeviewer.ModelContentMergeViewer"
-            contentTypeId="org.eventb.core.machineFile">
-      </contentTypeBinding>
-      <contentTypeBinding
-            contentMergeViewerId="org.eclipse.emf.compare.ui.contentmergeviewer.ModelContentMergeViewer"
-            contentTypeId="org.eventb.core.contextFile">
-      </contentTypeBinding>
-   </extension>
-   <extension
-         point="org.eclipse.compare.structureMergeViewers">
-      <contentTypeBinding
-            structureMergeViewerId="org.eclipse.emf.compare.ui.structuremergeviewer.ModelStructureMergeViewer"
-            contentTypeId="org.eventb.core.machineFile">
-      </contentTypeBinding>
-      <contentTypeBinding
-            structureMergeViewerId="org.eclipse.emf.compare.ui.structuremergeviewer.ModelStructureMergeViewer"
-            contentTypeId="org.eventb.core.contextFile">
-      </contentTypeBinding>
-   </extension>
+   <!--extension
+         point="org.eclipse.ui.navigator.navigatorContent">   
+	   <actionProvider
+	        class="ac.soton.internal.teamwork.navigator.actionProviders.RootActionProvider"
+	        id="fr.systerel.explorer.navigator.actionProviders.file">
+	     <enablement>
+	        <or>
+	           <instanceof
+	                 value="org.eventb.core.IMachineRoot">
+	           </instanceof>
+	           <instanceof
+	                 value="org.eventb.core.IContextRoot">
+	           </instanceof>
+	        </or>
+	     </enablement>
+	  </actionProvider>
+   </extension-->  
    
 </plugin>
