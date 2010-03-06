@@ -75,7 +75,7 @@ public class EventSynchroniser extends AbstractSynchroniser {
 			EList<String> refinesNames = eventBElement.getRefinesNames();
 			if (extended && INITIALISATION.equals(event.getLabel())) {
 				/*
-				 * Grumbel grumbel, special cases...
+				 * Grumble grumble, special cases...
 				 * Workaround for bug / design decision
 				 * http://sourceforge.net/tracker/?func=detail&atid=651669&aid=2810797&group_id=108850
 				 */
