@@ -53,7 +53,7 @@
    <extension
          point="org.eclipse.emf.compare.match.engine">
       <matchengine
-            engineClass="org.eventb.emf.compare.merge.EventBMatchEngine"
+            engineClass="org.eventb.emf.compare.match.EventBMatchEngine"
             fileExtension="xmb"
             icon="icons/b_per.gif"
             label="EventB Match Engine">
