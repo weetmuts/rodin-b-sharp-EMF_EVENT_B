@@ -31,7 +31,7 @@ public class TeamworkListener implements IResourceChangeListener {
             return;
 		
 		try {
-			for (IResourceDelta parent : event.getDelta().getAffectedChildren(IResourceDelta.CHANGED))
+			for (IResourceDelta parent : event.getDelta().getAffectedChildren(IResourceDelta.ADDED | IResourceDelta.CHANGED))
 				if (((IProject) parent.getResource()).hasNature(RodinCore.NATURE_ID) && RepositoryProvider.isShared((IProject) parent.getResource())) {
 					// project is shared
 					if ((parent.getFlags() & IResourceDelta.DESCRIPTION) != 0)
@@ -57,7 +57,7 @@ public class TeamworkListener implements IResourceChangeListener {
 						for (IResourceDelta child : team.getAffectedChildren())
 							if (child.getResource() instanceof IFile && child.getResource().getFileExtension().matches(TeamworkUpdater.TEAMWORK_EXT))
 								switch (child.getKind()) {
-								case IResourceDelta.ADDED:break;//TeamworkUpdater.createTeamworkResource(child.getResource());break;
+								case IResourceDelta.ADDED:TeamworkUpdater.createTeamworkResource(child.getResource());break;
 								case IResourceDelta.CHANGED:TeamworkUpdater.synchroniseTeamworkResource(child.getResource());break;
 								case IResourceDelta.REMOVED:break;
 								}

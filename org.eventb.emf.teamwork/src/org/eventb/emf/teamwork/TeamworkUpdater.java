@@ -188,13 +188,23 @@ public class TeamworkUpdater {
 		 * @param res1 original resource
 		 * @param res2 resource to be created
 		 * @throws IOException
+		 * @throws CoreException 
 		 */
-		private void createResourceCopy(Resource res1, Resource res2) throws IOException {
+		private void createResourceCopy(Resource res1, Resource res2) throws IOException, CoreException {
+			IResource file1 = WorkspaceSynchronizer.getFile(res1);
+			IResource file2 = WorkspaceSynchronizer.getFile(res2);
+			// if files already synchronised don't continue
+			if (file1.getModificationStamp() == file2.getModificationStamp())
+				return;
+			
 			res1.load(null);
 			EObject element = res1.getContents().get(0);
 			res2.save(Collections.EMPTY_MAP);
 			res2.getContents().add(element);
 			res2.save(Collections.EMPTY_MAP);
+			
+			// synchronise modification stamp (used to prevent synchronisation loop)
+			file2.revertModificationStamp(file1.getModificationStamp());
 		}
 		
 		/**
@@ -202,8 +212,9 @@ public class TeamworkUpdater {
 		 * 
 		 * @param file eventB resource
 		 * @throws IOException
+		 * @throws CoreException 
 		 */
-		private void createXMBResource(IResource file) throws IOException {
+		private void createXMBResource(IResource file) throws IOException, CoreException {
 			Resource res = rSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toOSString(), true));
 			Resource xmbRes = rSet.createResource(URI.createPlatformResourceURI(getTeamworkResourcePath(file), true));
 			createResourceCopy(res, xmbRes);
@@ -214,8 +225,9 @@ public class TeamworkUpdater {
 		 * 
 		 * @param file XMB teamwork resource
 		 * @throws IOException
+		 * @throws CoreException 
 		 */
-		private void createResource(IResource file) throws IOException {
+		private void createResource(IResource file) throws IOException, CoreException {
 			Resource xmbRes = rSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toOSString(), true));
 			Resource res = rSet.createResource(URI.createPlatformResourceURI(getTeamworkReverseResourcePath(file), true));
 			createResourceCopy(xmbRes, res);
