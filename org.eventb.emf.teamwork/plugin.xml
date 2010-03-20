@@ -5,6 +5,9 @@
          point="org.eclipse.ui.startup">
       <startup
             class="org.eventb.emf.teamwork.IgnoreFilesPrefInitialiser"></startup>
+      <startup
+            class="org.eventb.emf.teamwork.TeamworkListenerStartup">
+      </startup>
    </extension>
    
    <!-- Navigator actions -->
