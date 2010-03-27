@@ -28,15 +28,11 @@ public class EventBAttributesCheck extends AttributesCheck {
 	/**
 	 * Determines if we should ignore an attribute for diff detection.
 	 * <p>
-	 * Default is to ignore attributes marked either
-	 * <ul>
-	 * <li>Transient</li>
-	 * <li>Derived</li>
-	 * </ul>
+	 * We do not ignore transient nor derived attributes by default because often these are the user visible/editable attribute. We ignore the reference attribute since name is the
+	 * changeable part. We also ignore the attributes of EAnnotations and their maps
 	 * </p>
-	 * <p>
-	 * Clients should override this if they wish to ignore other attributes.
-	 * </p>
+	 * 
+	 * FIXME: Make this extensible via an extension point so that extenders can decide what should be ignored.
 	 * 
 	 * @param attribute
 	 *            Attribute to determine whether it should be ignored.
@@ -45,15 +41,21 @@ public class EventBAttributesCheck extends AttributesCheck {
 	@Override
 	protected boolean shouldBeIgnored(EAttribute attribute) {
 		boolean ignore = false;
+		EObject container = attribute.eContainer();
+		// remove default ignore transient and derived since some of these are our user visible attributes
 		//		ignore = ignore || attribute.isTransient();
 		//		ignore = ignore || attribute.isDerived();
-		EObject container = attribute.eContainer();
-		//		EObject containerContainer = container == null ? null : container.eContainer();
-		//		EObject containingFeature = attribute.eContainingFeature();
-		//		EObject containementFeature = attribute.eContainmentFeature();
+
+		//ignore contents of string 2 string map entries (e.g. in RodinInternalDetails)
+		// FIXME: make this more specific to RodinInternalDetails
 		ignore = ignore || (container instanceof ENamedElement && "EStringToStringMapEntry".equals(((ENamedElement) container).getName()));
-		ignore = ignore || attribute.eContainer().equals(EcorePackage.eINSTANCE.getEAnnotation());
+		//ignore contents of EAnnotations
+		// FIXME: make this more specific to RodinInternalDetails
+		ignore = ignore || container.equals(EcorePackage.eINSTANCE.getEAnnotation());
+		//ignore reference (instead, the derived attribute 'name' will be shown)
 		ignore = ignore || attribute.equals(CorePackage.eINSTANCE.getEventBElement_Reference());
+
 		return ignore;
+
 	}
 }

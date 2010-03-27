@@ -32,7 +32,7 @@ public class EventBReferencesCheck extends ReferencesCheck {
 	/**
 	 * Determines if we should ignore a reference for diff detection.
 	 * <p>
-	 * Default is to ignore references marked either
+	 * We copy the default which is to ignore references marked either
 	 * <ul>
 	 * <li>Containment</li>
 	 * <li>Container</li>
@@ -41,8 +41,11 @@ public class EventBReferencesCheck extends ReferencesCheck {
 	 * </ul>
 	 * </p>
 	 * <p>
-	 * Clients should override this if they wish to ignore other references.
+	 * We ignore the references, refines, sees and extends because any differences will be shown in the derived attributes 'names' lists
+	 * 
 	 * </p>
+	 * 
+	 * FIXME: Make this extensible via an extension point so that extenders can decide what should be ignored.
 	 * 
 	 * @param reference
 	 *            Reference to determine whether it should be ignored.
@@ -55,7 +58,6 @@ public class EventBReferencesCheck extends ReferencesCheck {
 		ignore = ignore || reference.isTransient();
 		ignore = ignore || reference.isContainer();
 		ignore = ignore || reference.eContainer() == EcorePackage.eINSTANCE.getEGenericType();
-		ignore = ignore || reference.getEReferenceType().equals(EcorePackage.eINSTANCE.getEAnnotation());
 		String name = reference.getName();
 		ignore = ignore || "refines".equals(name);
 		ignore = ignore || "sees".equals(name);
