@@ -40,7 +40,10 @@ public class SyncManager {
 						if ("synchroniser".equals(element.getName())) {
 							try {
 								final ISynchroniser synchroniser = (ISynchroniser) element.createExecutableExtension("synchroniser_class");
-								idMapping.put(element.getAttribute("rodin_id"), synchroniser);
+								String rodinId = element.getAttribute("rodin_id");
+								if (rodinId != null && !"".equals(rodinId)) {
+									idMapping.put(rodinId, synchroniser);
+								}
 								EClassifier eClassifier = ePackage.getEClassifier(element.getAttribute("emf_class"));
 								if (eClassifier != null) {
 									emfMapping.put((EClass) eClassifier, synchroniser);
