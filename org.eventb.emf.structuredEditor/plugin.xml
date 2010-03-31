@@ -32,12 +32,12 @@
             contributorId="org.eventb.emf.structuredEditor.editorID"
             labelProvider="org.eventb.emf.edit.properties.ElementLabelProvider"
             typeMapper="org.eventb.emf.edit.properties.ElementTypeMapper">
-         <propertyCategory category="domain"/>
          <propertyCategory category="common"/>
          <propertyCategory category="project"/>
          <propertyCategory category="context"/>
          <propertyCategory category="machine"/>
          <propertyCategory category="event"/>
+         <propertyCategory category="domain"/>
       </propertyContributor>
    </extension>
    
@@ -114,8 +114,8 @@
                	                              
          <propertyTab
                	category="domain"
-                id="domain.tab"
-                label="%tab.Domain"
+                id="domain.tab.advanced"
+                label="%tab.Advanced"
                 afterTab="event.tab.actions"
                 />
                
@@ -299,6 +299,14 @@
                class="org.eventb.emf.edit.propertySections.editTables.ContextAxiomsPropertySection"
                filter="org.eventb.emf.edit.propertySections.editTables.ContextAxiomsPropertySection">
          </propertySection>
+         
+         <propertySection
+               id="domain.section.advanced"
+               tab="domain.tab.advanced"
+               class="org.eventb.emf.edit.propertySections.editTables.EventBAdvancedPropertySection"
+               filter="org.eventb.emf.edit.propertySections.editTables.EventBAdvancedPropertySection">
+         </propertySection>
+         
       </propertySections>
    </extension>
 
