@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eventb.emf.jet
+Bundle-SymbolicName: org.eventb.emf.jet;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: 
+Require-Bundle: org.eclipse.jet
+Bundle-ClassPath: .,bin/
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

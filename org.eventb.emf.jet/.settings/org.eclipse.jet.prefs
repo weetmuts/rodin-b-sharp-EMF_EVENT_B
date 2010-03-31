@@ -1,0 +1,6 @@
+#Thu Feb 04 18:07:22 GMT 2010
+eclipse.preferences.version=1
+org.eclipse.jet.compiledTemplatePackage=org.eventb.emf.jet.compiled
+org.eclipse.jet.compiledTemplateSrcDir=jet2java
+org.eclipse.jet.projectPrefs=true
+org.eclipse.jet.useJava5=true
