@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eventb.emf.structuredEditor;singleton:=true
+Bundle-SymbolicName: ac.soton.eventb.roseEditor;singleton:=true
 Bundle-Version: 0.2.0
 Bundle-ClassPath: .
-Bundle-Activator: org.eventb.emf.structuredEditor.EventBStructuredEditorPlugin$Implementation
+Bundle-Activator: ac.soton.eventb.roseEditor.RoseEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
- org.eventb.emf.edit.properties,
- org.eventb.emf.edit.propertySections.abstracts,
- org.eventb.emf.edit.propertySections.editTables,
- org.eventb.emf.edit.propertySections.enumerations,
- org.eventb.emf.edit.propertySections.textFields,
- org.eventb.emf.structuredEditor
+ ac.soton.eventb.roseEditor,
+ ac.soton.eventb.roseEditor.properties,
+ ac.soton.eventb.roseEditor.propertySections.abstracts,
+ ac.soton.eventb.roseEditor.propertySections.editTables,
+ ac.soton.eventb.roseEditor.propertySections.enumerations,
+ ac.soton.eventb.roseEditor.propertySections.textFields
 Require-Bundle: org.eventb.emf.core;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,
  org.eclipse.emf.edit.ui;bundle-version="[2.4.0,3.0.0)";visibility:=reexport,

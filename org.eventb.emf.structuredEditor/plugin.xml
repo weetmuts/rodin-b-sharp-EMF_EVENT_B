@@ -12,12 +12,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            class="org.eventb.emf.structuredEditor.EventBStructuredEditor"
-            contributorClass="org.eventb.emf.structuredEditor.EventBStructuredEditorActionBarContributor"
+            class="ac.soton.eventb.roseEditor.RoseEditor"
+            contributorClass="ac.soton.eventb.roseEditor.RoseEditorActionBarContributor"
             default="false"
             extensions="core,buc,bum,xmb"
             icon="icons/full/obj16/Rose.gif"
-            id="org.eventb.emf.structuredEditor.editorID"
+            id="ac.soton.eventb.roseEditor.editorID"
             name="%_UI_EventBStructuredEditor_label">
             <contentTypeBinding contentTypeId="org.eventb.core.machineFile"/>
          	<contentTypeBinding contentTypeId="org.eventb.core.contextFile"/>
@@ -29,9 +29,9 @@
 <!-- Property view contributors -->
     <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
-            contributorId="org.eventb.emf.structuredEditor.editorID"
-            labelProvider="org.eventb.emf.edit.properties.ElementLabelProvider"
-            typeMapper="org.eventb.emf.edit.properties.ElementTypeMapper">
+            contributorId="ac.soton.eventb.roseEditor.editorID"
+            labelProvider="ac.soton.eventb.roseEditor.properties.ElementLabelProvider"
+            typeMapper="ac.soton.eventb.roseEditor.properties.ElementTypeMapper">
          <propertyCategory category="common"/>
          <propertyCategory category="project"/>
          <propertyCategory category="context"/>
@@ -45,7 +45,7 @@
          <!--"ac.soton.umlb.umlbMetamodel.commonDiagramUtilities.UMLBPropertiesView"-->
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
-      <propertyTabs contributorId="org.eventb.emf.structuredEditor.editorID">
+      <propertyTabs contributorId="ac.soton.eventb.roseEditor.editorID">
          <!-- Common Tabs-->
          <propertyTab
                	category="common"
@@ -125,43 +125,43 @@
 <!-- properties -->
    <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
-            contributorId="org.eventb.emf.structuredEditor.editorID">
+            contributorId="ac.soton.eventb.roseEditor.editorID">
             
          <!-- property sections in the 'Overview' tab - common -->
          <propertySection
                id="common.section.name"
                tab="common.tab.overview"
-               filter="org.eventb.emf.edit.propertySections.textFields.EventBNamedElementNamePropertySection"
-               class="org.eventb.emf.edit.propertySections.textFields.EventBNamedElementNamePropertySection">
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBNamedElementNamePropertySection"
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBNamedElementNamePropertySection">
          </propertySection>
          <propertySection
                id="common.section.comment"
                tab="common.tab.overview"
                afterSection="common.section.name"
-               filter="org.eventb.emf.edit.propertySections.textFields.EventBCommentedCommentPropertySection"
-               class="org.eventb.emf.edit.propertySections.textFields.EventBCommentedCommentPropertySection">
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBCommentedCommentPropertySection"
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBCommentedCommentPropertySection">
          </propertySection>  
 		 <!-- property sections in the 'Overview' tab - machine -->               
          <propertySection
                id="machine.section.variant"
                tab="common.tab.overview"
                afterSection="common.section.comment"
-               class="org.eventb.emf.edit.propertySections.editTables.MachineVariantPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.MachineVariantPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariantPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariantPropertySection">
          </propertySection> 
          <propertySection
                id="machine.section.refines"
                tab="common.tab.overview"
                afterSection="machine.section.variant"
-               class="org.eventb.emf.edit.propertySections.editTables.MachineRefinesNamesPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.MachineRefinesNamesPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineRefinesNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineRefinesNamesPropertySection">
          </propertySection> 
          <propertySection
                id="machine.section.sees"
                tab="common.tab.overview"
                afterSection="machine.section.refines"
-               class="org.eventb.emf.edit.propertySections.editTables.MachineSeesNamesPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.MachineSeesNamesPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineSeesNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineSeesNamesPropertySection">
          </propertySection>
 
 		 <!-- property sections in the 'Overview' tab - event -->          
@@ -169,22 +169,22 @@
                id="event.section.convergence"
                tab="common.tab.overview"
                afterSection="common.section.comment"
-               class="org.eventb.emf.edit.propertySections.enumerations.EventConvergencePropertySection"
-               filter="org.eventb.emf.edit.propertySections.enumerations.EventConvergencePropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.enumerations.EventConvergencePropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.enumerations.EventConvergencePropertySection">
          </propertySection>
          <propertySection
                id="event.section.extended"
                tab="common.tab.overview"
                afterSection="event.section.convergence"
-               class="org.eventb.emf.edit.propertySections.enumerations.EventExtendedPropertySection"
-               filter="org.eventb.emf.edit.propertySections.enumerations.EventExtendedPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.enumerations.EventExtendedPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.enumerations.EventExtendedPropertySection">
          </propertySection>
          <propertySection
                id="event.section.refines"
                tab="common.tab.overview"
                afterSection="event.section.extended"
-               class="org.eventb.emf.edit.propertySections.editTables.EventRefinesNamesPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.EventRefinesNamesPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventRefinesNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventRefinesNamesPropertySection">
          </propertySection>
 
 		 <!-- property sections in the 'Overview' tab - context -->
@@ -192,8 +192,8 @@
                id="context.section.extends"
                tab="common.tab.overview"
                afterSection="common.section.comment"
-               class="org.eventb.emf.edit.propertySections.editTables.ContextExtendsNamesPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.ContextExtendsNamesPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextExtendsNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextExtendsNamesPropertySection">
          </propertySection>
          
 		 <!-- property sections in the 'Overview' tab - predicate --> 		          
@@ -201,15 +201,15 @@
                id="predicate.section.predicate"
                tab="common.tab.overview"
                afterSection="common.section.comment"
-               class="org.eventb.emf.edit.propertySections.textFields.EventBPredicatePredicatePropertySection"
-               filter="org.eventb.emf.edit.propertySections.textFields.EventBPredicatePredicatePropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBPredicatePredicatePropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBPredicatePredicatePropertySection">
          </propertySection> 
          <propertySection
                id="predicate.section.derived"
                tab="common.tab.overview"
                afterSection="predicate.section.predicate"
-               class="org.eventb.emf.edit.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection"
-               filter="org.eventb.emf.edit.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection">
          </propertySection>
 
 		 <!-- property sections in the 'Overview' tab - action --> 
@@ -217,8 +217,8 @@
                id="action.section.action"
                tab="common.tab.overview"
                afterSection="common.section.comment"
-               class="org.eventb.emf.edit.propertySections.textFields.ActionActionPropertySection"
-               filter="org.eventb.emf.edit.propertySections.textFields.ActionActionPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.ActionActionPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.ActionActionPropertySection">
          </propertySection> 
 
 		 <!-- property sections in the 'Overview' tab - expression --> 
@@ -226,28 +226,28 @@
                id="expression.section.expression"
                tab="common.tab.overview"
                afterSection="common.section.comment"
-               class="org.eventb.emf.edit.propertySections.textFields.EventBExpressionExpressionPropertySection"
-               filter="org.eventb.emf.edit.propertySections.textFields.EventBExpressionExpressionPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBExpressionExpressionPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBExpressionExpressionPropertySection">
          </propertySection> 
                   
          <!-- in the machine tabs -->
          <propertySection
                id="machine.section.variables"
                tab="machine.tab.variables"
-               class="org.eventb.emf.edit.propertySections.editTables.MachineVariablesPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.MachineVariablesPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariablesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariablesPropertySection">
          </propertySection> 
          <propertySection
                id="machine.section.invariants"
                tab="machine.tab.invariants"
-               class="org.eventb.emf.edit.propertySections.editTables.MachineInvariantsPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.MachineInvariantsPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineInvariantsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineInvariantsPropertySection">
          </propertySection> 
          <propertySection
                id="machine.section.events"
                tab="machine.tab.events"
-               class="org.eventb.emf.edit.propertySections.editTables.MachineEventsPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.MachineEventsPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineEventsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineEventsPropertySection">
          </propertySection>  
          
                   
@@ -255,28 +255,28 @@
          <propertySection
                id="event.section.parameters"
                tab="event.tab.parameters"
-               class="org.eventb.emf.edit.propertySections.editTables.EventParametersPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.EventParametersPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventParametersPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventParametersPropertySection">
          </propertySection>
          		<!-- n.b.witnesses are in with the parameters -->
          <propertySection
                id="event.section.witnesses"
                tab="event.tab.parameters"
                afterSection="event.section.parameters"
-               class="org.eventb.emf.edit.propertySections.editTables.EventWitnessesPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.EventWitnessesPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventWitnessesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventWitnessesPropertySection">
          </propertySection> 
          <propertySection
                id="event.section.guards"
                tab="event.tab.guards"
-               class="org.eventb.emf.edit.propertySections.editTables.EventGuardsPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.EventGuardsPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventGuardsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventGuardsPropertySection">
          </propertySection> 
          <propertySection
                id="event.section.actions"
                tab="event.tab.actions"
-               class="org.eventb.emf.edit.propertySections.editTables.EventActionsPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.EventActionsPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventActionsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventActionsPropertySection">
          </propertySection>
          
                   
@@ -284,27 +284,27 @@
          <propertySection
                id="context.section.sets"
                tab="context.tab.sets"
-               class="org.eventb.emf.edit.propertySections.editTables.ContextSetsPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.ContextSetsPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextSetsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextSetsPropertySection">
          </propertySection> 
          <propertySection
                id="context.section.constants"
                tab="context.tab.constants"
-               class="org.eventb.emf.edit.propertySections.editTables.ContextConstantsPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.ContextConstantsPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextConstantsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextConstantsPropertySection">
          </propertySection> 
          <propertySection
                id="context.section.axioms"
                tab="context.tab.axioms"
-               class="org.eventb.emf.edit.propertySections.editTables.ContextAxiomsPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.ContextAxiomsPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextAxiomsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextAxiomsPropertySection">
          </propertySection>
          
          <propertySection
                id="domain.section.advanced"
                tab="domain.tab.advanced"
-               class="org.eventb.emf.edit.propertySections.editTables.EventBAdvancedPropertySection"
-               filter="org.eventb.emf.edit.propertySections.editTables.EventBAdvancedPropertySection">
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventBAdvancedPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventBAdvancedPropertySection">
          </propertySection>
          
       </propertySections>
