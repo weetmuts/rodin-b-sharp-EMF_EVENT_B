@@ -2,7 +2,7 @@
 <feature
       id="org.eventb.emf.emerging.feature"
       label="%featureName"
-      version="0.3.0"
+      version="0.3.1.NOTUSED"
       provider-name="%providerName">
 
    <description>
@@ -27,23 +27,8 @@
    </requires>
 
    <plugin
-         id="org.eventb.emf.teamwork"
-         download-size="4"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eventb.emf.core.editor"
          download-size="180"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-
-   <plugin
-         id="org.eventb.emf.compare"
-         download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
