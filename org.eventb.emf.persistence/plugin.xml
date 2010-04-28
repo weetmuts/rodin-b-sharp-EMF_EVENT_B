@@ -3,21 +3,6 @@
 <plugin>
    <extension-point id="org.eventb.emf.persistence.synchroniser" name="Persistency synchronisers" schema="schema/org.eventb.emf.persistence.synchroniser.exsd"/>
 
-   <!--extension
-         point="org.eclipse.core.contenttype.contentTypes">
-      <content-type
-            base-type="org.eclipse.emf.ecore.xmi"
-            alias-for="org.eventb.core.machineFile"
-            file-extensions="xmb"
-            id="machineFileXMI"
-            name="%eventBMachineFileXMI"
-            priority="normal"/>
-      <-file-association
-            content-type="org.eventb.core.machineFile"
-            file-extensions="xmb">
-      </file-association->
-   </extension-->
-
     <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
@@ -122,6 +107,16 @@
 		            rodin_id="org.eventb.core.axiom">
 		      </synchroniser>
             </emfPackage>
+            <emfPackage
+                  name="CorePackage"
+                  nsURI="http://emf.eventb.org/models/core">
+               <synchroniser
+                     emf_class="Project"
+                     name="Project"
+                     rodin_id="org.rodinp.core.project"
+                     synchroniser_class="org.eventb.emf.persistence.synchroniser.ProjectSynchroniser">
+               </synchroniser>
+            </emfPackage>
    </extension>
    <extension
          point="org.rodinp.core.autoTools">
@@ -140,6 +135,13 @@
             </inputType>
          </extractor>
       </tool>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eventb.emf.persistence.factory.ProjectFactory"
+            type="prj">
+      </parser>
    </extension>
 
 </plugin>
