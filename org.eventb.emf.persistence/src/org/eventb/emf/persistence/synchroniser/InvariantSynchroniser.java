@@ -12,7 +12,6 @@ import org.eventb.emf.core.machine.Invariant;
 import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.rodinp.core.IAttributeType;
-import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IInternalElementType;
 import org.rodinp.core.IRodinElement;
 import org.rodinp.core.RodinDBException;
@@ -47,7 +46,7 @@ public class InvariantSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 		// create EMF node
 		Invariant eventBElement = (Invariant) super.load(rodinElement, emfParent, monitor);
 		if (rodinElement instanceof IInvariant) {
@@ -58,10 +57,10 @@ public class InvariantSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public IInternalElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 
 		// create Rodin element
-		IInternalElement rodinElement = super.save(emfElement, rodinParent, monitor);
+		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IInvariant && emfElement instanceof Invariant) {
 			((IInvariant) rodinElement).setPredicateString(((Invariant) emfElement).getPredicate(), monitor);
 			((IInvariant) rodinElement).setTheorem(((Invariant) emfElement).isTheorem(), monitor);

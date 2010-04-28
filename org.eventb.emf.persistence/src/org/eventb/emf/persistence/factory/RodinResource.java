@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.persistence.synchroniser.SyncManager;
-import org.rodinp.core.IInternalElement;
+import org.rodinp.core.IRodinElement;
 import org.rodinp.core.IRodinFile;
 import org.rodinp.core.IRodinProject;
 import org.rodinp.core.RodinCore;
@@ -45,7 +45,7 @@ public class RodinResource extends XMIResourceImpl {
 	private IRodinProject rodinProject;
 	private IFile file;
 	private IProject project;
-	private Map<IInternalElement, EventBObject> map;
+	private Map<IRodinElement, EventBObject> map;
 	private boolean isXmi = false;
 
 	public boolean isXMI() {
@@ -58,7 +58,7 @@ public class RodinResource extends XMIResourceImpl {
 	 * 
 	 * @return Map<IInternalElement, EventBObject>
 	 */
-	public final Map<IInternalElement, EventBObject> getMap() {
+	public final Map<IRodinElement, EventBObject> getMap() {
 		return Collections.unmodifiableMap(map);
 	}
 
@@ -82,7 +82,7 @@ public class RodinResource extends XMIResourceImpl {
 			} else {
 				rodinFile = rodinProject.getRodinFile(fileName);
 				file = rodinFile.getResource();
-				map = new HashMap<IInternalElement, EventBObject>();
+				map = new HashMap<IRodinElement, EventBObject>();
 				isXmi = false;
 			}
 		} else if (null == uri.scheme()) {
@@ -100,7 +100,7 @@ public class RodinResource extends XMIResourceImpl {
 			} else {
 				rodinFile = rodinProject.getRodinFile(fileName);
 				file = rodinFile.getResource();
-				map = new HashMap<IInternalElement, EventBObject>();
+				map = new HashMap<IRodinElement, EventBObject>();
 				isXmi = false;
 			}
 		}

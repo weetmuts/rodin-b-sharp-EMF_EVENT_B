@@ -8,15 +8,17 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eventb.core.EventBAttributes;
 import org.eventb.core.IContextRoot;
+import org.eventb.core.IEventBProject;
 import org.eventb.core.IExtendsContext;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.context.ContextFactory;
 import org.rodinp.core.IAttributeType;
-import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IInternalElementType;
 import org.rodinp.core.IRodinElement;
+import org.rodinp.core.IRodinProject;
 import org.rodinp.core.RodinDBException;
 
 public class ContextSynchroniser extends AbstractSynchroniser {
@@ -48,7 +50,7 @@ public class ContextSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 
 		// create EMF node for context
 		final Context eventBElement = (Context) super.load(rodinElement, emfParent, monitor);
@@ -62,10 +64,13 @@ public class ContextSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public IInternalElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+		// get context file if synchronised from project
+		final IRodinElement parent = rodinParent instanceof IRodinProject ? ((IEventBProject) rodinParent.getAdapter(IEventBProject.class))
+				.getContextFile(((EventBNamed) emfElement).doGetName()) : rodinParent;
 
 		// create Rodin element
-		IInternalElement rodinElement = super.save(emfElement, rodinParent, monitor);
+		IRodinElement rodinElement = super.save(emfElement, parent, monitor);
 		if (rodinElement instanceof IContextRoot && emfElement instanceof Context) {
 			EList<String> extendsNames = ((Context) emfElement).getExtendsNames();
 			for (String extendsName : extendsNames) {

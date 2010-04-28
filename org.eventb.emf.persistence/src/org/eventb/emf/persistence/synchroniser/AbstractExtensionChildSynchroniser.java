@@ -3,7 +3,7 @@ package org.eventb.emf.persistence.synchroniser;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.EventBElement;
-import org.rodinp.core.IInternalElement;
+import org.rodinp.core.IRodinElement;
 import org.rodinp.core.RodinDBException;
 
 public abstract class AbstractExtensionChildSynchroniser extends AbstractSynchroniser {
@@ -18,7 +18,7 @@ public abstract class AbstractExtensionChildSynchroniser extends AbstractSynchro
 	}
 
 	@Override
-	public <T extends EventBElement> EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public <T extends EventBElement> EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 
 		if (!isValidParent(emfParent)) {
 			// TODO: log an error

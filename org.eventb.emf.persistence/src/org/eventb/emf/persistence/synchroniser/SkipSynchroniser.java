@@ -33,7 +33,7 @@ public class SkipSynchroniser implements ISynchroniser { //extends AbstractSynch
 	//		return IConstant.ELEMENT_TYPE;
 	//	}
 
-	public <T extends EventBElement> EventBElement load(IInternalElement rodinElement, EventBElement emfParent, IProgressMonitor monitor) throws RodinDBException {
+	public <T extends EventBElement> EventBElement load(IRodinElement rodinElement, EventBElement emfParent, IProgressMonitor monitor) throws RodinDBException {
 		return emfParent;
 	}
 

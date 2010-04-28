@@ -7,17 +7,19 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eventb.core.EventBAttributes;
+import org.eventb.core.IEventBProject;
 import org.eventb.core.IMachineRoot;
 import org.eventb.core.IRefinesMachine;
 import org.eventb.core.ISeesContext;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.machine.Machine;
 import org.eventb.emf.core.machine.MachineFactory;
 import org.rodinp.core.IAttributeType;
-import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IInternalElementType;
 import org.rodinp.core.IRodinElement;
+import org.rodinp.core.IRodinProject;
 import org.rodinp.core.RodinDBException;
 
 public class MachineSynchroniser extends AbstractSynchroniser {
@@ -49,7 +51,7 @@ public class MachineSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 		// create EMF node for machine
 		final Machine eventBElement = (Machine) super.load(rodinElement, emfParent, monitor);
 
@@ -71,10 +73,13 @@ public class MachineSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public IInternalElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+		// get machine file if synchronised from project
+		final IRodinElement parent = rodinParent instanceof IRodinProject ? ((IEventBProject) rodinParent.getAdapter(IEventBProject.class))
+				.getMachineFile(((EventBNamed) emfElement).getName()) : rodinParent;
 
 		// create Rodin element
-		IInternalElement rodinElement = super.save(emfElement, rodinParent, monitor);
+		IRodinElement rodinElement = super.save(emfElement, parent, monitor);
 		if (rodinElement instanceof IMachineRoot && emfElement instanceof Machine) {
 			EList<String> refinesNames = ((Machine) emfElement).getRefinesNames();
 			for (String refinesName : refinesNames) {

@@ -12,7 +12,6 @@ import org.eventb.emf.core.context.Axiom;
 import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.context.ContextPackage;
 import org.rodinp.core.IAttributeType;
-import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IInternalElementType;
 import org.rodinp.core.IRodinElement;
 import org.rodinp.core.RodinDBException;
@@ -47,7 +46,7 @@ public class AxiomSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 		// create EMF node
 		Axiom eventBElement = (Axiom) super.load(rodinElement, emfParent, monitor);
 		if (rodinElement instanceof IAxiom) {
@@ -58,10 +57,10 @@ public class AxiomSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public IInternalElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 
 		// create Rodin element
-		IInternalElement rodinElement = super.save(emfElement, rodinParent, monitor);
+		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IAxiom && emfElement instanceof Axiom) {
 			((IAxiom) rodinElement).setPredicateString(((Axiom) emfElement).getPredicate(), monitor);
 			((IAxiom) rodinElement).setTheorem(((Axiom) emfElement).isTheorem(), monitor);

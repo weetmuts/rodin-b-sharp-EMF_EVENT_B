@@ -12,15 +12,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eventb.core.IContextRoot;
 import org.eventb.core.IExtendsContext;
+import org.eventb.core.IMachineRoot;
 import org.eventb.core.IRefinesEvent;
 import org.eventb.core.IRefinesMachine;
 import org.eventb.core.ISeesContext;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
+import org.eventb.emf.core.Project;
 import org.eventb.emf.persistence.ISynchroniser;
-import org.rodinp.core.IInternalElement;
+import org.rodinp.core.IParent;
 import org.rodinp.core.IRodinElement;
+import org.rodinp.core.IRodinFile;
 import org.rodinp.core.RodinDBException;
 
 public class SyncManager {
@@ -69,12 +73,17 @@ public class SyncManager {
 		genericSynchroniser = new ExtensionSynchroniser();// DynamicSynchroniser(); //
 	}
 
-	public EventBElement loadRodinElement(final IInternalElement rodinElement, final EventBElement emfParent, Map<IInternalElement, EventBObject> map,
-			final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement loadRodinElement(final IRodinElement rodinElement, final EventBElement emfParent, Map<IRodinElement, EventBObject> map, final IProgressMonitor monitor)
+			throws RodinDBException, Exception {
 		final EventBElement emfElement;
-
+		final IRodinElement rElement = rodinElement instanceof IRodinFile ? ((IRodinFile) rodinElement).getRoot() : rodinElement;
 		// get mapping by id
-		final String id = rodinElement.getElementType().getId();
+		final String id = rElement.getElementType().getId();
+
+		// for a project look at machine or context only
+		if (emfParent instanceof Project && !id.equals(IMachineRoot.ELEMENT_TYPE.getId()) && !id.equals(IContextRoot.ELEMENT_TYPE.getId()))
+			return null;
+
 		if (id.equals(IRefinesMachine.ELEMENT_TYPE.getId()) || id.equals(ISeesContext.ELEMENT_TYPE.getId()) || id.equals(IRefinesEvent.ELEMENT_TYPE.getId())
 				|| id.equals(IExtendsContext.ELEMENT_TYPE.getId()))
 			return null;
@@ -83,22 +92,22 @@ public class SyncManager {
 
 		if (synchroniser != null) {
 			// call synchroniser
-			emfElement = synchroniser.load(rodinElement, emfParent, monitor);
+			emfElement = synchroniser.load(rElement, emfParent, monitor);
 		} else {
 			// use default generic synchroniser
-			emfElement = genericSynchroniser.load(rodinElement, emfParent, monitor);
+			emfElement = genericSynchroniser.load(rElement, emfParent, monitor);
 		}
-		map.put(rodinElement, emfElement);
-		for (final IRodinElement child : rodinElement.getChildren()) {
-			loadRodinElement((IInternalElement) child, emfElement, map, monitor);
+		map.put(rElement, emfElement);
+		for (final IRodinElement child : ((IParent) rElement).getChildren()) {
+			loadRodinElement(child, emfElement, map, monitor);
 		}
 
 		return emfElement;
 	}
 
-	public void saveModelElement(final EventBElement emfElement, final IRodinElement rodinParent, Map<IInternalElement, EventBObject> map, final IProgressMonitor monitor)
-			throws RodinDBException {
-		final IInternalElement rodinElement;
+	public void saveModelElement(final EventBElement emfElement, final IRodinElement rodinParent, Map<IRodinElement, EventBObject> map, final IProgressMonitor monitor)
+			throws CoreException {
+		final IRodinElement rodinElement;
 
 		// get mapping and call synchroniser
 		final ISynchroniser synchroniser = emfMapping.get(emfElement.eClass());

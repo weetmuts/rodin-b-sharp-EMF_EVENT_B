@@ -35,6 +35,7 @@ import org.rodinp.core.IAttributeType;
 import org.rodinp.core.IAttributeValue;
 import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IInternalElementType;
+import org.rodinp.core.IRodinDBStatusConstants;
 import org.rodinp.core.IRodinElement;
 import org.rodinp.core.IRodinFile;
 import org.rodinp.core.RodinCore;
@@ -68,11 +69,14 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	protected abstract Set<IAttributeType> getHandledAttributeTypes();
 
 	@SuppressWarnings("unchecked")
-	public <T extends EventBElement> EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public <T extends EventBElement> EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+		if (!(rodinElement instanceof IInternalElement))
+			throw new RodinDBException(new Exception("Not an Internal Element"), IRodinDBStatusConstants.CORE_EXCEPTION);
+
 		// create EMF node
 		final EventBElement eventBElement = createEventBElement();
 
-		loadAttributes(rodinElement, eventBElement);
+		loadAttributes((IInternalElement) rodinElement, eventBElement);
 
 		if (emfParent != null) {
 			// attach new node to parent
@@ -196,7 +200,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		}
 	}
 
-	public IInternalElement save(final EventBElement eventBElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement eventBElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 		// get rodin details annotation or create if doesn't exist
 		EAnnotation rodinInternals = eventBElement.getEAnnotation(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
 		if (rodinInternals == null) {
@@ -209,7 +213,10 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		// create Rodin element
 		IInternalElement rodinElement = null;
 		if (rodinParent instanceof IRodinFile) {
-			rodinElement = ((IRodinFile) rodinParent).getRoot();
+			IRodinFile file = (IRodinFile) rodinParent;
+			if (!file.exists())
+				file.create(false, monitor);
+			rodinElement = file.getRoot();
 			rodinElement.clear(true, monitor);
 		} else if (rodinParent instanceof IInternalElement) {
 			try {

@@ -48,14 +48,14 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 		// create EMF node
 		Extension eventBElement = (Extension) super.load(rodinElement, emfParent, monitor);
 		return eventBElement;
 	}
 
 	@Override
-	public IInternalElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 		if (isMetaClassExtension((AbstractExtension) emfElement)) {
 			//if this extension just adds to its parents features, we don't need to do anything, just return the same parent
 			return asInternalElement(rodinParent);
@@ -65,7 +65,7 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 				return null; //some extensions are not intended to be saved
 			rodinElementType = RodinCore.getInternalElementType(id);
 			// create Rodin element
-			IInternalElement rodinElement = super.save(emfElement, rodinParent, monitor);
+		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 			return rodinElement;
 		} else
 			return null;

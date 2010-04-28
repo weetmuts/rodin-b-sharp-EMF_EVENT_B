@@ -38,10 +38,10 @@ public class DynamicSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IInternalElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 
 		// create EMF node for element
-		final EventBElement bElement = DynamicEventB.createElement(rodinElement);
+		final EventBElement bElement = DynamicEventB.createElement((IInternalElement) rodinElement);
 
 		// TODO deal with name
 		// bElement.eSet(bElement.eGet(feature)"name",
@@ -50,7 +50,7 @@ public class DynamicSynchroniser extends AbstractSynchroniser {
 		if (rodinElement instanceof ICommentedElement) {
 			//			bElement.setComment(((ICommentedElement) rodinElement).getComment());
 		}
-		for (final IAttributeType attributeType : rodinElement.getAttributeTypes()) {
+		for (final IAttributeType attributeType : ((IInternalElement) rodinElement).getAttributeTypes()) {
 			// TODO deal with attributes
 			// still needed now that AbstractSynchroniser handles arbitrary
 			// attributes?
