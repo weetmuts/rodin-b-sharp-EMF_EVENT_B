@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -97,34 +96,30 @@ public class ProjectResource extends ResourceImpl {
 
 	@Override
 	public void load(final Map<?, ?> options) throws IOException {
-		if (!isLoaded) {
-			Notification notification = setLoaded(true);
+		try {
 			isLoading = true;
-			try {
-				// does file already exist? -> load
-				if (exists()) {
-					SyncManager syncManager = new SyncManager();
-					try {
-						map.clear();
-						getContents().add(syncManager.loadRodinElement(rodinProject, null, map, null));
+			setLoaded(true);
 
-						// success
-						setTimeStamp(System.currentTimeMillis());
-					} catch (RodinDBException e) {
-						throw new IOException("Error while loading rodin project: " + e.getLocalizedMessage());
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} else {
-					throw new IOException("Resource does not exist");
+			// does file already exist? -> load
+			if (exists()) {
+				SyncManager syncManager = new SyncManager();
+				try {
+					map.clear();
+					getContents().add(syncManager.loadRodinElement(rodinProject, null, map, null));
+
+				} catch (RodinDBException e) {
+					throw new IOException("Error while loading rodin project: " + e.getLocalizedMessage());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} finally {
-				isLoading = false;
-				if (notification != null) {
-					eNotify(notification);
-				}
+				// success
+				setTimeStamp(System.currentTimeMillis());
+			} else {
+				throw new IOException("Resource does not exist");
 			}
+		} finally {
+			isLoading = false;
 		}
 	}
 
@@ -149,44 +144,33 @@ public class ProjectResource extends ResourceImpl {
 			try {
 				RodinCore.run(new IWorkspaceRunnable() {
 					public void run(final IProgressMonitor monitor) throws CoreException {
-						TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(ProjectResource.this);
-						domain.getCommandStack().execute(new RecordingCommand(domain) {
-							@Override
-							protected void doExecute() {
-								try {
-									SyncManager syncManager = new SyncManager();
-									for (EObject content : getContents()) {
-										if (content instanceof EventBElement) {
-											map.clear();
-											syncManager.saveModelElement((EventBElement) content, rodinProject, map, new NullProgressMonitor());
-											updateMap((Project) content);
-										}
-									}
-
-									// remove files that were deleted from the diagram
-									List<IInternalElement> children = new ArrayList<IInternalElement>();
-									children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IMachineRoot.ELEMENT_TYPE)));
-									children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IContextRoot.ELEMENT_TYPE)));
-									for (IInternalElement child : children) {
-										if (!map.containsKey(child))
-											if (child.getRodinFile().exists()) {
-												((IEventBRoot) child.getRoot()).getPRRoot().getRodinFile().delete(true, monitor);
-												child.getRodinFile().delete(true, monitor);
-											}
-									}
-
-									// save changed files
-									for (IRodinFile file : rodinProject.getRodinFiles())
-										//FIX: not sure if forcing on file save should be specified
-										if (!file.isConsistent())
-											file.save(null, false);
-									rodinProject.save(null, true);
-								} catch (CoreException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
+						SyncManager syncManager = new SyncManager();
+						for (EObject content : getContents()) {
+							if (content instanceof EventBElement) {
+								map.clear();
+								syncManager.saveModelElement((EventBElement) content, rodinProject, map, new NullProgressMonitor());
+								updateMap((Project) content);
 							}
-						});
+						}
+
+						// remove files that were deleted from the diagram
+						List<IInternalElement> children = new ArrayList<IInternalElement>();
+						children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IMachineRoot.ELEMENT_TYPE)));
+						children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IContextRoot.ELEMENT_TYPE)));
+						for (IInternalElement child : children) {
+							if (!map.containsKey(child))
+								if (child.getRodinFile().exists()) {
+									((IEventBRoot) child.getRoot()).getPRRoot().getRodinFile().delete(true, monitor);
+									child.getRodinFile().delete(true, monitor);
+								}
+						}
+
+						// save changed files
+						for (IRodinFile file : rodinProject.getRodinFiles())
+							//FIX: not sure if forcing on file save should be specified
+							if (!file.isConsistent())
+								file.save(null, false);
+						rodinProject.save(null, true);
 					}
 				}, null);
 			} catch (RodinDBException e) {
