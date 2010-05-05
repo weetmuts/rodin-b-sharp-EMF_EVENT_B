@@ -24,9 +24,7 @@
    <requires>
       <import feature="org.eclipse.emf" version="2.5.0" match="compatible"/>
       <import feature="org.eventb.ide" version="1.2.0" match="compatible"/>
-      <import plugin="org.eclipse.emf.compare" version="1.0.1" match="compatible"/>
-      <import plugin="org.eclipse.emf.compare.diff" version="1.0.1" match="compatible"/>
-      <import plugin="org.eclipse.emf.compare.match" version="1.0.1" match="compatible"/>
+      <import feature="org.eclipse.emf.compare" version="1.0.1" match="compatible"/>
    </requires>
 
    <plugin
