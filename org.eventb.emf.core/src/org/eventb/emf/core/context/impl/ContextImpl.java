@@ -403,18 +403,21 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 		if (proxy != null && proxy.eIsProxy()){
 			if (eResource()==null) return proxy;
 			try{
-				URI uri=null;
 				String reference = proxy.eProxyURI().fragment();
-				String name = reference.substring(reference.lastIndexOf(".")+1);
-				
+
 				// if resolved already in the parent, do not resolve again
 				if (eContainer() != null)
 					 for (EObject component : eContainer().eContents())
 						 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
 							 return component;
-				 
+				
+				URI uri=null;
+				String projectName = getURI().trimSegments(getURI().segmentCount()-2).lastSegment();
+				String resourceName = reference.substring(reference.lastIndexOf(".")+1);
+				
 				if (proxy instanceof Context && getExtends().contains(proxy)){
-					uri = getURI().trimSegments(1).appendSegment(name)
+					uri = URI.createPlatformResourceURI(projectName, true)
+						.appendSegment(resourceName)
 						.appendFileExtension(External.getString("FileExtensions.context"))
 						.appendFragment(reference);
 				}
