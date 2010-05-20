@@ -91,7 +91,9 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	public String doGetName() {
 		assert (this instanceof EventBElement);
 		String reference = ((EventBElement)this).getReferenceWithoutResolving();
-		return reference.substring(reference.lastIndexOf(".")+1);
+		return reference.length() > this.eStaticClass().getInstanceClassName().length() ?
+				reference.substring(this.eStaticClass().getInstanceClassName().length()+1)
+				: "";		
 	}
 
 	/**
