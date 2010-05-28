@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eventb.emf.core.CorePackage;
-import org.eventb.emf.core.Project;
 import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.externalisation.External;
@@ -628,9 +627,9 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	public EObject eResolveProxy(InternalEObject proxy){
 	  if (proxy != null && proxy.eIsProxy()){
 		  if (eResource()==null) return proxy;
+		  String reference = proxy.eProxyURI().fragment();
+		  URI uri=null;
 		  try{
-			 String reference = proxy.eProxyURI().fragment();
-			 
 			 // if resolved already in the parent, do not resolve again
 			 if (eContainer() != null)
 				 for (EObject component : eContainer().eContents())
@@ -638,7 +637,6 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 						 return component;
 			 
 			 // attempt to construct a suitable proxy URI
-			 URI uri=null;
 			 String projectName = getURI().trimSegments(getURI().segmentCount()-2).lastSegment();
 			 String resourceName = reference.substring(reference.lastIndexOf(".")+1);
 
@@ -651,14 +649,20 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 				 uri = URI.createPlatformResourceURI(projectName, true)
 				 	.appendSegment(resourceName)
 				 	.appendFileExtension(External.getString("FileExtensions.context"))
-				 	.appendFragment(reference);				 
+				 	.appendFragment(reference);					 
 			 }
-			 if (uri!=null) proxy.eSetProxyURI(uri);
+			 
 		  }catch (Exception e){
-				RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
+			  RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
 			  return proxy;
 		  }
+		  
+		  if (uri!=null) proxy.eSetProxyURI(uri);
+		  EObject resolved = super.eResolveProxy(proxy);
+		  proxy.eSetProxyURI(CorePackage.dummyURI.appendFragment(reference));	  
+		  return resolved;
 	  }
+	  
 	  return super.eResolveProxy(proxy);
 	}
 
