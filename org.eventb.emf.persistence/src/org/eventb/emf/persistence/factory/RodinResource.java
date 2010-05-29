@@ -11,8 +11,13 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
@@ -146,9 +151,15 @@ public class RodinResource extends XMIResourceImpl {
 	@Override
 	public void save(final Map<?, ?> options) throws IOException {
 		if (isXmi) {
+			unresolveRefs();
 			super.save(options);
 			return;
+		} else {
+			saveAsRodin(options);
 		}
+	}
+
+	private void saveAsRodin(final Map<?, ?> options) throws IOException {
 		if (!isLoaded || isLoading) // || !isModified )
 			return;
 
@@ -189,6 +200,38 @@ public class RodinResource extends XMIResourceImpl {
 			isModified = false;
 
 		} finally {
+		}
+	}
+
+	/**
+	 * iterates through contents looking for attributes that are lists of
+	 * Strings. These may be lists that have been derived from proxies which are
+	 * lazily resolved. If found these are lists are re-written which will also
+	 * re-write the corresponding proxy. Hence any resolved references are reset
+	 * to unresolved proxies before saving.
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	private void unresolveRefs() {
+		TreeIterator<EObject> allContents = getAllContents();
+		while (allContents.hasNext()) {
+			EObject object = allContents.next();
+			if (object instanceof EventBElement) {
+				EventBElement element = (EventBElement) object;
+				EClass eClass = element.eClass();
+				for (EAttribute attribute : eClass.getEAllAttributes()) {
+					if (attribute.getEType().getClassifierID() == EcorePackage.ESTRING && attribute.isMany() && attribute.isChangeable()) {
+						Object attributeValue = element.eGet(attribute, false);
+						if (attributeValue instanceof EList<?>) {
+							EList<String> namesList = (EList<String>) element.eGet(attribute, false);
+							for (int i = 0; i < namesList.size(); i++) {
+								String name = namesList.get(i);
+								namesList.set(i, name);
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
