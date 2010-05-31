@@ -340,7 +340,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 	 * @custom
 	 */
 	protected void addRefinesName(String newName) {
-		addRefinesName(((BasicEList<Event>)getRefines()).size(), Event.class.getName()+"."+newName);
+		addRefinesName(((BasicEList<Event>)getRefines()).size(), newName);
 	}
 	
 	/**

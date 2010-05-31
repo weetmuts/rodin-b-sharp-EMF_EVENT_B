@@ -220,7 +220,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = MachineFactory.eINSTANCE.createMachine();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Machine.class.getName()+"."+newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Machine>)getRefines()).setUnique(index, proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -240,7 +240,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * @custom
 	 */
 	protected void addRefinesName(String newName) {
-		addRefinesName(((BasicEList<Machine>)getRefines()).size(), Context.class.getName()+"."+newName);
+		addRefinesName(((BasicEList<Machine>)getRefines()).size(), newName);
 	}
 	
 	/**
@@ -356,7 +356,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * @custom
 	 */
 	protected void addSeesName(String newName) {
-		addSeesName(((BasicEList<Context>)getSees()).size(), Context.class.getName()+"."+newName);
+		addSeesName(((BasicEList<Context>)getSees()).size(), newName);
 	}
 
 	/**

@@ -208,7 +208,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * @custom
 	 */
 	protected void addExtendsName(String newName) {
-		addExtendsName(((BasicEList<Context>)getExtends()).size(), Context.class.getName()+"."+newName);
+		addExtendsName(((BasicEList<Context>)getExtends()).size(), newName);
 	}
 
 	/**
