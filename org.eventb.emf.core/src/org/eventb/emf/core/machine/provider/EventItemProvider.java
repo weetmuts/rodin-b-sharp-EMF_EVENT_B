@@ -16,17 +16,15 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -34,15 +32,14 @@ import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.MachinePackage;
-
 import org.eventb.emf.core.provider.EventBNamedCommentedElementItemProvider;
-import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.internal.ui.EventBImage;
 import org.eventb.ui.IEventBSharedImages;
 
 /**
  * This is the item provider adapter for a {@link org.eventb.emf.core.machine.Event} object.
  * <!-- begin-user-doc -->
+ * @implements ITableItemLabelProvider
  * <!-- end-user-doc -->
  * @generated
  */
@@ -53,7 +50,8 @@ public class EventItemProvider
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
-		IItemPropertySource {
+		IItemPropertySource,
+		ITableItemLabelProvider {
 	
 	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_EVENT);
 
@@ -292,5 +290,46 @@ public class EventItemProvider
 				(MachinePackage.Literals.EVENT__ACTIONS,
 				 MachineFactory.eINSTANCE.createAction()));
 	}
+	
+	/**
+	 * getColumnText is implemented for ITableItemLabelProvider
+	 * first column is the event label,
+	 * second column is convergence
+	 * third column is a comma seperated list of refined events
+	 * 
+	 */
+	public String getColumnText(Object object, int columnIndex){
+		Event event = (Event)object;
+		switch (columnIndex){
+		case 0:
+			return getText(event);
+		case 1:
+			return event.getConvergence().getLiteral();
+		case 2:
+			return refinesList(event);
+		default:
+			return "";
+		}
+	}
 
+	private String refinesList(Event event) {
+		String ret = "";
+		EList<String> refinesNames = event.getRefinesNames();
+		for (String nm : refinesNames){
+			if (!"".equals(ret)) ret = ret + ", ";
+			ret = ret + nm;
+		}
+		if (event.isExtended()) ret = "EXTENDS " + ret;
+		return ret;
+	}
+
+//	/**
+//	 * override to return the transient item provider of the Events node
+//	 */
+//	public Object getParent(Object object){
+//		Object machine = super.getParent(object);
+//		MachineItemProvider machineItemProvider = (MachineItemProvider)adapterFactory.adapt(machine, IEditingDomainItemProvider.class);
+//		return machineItemProvider != null ? machineItemProvider.getEvents() : null;
+//		
+//	}
 }
