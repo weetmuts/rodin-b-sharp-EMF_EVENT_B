@@ -34,6 +34,7 @@ import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.MarkerHelper;
@@ -97,13 +98,11 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -123,8 +122,11 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.context.provider.ContextItemProviderAdapterFactory;
 import org.eventb.emf.core.impl.StringToAttributeMapEntryImpl;
+import org.eventb.emf.core.machine.Event;
+import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.provider.MachineItemProviderAdapterFactory;
 import org.eventb.emf.core.provider.CoreItemProviderAdapterFactory;
 
@@ -133,8 +135,7 @@ import org.eventb.emf.core.provider.CoreItemProviderAdapterFactory;
  * 
  * @generated
  */
-public class RoseEditor extends MultiPageEditorPart implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider,
-		IGotoMarker //{
+public class RoseEditor extends MultiPageEditorPart implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker //{
 		, ITabbedPropertySheetPageContributor {
 	/*
 	 * (non-Javadoc)
@@ -195,6 +196,13 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	 * @generated
 	 */
 	protected TreeViewer selectionViewer;
+
+	/**
+	 * This shows Event refinement relations in a table. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @custom
+	 */
+	protected TableViewer eventRefinementViewer;
 
 	/**
 	 * This is the viewer that shadows the selection in the content outline. The parent relation must be correctly defined for this to work. <!-- begin-user-doc --> <!--
@@ -911,6 +919,10 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 		// Only creates the other pages if there is something that can be edited
 		//
 		if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
+			ResourceSet resourceSet = editingDomain.getResourceSet();
+			Resource resource = resourceSet.getResources().get(0);
+			Object input = resource.getContents().get(0);
+
 			// Create a page for the model tree view.
 			//
 			{
@@ -933,11 +945,9 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 				selectionViewer = (TreeViewer) viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-				ResourceSet resourceSet = editingDomain.getResourceSet();
-				Resource resource = resourceSet.getResources().get(0);
 				selectionViewer.setInput(resource); //editingDomain.getResourceSet());
 				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
-				viewerPane.setTitle(getProjectName(resource)); //editingDomain.getResourceSet());
+				viewerPane.setTitle(input);
 				ViewerFilter[] filters = { new ViewerFilter() {
 					@Override
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
@@ -959,88 +969,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 				setPageText(pageIndex, getString("_UI_SelectionPage_label"));
 			}
 
-			// Create a page for the parent tree view.
-			//
-			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						Tree tree = new Tree(composite, SWT.MULTI);
-						TreeViewer newTreeViewer = new TreeViewer(tree);
-						return newTreeViewer;
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
-				viewerPane.createControl(getContainer());
-
-				parentViewer = (TreeViewer) viewerPane.getViewer();
-				parentViewer.setAutoExpandLevel(30);
-				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
-				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-
-				createContextMenuFor(parentViewer);
-				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_ParentPage_label"));
-			}
-
-			// This is the page for the list viewer
-			//
-			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new ListViewer(composite);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
-				viewerPane.createControl(getContainer());
-				listViewer = (ListViewer) viewerPane.getViewer();
-				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-
-				createContextMenuFor(listViewer);
-				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_ListPage_label"));
-			}
-
-			// This is the page for the tree viewer
-			//
-			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new TreeViewer(composite);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
-				viewerPane.createControl(getContainer());
-				treeViewer = (TreeViewer) viewerPane.getViewer();
-				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-
-				new AdapterFactoryTreeEditor(treeViewer.getTree(), adapterFactory);
-
-				createContextMenuFor(treeViewer);
-				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TreePage_label"));
-			}
-
-			// This is the page for the table viewer.
+			// This is the page for the event refinement viewer.
 			//
 			{
 				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
@@ -1056,75 +985,216 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 					}
 				};
 				viewerPane.createControl(getContainer());
-				tableViewer = (TableViewer) viewerPane.getViewer();
+				eventRefinementViewer = (TableViewer) viewerPane.getViewer();
 
-				Table table = tableViewer.getTable();
+				Table table = eventRefinementViewer.getTable();
 				TableLayout layout = new TableLayout();
 				table.setLayout(layout);
 				table.setHeaderVisible(true);
 				table.setLinesVisible(true);
 
-				TableColumn objectColumn = new TableColumn(table, SWT.NONE);
-				layout.addColumnData(new ColumnWeightData(3, 100, true));
-				objectColumn.setText(getString("_UI_ObjectColumn_label"));
-				objectColumn.setResizable(true);
+				TableColumn eventColumn = new TableColumn(table, SWT.NONE);
+				layout.addColumnData(new ColumnWeightData(3, 20, true));
+				eventColumn.setText(getString("_UI_EventColumn_label"));
+				eventColumn.setResizable(true);
 
-				TableColumn selfColumn = new TableColumn(table, SWT.NONE);
+				TableColumn convergenceColumn = new TableColumn(table, SWT.NONE);
 				layout.addColumnData(new ColumnWeightData(2, 100, true));
-				selfColumn.setText(getString("_UI_SelfColumn_label"));
-				selfColumn.setResizable(true);
+				convergenceColumn.setText(getString("_UI_ConvergenceColumn_label"));
+				convergenceColumn.setResizable(true);
 
-				tableViewer.setColumnProperties(new String[] { "a", "b" });
-				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+				TableColumn refinesColumn = new TableColumn(table, SWT.NONE);
+				layout.addColumnData(new ColumnWeightData(2, 100, true));
+				refinesColumn.setText(getString("_UI_RefinesColumn_label"));
+				refinesColumn.setResizable(true);
 
-				createContextMenuFor(tableViewer);
+				eventRefinementViewer.setColumnProperties(new String[] { "a", "b", "c" });
+				eventRefinementViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				eventRefinementViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+
+				ViewerFilter[] filters = { new ViewerFilter() {
+					@Override
+					public boolean select(Viewer viewer, Object parentElement, Object element) {
+						if (element instanceof Event) {
+							return true;
+						}
+						return false;
+					}
+				} };
+
+				eventRefinementViewer.setFilters(filters);
+				eventRefinementViewer.setInput(input);
+				createContextMenuFor(eventRefinementViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TablePage_label"));
+				setPageText(pageIndex, getString("_UI_EventRefinementPage_label"));
 			}
 
-			// This is the page for the table tree viewer.
+			//			// Create a page for the parent tree view.
+			//			//
+			//			{
+			//				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
+			//					@Override
+			//					public Viewer createViewer(Composite composite) {
+			//						Tree tree = new Tree(composite, SWT.MULTI);
+			//						TreeViewer newTreeViewer = new TreeViewer(tree);
+			//						return newTreeViewer;
+			//					}
 			//
-			{
-				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
-					@Override
-					public Viewer createViewer(Composite composite) {
-						return new TreeViewer(composite);
-					}
-
-					@Override
-					public void requestActivation() {
-						super.requestActivation();
-						setCurrentViewerPane(this);
-					}
-				};
-				viewerPane.createControl(getContainer());
-
-				treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
-
-				Tree tree = treeViewerWithColumns.getTree();
-				tree.setLayoutData(new FillLayout());
-				tree.setHeaderVisible(true);
-				tree.setLinesVisible(true);
-
-				TreeColumn objectColumn = new TreeColumn(tree, SWT.NONE);
-				objectColumn.setText(getString("_UI_ObjectColumn_label"));
-				objectColumn.setResizable(true);
-				objectColumn.setWidth(250);
-
-				TreeColumn selfColumn = new TreeColumn(tree, SWT.NONE);
-				selfColumn.setText(getString("_UI_SelfColumn_label"));
-				selfColumn.setResizable(true);
-				selfColumn.setWidth(200);
-
-				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
-				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-
-				createContextMenuFor(treeViewerWithColumns);
-				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
-			}
+			//					@Override
+			//					public void requestActivation() {
+			//						super.requestActivation();
+			//						setCurrentViewerPane(this);
+			//					}
+			//				};
+			//				viewerPane.createControl(getContainer());
+			//
+			//				parentViewer = (TreeViewer) viewerPane.getViewer();
+			//				parentViewer.setAutoExpandLevel(30);
+			//				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
+			//				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+			//
+			//				createContextMenuFor(parentViewer);
+			//				int pageIndex = addPage(viewerPane.getControl());
+			//				setPageText(pageIndex, getString("_UI_ParentPage_label"));
+			//			}
+			//
+			//			// This is the page for the list viewer
+			//			//
+			//			{
+			//				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
+			//					@Override
+			//					public Viewer createViewer(Composite composite) {
+			//						return new ListViewer(composite);
+			//					}
+			//
+			//					@Override
+			//					public void requestActivation() {
+			//						super.requestActivation();
+			//						setCurrentViewerPane(this);
+			//					}
+			//				};
+			//				viewerPane.createControl(getContainer());
+			//				listViewer = (ListViewer) viewerPane.getViewer();
+			//				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+			//				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+			//
+			//				createContextMenuFor(listViewer);
+			//				int pageIndex = addPage(viewerPane.getControl());
+			//				setPageText(pageIndex, getString("_UI_ListPage_label"));
+			//			}
+			//
+			//			// This is the page for the tree viewer
+			//			//
+			//			{
+			//				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
+			//					@Override
+			//					public Viewer createViewer(Composite composite) {
+			//						return new TreeViewer(composite);
+			//					}
+			//
+			//					@Override
+			//					public void requestActivation() {
+			//						super.requestActivation();
+			//						setCurrentViewerPane(this);
+			//					}
+			//				};
+			//				viewerPane.createControl(getContainer());
+			//				treeViewer = (TreeViewer) viewerPane.getViewer();
+			//				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+			//				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+			//
+			//				new AdapterFactoryTreeEditor(treeViewer.getTree(), adapterFactory);
+			//
+			//				createContextMenuFor(treeViewer);
+			//				int pageIndex = addPage(viewerPane.getControl());
+			//				setPageText(pageIndex, getString("_UI_TreePage_label"));
+			//			}
+			//
+			//			// This is the page for the table viewer.
+			//			//
+			//			{
+			//				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
+			//					@Override
+			//					public Viewer createViewer(Composite composite) {
+			//						return new TableViewer(composite);
+			//					}
+			//
+			//					@Override
+			//					public void requestActivation() {
+			//						super.requestActivation();
+			//						setCurrentViewerPane(this);
+			//					}
+			//				};
+			//				viewerPane.createControl(getContainer());
+			//				tableViewer = (TableViewer) viewerPane.getViewer();
+			//
+			//				Table table = tableViewer.getTable();
+			//				TableLayout layout = new TableLayout();
+			//				table.setLayout(layout);
+			//				table.setHeaderVisible(true);
+			//				table.setLinesVisible(true);
+			//
+			//				TableColumn objectColumn = new TableColumn(table, SWT.NONE);
+			//				layout.addColumnData(new ColumnWeightData(3, 100, true));
+			//				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+			//				objectColumn.setResizable(true);
+			//
+			//				TableColumn selfColumn = new TableColumn(table, SWT.NONE);
+			//				layout.addColumnData(new ColumnWeightData(2, 100, true));
+			//				selfColumn.setText(getString("_UI_SelfColumn_label"));
+			//				selfColumn.setResizable(true);
+			//
+			//				tableViewer.setColumnProperties(new String[] { "a", "b" });
+			//				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+			//				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+			//
+			//				createContextMenuFor(tableViewer);
+			//				int pageIndex = addPage(viewerPane.getControl());
+			//				setPageText(pageIndex, getString("_UI_TablePage_label"));
+			//			}
+			//
+			//			// This is the page for the table tree viewer.
+			//			//
+			//			{
+			//				ViewerPane viewerPane = new ViewerPane(getSite().getPage(), RoseEditor.this) {
+			//					@Override
+			//					public Viewer createViewer(Composite composite) {
+			//						return new TreeViewer(composite);
+			//					}
+			//
+			//					@Override
+			//					public void requestActivation() {
+			//						super.requestActivation();
+			//						setCurrentViewerPane(this);
+			//					}
+			//				};
+			//				viewerPane.createControl(getContainer());
+			//
+			//				treeViewerWithColumns = (TreeViewer) viewerPane.getViewer();
+			//
+			//				Tree tree = treeViewerWithColumns.getTree();
+			//				tree.setLayoutData(new FillLayout());
+			//				tree.setHeaderVisible(true);
+			//				tree.setLinesVisible(true);
+			//
+			//				TreeColumn objectColumn = new TreeColumn(tree, SWT.NONE);
+			//				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+			//				objectColumn.setResizable(true);
+			//				objectColumn.setWidth(250);
+			//
+			//				TreeColumn selfColumn = new TreeColumn(tree, SWT.NONE);
+			//				selfColumn.setText(getString("_UI_SelfColumn_label"));
+			//				selfColumn.setResizable(true);
+			//				selfColumn.setWidth(200);
+			//
+			//				treeViewerWithColumns.setColumnProperties(new String[] { "a", "b" });
+			//				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+			//				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
+			//
+			//				createContextMenuFor(treeViewerWithColumns);
+			//				int pageIndex = addPage(viewerPane.getControl());
+			//				setPageText(pageIndex, getString("_UI_TreeWithColumnsPage_label"));
+			//			}
 
 			// create a page for the Advanced view
 			{
@@ -1148,9 +1218,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 				advancedViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
 				advancedViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-				ResourceSet resourceSet = editingDomain.getResourceSet();
-				Resource resource = resourceSet.getResources().get(0);
-				advancedViewer.setInput(resourceSet);
+				advancedViewer.setInput(input);
 				advancedViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 				viewerPane.setTitle(getProjectName(resource));
 
@@ -1258,7 +1326,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	/**
 	 * This accesses a cached version of the content outliner. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public IContentOutlinePage getContentOutlinePage() {
 		if (contentOutlinePage == null) {
@@ -1286,6 +1354,21 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 						//
 						contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 					}
+					ViewerFilter[] filters = { new ViewerFilter() {
+						@Override
+						public boolean select(Viewer viewer, Object parentElement, Object element) {
+							if (element instanceof EAnnotation) {
+								return false;
+							}
+							if (element instanceof StringToAttributeMapEntryImpl) {
+								return false;
+							}
+							return true;
+						}
+					} };
+
+					selectionViewer.setFilters(filters);
+					contentOutlineViewer.setFilters(filters);
 				}
 
 				@Override
@@ -1356,7 +1439,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	/**
 	 * This deals with how we want selection in the outliner to affect the other views. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
 		if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
@@ -1365,9 +1448,14 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 				// Get the first selected element.
 				//
 				Object selectedElement = selectedElements.next();
-
+				Resource resource = getResource(selectedElement);
+				URI uri = resource.getURI();
+				String filename = URI.decode(uri.segment(uri.segmentCount() - 1));
+				Object input = null;
 				// If it's the selection viewer, then we want it to select the same selection as this selection.
 				//
+				this.setPartName(filename);
+				this.setContentDescription("Rodin Project: " + getProject(resource).getName());
 				if (currentViewerPane.getViewer() == selectionViewer) {
 					ArrayList<Object> selectionList = new ArrayList<Object>();
 					selectionList.add(selectedElement);
@@ -1375,9 +1463,36 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 						selectionList.add(selectedElements.next());
 					}
 
-					// Set the selection to the widget.
+					// Set the selection to the containing resource of the widget.
 					//
+					currentViewerPane.setTitle(resource.getContents().get(0));
+					if (resource != null) {
+						selectionViewer.setInput(resource);
+					}
 					selectionViewer.setSelection(new StructuredSelection(selectionList));
+
+				} else if (currentViewerPane.getViewer() == eventRefinementViewer) {
+					// Set the table input to be the Event or Machine containing the widget.
+					// Set up column titles as appropriate to selection
+
+					if (selectedElement instanceof EventBObject) {
+						//						input = ((EventBObject) selectedElement).getContaining(MachinePackage.eINSTANCE.getEvent());
+						//						if (input != null) {
+						//							eventRefinementViewer.getTable().getColumn(0).setText("Parameter");
+						//							eventRefinementViewer.getTable().getColumn(1).setText("witness");
+						//							eventRefinementViewer.getTable().getColumn(2).setText("");
+						//						} else {
+						input = ((EventBObject) selectedElement).getContaining(MachinePackage.eINSTANCE.getMachine());
+						if (input != null) {
+							eventRefinementViewer.getTable().getColumn(0).setText(getString("_UI_EventColumn_label"));
+							eventRefinementViewer.getTable().getColumn(1).setText(getString("_UI_ConvergenceColumn_label"));
+							eventRefinementViewer.getTable().getColumn(2).setText(getString("_UI_RefinesColumn_label"));
+						}
+						//						}
+					}
+					currentViewerPane.setTitle(input);
+					eventRefinementViewer.setInput(input);
+
 				} else {
 					// Set the input to the widget.
 					//
@@ -1388,6 +1503,17 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 				}
 			}
 		}
+	}
+
+	private Resource getResource(Object selectedElement) {
+		if (selectedElement instanceof EventBObject) {
+			return ((EventBObject) selectedElement).eResource();
+		} else if (selectedElement instanceof Resource) {
+			return (Resource) selectedElement;
+		} else if (selectedElement instanceof Adapter) { //for transient nodes
+			return ((EventBObject) ((Adapter) selectedElement).getTarget()).eResource();
+		}
+		return null;
 	}
 
 	/**
