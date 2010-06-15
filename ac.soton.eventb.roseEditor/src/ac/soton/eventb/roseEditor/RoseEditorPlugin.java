@@ -9,6 +9,7 @@ package ac.soton.eventb.roseEditor;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 
 /**
  * This is the central singleton for the Eventbcore editor plugin. <!--
@@ -44,12 +45,17 @@ public final class RoseEditorPlugin extends EMFPlugin {
 	private static Implementation plugin;
 
 	/**
-	 * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Create the instance.
+	 * <!-- begin-user-doc -->
+	 * The EventbcoreEditPlugin is added as a resource locator to delegate to.
+	 * This is probably unused for now but could be useful.
+	 * (added this while trying to fix another problem)
+	 * <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public RoseEditorPlugin() {
-		super(new ResourceLocator[] {});
+		super(new ResourceLocator[] { EventbcoreEditPlugin.INSTANCE });
 	}
 
 	/**
