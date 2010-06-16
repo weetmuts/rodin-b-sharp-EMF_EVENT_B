@@ -11,17 +11,16 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eventb.core.EventBAttributes;
 import org.eventb.core.ICommentedElement;
 import org.eventb.core.IConfigurationElement;
 import org.eventb.core.IIdentifierElement;
 import org.eventb.core.ILabeledElement;
+import org.eventb.emf.core.Annotation;
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.AttributeType;
 import org.eventb.emf.core.CoreFactory;
@@ -99,10 +98,10 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	}
 
 	private void loadAttributes(final IInternalElement rodinElement, final EventBElement eventBElement) throws RodinDBException {
-		// create EAnnotation for rodin internal details
-		EAnnotation rodinInternals = EcoreFactory.eINSTANCE.createEAnnotation();
+		// create Annotation for rodin internal details
+		Annotation rodinInternals = CoreFactory.eINSTANCE.createAnnotation();
 		rodinInternals.setSource(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
-		eventBElement.getEAnnotations().add(rodinInternals);
+		eventBElement.getAnnotations().add(rodinInternals);
 		rodinInternalDetails = rodinInternals.getDetails();
 
 		if (rodinElement instanceof IConfigurationElement) {
@@ -202,11 +201,11 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 
 	public IRodinElement save(final EventBElement eventBElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 		// get rodin details annotation or create if doesn't exist
-		EAnnotation rodinInternals = eventBElement.getEAnnotation(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
+		Annotation rodinInternals = eventBElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
 		if (rodinInternals == null) {
-			rodinInternals = EcoreFactory.eINSTANCE.createEAnnotation();
+			rodinInternals = CoreFactory.eINSTANCE.createAnnotation();
 			rodinInternals.setSource(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
-			eventBElement.getEAnnotations().add(rodinInternals);
+			eventBElement.getAnnotations().add(rodinInternals);
 		}
 		rodinInternalDetails = rodinInternals.getDetails();
 
