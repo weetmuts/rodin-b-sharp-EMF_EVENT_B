@@ -72,13 +72,13 @@ public interface FormulasPackage extends EPackage {
 	int BFORMULA = 0;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BFORMULA__EANNOTATIONS = CorePackage.EXTENSION__EANNOTATIONS;
+	int BFORMULA__ANNOTATIONS = CorePackage.EXTENSION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -97,6 +97,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BFORMULA__ATTRIBUTES = CorePackage.EXTENSION__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BFORMULA__REFERENCE = CorePackage.EXTENSION__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -127,13 +136,13 @@ public interface FormulasPackage extends EPackage {
 	int BEXPRESSION_RESOLVED = 1;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEXPRESSION_RESOLVED__EANNOTATIONS = BFORMULA__EANNOTATIONS;
+	int BEXPRESSION_RESOLVED__ANNOTATIONS = BFORMULA__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -152,6 +161,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BEXPRESSION_RESOLVED__ATTRIBUTES = BFORMULA__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEXPRESSION_RESOLVED__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -182,13 +200,13 @@ public interface FormulasPackage extends EPackage {
 	int BPREDICATE_RESOLVED = 2;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BPREDICATE_RESOLVED__EANNOTATIONS = BFORMULA__EANNOTATIONS;
+	int BPREDICATE_RESOLVED__ANNOTATIONS = BFORMULA__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -207,6 +225,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BPREDICATE_RESOLVED__ATTRIBUTES = BFORMULA__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPREDICATE_RESOLVED__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -237,13 +264,13 @@ public interface FormulasPackage extends EPackage {
 	int BASSIGNMENT_RESOLVED = 3;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BASSIGNMENT_RESOLVED__EANNOTATIONS = BFORMULA__EANNOTATIONS;
+	int BASSIGNMENT_RESOLVED__ANNOTATIONS = BFORMULA__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -262,6 +289,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BASSIGNMENT_RESOLVED__ATTRIBUTES = BFORMULA__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASSIGNMENT_RESOLVED__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -301,13 +337,13 @@ public interface FormulasPackage extends EPackage {
 	int CONSTANT = 4;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT__EANNOTATIONS = BFORMULA__EANNOTATIONS;
+	int CONSTANT__ANNOTATIONS = BFORMULA__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -326,6 +362,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTANT__ATTRIBUTES = BFORMULA__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -356,13 +401,13 @@ public interface FormulasPackage extends EPackage {
 	int UNARY_OPERATOR = 5;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_OPERATOR__EANNOTATIONS = BFORMULA__EANNOTATIONS;
+	int UNARY_OPERATOR__ANNOTATIONS = BFORMULA__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -381,6 +426,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNARY_OPERATOR__ATTRIBUTES = BFORMULA__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATOR__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -420,13 +474,13 @@ public interface FormulasPackage extends EPackage {
 	int BINARY_OPERATOR = 6;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_OPERATOR__EANNOTATIONS = BFORMULA__EANNOTATIONS;
+	int BINARY_OPERATOR__ANNOTATIONS = BFORMULA__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -445,6 +499,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_OPERATOR__ATTRIBUTES = BFORMULA__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATOR__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -493,13 +556,13 @@ public interface FormulasPackage extends EPackage {
 	int MULTI_OPERAND = 7;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_OPERAND__EANNOTATIONS = BFORMULA__EANNOTATIONS;
+	int MULTI_OPERAND__ANNOTATIONS = BFORMULA__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -518,6 +581,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTI_OPERAND__ATTRIBUTES = BFORMULA__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_OPERAND__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -557,13 +629,13 @@ public interface FormulasPackage extends EPackage {
 	int BECOMES_EQUAL_TO_ASSIGNMENT = 8;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BECOMES_EQUAL_TO_ASSIGNMENT__EANNOTATIONS = BASSIGNMENT_RESOLVED__EANNOTATIONS;
+	int BECOMES_EQUAL_TO_ASSIGNMENT__ANNOTATIONS = BASSIGNMENT_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -582,6 +654,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BECOMES_EQUAL_TO_ASSIGNMENT__ATTRIBUTES = BASSIGNMENT_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_EQUAL_TO_ASSIGNMENT__REFERENCE = BASSIGNMENT_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -630,13 +711,13 @@ public interface FormulasPackage extends EPackage {
 	int BECOMES_MEMBER_OF_ASSIGNMENT = 9;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BECOMES_MEMBER_OF_ASSIGNMENT__EANNOTATIONS = BASSIGNMENT_RESOLVED__EANNOTATIONS;
+	int BECOMES_MEMBER_OF_ASSIGNMENT__ANNOTATIONS = BASSIGNMENT_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -655,6 +736,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BECOMES_MEMBER_OF_ASSIGNMENT__ATTRIBUTES = BASSIGNMENT_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_MEMBER_OF_ASSIGNMENT__REFERENCE = BASSIGNMENT_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -703,13 +793,13 @@ public interface FormulasPackage extends EPackage {
 	int BECOMES_SUCH_THAT_ASSIGNMENT = 10;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BECOMES_SUCH_THAT_ASSIGNMENT__EANNOTATIONS = BASSIGNMENT_RESOLVED__EANNOTATIONS;
+	int BECOMES_SUCH_THAT_ASSIGNMENT__ANNOTATIONS = BASSIGNMENT_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -728,6 +818,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BECOMES_SUCH_THAT_ASSIGNMENT__ATTRIBUTES = BASSIGNMENT_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_SUCH_THAT_ASSIGNMENT__REFERENCE = BASSIGNMENT_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -776,13 +875,13 @@ public interface FormulasPackage extends EPackage {
 	int INTEGER_LITERAL_EXPRESSION = 11;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_LITERAL_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int INTEGER_LITERAL_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -801,6 +900,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTEGER_LITERAL_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -840,13 +948,13 @@ public interface FormulasPackage extends EPackage {
 	int IDENTIFIER_EXPRESSION = 12;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IDENTIFIER_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int IDENTIFIER_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -865,6 +973,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDENTIFIER_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIER_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -904,13 +1021,13 @@ public interface FormulasPackage extends EPackage {
 	int BOUND_IDENTIFIER_EXPRESSION = 13;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_IDENTIFIER_EXPRESSION__EANNOTATIONS = IDENTIFIER_EXPRESSION__EANNOTATIONS;
+	int BOUND_IDENTIFIER_EXPRESSION__ANNOTATIONS = IDENTIFIER_EXPRESSION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -929,6 +1046,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOUND_IDENTIFIER_EXPRESSION__ATTRIBUTES = IDENTIFIER_EXPRESSION__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_IDENTIFIER_EXPRESSION__REFERENCE = IDENTIFIER_EXPRESSION__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -968,13 +1094,13 @@ public interface FormulasPackage extends EPackage {
 	int FORALL_PREDICATE = 14;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORALL_PREDICATE__EANNOTATIONS = BPREDICATE_RESOLVED__EANNOTATIONS;
+	int FORALL_PREDICATE__ANNOTATIONS = BPREDICATE_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -993,6 +1119,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORALL_PREDICATE__ATTRIBUTES = BPREDICATE_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORALL_PREDICATE__REFERENCE = BPREDICATE_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1041,13 +1176,13 @@ public interface FormulasPackage extends EPackage {
 	int EXIST_PREDICATE = 15;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXIST_PREDICATE__EANNOTATIONS = BPREDICATE_RESOLVED__EANNOTATIONS;
+	int EXIST_PREDICATE__ANNOTATIONS = BPREDICATE_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1066,6 +1201,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXIST_PREDICATE__ATTRIBUTES = BPREDICATE_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXIST_PREDICATE__REFERENCE = BPREDICATE_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1114,13 +1258,13 @@ public interface FormulasPackage extends EPackage {
 	int LAMBDA_EXPRESSION = 16;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAMBDA_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int LAMBDA_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1139,6 +1283,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAMBDA_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1196,13 +1349,13 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_UNION_EXPRESSION1 = 17;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUANTIFIED_UNION_EXPRESSION1__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int QUANTIFIED_UNION_EXPRESSION1__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1221,6 +1374,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUANTIFIED_UNION_EXPRESSION1__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_UNION_EXPRESSION1__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1278,13 +1440,13 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_UNION_EXPRESSION2 = 18;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUANTIFIED_UNION_EXPRESSION2__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int QUANTIFIED_UNION_EXPRESSION2__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1303,6 +1465,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUANTIFIED_UNION_EXPRESSION2__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_UNION_EXPRESSION2__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1351,13 +1522,13 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION1 = 19;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUANTIFIED_INTERSECTION_EXPRESSION1__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int QUANTIFIED_INTERSECTION_EXPRESSION1__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1376,6 +1547,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUANTIFIED_INTERSECTION_EXPRESSION1__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_INTERSECTION_EXPRESSION1__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1433,13 +1613,13 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION2 = 20;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUANTIFIED_INTERSECTION_EXPRESSION2__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int QUANTIFIED_INTERSECTION_EXPRESSION2__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1458,6 +1638,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUANTIFIED_INTERSECTION_EXPRESSION2__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_INTERSECTION_EXPRESSION2__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1506,13 +1695,13 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION1 = 21;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_COMPREHENSION_EXPRESSION1__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int SET_COMPREHENSION_EXPRESSION1__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1531,6 +1720,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SET_COMPREHENSION_EXPRESSION1__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPREHENSION_EXPRESSION1__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1588,13 +1786,13 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION2 = 22;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_COMPREHENSION_EXPRESSION2__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int SET_COMPREHENSION_EXPRESSION2__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1613,6 +1811,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SET_COMPREHENSION_EXPRESSION2__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPREHENSION_EXPRESSION2__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1661,13 +1868,13 @@ public interface FormulasPackage extends EPackage {
 	int INT = 23;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INT__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int INT__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1686,6 +1893,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int INT__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1716,13 +1932,13 @@ public interface FormulasPackage extends EPackage {
 	int NAT = 24;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAT__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int NAT__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1741,6 +1957,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAT__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAT__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1771,13 +1996,13 @@ public interface FormulasPackage extends EPackage {
 	int NAT1 = 25;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAT1__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int NAT1__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1796,6 +2021,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAT1__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAT1__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1826,13 +2060,13 @@ public interface FormulasPackage extends EPackage {
 	int BOOL = 26;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOL__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int BOOL__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1851,6 +2085,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOL__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1881,13 +2124,13 @@ public interface FormulasPackage extends EPackage {
 	int TRUE = 27;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRUE__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int TRUE__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1906,6 +2149,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRUE__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUE__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1936,13 +2188,13 @@ public interface FormulasPackage extends EPackage {
 	int FALSE = 28;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FALSE__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int FALSE__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1961,6 +2213,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FALSE__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSE__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1991,13 +2252,13 @@ public interface FormulasPackage extends EPackage {
 	int EMPTYSET = 29;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EMPTYSET__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int EMPTYSET__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2016,6 +2277,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EMPTYSET__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTYSET__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2046,13 +2316,13 @@ public interface FormulasPackage extends EPackage {
 	int TRUTH = 30;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRUTH__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int TRUTH__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2071,6 +2341,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRUTH__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUTH__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2101,13 +2380,13 @@ public interface FormulasPackage extends EPackage {
 	int FALSITY = 31;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FALSITY__EANNOTATIONS = CONSTANT__EANNOTATIONS;
+	int FALSITY__ANNOTATIONS = CONSTANT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2126,6 +2405,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FALSITY__ATTRIBUTES = CONSTANT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSITY__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2156,13 +2444,13 @@ public interface FormulasPackage extends EPackage {
 	int SUCC_EXPRESSION = 32;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCC_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int SUCC_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2181,6 +2469,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCC_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCC_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2211,13 +2508,13 @@ public interface FormulasPackage extends EPackage {
 	int PRED_EXPRESSION = 33;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRED_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int PRED_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2236,6 +2533,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRED_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRED_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2266,13 +2572,13 @@ public interface FormulasPackage extends EPackage {
 	int BOOL_EXPRESSION = 34;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOL_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int BOOL_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2291,6 +2597,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOL_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2330,13 +2645,13 @@ public interface FormulasPackage extends EPackage {
 	int CARD_EXPRESSION = 35;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARD_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int CARD_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2355,6 +2670,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARD_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARD_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2394,13 +2718,13 @@ public interface FormulasPackage extends EPackage {
 	int POW_EXPRESSION = 36;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POW_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int POW_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2419,6 +2743,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int POW_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POW_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2458,13 +2791,13 @@ public interface FormulasPackage extends EPackage {
 	int POW1_EXPRESSION = 37;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POW1_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int POW1_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2483,6 +2816,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int POW1_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POW1_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2522,13 +2864,13 @@ public interface FormulasPackage extends EPackage {
 	int KUNION_EXPRESSION = 38;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KUNION_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int KUNION_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2547,6 +2889,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int KUNION_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KUNION_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2586,13 +2937,13 @@ public interface FormulasPackage extends EPackage {
 	int KINTERSECTION_EXPRESSION = 39;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int KINTERSECTION_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int KINTERSECTION_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2611,6 +2962,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int KINTERSECTION_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KINTERSECTION_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2650,13 +3010,13 @@ public interface FormulasPackage extends EPackage {
 	int DOMAIN_EXPRESSION = 40;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int DOMAIN_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2675,6 +3035,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOMAIN_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2714,13 +3083,13 @@ public interface FormulasPackage extends EPackage {
 	int RANGE_EXPRESSION = 41;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANGE_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int RANGE_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2739,6 +3108,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANGE_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2778,13 +3156,13 @@ public interface FormulasPackage extends EPackage {
 	int PRJ1_EXPRESSION = 42;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRJ1_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int PRJ1_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2803,6 +3181,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRJ1_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ1_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2842,13 +3229,13 @@ public interface FormulasPackage extends EPackage {
 	int PRJ1_GEN_EXPRESSION = 43;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRJ1_GEN_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int PRJ1_GEN_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2867,6 +3254,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRJ1_GEN_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ1_GEN_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2897,13 +3293,13 @@ public interface FormulasPackage extends EPackage {
 	int PRJ2_EXPRESSION = 44;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRJ2_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int PRJ2_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2922,6 +3318,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRJ2_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ2_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2961,13 +3366,13 @@ public interface FormulasPackage extends EPackage {
 	int PRJ2_GEN_EXPRESSION = 45;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRJ2_GEN_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int PRJ2_GEN_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -2986,6 +3391,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRJ2_GEN_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ2_GEN_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3016,13 +3430,13 @@ public interface FormulasPackage extends EPackage {
 	int IDENTITY_EXPRESSION = 46;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IDENTITY_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int IDENTITY_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3041,6 +3455,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDENTITY_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3080,13 +3503,13 @@ public interface FormulasPackage extends EPackage {
 	int IDENTITY_GEN_EXPRESSION = 47;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IDENTITY_GEN_EXPRESSION__EANNOTATIONS = BEXPRESSION_RESOLVED__EANNOTATIONS;
+	int IDENTITY_GEN_EXPRESSION__ANNOTATIONS = BEXPRESSION_RESOLVED__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3105,6 +3528,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDENTITY_GEN_EXPRESSION__ATTRIBUTES = BEXPRESSION_RESOLVED__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_GEN_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3135,13 +3567,13 @@ public interface FormulasPackage extends EPackage {
 	int UNARY_MINUS_EXPRESSION = 48;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_MINUS_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int UNARY_MINUS_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3160,6 +3592,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNARY_MINUS_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_MINUS_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3199,13 +3640,13 @@ public interface FormulasPackage extends EPackage {
 	int MIN_EXPRESSION = 49;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MIN_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int MIN_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3224,6 +3665,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MIN_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIN_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3263,13 +3713,13 @@ public interface FormulasPackage extends EPackage {
 	int MAX_EXPRESSION = 50;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAX_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int MAX_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3288,6 +3738,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAX_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAX_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3327,13 +3786,13 @@ public interface FormulasPackage extends EPackage {
 	int INVERSE_EXPRESSION = 51;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVERSE_EXPRESSION__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int INVERSE_EXPRESSION__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3352,6 +3811,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVERSE_EXPRESSION__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERSE_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3391,13 +3859,13 @@ public interface FormulasPackage extends EPackage {
 	int NOT_PREDICATE = 52;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_PREDICATE__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int NOT_PREDICATE__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3416,6 +3884,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_PREDICATE__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_PREDICATE__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3455,13 +3932,13 @@ public interface FormulasPackage extends EPackage {
 	int FINITE_PREDICATE = 53;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FINITE_PREDICATE__EANNOTATIONS = UNARY_OPERATOR__EANNOTATIONS;
+	int FINITE_PREDICATE__ANNOTATIONS = UNARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3480,6 +3957,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FINITE_PREDICATE__ATTRIBUTES = UNARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINITE_PREDICATE__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3519,13 +4005,13 @@ public interface FormulasPackage extends EPackage {
 	int PARALLEL_PRODUCT_EXPRESSION = 54;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARALLEL_PRODUCT_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int PARALLEL_PRODUCT_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3544,6 +4030,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARALLEL_PRODUCT_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARALLEL_PRODUCT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3592,13 +4087,13 @@ public interface FormulasPackage extends EPackage {
 	int RANGE_RESTRICTION_EXPRESSION = 55;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANGE_RESTRICTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int RANGE_RESTRICTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3617,6 +4112,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANGE_RESTRICTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_RESTRICTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3665,13 +4169,13 @@ public interface FormulasPackage extends EPackage {
 	int RANGE_SUBTRACTION_EXPRESSION = 56;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANGE_SUBTRACTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int RANGE_SUBTRACTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3690,6 +4194,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANGE_SUBTRACTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_SUBTRACTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3738,13 +4251,13 @@ public interface FormulasPackage extends EPackage {
 	int UPTO_EXPRESSION = 57;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UPTO_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int UPTO_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3763,6 +4276,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int UPTO_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPTO_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3811,13 +4333,13 @@ public interface FormulasPackage extends EPackage {
 	int EXPONENTIATION_EXPRESSION = 58;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPONENTIATION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int EXPONENTIATION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3836,6 +4358,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPONENTIATION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPONENTIATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3884,13 +4415,13 @@ public interface FormulasPackage extends EPackage {
 	int SET_SUBTRACTION_EXPRESSION = 59;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_SUBTRACTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int SET_SUBTRACTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3909,6 +4440,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SET_SUBTRACTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SUBTRACTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3957,13 +4497,13 @@ public interface FormulasPackage extends EPackage {
 	int FUNCTION_EXPRESSION = 60;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int FUNCTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -3982,6 +4522,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4030,13 +4579,13 @@ public interface FormulasPackage extends EPackage {
 	int IMAGE_EXPRESSION = 61;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int IMAGE_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4055,6 +4604,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IMAGE_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4103,13 +4661,13 @@ public interface FormulasPackage extends EPackage {
 	int IMPLICATION_PREDICATE = 62;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPLICATION_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int IMPLICATION_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4128,6 +4686,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IMPLICATION_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICATION_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4176,13 +4743,13 @@ public interface FormulasPackage extends EPackage {
 	int EQUIVALENCE_PREDICATE = 63;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUIVALENCE_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int EQUIVALENCE_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4201,6 +4768,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EQUIVALENCE_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUIVALENCE_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4249,13 +4825,13 @@ public interface FormulasPackage extends EPackage {
 	int EQUAL_PREDICATE = 64;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUAL_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int EQUAL_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4274,6 +4850,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EQUAL_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4322,13 +4907,13 @@ public interface FormulasPackage extends EPackage {
 	int NOT_EQUAL_PREDICATE = 65;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_EQUAL_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int NOT_EQUAL_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4347,6 +4932,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_EQUAL_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4395,13 +4989,13 @@ public interface FormulasPackage extends EPackage {
 	int BELONG_PREDICATE = 66;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BELONG_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int BELONG_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4420,6 +5014,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BELONG_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BELONG_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4468,13 +5071,13 @@ public interface FormulasPackage extends EPackage {
 	int NOT_BELONG_PREDICATE = 67;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_BELONG_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int NOT_BELONG_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4493,6 +5096,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_BELONG_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_BELONG_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4541,13 +5153,13 @@ public interface FormulasPackage extends EPackage {
 	int SUBSET_STRICT_PREDICATE = 68;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSET_STRICT_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int SUBSET_STRICT_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4566,6 +5178,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBSET_STRICT_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSET_STRICT_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4614,13 +5235,13 @@ public interface FormulasPackage extends EPackage {
 	int NOT_SUBSET_STRICT_PREDICATE = 69;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_SUBSET_STRICT_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int NOT_SUBSET_STRICT_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4639,6 +5260,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_SUBSET_STRICT_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_SUBSET_STRICT_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4687,13 +5317,13 @@ public interface FormulasPackage extends EPackage {
 	int SUBSET_PREDICATE = 70;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSET_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int SUBSET_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4712,6 +5342,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBSET_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSET_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4760,13 +5399,13 @@ public interface FormulasPackage extends EPackage {
 	int NOT_SUBSET_PREDICATE = 71;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_SUBSET_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int NOT_SUBSET_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4785,6 +5424,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_SUBSET_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_SUBSET_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4833,13 +5481,13 @@ public interface FormulasPackage extends EPackage {
 	int LESS_PREDICATE = 72;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LESS_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int LESS_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4858,6 +5506,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int LESS_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LESS_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4906,13 +5563,13 @@ public interface FormulasPackage extends EPackage {
 	int LESS_EQUAL_PREDICATE = 73;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LESS_EQUAL_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int LESS_EQUAL_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -4931,6 +5588,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int LESS_EQUAL_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LESS_EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4979,13 +5645,13 @@ public interface FormulasPackage extends EPackage {
 	int GREATER_PREDICATE = 74;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GREATER_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int GREATER_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5004,6 +5670,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int GREATER_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GREATER_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5052,13 +5727,13 @@ public interface FormulasPackage extends EPackage {
 	int GREATER_EQUAL_PREDICATE = 75;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GREATER_EQUAL_PREDICATE__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int GREATER_EQUAL_PREDICATE__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5077,6 +5752,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int GREATER_EQUAL_PREDICATE__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GREATER_EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5125,13 +5809,13 @@ public interface FormulasPackage extends EPackage {
 	int DOMAIN_RESTRICTION_EXPRESSION = 76;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_RESTRICTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int DOMAIN_RESTRICTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5150,6 +5834,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOMAIN_RESTRICTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_RESTRICTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5198,13 +5891,13 @@ public interface FormulasPackage extends EPackage {
 	int DOMAIN_SUBTRACTION_EXPRESSION = 77;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOMAIN_SUBTRACTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int DOMAIN_SUBTRACTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5223,6 +5916,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOMAIN_SUBTRACTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_SUBTRACTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5271,13 +5973,13 @@ public interface FormulasPackage extends EPackage {
 	int DIRECT_PRODUCT_EXPRESSION = 78;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIRECT_PRODUCT_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int DIRECT_PRODUCT_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5296,6 +5998,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIRECT_PRODUCT_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_PRODUCT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5344,13 +6055,13 @@ public interface FormulasPackage extends EPackage {
 	int DIVISION_EXPRESSION = 79;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIVISION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int DIVISION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5369,6 +6080,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIVISION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5417,13 +6137,13 @@ public interface FormulasPackage extends EPackage {
 	int SUBTRACT_EXPRESSION = 80;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBTRACT_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int SUBTRACT_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5442,6 +6162,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBTRACT_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBTRACT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5490,13 +6219,13 @@ public interface FormulasPackage extends EPackage {
 	int MODULO_EXPRESSION = 81;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODULO_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int MODULO_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5515,6 +6244,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODULO_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULO_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5563,13 +6301,13 @@ public interface FormulasPackage extends EPackage {
 	int CARTESIAN_PRODUCT_EXPRESSION = 82;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARTESIAN_PRODUCT_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int CARTESIAN_PRODUCT_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5588,6 +6326,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARTESIAN_PRODUCT_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARTESIAN_PRODUCT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5636,13 +6383,13 @@ public interface FormulasPackage extends EPackage {
 	int PARTIAL_FUNCTION_EXPRESSION = 83;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARTIAL_FUNCTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int PARTIAL_FUNCTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5661,6 +6408,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARTIAL_FUNCTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_FUNCTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5709,13 +6465,13 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_FUNCTION_EXPRESSION = 84;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOTAL_FUNCTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int TOTAL_FUNCTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5734,6 +6490,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_FUNCTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_FUNCTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5782,13 +6547,13 @@ public interface FormulasPackage extends EPackage {
 	int RELATION_EXPRESSION = 85;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int RELATION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5807,6 +6572,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int RELATION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5855,13 +6629,13 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_SURJECTION_EXPRESSION = 86;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOTAL_SURJECTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int TOTAL_SURJECTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5880,6 +6654,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_SURJECTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SURJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5928,13 +6711,13 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_INJECTION_EXPRESSION = 87;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOTAL_INJECTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int TOTAL_INJECTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -5953,6 +6736,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_INJECTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_INJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6001,13 +6793,13 @@ public interface FormulasPackage extends EPackage {
 	int PARTIAL_SURJECTION_EXPRESSION = 88;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARTIAL_SURJECTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int PARTIAL_SURJECTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6026,6 +6818,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARTIAL_SURJECTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_SURJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6074,13 +6875,13 @@ public interface FormulasPackage extends EPackage {
 	int PARTIAL_INJECTION_EXPRESSION = 89;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARTIAL_INJECTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int PARTIAL_INJECTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6099,6 +6900,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARTIAL_INJECTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_INJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6147,13 +6957,13 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_BIJECTION_EXPRESSION = 90;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOTAL_BIJECTION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int TOTAL_BIJECTION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6172,6 +6982,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_BIJECTION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_BIJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6220,13 +7039,13 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_RELATION_EXPRESSION = 91;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOTAL_RELATION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int TOTAL_RELATION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6245,6 +7064,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_RELATION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6293,13 +7121,13 @@ public interface FormulasPackage extends EPackage {
 	int SURJECTIVE_RELATION_EXPRESSION = 92;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SURJECTIVE_RELATION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int SURJECTIVE_RELATION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6318,6 +7146,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SURJECTIVE_RELATION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURJECTIVE_RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6366,13 +7203,13 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_SURJECTIVE_RELATION_EXPRESSION = 93;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOTAL_SURJECTIVE_RELATION_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int TOTAL_SURJECTIVE_RELATION_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6391,6 +7228,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_SURJECTIVE_RELATION_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SURJECTIVE_RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6439,13 +7285,13 @@ public interface FormulasPackage extends EPackage {
 	int MAPLET_EXPRESSION = 94;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPLET_EXPRESSION__EANNOTATIONS = BINARY_OPERATOR__EANNOTATIONS;
+	int MAPLET_EXPRESSION__ANNOTATIONS = BINARY_OPERATOR__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6464,6 +7310,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPLET_EXPRESSION__ATTRIBUTES = BINARY_OPERATOR__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPLET_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6512,13 +7367,13 @@ public interface FormulasPackage extends EPackage {
 	int SET_EXPRESSION = 95;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SET_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int SET_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6537,6 +7392,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SET_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6576,13 +7440,13 @@ public interface FormulasPackage extends EPackage {
 	int BACKWARD_COMPOSITION_EXPRESSION = 96;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BACKWARD_COMPOSITION_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int BACKWARD_COMPOSITION_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6601,6 +7465,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BACKWARD_COMPOSITION_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKWARD_COMPOSITION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6640,13 +7513,13 @@ public interface FormulasPackage extends EPackage {
 	int FORWARD_COMPOSITION_EXPRESSION = 97;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORWARD_COMPOSITION_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int FORWARD_COMPOSITION_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6665,6 +7538,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORWARD_COMPOSITION_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORWARD_COMPOSITION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6704,13 +7586,13 @@ public interface FormulasPackage extends EPackage {
 	int RELATIONAL_OVERRIDING_EXPRESSION = 98;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATIONAL_OVERRIDING_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int RELATIONAL_OVERRIDING_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6729,6 +7611,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int RELATIONAL_OVERRIDING_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OVERRIDING_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6768,13 +7659,13 @@ public interface FormulasPackage extends EPackage {
 	int AND_PREDICATE = 99;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND_PREDICATE__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int AND_PREDICATE__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6793,6 +7684,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int AND_PREDICATE__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_PREDICATE__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6832,13 +7732,13 @@ public interface FormulasPackage extends EPackage {
 	int OR_PREDICATE = 100;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OR_PREDICATE__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int OR_PREDICATE__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6857,6 +7757,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR_PREDICATE__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_PREDICATE__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6896,13 +7805,13 @@ public interface FormulasPackage extends EPackage {
 	int ADD_EXPRESSION = 101;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int ADD_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6921,6 +7830,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int ADD_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6960,13 +7878,13 @@ public interface FormulasPackage extends EPackage {
 	int MUL_EXPRESSION = 102;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MUL_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int MUL_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -6985,6 +7903,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MUL_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUL_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7024,13 +7951,13 @@ public interface FormulasPackage extends EPackage {
 	int INTERSECTION_EXPRESSION = 103;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERSECTION_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int INTERSECTION_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -7049,6 +7976,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERSECTION_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7088,13 +8024,13 @@ public interface FormulasPackage extends EPackage {
 	int UNION_EXPRESSION = 104;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNION_EXPRESSION__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int UNION_EXPRESSION__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -7113,6 +8049,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNION_EXPRESSION__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7153,13 +8098,13 @@ public interface FormulasPackage extends EPackage {
 	int PARTITION_PREDICATE = 105;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARTITION_PREDICATE__EANNOTATIONS = MULTI_OPERAND__EANNOTATIONS;
+	int PARTITION_PREDICATE__ANNOTATIONS = MULTI_OPERAND__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -7178,6 +8123,15 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARTITION_PREDICATE__ATTRIBUTES = MULTI_OPERAND__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTITION_PREDICATE__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.

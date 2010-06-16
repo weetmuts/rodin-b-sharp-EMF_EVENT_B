@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 
+import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.Extension;
@@ -96,9 +97,9 @@ public class FormulasSwitch<T> {
 				BFormula bFormula = (BFormula)theEObject;
 				T result = caseBFormula(bFormula);
 				if (result == null) result = caseExtension(bFormula);
+				if (result == null) result = caseAbstractExtension(bFormula);
 				if (result == null) result = caseEventBElement(bFormula);
 				if (result == null) result = caseEventBObject(bFormula);
-				if (result == null) result = caseEModelElement(bFormula);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,9 +108,9 @@ public class FormulasSwitch<T> {
 				T result = caseBExpressionResolved(bExpressionResolved);
 				if (result == null) result = caseBFormula(bExpressionResolved);
 				if (result == null) result = caseExtension(bExpressionResolved);
+				if (result == null) result = caseAbstractExtension(bExpressionResolved);
 				if (result == null) result = caseEventBElement(bExpressionResolved);
 				if (result == null) result = caseEventBObject(bExpressionResolved);
-				if (result == null) result = caseEModelElement(bExpressionResolved);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -118,9 +119,9 @@ public class FormulasSwitch<T> {
 				T result = caseBPredicateResolved(bPredicateResolved);
 				if (result == null) result = caseBFormula(bPredicateResolved);
 				if (result == null) result = caseExtension(bPredicateResolved);
+				if (result == null) result = caseAbstractExtension(bPredicateResolved);
 				if (result == null) result = caseEventBElement(bPredicateResolved);
 				if (result == null) result = caseEventBObject(bPredicateResolved);
-				if (result == null) result = caseEModelElement(bPredicateResolved);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,9 +130,9 @@ public class FormulasSwitch<T> {
 				T result = caseBAssignmentResolved(bAssignmentResolved);
 				if (result == null) result = caseBFormula(bAssignmentResolved);
 				if (result == null) result = caseExtension(bAssignmentResolved);
+				if (result == null) result = caseAbstractExtension(bAssignmentResolved);
 				if (result == null) result = caseEventBElement(bAssignmentResolved);
 				if (result == null) result = caseEventBObject(bAssignmentResolved);
-				if (result == null) result = caseEModelElement(bAssignmentResolved);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,9 +141,9 @@ public class FormulasSwitch<T> {
 				T result = caseConstant(constant);
 				if (result == null) result = caseBFormula(constant);
 				if (result == null) result = caseExtension(constant);
+				if (result == null) result = caseAbstractExtension(constant);
 				if (result == null) result = caseEventBElement(constant);
 				if (result == null) result = caseEventBObject(constant);
-				if (result == null) result = caseEModelElement(constant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,9 +152,9 @@ public class FormulasSwitch<T> {
 				T result = caseUnaryOperator(unaryOperator);
 				if (result == null) result = caseBFormula(unaryOperator);
 				if (result == null) result = caseExtension(unaryOperator);
+				if (result == null) result = caseAbstractExtension(unaryOperator);
 				if (result == null) result = caseEventBElement(unaryOperator);
 				if (result == null) result = caseEventBObject(unaryOperator);
-				if (result == null) result = caseEModelElement(unaryOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,9 +163,9 @@ public class FormulasSwitch<T> {
 				T result = caseBinaryOperator(binaryOperator);
 				if (result == null) result = caseBFormula(binaryOperator);
 				if (result == null) result = caseExtension(binaryOperator);
+				if (result == null) result = caseAbstractExtension(binaryOperator);
 				if (result == null) result = caseEventBElement(binaryOperator);
 				if (result == null) result = caseEventBObject(binaryOperator);
-				if (result == null) result = caseEModelElement(binaryOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -173,9 +174,9 @@ public class FormulasSwitch<T> {
 				T result = caseMultiOperand(multiOperand);
 				if (result == null) result = caseBFormula(multiOperand);
 				if (result == null) result = caseExtension(multiOperand);
+				if (result == null) result = caseAbstractExtension(multiOperand);
 				if (result == null) result = caseEventBElement(multiOperand);
 				if (result == null) result = caseEventBObject(multiOperand);
-				if (result == null) result = caseEModelElement(multiOperand);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -185,9 +186,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBAssignmentResolved(becomesEqualToAssignment);
 				if (result == null) result = caseBFormula(becomesEqualToAssignment);
 				if (result == null) result = caseExtension(becomesEqualToAssignment);
+				if (result == null) result = caseAbstractExtension(becomesEqualToAssignment);
 				if (result == null) result = caseEventBElement(becomesEqualToAssignment);
 				if (result == null) result = caseEventBObject(becomesEqualToAssignment);
-				if (result == null) result = caseEModelElement(becomesEqualToAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -197,9 +198,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBAssignmentResolved(becomesMemberOfAssignment);
 				if (result == null) result = caseBFormula(becomesMemberOfAssignment);
 				if (result == null) result = caseExtension(becomesMemberOfAssignment);
+				if (result == null) result = caseAbstractExtension(becomesMemberOfAssignment);
 				if (result == null) result = caseEventBElement(becomesMemberOfAssignment);
 				if (result == null) result = caseEventBObject(becomesMemberOfAssignment);
-				if (result == null) result = caseEModelElement(becomesMemberOfAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -209,9 +210,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBAssignmentResolved(becomesSuchThatAssignment);
 				if (result == null) result = caseBFormula(becomesSuchThatAssignment);
 				if (result == null) result = caseExtension(becomesSuchThatAssignment);
+				if (result == null) result = caseAbstractExtension(becomesSuchThatAssignment);
 				if (result == null) result = caseEventBElement(becomesSuchThatAssignment);
 				if (result == null) result = caseEventBObject(becomesSuchThatAssignment);
-				if (result == null) result = caseEModelElement(becomesSuchThatAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -221,9 +222,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(integerLiteralExpression);
 				if (result == null) result = caseBFormula(integerLiteralExpression);
 				if (result == null) result = caseExtension(integerLiteralExpression);
+				if (result == null) result = caseAbstractExtension(integerLiteralExpression);
 				if (result == null) result = caseEventBElement(integerLiteralExpression);
 				if (result == null) result = caseEventBObject(integerLiteralExpression);
-				if (result == null) result = caseEModelElement(integerLiteralExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -233,9 +234,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(identifierExpression);
 				if (result == null) result = caseBFormula(identifierExpression);
 				if (result == null) result = caseExtension(identifierExpression);
+				if (result == null) result = caseAbstractExtension(identifierExpression);
 				if (result == null) result = caseEventBElement(identifierExpression);
 				if (result == null) result = caseEventBObject(identifierExpression);
-				if (result == null) result = caseEModelElement(identifierExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -246,9 +247,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(boundIdentifierExpression);
 				if (result == null) result = caseBFormula(boundIdentifierExpression);
 				if (result == null) result = caseExtension(boundIdentifierExpression);
+				if (result == null) result = caseAbstractExtension(boundIdentifierExpression);
 				if (result == null) result = caseEventBElement(boundIdentifierExpression);
 				if (result == null) result = caseEventBObject(boundIdentifierExpression);
-				if (result == null) result = caseEModelElement(boundIdentifierExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -258,9 +259,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(forallPredicate);
 				if (result == null) result = caseBFormula(forallPredicate);
 				if (result == null) result = caseExtension(forallPredicate);
+				if (result == null) result = caseAbstractExtension(forallPredicate);
 				if (result == null) result = caseEventBElement(forallPredicate);
 				if (result == null) result = caseEventBObject(forallPredicate);
-				if (result == null) result = caseEModelElement(forallPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -270,9 +271,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(existPredicate);
 				if (result == null) result = caseBFormula(existPredicate);
 				if (result == null) result = caseExtension(existPredicate);
+				if (result == null) result = caseAbstractExtension(existPredicate);
 				if (result == null) result = caseEventBElement(existPredicate);
 				if (result == null) result = caseEventBObject(existPredicate);
-				if (result == null) result = caseEModelElement(existPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -282,9 +283,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(lambdaExpression);
 				if (result == null) result = caseBFormula(lambdaExpression);
 				if (result == null) result = caseExtension(lambdaExpression);
+				if (result == null) result = caseAbstractExtension(lambdaExpression);
 				if (result == null) result = caseEventBElement(lambdaExpression);
 				if (result == null) result = caseEventBObject(lambdaExpression);
-				if (result == null) result = caseEModelElement(lambdaExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -294,9 +295,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(quantifiedUnionExpression1);
 				if (result == null) result = caseBFormula(quantifiedUnionExpression1);
 				if (result == null) result = caseExtension(quantifiedUnionExpression1);
+				if (result == null) result = caseAbstractExtension(quantifiedUnionExpression1);
 				if (result == null) result = caseEventBElement(quantifiedUnionExpression1);
 				if (result == null) result = caseEventBObject(quantifiedUnionExpression1);
-				if (result == null) result = caseEModelElement(quantifiedUnionExpression1);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -306,9 +307,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(quantifiedUnionExpression2);
 				if (result == null) result = caseBFormula(quantifiedUnionExpression2);
 				if (result == null) result = caseExtension(quantifiedUnionExpression2);
+				if (result == null) result = caseAbstractExtension(quantifiedUnionExpression2);
 				if (result == null) result = caseEventBElement(quantifiedUnionExpression2);
 				if (result == null) result = caseEventBObject(quantifiedUnionExpression2);
-				if (result == null) result = caseEModelElement(quantifiedUnionExpression2);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -318,9 +319,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(quantifiedIntersectionExpression1);
 				if (result == null) result = caseBFormula(quantifiedIntersectionExpression1);
 				if (result == null) result = caseExtension(quantifiedIntersectionExpression1);
+				if (result == null) result = caseAbstractExtension(quantifiedIntersectionExpression1);
 				if (result == null) result = caseEventBElement(quantifiedIntersectionExpression1);
 				if (result == null) result = caseEventBObject(quantifiedIntersectionExpression1);
-				if (result == null) result = caseEModelElement(quantifiedIntersectionExpression1);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -330,9 +331,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(quantifiedIntersectionExpression2);
 				if (result == null) result = caseBFormula(quantifiedIntersectionExpression2);
 				if (result == null) result = caseExtension(quantifiedIntersectionExpression2);
+				if (result == null) result = caseAbstractExtension(quantifiedIntersectionExpression2);
 				if (result == null) result = caseEventBElement(quantifiedIntersectionExpression2);
 				if (result == null) result = caseEventBObject(quantifiedIntersectionExpression2);
-				if (result == null) result = caseEModelElement(quantifiedIntersectionExpression2);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -342,9 +343,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(setComprehensionExpression1);
 				if (result == null) result = caseBFormula(setComprehensionExpression1);
 				if (result == null) result = caseExtension(setComprehensionExpression1);
+				if (result == null) result = caseAbstractExtension(setComprehensionExpression1);
 				if (result == null) result = caseEventBElement(setComprehensionExpression1);
 				if (result == null) result = caseEventBObject(setComprehensionExpression1);
-				if (result == null) result = caseEModelElement(setComprehensionExpression1);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -354,9 +355,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(setComprehensionExpression2);
 				if (result == null) result = caseBFormula(setComprehensionExpression2);
 				if (result == null) result = caseExtension(setComprehensionExpression2);
+				if (result == null) result = caseAbstractExtension(setComprehensionExpression2);
 				if (result == null) result = caseEventBElement(setComprehensionExpression2);
 				if (result == null) result = caseEventBObject(setComprehensionExpression2);
-				if (result == null) result = caseEModelElement(setComprehensionExpression2);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -367,9 +368,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(int_);
 				if (result == null) result = caseBFormula(int_);
 				if (result == null) result = caseExtension(int_);
+				if (result == null) result = caseAbstractExtension(int_);
 				if (result == null) result = caseEventBElement(int_);
 				if (result == null) result = caseEventBObject(int_);
-				if (result == null) result = caseEModelElement(int_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -380,9 +381,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(nat);
 				if (result == null) result = caseBFormula(nat);
 				if (result == null) result = caseExtension(nat);
+				if (result == null) result = caseAbstractExtension(nat);
 				if (result == null) result = caseEventBElement(nat);
 				if (result == null) result = caseEventBObject(nat);
-				if (result == null) result = caseEModelElement(nat);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -393,9 +394,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(nat1);
 				if (result == null) result = caseBFormula(nat1);
 				if (result == null) result = caseExtension(nat1);
+				if (result == null) result = caseAbstractExtension(nat1);
 				if (result == null) result = caseEventBElement(nat1);
 				if (result == null) result = caseEventBObject(nat1);
-				if (result == null) result = caseEModelElement(nat1);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -406,9 +407,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(bool);
 				if (result == null) result = caseBFormula(bool);
 				if (result == null) result = caseExtension(bool);
+				if (result == null) result = caseAbstractExtension(bool);
 				if (result == null) result = caseEventBElement(bool);
 				if (result == null) result = caseEventBObject(bool);
-				if (result == null) result = caseEModelElement(bool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -419,9 +420,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(true_);
 				if (result == null) result = caseBFormula(true_);
 				if (result == null) result = caseExtension(true_);
+				if (result == null) result = caseAbstractExtension(true_);
 				if (result == null) result = caseEventBElement(true_);
 				if (result == null) result = caseEventBObject(true_);
-				if (result == null) result = caseEModelElement(true_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -432,9 +433,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(false_);
 				if (result == null) result = caseBFormula(false_);
 				if (result == null) result = caseExtension(false_);
+				if (result == null) result = caseAbstractExtension(false_);
 				if (result == null) result = caseEventBElement(false_);
 				if (result == null) result = caseEventBObject(false_);
-				if (result == null) result = caseEModelElement(false_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -445,9 +446,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(emptyset);
 				if (result == null) result = caseBFormula(emptyset);
 				if (result == null) result = caseExtension(emptyset);
+				if (result == null) result = caseAbstractExtension(emptyset);
 				if (result == null) result = caseEventBElement(emptyset);
 				if (result == null) result = caseEventBObject(emptyset);
-				if (result == null) result = caseEModelElement(emptyset);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -458,9 +459,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(truth);
 				if (result == null) result = caseBFormula(truth);
 				if (result == null) result = caseExtension(truth);
+				if (result == null) result = caseAbstractExtension(truth);
 				if (result == null) result = caseEventBElement(truth);
 				if (result == null) result = caseEventBObject(truth);
-				if (result == null) result = caseEModelElement(truth);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -471,9 +472,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(falsity);
 				if (result == null) result = caseBFormula(falsity);
 				if (result == null) result = caseExtension(falsity);
+				if (result == null) result = caseAbstractExtension(falsity);
 				if (result == null) result = caseEventBElement(falsity);
 				if (result == null) result = caseEventBObject(falsity);
-				if (result == null) result = caseEModelElement(falsity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -483,9 +484,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(succExpression);
 				if (result == null) result = caseBFormula(succExpression);
 				if (result == null) result = caseExtension(succExpression);
+				if (result == null) result = caseAbstractExtension(succExpression);
 				if (result == null) result = caseEventBElement(succExpression);
 				if (result == null) result = caseEventBObject(succExpression);
-				if (result == null) result = caseEModelElement(succExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -495,9 +496,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(predExpression);
 				if (result == null) result = caseBFormula(predExpression);
 				if (result == null) result = caseExtension(predExpression);
+				if (result == null) result = caseAbstractExtension(predExpression);
 				if (result == null) result = caseEventBElement(predExpression);
 				if (result == null) result = caseEventBObject(predExpression);
-				if (result == null) result = caseEModelElement(predExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -508,9 +509,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(boolExpression);
 				if (result == null) result = caseBFormula(boolExpression);
 				if (result == null) result = caseExtension(boolExpression);
+				if (result == null) result = caseAbstractExtension(boolExpression);
 				if (result == null) result = caseEventBElement(boolExpression);
 				if (result == null) result = caseEventBObject(boolExpression);
-				if (result == null) result = caseEModelElement(boolExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -521,9 +522,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(cardExpression);
 				if (result == null) result = caseBFormula(cardExpression);
 				if (result == null) result = caseExtension(cardExpression);
+				if (result == null) result = caseAbstractExtension(cardExpression);
 				if (result == null) result = caseEventBElement(cardExpression);
 				if (result == null) result = caseEventBObject(cardExpression);
-				if (result == null) result = caseEModelElement(cardExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -534,9 +535,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(powExpression);
 				if (result == null) result = caseBFormula(powExpression);
 				if (result == null) result = caseExtension(powExpression);
+				if (result == null) result = caseAbstractExtension(powExpression);
 				if (result == null) result = caseEventBElement(powExpression);
 				if (result == null) result = caseEventBObject(powExpression);
-				if (result == null) result = caseEModelElement(powExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -547,9 +548,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(pow1Expression);
 				if (result == null) result = caseBFormula(pow1Expression);
 				if (result == null) result = caseExtension(pow1Expression);
+				if (result == null) result = caseAbstractExtension(pow1Expression);
 				if (result == null) result = caseEventBElement(pow1Expression);
 				if (result == null) result = caseEventBObject(pow1Expression);
-				if (result == null) result = caseEModelElement(pow1Expression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -560,9 +561,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(kUnionExpression);
 				if (result == null) result = caseBFormula(kUnionExpression);
 				if (result == null) result = caseExtension(kUnionExpression);
+				if (result == null) result = caseAbstractExtension(kUnionExpression);
 				if (result == null) result = caseEventBElement(kUnionExpression);
 				if (result == null) result = caseEventBObject(kUnionExpression);
-				if (result == null) result = caseEModelElement(kUnionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -573,9 +574,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(kIntersectionExpression);
 				if (result == null) result = caseBFormula(kIntersectionExpression);
 				if (result == null) result = caseExtension(kIntersectionExpression);
+				if (result == null) result = caseAbstractExtension(kIntersectionExpression);
 				if (result == null) result = caseEventBElement(kIntersectionExpression);
 				if (result == null) result = caseEventBObject(kIntersectionExpression);
-				if (result == null) result = caseEModelElement(kIntersectionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -586,9 +587,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(domainExpression);
 				if (result == null) result = caseBFormula(domainExpression);
 				if (result == null) result = caseExtension(domainExpression);
+				if (result == null) result = caseAbstractExtension(domainExpression);
 				if (result == null) result = caseEventBElement(domainExpression);
 				if (result == null) result = caseEventBObject(domainExpression);
-				if (result == null) result = caseEModelElement(domainExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -599,9 +600,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(rangeExpression);
 				if (result == null) result = caseBFormula(rangeExpression);
 				if (result == null) result = caseExtension(rangeExpression);
+				if (result == null) result = caseAbstractExtension(rangeExpression);
 				if (result == null) result = caseEventBElement(rangeExpression);
 				if (result == null) result = caseEventBObject(rangeExpression);
-				if (result == null) result = caseEModelElement(rangeExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -612,9 +613,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(prj1Expression);
 				if (result == null) result = caseBFormula(prj1Expression);
 				if (result == null) result = caseExtension(prj1Expression);
+				if (result == null) result = caseAbstractExtension(prj1Expression);
 				if (result == null) result = caseEventBElement(prj1Expression);
 				if (result == null) result = caseEventBObject(prj1Expression);
-				if (result == null) result = caseEModelElement(prj1Expression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -624,9 +625,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(prj1GenExpression);
 				if (result == null) result = caseBFormula(prj1GenExpression);
 				if (result == null) result = caseExtension(prj1GenExpression);
+				if (result == null) result = caseAbstractExtension(prj1GenExpression);
 				if (result == null) result = caseEventBElement(prj1GenExpression);
 				if (result == null) result = caseEventBObject(prj1GenExpression);
-				if (result == null) result = caseEModelElement(prj1GenExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -637,9 +638,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(prj2Expression);
 				if (result == null) result = caseBFormula(prj2Expression);
 				if (result == null) result = caseExtension(prj2Expression);
+				if (result == null) result = caseAbstractExtension(prj2Expression);
 				if (result == null) result = caseEventBElement(prj2Expression);
 				if (result == null) result = caseEventBObject(prj2Expression);
-				if (result == null) result = caseEModelElement(prj2Expression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -649,9 +650,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(prj2GenExpression);
 				if (result == null) result = caseBFormula(prj2GenExpression);
 				if (result == null) result = caseExtension(prj2GenExpression);
+				if (result == null) result = caseAbstractExtension(prj2GenExpression);
 				if (result == null) result = caseEventBElement(prj2GenExpression);
 				if (result == null) result = caseEventBObject(prj2GenExpression);
-				if (result == null) result = caseEModelElement(prj2GenExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -662,9 +663,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(identityExpression);
 				if (result == null) result = caseBFormula(identityExpression);
 				if (result == null) result = caseExtension(identityExpression);
+				if (result == null) result = caseAbstractExtension(identityExpression);
 				if (result == null) result = caseEventBElement(identityExpression);
 				if (result == null) result = caseEventBObject(identityExpression);
-				if (result == null) result = caseEModelElement(identityExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -674,9 +675,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(identityGenExpression);
 				if (result == null) result = caseBFormula(identityGenExpression);
 				if (result == null) result = caseExtension(identityGenExpression);
+				if (result == null) result = caseAbstractExtension(identityGenExpression);
 				if (result == null) result = caseEventBElement(identityGenExpression);
 				if (result == null) result = caseEventBObject(identityGenExpression);
-				if (result == null) result = caseEModelElement(identityGenExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -687,9 +688,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(unaryMinusExpression);
 				if (result == null) result = caseBFormula(unaryMinusExpression);
 				if (result == null) result = caseExtension(unaryMinusExpression);
+				if (result == null) result = caseAbstractExtension(unaryMinusExpression);
 				if (result == null) result = caseEventBElement(unaryMinusExpression);
 				if (result == null) result = caseEventBObject(unaryMinusExpression);
-				if (result == null) result = caseEModelElement(unaryMinusExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -700,9 +701,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(minExpression);
 				if (result == null) result = caseBFormula(minExpression);
 				if (result == null) result = caseExtension(minExpression);
+				if (result == null) result = caseAbstractExtension(minExpression);
 				if (result == null) result = caseEventBElement(minExpression);
 				if (result == null) result = caseEventBObject(minExpression);
-				if (result == null) result = caseEModelElement(minExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -713,9 +714,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(maxExpression);
 				if (result == null) result = caseBFormula(maxExpression);
 				if (result == null) result = caseExtension(maxExpression);
+				if (result == null) result = caseAbstractExtension(maxExpression);
 				if (result == null) result = caseEventBElement(maxExpression);
 				if (result == null) result = caseEventBObject(maxExpression);
-				if (result == null) result = caseEModelElement(maxExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -726,9 +727,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(inverseExpression);
 				if (result == null) result = caseBFormula(inverseExpression);
 				if (result == null) result = caseExtension(inverseExpression);
+				if (result == null) result = caseAbstractExtension(inverseExpression);
 				if (result == null) result = caseEventBElement(inverseExpression);
 				if (result == null) result = caseEventBObject(inverseExpression);
-				if (result == null) result = caseEModelElement(inverseExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -739,9 +740,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(notPredicate);
 				if (result == null) result = caseBFormula(notPredicate);
 				if (result == null) result = caseExtension(notPredicate);
+				if (result == null) result = caseAbstractExtension(notPredicate);
 				if (result == null) result = caseEventBElement(notPredicate);
 				if (result == null) result = caseEventBObject(notPredicate);
-				if (result == null) result = caseEModelElement(notPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -752,9 +753,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(finitePredicate);
 				if (result == null) result = caseBFormula(finitePredicate);
 				if (result == null) result = caseExtension(finitePredicate);
+				if (result == null) result = caseAbstractExtension(finitePredicate);
 				if (result == null) result = caseEventBElement(finitePredicate);
 				if (result == null) result = caseEventBObject(finitePredicate);
-				if (result == null) result = caseEModelElement(finitePredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -765,9 +766,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(parallelProductExpression);
 				if (result == null) result = caseBFormula(parallelProductExpression);
 				if (result == null) result = caseExtension(parallelProductExpression);
+				if (result == null) result = caseAbstractExtension(parallelProductExpression);
 				if (result == null) result = caseEventBElement(parallelProductExpression);
 				if (result == null) result = caseEventBObject(parallelProductExpression);
-				if (result == null) result = caseEModelElement(parallelProductExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -778,9 +779,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(rangeRestrictionExpression);
 				if (result == null) result = caseBFormula(rangeRestrictionExpression);
 				if (result == null) result = caseExtension(rangeRestrictionExpression);
+				if (result == null) result = caseAbstractExtension(rangeRestrictionExpression);
 				if (result == null) result = caseEventBElement(rangeRestrictionExpression);
 				if (result == null) result = caseEventBObject(rangeRestrictionExpression);
-				if (result == null) result = caseEModelElement(rangeRestrictionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -791,9 +792,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(rangeSubtractionExpression);
 				if (result == null) result = caseBFormula(rangeSubtractionExpression);
 				if (result == null) result = caseExtension(rangeSubtractionExpression);
+				if (result == null) result = caseAbstractExtension(rangeSubtractionExpression);
 				if (result == null) result = caseEventBElement(rangeSubtractionExpression);
 				if (result == null) result = caseEventBObject(rangeSubtractionExpression);
-				if (result == null) result = caseEModelElement(rangeSubtractionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -804,9 +805,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(uptoExpression);
 				if (result == null) result = caseBFormula(uptoExpression);
 				if (result == null) result = caseExtension(uptoExpression);
+				if (result == null) result = caseAbstractExtension(uptoExpression);
 				if (result == null) result = caseEventBElement(uptoExpression);
 				if (result == null) result = caseEventBObject(uptoExpression);
-				if (result == null) result = caseEModelElement(uptoExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -817,9 +818,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(exponentiationExpression);
 				if (result == null) result = caseBFormula(exponentiationExpression);
 				if (result == null) result = caseExtension(exponentiationExpression);
+				if (result == null) result = caseAbstractExtension(exponentiationExpression);
 				if (result == null) result = caseEventBElement(exponentiationExpression);
 				if (result == null) result = caseEventBObject(exponentiationExpression);
-				if (result == null) result = caseEModelElement(exponentiationExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -830,9 +831,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(setSubtractionExpression);
 				if (result == null) result = caseBFormula(setSubtractionExpression);
 				if (result == null) result = caseExtension(setSubtractionExpression);
+				if (result == null) result = caseAbstractExtension(setSubtractionExpression);
 				if (result == null) result = caseEventBElement(setSubtractionExpression);
 				if (result == null) result = caseEventBObject(setSubtractionExpression);
-				if (result == null) result = caseEModelElement(setSubtractionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -843,9 +844,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(functionExpression);
 				if (result == null) result = caseBFormula(functionExpression);
 				if (result == null) result = caseExtension(functionExpression);
+				if (result == null) result = caseAbstractExtension(functionExpression);
 				if (result == null) result = caseEventBElement(functionExpression);
 				if (result == null) result = caseEventBObject(functionExpression);
-				if (result == null) result = caseEModelElement(functionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -856,9 +857,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(imageExpression);
 				if (result == null) result = caseBFormula(imageExpression);
 				if (result == null) result = caseExtension(imageExpression);
+				if (result == null) result = caseAbstractExtension(imageExpression);
 				if (result == null) result = caseEventBElement(imageExpression);
 				if (result == null) result = caseEventBObject(imageExpression);
-				if (result == null) result = caseEModelElement(imageExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -869,9 +870,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(implicationPredicate);
 				if (result == null) result = caseBFormula(implicationPredicate);
 				if (result == null) result = caseExtension(implicationPredicate);
+				if (result == null) result = caseAbstractExtension(implicationPredicate);
 				if (result == null) result = caseEventBElement(implicationPredicate);
 				if (result == null) result = caseEventBObject(implicationPredicate);
-				if (result == null) result = caseEModelElement(implicationPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -882,9 +883,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(equivalencePredicate);
 				if (result == null) result = caseBFormula(equivalencePredicate);
 				if (result == null) result = caseExtension(equivalencePredicate);
+				if (result == null) result = caseAbstractExtension(equivalencePredicate);
 				if (result == null) result = caseEventBElement(equivalencePredicate);
 				if (result == null) result = caseEventBObject(equivalencePredicate);
-				if (result == null) result = caseEModelElement(equivalencePredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -895,9 +896,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(equalPredicate);
 				if (result == null) result = caseBFormula(equalPredicate);
 				if (result == null) result = caseExtension(equalPredicate);
+				if (result == null) result = caseAbstractExtension(equalPredicate);
 				if (result == null) result = caseEventBElement(equalPredicate);
 				if (result == null) result = caseEventBObject(equalPredicate);
-				if (result == null) result = caseEModelElement(equalPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -908,9 +909,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(notEqualPredicate);
 				if (result == null) result = caseBFormula(notEqualPredicate);
 				if (result == null) result = caseExtension(notEqualPredicate);
+				if (result == null) result = caseAbstractExtension(notEqualPredicate);
 				if (result == null) result = caseEventBElement(notEqualPredicate);
 				if (result == null) result = caseEventBObject(notEqualPredicate);
-				if (result == null) result = caseEModelElement(notEqualPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -921,9 +922,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(belongPredicate);
 				if (result == null) result = caseBFormula(belongPredicate);
 				if (result == null) result = caseExtension(belongPredicate);
+				if (result == null) result = caseAbstractExtension(belongPredicate);
 				if (result == null) result = caseEventBElement(belongPredicate);
 				if (result == null) result = caseEventBObject(belongPredicate);
-				if (result == null) result = caseEModelElement(belongPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -934,9 +935,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(notBelongPredicate);
 				if (result == null) result = caseBFormula(notBelongPredicate);
 				if (result == null) result = caseExtension(notBelongPredicate);
+				if (result == null) result = caseAbstractExtension(notBelongPredicate);
 				if (result == null) result = caseEventBElement(notBelongPredicate);
 				if (result == null) result = caseEventBObject(notBelongPredicate);
-				if (result == null) result = caseEModelElement(notBelongPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -947,9 +948,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(subsetStrictPredicate);
 				if (result == null) result = caseBFormula(subsetStrictPredicate);
 				if (result == null) result = caseExtension(subsetStrictPredicate);
+				if (result == null) result = caseAbstractExtension(subsetStrictPredicate);
 				if (result == null) result = caseEventBElement(subsetStrictPredicate);
 				if (result == null) result = caseEventBObject(subsetStrictPredicate);
-				if (result == null) result = caseEModelElement(subsetStrictPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -960,9 +961,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(notSubsetStrictPredicate);
 				if (result == null) result = caseBFormula(notSubsetStrictPredicate);
 				if (result == null) result = caseExtension(notSubsetStrictPredicate);
+				if (result == null) result = caseAbstractExtension(notSubsetStrictPredicate);
 				if (result == null) result = caseEventBElement(notSubsetStrictPredicate);
 				if (result == null) result = caseEventBObject(notSubsetStrictPredicate);
-				if (result == null) result = caseEModelElement(notSubsetStrictPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -973,9 +974,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(subsetPredicate);
 				if (result == null) result = caseBFormula(subsetPredicate);
 				if (result == null) result = caseExtension(subsetPredicate);
+				if (result == null) result = caseAbstractExtension(subsetPredicate);
 				if (result == null) result = caseEventBElement(subsetPredicate);
 				if (result == null) result = caseEventBObject(subsetPredicate);
-				if (result == null) result = caseEModelElement(subsetPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -986,9 +987,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(notSubsetPredicate);
 				if (result == null) result = caseBFormula(notSubsetPredicate);
 				if (result == null) result = caseExtension(notSubsetPredicate);
+				if (result == null) result = caseAbstractExtension(notSubsetPredicate);
 				if (result == null) result = caseEventBElement(notSubsetPredicate);
 				if (result == null) result = caseEventBObject(notSubsetPredicate);
-				if (result == null) result = caseEModelElement(notSubsetPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -999,9 +1000,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(lessPredicate);
 				if (result == null) result = caseBFormula(lessPredicate);
 				if (result == null) result = caseExtension(lessPredicate);
+				if (result == null) result = caseAbstractExtension(lessPredicate);
 				if (result == null) result = caseEventBElement(lessPredicate);
 				if (result == null) result = caseEventBObject(lessPredicate);
-				if (result == null) result = caseEModelElement(lessPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1012,9 +1013,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(lessEqualPredicate);
 				if (result == null) result = caseBFormula(lessEqualPredicate);
 				if (result == null) result = caseExtension(lessEqualPredicate);
+				if (result == null) result = caseAbstractExtension(lessEqualPredicate);
 				if (result == null) result = caseEventBElement(lessEqualPredicate);
 				if (result == null) result = caseEventBObject(lessEqualPredicate);
-				if (result == null) result = caseEModelElement(lessEqualPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1025,9 +1026,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(greaterPredicate);
 				if (result == null) result = caseBFormula(greaterPredicate);
 				if (result == null) result = caseExtension(greaterPredicate);
+				if (result == null) result = caseAbstractExtension(greaterPredicate);
 				if (result == null) result = caseEventBElement(greaterPredicate);
 				if (result == null) result = caseEventBObject(greaterPredicate);
-				if (result == null) result = caseEModelElement(greaterPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1038,9 +1039,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(greaterEqualPredicate);
 				if (result == null) result = caseBFormula(greaterEqualPredicate);
 				if (result == null) result = caseExtension(greaterEqualPredicate);
+				if (result == null) result = caseAbstractExtension(greaterEqualPredicate);
 				if (result == null) result = caseEventBElement(greaterEqualPredicate);
 				if (result == null) result = caseEventBObject(greaterEqualPredicate);
-				if (result == null) result = caseEModelElement(greaterEqualPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1051,9 +1052,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(domainRestrictionExpression);
 				if (result == null) result = caseBFormula(domainRestrictionExpression);
 				if (result == null) result = caseExtension(domainRestrictionExpression);
+				if (result == null) result = caseAbstractExtension(domainRestrictionExpression);
 				if (result == null) result = caseEventBElement(domainRestrictionExpression);
 				if (result == null) result = caseEventBObject(domainRestrictionExpression);
-				if (result == null) result = caseEModelElement(domainRestrictionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1064,9 +1065,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(domainSubtractionExpression);
 				if (result == null) result = caseBFormula(domainSubtractionExpression);
 				if (result == null) result = caseExtension(domainSubtractionExpression);
+				if (result == null) result = caseAbstractExtension(domainSubtractionExpression);
 				if (result == null) result = caseEventBElement(domainSubtractionExpression);
 				if (result == null) result = caseEventBObject(domainSubtractionExpression);
-				if (result == null) result = caseEModelElement(domainSubtractionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1077,9 +1078,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(directProductExpression);
 				if (result == null) result = caseBFormula(directProductExpression);
 				if (result == null) result = caseExtension(directProductExpression);
+				if (result == null) result = caseAbstractExtension(directProductExpression);
 				if (result == null) result = caseEventBElement(directProductExpression);
 				if (result == null) result = caseEventBObject(directProductExpression);
-				if (result == null) result = caseEModelElement(directProductExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1090,9 +1091,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(divisionExpression);
 				if (result == null) result = caseBFormula(divisionExpression);
 				if (result == null) result = caseExtension(divisionExpression);
+				if (result == null) result = caseAbstractExtension(divisionExpression);
 				if (result == null) result = caseEventBElement(divisionExpression);
 				if (result == null) result = caseEventBObject(divisionExpression);
-				if (result == null) result = caseEModelElement(divisionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1103,9 +1104,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(subtractExpression);
 				if (result == null) result = caseBFormula(subtractExpression);
 				if (result == null) result = caseExtension(subtractExpression);
+				if (result == null) result = caseAbstractExtension(subtractExpression);
 				if (result == null) result = caseEventBElement(subtractExpression);
 				if (result == null) result = caseEventBObject(subtractExpression);
-				if (result == null) result = caseEModelElement(subtractExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1116,9 +1117,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(moduloExpression);
 				if (result == null) result = caseBFormula(moduloExpression);
 				if (result == null) result = caseExtension(moduloExpression);
+				if (result == null) result = caseAbstractExtension(moduloExpression);
 				if (result == null) result = caseEventBElement(moduloExpression);
 				if (result == null) result = caseEventBObject(moduloExpression);
-				if (result == null) result = caseEModelElement(moduloExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1129,9 +1130,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(cartesianProductExpression);
 				if (result == null) result = caseBFormula(cartesianProductExpression);
 				if (result == null) result = caseExtension(cartesianProductExpression);
+				if (result == null) result = caseAbstractExtension(cartesianProductExpression);
 				if (result == null) result = caseEventBElement(cartesianProductExpression);
 				if (result == null) result = caseEventBObject(cartesianProductExpression);
-				if (result == null) result = caseEModelElement(cartesianProductExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1142,9 +1143,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(partialFunctionExpression);
 				if (result == null) result = caseBFormula(partialFunctionExpression);
 				if (result == null) result = caseExtension(partialFunctionExpression);
+				if (result == null) result = caseAbstractExtension(partialFunctionExpression);
 				if (result == null) result = caseEventBElement(partialFunctionExpression);
 				if (result == null) result = caseEventBObject(partialFunctionExpression);
-				if (result == null) result = caseEModelElement(partialFunctionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1155,9 +1156,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(totalFunctionExpression);
 				if (result == null) result = caseBFormula(totalFunctionExpression);
 				if (result == null) result = caseExtension(totalFunctionExpression);
+				if (result == null) result = caseAbstractExtension(totalFunctionExpression);
 				if (result == null) result = caseEventBElement(totalFunctionExpression);
 				if (result == null) result = caseEventBObject(totalFunctionExpression);
-				if (result == null) result = caseEModelElement(totalFunctionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1168,9 +1169,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(relationExpression);
 				if (result == null) result = caseBFormula(relationExpression);
 				if (result == null) result = caseExtension(relationExpression);
+				if (result == null) result = caseAbstractExtension(relationExpression);
 				if (result == null) result = caseEventBElement(relationExpression);
 				if (result == null) result = caseEventBObject(relationExpression);
-				if (result == null) result = caseEModelElement(relationExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1181,9 +1182,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(totalSurjectionExpression);
 				if (result == null) result = caseBFormula(totalSurjectionExpression);
 				if (result == null) result = caseExtension(totalSurjectionExpression);
+				if (result == null) result = caseAbstractExtension(totalSurjectionExpression);
 				if (result == null) result = caseEventBElement(totalSurjectionExpression);
 				if (result == null) result = caseEventBObject(totalSurjectionExpression);
-				if (result == null) result = caseEModelElement(totalSurjectionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1194,9 +1195,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(totalInjectionExpression);
 				if (result == null) result = caseBFormula(totalInjectionExpression);
 				if (result == null) result = caseExtension(totalInjectionExpression);
+				if (result == null) result = caseAbstractExtension(totalInjectionExpression);
 				if (result == null) result = caseEventBElement(totalInjectionExpression);
 				if (result == null) result = caseEventBObject(totalInjectionExpression);
-				if (result == null) result = caseEModelElement(totalInjectionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1207,9 +1208,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(partialSurjectionExpression);
 				if (result == null) result = caseBFormula(partialSurjectionExpression);
 				if (result == null) result = caseExtension(partialSurjectionExpression);
+				if (result == null) result = caseAbstractExtension(partialSurjectionExpression);
 				if (result == null) result = caseEventBElement(partialSurjectionExpression);
 				if (result == null) result = caseEventBObject(partialSurjectionExpression);
-				if (result == null) result = caseEModelElement(partialSurjectionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1220,9 +1221,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(partialInjectionExpression);
 				if (result == null) result = caseBFormula(partialInjectionExpression);
 				if (result == null) result = caseExtension(partialInjectionExpression);
+				if (result == null) result = caseAbstractExtension(partialInjectionExpression);
 				if (result == null) result = caseEventBElement(partialInjectionExpression);
 				if (result == null) result = caseEventBObject(partialInjectionExpression);
-				if (result == null) result = caseEModelElement(partialInjectionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1233,9 +1234,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(totalBijectionExpression);
 				if (result == null) result = caseBFormula(totalBijectionExpression);
 				if (result == null) result = caseExtension(totalBijectionExpression);
+				if (result == null) result = caseAbstractExtension(totalBijectionExpression);
 				if (result == null) result = caseEventBElement(totalBijectionExpression);
 				if (result == null) result = caseEventBObject(totalBijectionExpression);
-				if (result == null) result = caseEModelElement(totalBijectionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1246,9 +1247,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(totalRelationExpression);
 				if (result == null) result = caseBFormula(totalRelationExpression);
 				if (result == null) result = caseExtension(totalRelationExpression);
+				if (result == null) result = caseAbstractExtension(totalRelationExpression);
 				if (result == null) result = caseEventBElement(totalRelationExpression);
 				if (result == null) result = caseEventBObject(totalRelationExpression);
-				if (result == null) result = caseEModelElement(totalRelationExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1259,9 +1260,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(surjectiveRelationExpression);
 				if (result == null) result = caseBFormula(surjectiveRelationExpression);
 				if (result == null) result = caseExtension(surjectiveRelationExpression);
+				if (result == null) result = caseAbstractExtension(surjectiveRelationExpression);
 				if (result == null) result = caseEventBElement(surjectiveRelationExpression);
 				if (result == null) result = caseEventBObject(surjectiveRelationExpression);
-				if (result == null) result = caseEModelElement(surjectiveRelationExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1272,9 +1273,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(totalSurjectiveRelationExpression);
 				if (result == null) result = caseBFormula(totalSurjectiveRelationExpression);
 				if (result == null) result = caseExtension(totalSurjectiveRelationExpression);
+				if (result == null) result = caseAbstractExtension(totalSurjectiveRelationExpression);
 				if (result == null) result = caseEventBElement(totalSurjectiveRelationExpression);
 				if (result == null) result = caseEventBObject(totalSurjectiveRelationExpression);
-				if (result == null) result = caseEModelElement(totalSurjectiveRelationExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1285,9 +1286,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(mapletExpression);
 				if (result == null) result = caseBFormula(mapletExpression);
 				if (result == null) result = caseExtension(mapletExpression);
+				if (result == null) result = caseAbstractExtension(mapletExpression);
 				if (result == null) result = caseEventBElement(mapletExpression);
 				if (result == null) result = caseEventBObject(mapletExpression);
-				if (result == null) result = caseEModelElement(mapletExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1298,9 +1299,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(setExpression);
 				if (result == null) result = caseBFormula(setExpression);
 				if (result == null) result = caseExtension(setExpression);
+				if (result == null) result = caseAbstractExtension(setExpression);
 				if (result == null) result = caseEventBElement(setExpression);
 				if (result == null) result = caseEventBObject(setExpression);
-				if (result == null) result = caseEModelElement(setExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1311,9 +1312,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(backwardCompositionExpression);
 				if (result == null) result = caseBFormula(backwardCompositionExpression);
 				if (result == null) result = caseExtension(backwardCompositionExpression);
+				if (result == null) result = caseAbstractExtension(backwardCompositionExpression);
 				if (result == null) result = caseEventBElement(backwardCompositionExpression);
 				if (result == null) result = caseEventBObject(backwardCompositionExpression);
-				if (result == null) result = caseEModelElement(backwardCompositionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1324,9 +1325,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(forwardCompositionExpression);
 				if (result == null) result = caseBFormula(forwardCompositionExpression);
 				if (result == null) result = caseExtension(forwardCompositionExpression);
+				if (result == null) result = caseAbstractExtension(forwardCompositionExpression);
 				if (result == null) result = caseEventBElement(forwardCompositionExpression);
 				if (result == null) result = caseEventBObject(forwardCompositionExpression);
-				if (result == null) result = caseEModelElement(forwardCompositionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1337,9 +1338,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(relationalOverridingExpression);
 				if (result == null) result = caseBFormula(relationalOverridingExpression);
 				if (result == null) result = caseExtension(relationalOverridingExpression);
+				if (result == null) result = caseAbstractExtension(relationalOverridingExpression);
 				if (result == null) result = caseEventBElement(relationalOverridingExpression);
 				if (result == null) result = caseEventBObject(relationalOverridingExpression);
-				if (result == null) result = caseEModelElement(relationalOverridingExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1350,9 +1351,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(andPredicate);
 				if (result == null) result = caseBFormula(andPredicate);
 				if (result == null) result = caseExtension(andPredicate);
+				if (result == null) result = caseAbstractExtension(andPredicate);
 				if (result == null) result = caseEventBElement(andPredicate);
 				if (result == null) result = caseEventBObject(andPredicate);
-				if (result == null) result = caseEModelElement(andPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1363,9 +1364,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(orPredicate);
 				if (result == null) result = caseBFormula(orPredicate);
 				if (result == null) result = caseExtension(orPredicate);
+				if (result == null) result = caseAbstractExtension(orPredicate);
 				if (result == null) result = caseEventBElement(orPredicate);
 				if (result == null) result = caseEventBObject(orPredicate);
-				if (result == null) result = caseEModelElement(orPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1376,9 +1377,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(addExpression);
 				if (result == null) result = caseBFormula(addExpression);
 				if (result == null) result = caseExtension(addExpression);
+				if (result == null) result = caseAbstractExtension(addExpression);
 				if (result == null) result = caseEventBElement(addExpression);
 				if (result == null) result = caseEventBObject(addExpression);
-				if (result == null) result = caseEModelElement(addExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1389,9 +1390,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(mulExpression);
 				if (result == null) result = caseBFormula(mulExpression);
 				if (result == null) result = caseExtension(mulExpression);
+				if (result == null) result = caseAbstractExtension(mulExpression);
 				if (result == null) result = caseEventBElement(mulExpression);
 				if (result == null) result = caseEventBObject(mulExpression);
-				if (result == null) result = caseEModelElement(mulExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1402,9 +1403,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(intersectionExpression);
 				if (result == null) result = caseBFormula(intersectionExpression);
 				if (result == null) result = caseExtension(intersectionExpression);
+				if (result == null) result = caseAbstractExtension(intersectionExpression);
 				if (result == null) result = caseEventBElement(intersectionExpression);
 				if (result == null) result = caseEventBObject(intersectionExpression);
-				if (result == null) result = caseEModelElement(intersectionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1415,9 +1416,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBExpressionResolved(unionExpression);
 				if (result == null) result = caseBFormula(unionExpression);
 				if (result == null) result = caseExtension(unionExpression);
+				if (result == null) result = caseAbstractExtension(unionExpression);
 				if (result == null) result = caseEventBElement(unionExpression);
 				if (result == null) result = caseEventBObject(unionExpression);
-				if (result == null) result = caseEModelElement(unionExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1428,9 +1429,9 @@ public class FormulasSwitch<T> {
 				if (result == null) result = caseBPredicateResolved(partitionPredicate);
 				if (result == null) result = caseBFormula(partitionPredicate);
 				if (result == null) result = caseExtension(partitionPredicate);
+				if (result == null) result = caseAbstractExtension(partitionPredicate);
 				if (result == null) result = caseEventBElement(partitionPredicate);
 				if (result == null) result = caseEventBObject(partitionPredicate);
-				if (result == null) result = caseEModelElement(partitionPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -3029,21 +3030,6 @@ public class FormulasSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEModelElement(EModelElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Event BObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -3070,6 +3056,21 @@ public class FormulasSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventBElement(EventBElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Extension</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Extension</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractExtension(AbstractExtension object) {
 		return null;
 	}
 
