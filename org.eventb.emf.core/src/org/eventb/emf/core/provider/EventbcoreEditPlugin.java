@@ -13,6 +13,7 @@ package org.eventb.emf.core.provider;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the Eventbcore edit plugin.
@@ -46,6 +47,7 @@ public final class EventbcoreEditPlugin extends EMFPlugin {
 	public EventbcoreEditPlugin() {
 		super
 		  (new ResourceLocator [] {
+		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 
