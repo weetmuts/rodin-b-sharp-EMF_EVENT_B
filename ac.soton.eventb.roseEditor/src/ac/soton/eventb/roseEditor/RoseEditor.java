@@ -122,6 +122,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eventb.emf.core.Annotation;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.context.provider.ContextItemProviderAdapterFactory;
 import org.eventb.emf.core.impl.StringToAttributeMapEntryImpl;
@@ -951,7 +952,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 				ViewerFilter[] filters = { new ViewerFilter() {
 					@Override
 					public boolean select(Viewer viewer, Object parentElement, Object element) {
-						if (element instanceof EAnnotation) {
+						if (element instanceof Annotation) {
 							return false;
 						}
 						if (element instanceof StringToAttributeMapEntryImpl) {
