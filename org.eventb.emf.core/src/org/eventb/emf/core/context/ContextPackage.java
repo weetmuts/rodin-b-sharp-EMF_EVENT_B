@@ -76,13 +76,13 @@ public interface ContextPackage extends EPackage {
 	int CONTEXT = 0;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT__EANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__EANNOTATIONS;
+	int CONTEXT__ANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -194,13 +194,13 @@ public interface ContextPackage extends EPackage {
 	int CONSTANT = 1;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTANT__EANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__EANNOTATIONS;
+	int CONSTANT__ANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -267,13 +267,13 @@ public interface ContextPackage extends EPackage {
 	int CARRIER_SET = 2;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARRIER_SET__EANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__EANNOTATIONS;
+	int CARRIER_SET__ANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -340,13 +340,13 @@ public interface ContextPackage extends EPackage {
 	int AXIOM = 3;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AXIOM__EANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__EANNOTATIONS;
+	int AXIOM__ANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.

@@ -114,7 +114,6 @@ public class ContextSwitch<T> {
 				if (result == null) result = caseEventBElement(context);
 				if (result == null) result = caseEventBCommented(context);
 				if (result == null) result = caseEventBObject(context);
-				if (result == null) result = caseEModelElement(context);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -127,7 +126,6 @@ public class ContextSwitch<T> {
 				if (result == null) result = caseEventBElement(constant);
 				if (result == null) result = caseEventBCommented(constant);
 				if (result == null) result = caseEventBObject(constant);
-				if (result == null) result = caseEModelElement(constant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,7 +138,6 @@ public class ContextSwitch<T> {
 				if (result == null) result = caseEventBElement(carrierSet);
 				if (result == null) result = caseEventBCommented(carrierSet);
 				if (result == null) result = caseEventBObject(carrierSet);
-				if (result == null) result = caseEModelElement(carrierSet);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,7 +154,6 @@ public class ContextSwitch<T> {
 				if (result == null) result = caseEventBElement(axiom);
 				if (result == null) result = caseEventBCommented(axiom);
 				if (result == null) result = caseEventBObject(axiom);
-				if (result == null) result = caseEModelElement(axiom);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -222,21 +218,6 @@ public class ContextSwitch<T> {
 	 * @generated
 	 */
 	public T caseAxiom(Axiom object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEModelElement(EModelElement object) {
 		return null;
 	}
 

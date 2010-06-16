@@ -92,8 +92,8 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 		assert (this instanceof EventBElement);
 		String reference = ((EventBElement)this).getReferenceWithoutResolving();
 		return reference.length() > this.eStaticClass().getInstanceClassName().length() ?
-				reference.substring(this.eStaticClass().getInstanceClassName().length()+1)
-				: "";		
+			reference.substring(this.eStaticClass().getInstanceClassName().length()+1)
+			: "";
 	}
 
 	/**

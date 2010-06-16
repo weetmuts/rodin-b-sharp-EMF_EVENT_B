@@ -21,9 +21,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eventb.emf.core.AbstractExtension;
+import org.eventb.emf.core.Annotation;
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.AttributeType;
 import org.eventb.emf.core.CoreFactory;
@@ -206,6 +208,20 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass stringToStringMapEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass annotationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum attributeTypeEEnum = null;
 
 	/**
@@ -254,6 +270,9 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
 		MachinePackageImpl theMachinePackage = (MachinePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI) instanceof MachinePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI) : MachinePackage.eINSTANCE);
 		ContextPackageImpl theContextPackage = (ContextPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ContextPackage.eNS_URI) instanceof ContextPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ContextPackage.eNS_URI) : ContextPackage.eINSTANCE);
@@ -284,6 +303,15 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 */
 	public EClass getEventBObject() {
 		return eventBObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventBObject_Annotations() {
+		return (EReference)eventBObjectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -597,6 +625,87 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getStringToStringMapEntry() {
+		return stringToStringMapEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringToStringMapEntry_Key() {
+		return (EAttribute)stringToStringMapEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringToStringMapEntry_Value() {
+		return (EAttribute)stringToStringMapEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAnnotation() {
+		return annotationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAnnotation_Source() {
+		return (EAttribute)annotationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAnnotation_Details() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAnnotation_EventBObject() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAnnotation_Contents() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAnnotation_References() {
+		return (EReference)annotationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAttributeType() {
 		return attributeTypeEEnum;
 	}
@@ -630,6 +739,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		// Create classes and their features
 		eventBObjectEClass = createEClass(EVENT_BOBJECT);
+		createEReference(eventBObjectEClass, EVENT_BOBJECT__ANNOTATIONS);
 
 		eventBElementEClass = createEClass(EVENT_BELEMENT);
 		createEReference(eventBElementEClass, EVENT_BELEMENT__EXTENSIONS);
@@ -684,6 +794,17 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		abstractExtensionEClass = createEClass(ABSTRACT_EXTENSION);
 		createEAttribute(abstractExtensionEClass, ABSTRACT_EXTENSION__EXTENSION_ID);
 
+		stringToStringMapEntryEClass = createEClass(STRING_TO_STRING_MAP_ENTRY);
+		createEAttribute(stringToStringMapEntryEClass, STRING_TO_STRING_MAP_ENTRY__KEY);
+		createEAttribute(stringToStringMapEntryEClass, STRING_TO_STRING_MAP_ENTRY__VALUE);
+
+		annotationEClass = createEClass(ANNOTATION);
+		createEAttribute(annotationEClass, ANNOTATION__SOURCE);
+		createEReference(annotationEClass, ANNOTATION__DETAILS);
+		createEReference(annotationEClass, ANNOTATION__EVENT_BOBJECT);
+		createEReference(annotationEClass, ANNOTATION__CONTENTS);
+		createEReference(annotationEClass, ANNOTATION__REFERENCES);
+
 		// Create enums
 		attributeTypeEEnum = createEEnum(ATTRIBUTE_TYPE);
 	}
@@ -714,6 +835,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		// Obtain other dependent packages
 		MachinePackage theMachinePackage = (MachinePackage)EPackage.Registry.INSTANCE.getEPackage(MachinePackage.eNS_URI);
 		ContextPackage theContextPackage = (ContextPackage)EPackage.Registry.INSTANCE.getEPackage(ContextPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theMachinePackage);
@@ -724,7 +846,7 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		eventBObjectEClass.getESuperTypes().add(ecorePackage.getEModelElement());
+		eventBObjectEClass.getESuperTypes().add(theEcorePackage.getEObject());
 		eventBElementEClass.getESuperTypes().add(this.getEventBObject());
 		eventBCommentedElementEClass.getESuperTypes().add(this.getEventBElement());
 		eventBCommentedElementEClass.getESuperTypes().add(this.getEventBCommented());
@@ -743,18 +865,20 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		extensionEClass.getESuperTypes().add(this.getAbstractExtension());
 		attributeEClass.getESuperTypes().add(this.getEventBObject());
 		abstractExtensionEClass.getESuperTypes().add(this.getEventBElement());
+		annotationEClass.getESuperTypes().add(this.getEventBObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventBObjectEClass, EventBObject.class, "EventBObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEventBObject_Annotations(), this.getAnnotation(), this.getAnnotation_EventBObject(), "annotations", null, 0, -1, EventBObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(eventBObjectEClass, this.getEventBObject(), "getContaining", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(eventBObjectEClass, null, "getAllContained", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEBoolean(), "resolve", 1, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
-		EGenericType g2 = createEGenericType(ecorePackage.getEObject());
+		EGenericType g1 = createEGenericType(theEcorePackage.getEEList());
+		EGenericType g2 = createEGenericType(theEcorePackage.getEObject());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
@@ -762,6 +886,9 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 		ETypeParameter t1 = addETypeParameter(op, "URI");
 		g1 = createEGenericType(t1);
 		initEOperation(op, g1);
+
+		op = addEOperation(eventBObjectEClass, this.getAnnotation(), "getAnnotation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "source", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eventBElementEClass, EventBElement.class, "EventBElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventBElement_Extensions(), this.getAbstractExtension(), null, "extensions", null, 0, -1, EventBElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -826,6 +953,17 @@ public class CorePackageImpl extends EPackageImpl implements CorePackage {
 
 		initEClass(abstractExtensionEClass, AbstractExtension.class, "AbstractExtension", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAbstractExtension_ExtensionId(), ecorePackage.getEString(), "extensionId", null, 1, 1, AbstractExtension.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringToStringMapEntryEClass, Map.Entry.class, "StringToStringMapEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringToStringMapEntry_Key(), theEcorePackage.getEString(), "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStringToStringMapEntry_Value(), theEcorePackage.getEString(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(annotationEClass, Annotation.class, "Annotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAnnotation_Source(), theEcorePackage.getEString(), "source", null, 0, 1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotation_Details(), this.getStringToStringMapEntry(), null, "details", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotation_EventBObject(), this.getEventBObject(), this.getEventBObject_Annotations(), "eventBObject", null, 0, 1, Annotation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotation_Contents(), theEcorePackage.getEObject(), null, "contents", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotation_References(), theEcorePackage.getEObject(), null, "references", null, 0, -1, Annotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(attributeTypeEEnum, AttributeType.class, "AttributeType");

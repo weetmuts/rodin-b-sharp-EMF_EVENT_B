@@ -64,7 +64,7 @@ public interface EventBNamed extends EObject {
 	 *  includes the element type to ensure that references are unique within a resource.
 	 * (Calling this method will not resolve any unresolved proxies).
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='assert (this instanceof <%org.eventb.emf.core.EventBElement%>);\nString reference = ((EventBElement)this).getReferenceWithoutResolving();\nreturn reference.substring(reference.lastIndexOf(\".\")+1);'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='assert (this instanceof <%org.eventb.emf.core.EventBElement%>);\nString reference = ((EventBElement)this).getReferenceWithoutResolving();\rreturn reference.length() > this.eStaticClass().getInstanceClassName().length() ?\n\treference.substring(this.eStaticClass().getInstanceClassName().length()+1)\n\t: \"\";'"
 	 * @generated
 	 */
 	String doGetName();

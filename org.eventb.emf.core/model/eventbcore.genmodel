@@ -4,7 +4,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2006, 2009 &#xD;University of Southampton, Heinrich-Heine University Dusseldorf and others.&#xD;All rights reserved. This program and the accompanying materials  are made&#xD;available under the terms of the Eclipse Public License v1.0 which accompanies this &#xD;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html&#xA;"
     modelDirectory="/org.eventb.emf.core/src" editDirectory="/org.eventb.emf.core/src"
     modelPluginID="org.eventb.emf.core" modelName="Eventbcore" importerID="org.eclipse.emf.importer.ecore"
-    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" language="">
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" language=""
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>eventbcore.ecore</foreignModel>
   <genPackages prefix="Core" basePackage="org.eventb.emf" disposableProviderFactory="true"
       extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier=""
@@ -17,6 +18,7 @@
       <genEnumLiterals ecoreEnumLiteral="eventbcore.ecore#//AttributeType/String"/>
     </genEnums>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBObject">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//EventBObject/annotations"/>
       <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getContaining">
         <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getContaining/eClass"/>
       </genOperations>
@@ -26,6 +28,9 @@
       </genOperations>
       <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getURI">
         <genTypeParameters ecoreTypeParameter="eventbcore.ecore#//EventBObject/getURI/URI"/>
+      </genOperations>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getAnnotation">
+        <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getAnnotation/source"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBElement">
@@ -80,6 +85,17 @@
     </genClasses>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//AbstractExtension">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//AbstractExtension/extensionId"/>
+    </genClasses>
+    <genClasses ecoreClass="eventbcore.ecore#//StringToStringMapEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//StringToStringMapEntry/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//StringToStringMapEntry/value"/>
+    </genClasses>
+    <genClasses ecoreClass="eventbcore.ecore#//Annotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//Annotation/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//Annotation/details"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference eventbcore.ecore#//Annotation/eventBObject"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference eventbcore.ecore#//Annotation/contents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference eventbcore.ecore#//Annotation/references"/>
     </genClasses>
     <nestedGenPackages prefix="Machine" basePackage="org.eventb.emf.core" disposableProviderFactory="true"
         extensibleProviderFactory="true" childCreationExtenders="true" fileExtensions="bum"

@@ -85,7 +85,7 @@ public class MachineItemProviderAdapterFactory extends MachineAdapterFactory imp
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public MachineItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);

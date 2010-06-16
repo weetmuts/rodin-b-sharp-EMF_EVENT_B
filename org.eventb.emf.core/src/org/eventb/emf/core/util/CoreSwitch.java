@@ -96,7 +96,6 @@ public class CoreSwitch<T> {
 			case CorePackage.EVENT_BOBJECT: {
 				EventBObject eventBObject = (EventBObject)theEObject;
 				T result = caseEventBObject(eventBObject);
-				if (result == null) result = caseEModelElement(eventBObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,7 +103,6 @@ public class CoreSwitch<T> {
 				EventBElement eventBElement = (EventBElement)theEObject;
 				T result = caseEventBElement(eventBElement);
 				if (result == null) result = caseEventBObject(eventBElement);
-				if (result == null) result = caseEModelElement(eventBElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -120,7 +118,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(eventBCommentedElement);
 				if (result == null) result = caseEventBCommented(eventBCommentedElement);
 				if (result == null) result = caseEventBObject(eventBCommentedElement);
-				if (result == null) result = caseEModelElement(eventBCommentedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,7 +135,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(eventBCommentedExpressionElement);
 				if (result == null) result = caseEventBCommented(eventBCommentedExpressionElement);
 				if (result == null) result = caseEventBObject(eventBCommentedExpressionElement);
-				if (result == null) result = caseEModelElement(eventBCommentedExpressionElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -156,7 +152,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(eventBNamedCommentedElement);
 				if (result == null) result = caseEventBCommented(eventBNamedCommentedElement);
 				if (result == null) result = caseEventBObject(eventBNamedCommentedElement);
-				if (result == null) result = caseEModelElement(eventBNamedCommentedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -176,7 +171,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(eventBNamedCommentedPredicateElement);
 				if (result == null) result = caseEventBCommented(eventBNamedCommentedPredicateElement);
 				if (result == null) result = caseEventBObject(eventBNamedCommentedPredicateElement);
-				if (result == null) result = caseEModelElement(eventBNamedCommentedPredicateElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -198,7 +192,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(eventBNamedCommentedDerivedPredicateElement);
 				if (result == null) result = caseEventBCommented(eventBNamedCommentedDerivedPredicateElement);
 				if (result == null) result = caseEventBObject(eventBNamedCommentedDerivedPredicateElement);
-				if (result == null) result = caseEModelElement(eventBNamedCommentedDerivedPredicateElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -218,7 +211,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(eventBNamedCommentedActionElement);
 				if (result == null) result = caseEventBCommented(eventBNamedCommentedActionElement);
 				if (result == null) result = caseEventBObject(eventBNamedCommentedActionElement);
-				if (result == null) result = caseEModelElement(eventBNamedCommentedActionElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -231,7 +223,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(eventBNamedCommentedComponentElement);
 				if (result == null) result = caseEventBCommented(eventBNamedCommentedComponentElement);
 				if (result == null) result = caseEventBObject(eventBNamedCommentedComponentElement);
-				if (result == null) result = caseEModelElement(eventBNamedCommentedComponentElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -244,7 +235,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseEventBElement(project);
 				if (result == null) result = caseEventBCommented(project);
 				if (result == null) result = caseEventBObject(project);
-				if (result == null) result = caseEModelElement(project);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -254,7 +244,6 @@ public class CoreSwitch<T> {
 				if (result == null) result = caseAbstractExtension(extension);
 				if (result == null) result = caseEventBElement(extension);
 				if (result == null) result = caseEventBObject(extension);
-				if (result == null) result = caseEModelElement(extension);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -268,7 +257,6 @@ public class CoreSwitch<T> {
 				Attribute attribute = (Attribute)theEObject;
 				T result = caseAttribute(attribute);
 				if (result == null) result = caseEventBObject(attribute);
-				if (result == null) result = caseEModelElement(attribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -277,7 +265,19 @@ public class CoreSwitch<T> {
 				T result = caseAbstractExtension(abstractExtension);
 				if (result == null) result = caseEventBElement(abstractExtension);
 				if (result == null) result = caseEventBObject(abstractExtension);
-				if (result == null) result = caseEModelElement(abstractExtension);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CorePackage.STRING_TO_STRING_MAP_ENTRY: {
+				@SuppressWarnings("unchecked") Map.Entry<String, String> stringToStringMapEntry = (Map.Entry<String, String>)theEObject;
+				T result = caseStringToStringMapEntry(stringToStringMapEntry);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CorePackage.ANNOTATION: {
+				Annotation annotation = (Annotation)theEObject;
+				T result = caseAnnotation(annotation);
+				if (result == null) result = caseEventBObject(annotation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -586,17 +586,32 @@ public class CoreSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>String To String Map Entry</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>String To String Map Entry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEModelElement(EModelElement object) {
+	public T caseStringToStringMapEntry(Map.Entry<String, String> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Annotation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAnnotation(Annotation object) {
 		return null;
 	}
 

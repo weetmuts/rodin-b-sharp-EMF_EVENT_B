@@ -159,8 +159,12 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 				return createAbstractExtensionAdapter();
 			}
 			@Override
-			public Adapter caseEModelElement(EModelElement object) {
-				return createEModelElementAdapter();
+			public Adapter caseStringToStringMapEntry(Map.Entry<String, String> object) {
+				return createStringToStringMapEntryAdapter();
+			}
+			@Override
+			public Adapter caseAnnotation(Annotation object) {
+				return createAnnotationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -463,16 +467,30 @@ public class CoreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>String To String Map Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.ecore.EModelElement
+	 * @see java.util.Map.Entry
 	 * @generated
 	 */
-	public Adapter createEModelElementAdapter() {
+	public Adapter createStringToStringMapEntryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eventb.emf.core.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eventb.emf.core.Annotation
+	 * @generated
+	 */
+	public Adapter createAnnotationAdapter() {
 		return null;
 	}
 

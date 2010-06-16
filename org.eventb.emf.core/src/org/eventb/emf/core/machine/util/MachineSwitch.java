@@ -118,7 +118,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(machine);
 				if (result == null) result = caseEventBCommented(machine);
 				if (result == null) result = caseEventBObject(machine);
-				if (result == null) result = caseEModelElement(machine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -131,7 +130,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(variable);
 				if (result == null) result = caseEventBCommented(variable);
 				if (result == null) result = caseEventBObject(variable);
-				if (result == null) result = caseEModelElement(variable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -148,7 +146,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(invariant);
 				if (result == null) result = caseEventBCommented(invariant);
 				if (result == null) result = caseEventBObject(invariant);
-				if (result == null) result = caseEModelElement(invariant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -161,7 +158,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(variant);
 				if (result == null) result = caseEventBCommented(variant);
 				if (result == null) result = caseEventBObject(variant);
-				if (result == null) result = caseEModelElement(variant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -174,7 +170,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(event);
 				if (result == null) result = caseEventBCommented(event);
 				if (result == null) result = caseEventBObject(event);
-				if (result == null) result = caseEModelElement(event);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -187,7 +182,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(parameter);
 				if (result == null) result = caseEventBCommented(parameter);
 				if (result == null) result = caseEventBObject(parameter);
-				if (result == null) result = caseEModelElement(parameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -204,7 +198,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(guard);
 				if (result == null) result = caseEventBCommented(guard);
 				if (result == null) result = caseEventBObject(guard);
-				if (result == null) result = caseEModelElement(guard);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -219,7 +212,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(witness);
 				if (result == null) result = caseEventBCommented(witness);
 				if (result == null) result = caseEventBObject(witness);
-				if (result == null) result = caseEModelElement(witness);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -234,7 +226,6 @@ public class MachineSwitch<T> {
 				if (result == null) result = caseEventBElement(action);
 				if (result == null) result = caseEventBCommented(action);
 				if (result == null) result = caseEventBObject(action);
-				if (result == null) result = caseEModelElement(action);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -374,21 +365,6 @@ public class MachineSwitch<T> {
 	 * @generated
 	 */
 	public T caseAction(Action object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEModelElement(EModelElement object) {
 		return null;
 	}
 

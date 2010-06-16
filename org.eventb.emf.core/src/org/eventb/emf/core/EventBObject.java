@@ -21,12 +21,36 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Event BObject</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eventb.emf.core.EventBObject#getAnnotations <em>Annotations</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eventb.emf.core.CorePackage#getEventBObject()
  * @model abstract="true"
  * @generated
  */
-public interface EventBObject extends EObject, EModelElement {
+public interface EventBObject extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eventb.emf.core.Annotation}.
+	 * It is bidirectional and its opposite is '{@link org.eventb.emf.core.Annotation#getEventBObject <em>Event BObject</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Annotations</em>' containment reference list.
+	 * @see org.eventb.emf.core.CorePackage#getEventBObject_Annotations()
+	 * @see org.eventb.emf.core.Annotation#getEventBObject
+	 * @model opposite="eventBObject" containment="true"
+	 * @generated
+	 */
+	EList<Annotation> getAnnotations();
+
 	/**
 	 * <!-- begin-user-doc -->
 	 *
@@ -81,5 +105,18 @@ public interface EventBObject extends EObject, EModelElement {
 	 * @generated NOT
 	 */
 	URI getURI();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * returns the annotation with the specified source or null if no such annotation is contained by this element
+	 * @param  source - 	the source (string) of the Annotation to be retrieved
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='for (Annotation annotation : getAnnotations()){\n\tif (source.equals(annotation.getSource())) return annotation;\n}\nreturn null;'"
+	 * @generated
+	 */
+	Annotation getAnnotation(String source);
 
 } // EventBObject

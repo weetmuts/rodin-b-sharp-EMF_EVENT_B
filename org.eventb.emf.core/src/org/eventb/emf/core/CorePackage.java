@@ -77,13 +77,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BOBJECT = 0;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BOBJECT__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+	int EVENT_BOBJECT__ANNOTATIONS = EcorePackage.EOBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Event BObject</em>' class.
@@ -92,7 +92,7 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BOBJECT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
+	int EVENT_BOBJECT_FEATURE_COUNT = EcorePackage.EOBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eventb.emf.core.impl.EventBElementImpl <em>Event BElement</em>}' class.
@@ -105,13 +105,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BELEMENT__EANNOTATIONS = EVENT_BOBJECT__EANNOTATIONS;
+	int EVENT_BELEMENT__ANNOTATIONS = EVENT_BOBJECT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -188,13 +188,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BCOMMENTED_ELEMENT = 3;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BCOMMENTED_ELEMENT__EANNOTATIONS = EVENT_BELEMENT__EANNOTATIONS;
+	int EVENT_BCOMMENTED_ELEMENT__ANNOTATIONS = EVENT_BELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -280,13 +280,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BCOMMENTED_EXPRESSION_ELEMENT = 5;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BCOMMENTED_EXPRESSION_ELEMENT__EANNOTATIONS = EVENT_BCOMMENTED_ELEMENT__EANNOTATIONS;
+	int EVENT_BCOMMENTED_EXPRESSION_ELEMENT__ANNOTATIONS = EVENT_BCOMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -381,13 +381,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_ELEMENT = 7;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BNAMED_COMMENTED_ELEMENT__EANNOTATIONS = EVENT_BCOMMENTED_ELEMENT__EANNOTATIONS;
+	int EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS = EVENT_BCOMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -482,13 +482,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT = 9;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__EANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__EANNOTATIONS;
+	int EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__ANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -592,13 +592,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT = 11;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__EANNOTATIONS = EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__EANNOTATIONS;
+	int EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__ANNOTATIONS = EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -711,13 +711,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_ACTION_ELEMENT = 13;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__EANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__EANNOTATIONS;
+	int EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__ANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -793,13 +793,13 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT = 14;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__EANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__EANNOTATIONS;
+	int EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__ANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -866,13 +866,13 @@ public interface CorePackage extends EPackage {
 	int PROJECT = 15;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__EANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__EANNOTATIONS;
+	int PROJECT__ANNOTATIONS = EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -948,13 +948,13 @@ public interface CorePackage extends EPackage {
 	int ABSTRACT_EXTENSION = 19;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_EXTENSION__EANNOTATIONS = EVENT_BELEMENT__EANNOTATIONS;
+	int ABSTRACT_EXTENSION__ANNOTATIONS = EVENT_BELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1012,13 +1012,13 @@ public interface CorePackage extends EPackage {
 	int EXTENSION = 16;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTENSION__EANNOTATIONS = ABSTRACT_EXTENSION__EANNOTATIONS;
+	int EXTENSION__ANNOTATIONS = ABSTRACT_EXTENSION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
@@ -1113,13 +1113,13 @@ public interface CorePackage extends EPackage {
 	int ATTRIBUTE = 18;
 
 	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__EANNOTATIONS = EVENT_BOBJECT__EANNOTATIONS;
+	int ATTRIBUTE__ANNOTATIONS = EVENT_BOBJECT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1149,6 +1149,116 @@ public interface CorePackage extends EPackage {
 	int ATTRIBUTE_FEATURE_COUNT = EVENT_BOBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eventb.emf.core.impl.StringToStringMapEntryImpl <em>String To String Map Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eventb.emf.core.impl.StringToStringMapEntryImpl
+	 * @see org.eventb.emf.core.impl.CorePackageImpl#getStringToStringMapEntry()
+	 * @generated
+	 */
+	int STRING_TO_STRING_MAP_ENTRY = 20;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_TO_STRING_MAP_ENTRY__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_TO_STRING_MAP_ENTRY__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>String To String Map Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_TO_STRING_MAP_ENTRY_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eventb.emf.core.impl.AnnotationImpl <em>Annotation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eventb.emf.core.impl.AnnotationImpl
+	 * @see org.eventb.emf.core.impl.CorePackageImpl#getAnnotation()
+	 * @generated
+	 */
+	int ANNOTATION = 21;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__ANNOTATIONS = EVENT_BOBJECT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__SOURCE = EVENT_BOBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Details</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__DETAILS = EVENT_BOBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Event BObject</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__EVENT_BOBJECT = EVENT_BOBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__CONTENTS = EVENT_BOBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__REFERENCES = EVENT_BOBJECT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_FEATURE_COUNT = EVENT_BOBJECT_FEATURE_COUNT + 5;
+
+	/**
 	 * The meta object id for the '{@link org.eventb.emf.core.AttributeType <em>Attribute Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1156,7 +1266,7 @@ public interface CorePackage extends EPackage {
 	 * @see org.eventb.emf.core.impl.CorePackageImpl#getAttributeType()
 	 * @generated
 	 */
-	int ATTRIBUTE_TYPE = 20;
+	int ATTRIBUTE_TYPE = 22;
 
 
 	/**
@@ -1168,6 +1278,17 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEventBObject();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eventb.emf.core.EventBObject#getAnnotations <em>Annotations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Annotations</em>'.
+	 * @see org.eventb.emf.core.EventBObject#getAnnotations()
+	 * @see #getEventBObject()
+	 * @generated
+	 */
+	EReference getEventBObject_Annotations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eventb.emf.core.EventBElement <em>Event BElement</em>}'.
@@ -1527,6 +1648,105 @@ public interface CorePackage extends EPackage {
 	EAttribute getAbstractExtension_ExtensionId();
 
 	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>String To String Map Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>String To String Map Entry</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyDataType="org.eclipse.emf.ecore.EString"
+	 *        valueDataType="org.eclipse.emf.ecore.EString"
+	 * @generated
+	 */
+	EClass getStringToStringMapEntry();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getStringToStringMapEntry()
+	 * @generated
+	 */
+	EAttribute getStringToStringMapEntry_Key();
+
+	/**
+	 * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getStringToStringMapEntry()
+	 * @generated
+	 */
+	EAttribute getStringToStringMapEntry_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.eventb.emf.core.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annotation</em>'.
+	 * @see org.eventb.emf.core.Annotation
+	 * @generated
+	 */
+	EClass getAnnotation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eventb.emf.core.Annotation#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source</em>'.
+	 * @see org.eventb.emf.core.Annotation#getSource()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EAttribute getAnnotation_Source();
+
+	/**
+	 * Returns the meta object for the map '{@link org.eventb.emf.core.Annotation#getDetails <em>Details</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Details</em>'.
+	 * @see org.eventb.emf.core.Annotation#getDetails()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EReference getAnnotation_Details();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eventb.emf.core.Annotation#getEventBObject <em>Event BObject</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Event BObject</em>'.
+	 * @see org.eventb.emf.core.Annotation#getEventBObject()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EReference getAnnotation_EventBObject();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eventb.emf.core.Annotation#getContents <em>Contents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Contents</em>'.
+	 * @see org.eventb.emf.core.Annotation#getContents()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EReference getAnnotation_Contents();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eventb.emf.core.Annotation#getReferences <em>References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>References</em>'.
+	 * @see org.eventb.emf.core.Annotation#getReferences()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EReference getAnnotation_References();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eventb.emf.core.AttributeType <em>Attribute Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1567,6 +1787,14 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EClass EVENT_BOBJECT = eINSTANCE.getEventBObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_BOBJECT__ANNOTATIONS = eINSTANCE.getEventBObject_Annotations();
 
 		/**
 		 * The meta object literal for the '{@link org.eventb.emf.core.impl.EventBElementImpl <em>Event BElement</em>}' class.
@@ -1877,6 +2105,82 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_EXTENSION__EXTENSION_ID = eINSTANCE.getAbstractExtension_ExtensionId();
+
+		/**
+		 * The meta object literal for the '{@link org.eventb.emf.core.impl.StringToStringMapEntryImpl <em>String To String Map Entry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eventb.emf.core.impl.StringToStringMapEntryImpl
+		 * @see org.eventb.emf.core.impl.CorePackageImpl#getStringToStringMapEntry()
+		 * @generated
+		 */
+		EClass STRING_TO_STRING_MAP_ENTRY = eINSTANCE.getStringToStringMapEntry();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_TO_STRING_MAP_ENTRY__KEY = eINSTANCE.getStringToStringMapEntry_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_TO_STRING_MAP_ENTRY__VALUE = eINSTANCE.getStringToStringMapEntry_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eventb.emf.core.impl.AnnotationImpl <em>Annotation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eventb.emf.core.impl.AnnotationImpl
+		 * @see org.eventb.emf.core.impl.CorePackageImpl#getAnnotation()
+		 * @generated
+		 */
+		EClass ANNOTATION = eINSTANCE.getAnnotation();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ANNOTATION__SOURCE = eINSTANCE.getAnnotation_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Details</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANNOTATION__DETAILS = eINSTANCE.getAnnotation_Details();
+
+		/**
+		 * The meta object literal for the '<em><b>Event BObject</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANNOTATION__EVENT_BOBJECT = eINSTANCE.getAnnotation_EventBObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANNOTATION__CONTENTS = eINSTANCE.getAnnotation_Contents();
+
+		/**
+		 * The meta object literal for the '<em><b>References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANNOTATION__REFERENCES = eINSTANCE.getAnnotation_References();
 
 		/**
 		 * The meta object literal for the '{@link org.eventb.emf.core.AttributeType <em>Attribute Type</em>}' enum.

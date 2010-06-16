@@ -71,6 +71,8 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.EXTENSION: return createExtension();
 			case CorePackage.STRING_TO_ATTRIBUTE_MAP_ENTRY: return (EObject)createStringToAttributeMapEntry();
 			case CorePackage.ATTRIBUTE: return createAttribute();
+			case CorePackage.STRING_TO_STRING_MAP_ENTRY: return (EObject)createStringToStringMapEntry();
+			case CorePackage.ANNOTATION: return createAnnotation();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -144,6 +146,26 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	public Attribute createAttribute() {
 		AttributeImpl attribute = new AttributeImpl();
 		return attribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<String, String> createStringToStringMapEntry() {
+		StringToStringMapEntryImpl stringToStringMapEntry = new StringToStringMapEntryImpl();
+		return stringToStringMapEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Annotation createAnnotation() {
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
 	}
 
 	/**

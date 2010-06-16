@@ -186,6 +186,52 @@ public class CoreItemProviderAdapterFactory extends CoreAdapterFactory implement
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringToStringMapEntryItemProvider stringToStringMapEntryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link java.util.Map.Entry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStringToStringMapEntryAdapter() {
+		if (stringToStringMapEntryItemProvider == null) {
+			stringToStringMapEntryItemProvider = new StringToStringMapEntryItemProvider(this);
+		}
+
+		return stringToStringMapEntryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eventb.emf.core.Annotation} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnnotationItemProvider annotationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eventb.emf.core.Annotation}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnnotationAdapter() {
+		if (annotationItemProvider == null) {
+			annotationItemProvider = new AnnotationItemProvider(this);
+		}
+
+		return annotationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,6 +361,8 @@ public class CoreItemProviderAdapterFactory extends CoreAdapterFactory implement
 		if (extensionItemProvider != null) extensionItemProvider.dispose();
 		if (stringToAttributeMapEntryItemProvider != null) stringToAttributeMapEntryItemProvider.dispose();
 		if (attributeItemProvider != null) attributeItemProvider.dispose();
+		if (stringToStringMapEntryItemProvider != null) stringToStringMapEntryItemProvider.dispose();
+		if (annotationItemProvider != null) annotationItemProvider.dispose();
 	}
 
 }
