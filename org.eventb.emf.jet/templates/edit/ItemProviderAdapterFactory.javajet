@@ -450,6 +450,8 @@ public class <%=genPackage.getItemProviderAdapterFactoryClassName()%> extends <%
 <%}%>
 			public <%=genClass.getTypeParameters()%>Object case<%=genPackage.getClassUniqueName(genClass)%>(<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceTypeArguments()%> object)
 			{
+			<%genModel.addImport("org.eclipse.emf.ecore.EAnnotation");%>
+			EAnnotation annotation = null;
      <%for (GenClass.ChildCreationData childCreationData : classEntry.getValue()) { GenFeature createFeature = childCreationData.createFeature; GenFeature delegatedFeature = childCreationData.delegatedFeature; GenClassifier createClassifier = childCreationData.createClassifier;%>
       <%if (createFeature.isFeatureMapType()) {%>
         <%if (delegatedFeature.isReferenceType()) { GenClass createClass = (GenClass)createClassifier;%>
@@ -490,7 +492,7 @@ public class <%=genPackage.getItemProviderAdapterFactoryClassName()%> extends <%
 <%@ include file="ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc" fail="alternative"%>
 <%@ start %>
 				<%genModel.addImport("org.eclipse.emf.ecore.EAnnotation");%>
-				EAnnotation annotation = <%=createClass.getQualifiedClassifierAccessor()%>.getEAnnotation("org.eventb.emf.core.extendedMetaClasses");
+				annotation = <%=createClass.getQualifiedClassifierAccessor()%>.getEAnnotation("org.eventb.emf.core.extendedMetaClasses");
 				if (annotation == null  || annotation.getReferences().contains(object.eClass()))
 					newChildDescriptors.add
 						(createChildParameter
