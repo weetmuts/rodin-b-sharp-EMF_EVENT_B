@@ -11,23 +11,15 @@
 
 package org.eventb.emf.compare.diff;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
-import org.eclipse.emf.compare.diff.engine.check.AttributesCheck;
-import org.eclipse.emf.compare.diff.engine.check.ReferencesCheck;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EObject;
 
 public class EventBDiffEngine extends GenericDiffEngine {
-
-	private static final String RodinInternalDetails = "http:///org/eventb/core/RodinInternalAnnotations";
 
 	/**
 	 * Returns the Event-B implementation of a {@link org.eclipse.emf.compare.diff.engine.check.AbstractCheck} responsible for the verification of updates on attribute values.
@@ -36,7 +28,7 @@ public class EventBDiffEngine extends GenericDiffEngine {
 	 * @since 1.0
 	 */
 	@Override
-	protected AttributesCheck getAttributesChecker() {
+	protected EventBAttributesCheck getAttributesChecker() {
 		return new EventBAttributesCheck(matchCrossReferencer);
 	}
 
@@ -47,7 +39,7 @@ public class EventBDiffEngine extends GenericDiffEngine {
 	 * @since 1.0
 	 */
 	@Override
-	protected ReferencesCheck getReferencesChecker() {
+	protected EventBReferencesCheck getReferencesChecker() {
 		return new EventBReferencesCheck(matchCrossReferencer);
 	}
 
@@ -57,7 +49,7 @@ public class EventBDiffEngine extends GenericDiffEngine {
 	 * This is called for two-way comparison.
 	 * </p>
 	 * <p>
-	 * Filters Rodin internal detail EAnnotation and then defers to the generic diff engine.
+	 * Filters any unmatched elements according to the references checker. Rodin internal detail Annotation and then defers to the generic diff engine.
 	 * </p>
 	 * <p>
 	 * FIXME: Make this extensible via an extension point so that extenders can decide what should be ignored.
@@ -70,14 +62,7 @@ public class EventBDiffEngine extends GenericDiffEngine {
 	 */
 	@Override
 	protected void processUnmatchedElements(DiffGroup diffRoot, List<UnmatchElement> unmatched) {
-		final List<UnmatchElement> filteredUnmatched = new ArrayList<UnmatchElement>(unmatched.size());
-		for (final UnmatchElement element : unmatched) {
-			EObject model = element.getElement();
-			if (!(model instanceof EAnnotation && RodinInternalDetails.equals(((EAnnotation) model).getSource()))) {
-				filteredUnmatched.add(element);
-			}
-		}
-		super.processUnmatchedElements(diffRoot, filteredUnmatched);
+		super.processUnmatchedElements(diffRoot, getReferencesChecker().filterUnmatchedElements(unmatched));
 	}
 
 	/**
@@ -99,15 +84,7 @@ public class EventBDiffEngine extends GenericDiffEngine {
 	 */
 	@Override
 	protected void processUnmatchedElements(DiffGroup diffRoot, Map<UnmatchElement, Boolean> unmatched) {
-		final Map<UnmatchElement, Boolean> filteredUnmatched = new HashMap<UnmatchElement, Boolean>(unmatched.size());
-
-		for (final Map.Entry<UnmatchElement, Boolean> element : unmatched.entrySet()) {
-			EObject model = element.getKey().getElement();
-			if (!(model instanceof EAnnotation && RodinInternalDetails.equals(((EAnnotation) model).getSource()))) {
-				filteredUnmatched.put(element.getKey(), element.getValue());
-			}
-		}
-		super.processUnmatchedElements(diffRoot, filteredUnmatched);
+		super.processUnmatchedElements(diffRoot, getReferencesChecker().filterUnmatchedElements(unmatched));
 	}
 
 }
