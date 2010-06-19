@@ -15,7 +15,6 @@ import org.eclipse.emf.compare.diff.engine.check.AttributesCheck;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 import org.eventb.emf.core.CorePackage;
 
@@ -29,7 +28,7 @@ public class EventBAttributesCheck extends AttributesCheck {
 	 * Determines if we should ignore an attribute for diff detection.
 	 * <p>
 	 * We do not ignore transient nor derived attributes by default because often these are the user visible/editable attribute. We ignore the reference attribute since name is the
-	 * changeable part. We also ignore the attributes of EAnnotations and their maps
+	 * changeable part. We also ignore the attributes of Annotations and their maps
 	 * </p>
 	 * 
 	 * FIXME: Make this extensible via an extension point so that extenders can decide what should be ignored.
@@ -48,12 +47,14 @@ public class EventBAttributesCheck extends AttributesCheck {
 
 		//ignore contents of string 2 string map entries (e.g. in RodinInternalDetails)
 		// FIXME: make this more specific to RodinInternalDetails
-		ignore = ignore || (container instanceof ENamedElement && "EStringToStringMapEntry".equals(((ENamedElement) container).getName()));
-		//ignore contents of EAnnotations
+		ignore = ignore || (container instanceof ENamedElement && "StringToStringMapEntry".equals(((ENamedElement) container).getName()));
+		//ignore contents of Annotations
 		// FIXME: make this more specific to RodinInternalDetails
-		ignore = ignore || container.equals(EcorePackage.eINSTANCE.getEAnnotation());
+		ignore = ignore || container.equals(CorePackage.eINSTANCE.getAnnotation());
 		//ignore reference (instead, the derived attribute 'name' will be shown)
 		ignore = ignore || attribute.equals(CorePackage.eINSTANCE.getEventBElement_Reference());
+		//ignore attributes of Abstract Extension
+		ignore = ignore || container.equals(CorePackage.eINSTANCE.getAbstractExtension());
 
 		return ignore;
 
