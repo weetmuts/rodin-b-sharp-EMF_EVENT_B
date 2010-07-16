@@ -129,57 +129,49 @@ public class ProjectResource extends ResourceImpl {
 			return;
 
 		try {
-			if (!exists()) {
-				try {
-					createRodinProject();
+			RodinCore.run(new IWorkspaceRunnable() {
+				public void run(final IProgressMonitor monitor) throws CoreException {
+					if (!exists()) {
+						createRodinProject();
+						// success
+						setTimeStamp(System.currentTimeMillis());
+					}
+
+					SyncManager syncManager = new SyncManager();
+					for (EObject content : getContents()) {
+						if (content instanceof EventBElement) {
+							map.clear();
+							syncManager.saveModelElement((EventBElement) content, rodinProject, map, new NullProgressMonitor());
+							updateMap((Project) content);
+						}
+					}
+
+					// remove files that were deleted from the diagram
+					List<IInternalElement> children = new ArrayList<IInternalElement>();
+					children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IMachineRoot.ELEMENT_TYPE)));
+					children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IContextRoot.ELEMENT_TYPE)));
+					for (IInternalElement child : children) {
+						if (!map.containsKey(child))
+							if (child.getRodinFile().exists()) {
+								((IEventBRoot) child.getRoot()).getPRRoot().getRodinFile().delete(true, monitor);
+								child.getRodinFile().delete(true, monitor);
+							}
+					}
+
+					// save changed files
+					for (IRodinFile file : rodinProject.getRodinFiles())
+						//FIX: not sure if forcing on file save should be specified
+						if (!file.isConsistent())
+							file.save(null, false);
+					rodinProject.save(null, true);
 
 					// success
 					setTimeStamp(System.currentTimeMillis());
-
-				} catch (final Exception e) {
-					throw new IOException("Error while creating rodin project " + e.getLocalizedMessage());
+					isModified = false;
 				}
-			}
-
-			try {
-				RodinCore.run(new IWorkspaceRunnable() {
-					public void run(final IProgressMonitor monitor) throws CoreException {
-						SyncManager syncManager = new SyncManager();
-						for (EObject content : getContents()) {
-							if (content instanceof EventBElement) {
-								map.clear();
-								syncManager.saveModelElement((EventBElement) content, rodinProject, map, new NullProgressMonitor());
-								updateMap((Project) content);
-							}
-						}
-
-						// remove files that were deleted from the diagram
-						List<IInternalElement> children = new ArrayList<IInternalElement>();
-						children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IMachineRoot.ELEMENT_TYPE)));
-						children.addAll(Arrays.asList(rodinProject.getRootElementsOfType(IContextRoot.ELEMENT_TYPE)));
-						for (IInternalElement child : children) {
-							if (!map.containsKey(child))
-								if (child.getRodinFile().exists()) {
-									((IEventBRoot) child.getRoot()).getPRRoot().getRodinFile().delete(true, monitor);
-									child.getRodinFile().delete(true, monitor);
-								}
-						}
-
-						// save changed files
-						for (IRodinFile file : rodinProject.getRodinFiles())
-							//FIX: not sure if forcing on file save should be specified
-							if (!file.isConsistent())
-								file.save(null, false);
-						rodinProject.save(null, true);
-					}
-				}, null);
-			} catch (RodinDBException e) {
-				throw new IOException("Error while saving rodin project: " + e.getLocalizedMessage());
-			}
-			// success
-			setTimeStamp(System.currentTimeMillis());
-			isModified = false;
-		} finally {
+			}, null);
+		} catch (RodinDBException e) {
+			throw new IOException("Error while saving rodin project: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -189,15 +181,24 @@ public class ProjectResource extends ResourceImpl {
 			project.create(null);
 		project.open(null);
 
-		// add the Rodin nature if it isn't already there
-		IProjectDescription description = project.getDescription();
-		if (!description.hasNature(RodinCore.NATURE_ID)) {
-			List<String> natures = Arrays.asList(description.getNatureIds());
-			natures.add(RodinCore.NATURE_ID);
-			description.setNatureIds(natures.toArray(description.getNatureIds()));
+		// add the rodin nature if it isn't already there
+		final IProjectDescription description = project.getDescription();
+		final String[] natures = description.getNatureIds();
+		boolean alreadyRodin = false;
+		for (int i = 0; i < natures.length; ++i) {
+			if (RodinCore.NATURE_ID.equals(natures[i])) {
+				alreadyRodin = true;
+				break;
+			}
+		}
+		if (!alreadyRodin) {
+			// Add the Rodin nature
+			final String[] newNatures = new String[natures.length + 1];
+			System.arraycopy(natures, 0, newNatures, 0, natures.length);
+			newNatures[natures.length] = RodinCore.NATURE_ID;
+			description.setNatureIds(newNatures);
 			project.setDescription(description, null);
 		}
-
 		return rodinProject;
 	}
 
