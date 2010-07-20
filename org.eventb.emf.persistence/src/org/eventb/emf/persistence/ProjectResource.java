@@ -129,17 +129,20 @@ public class ProjectResource extends ResourceImpl {
 			return;
 
 		try {
-			RodinCore.run(new IWorkspaceRunnable() {
-				public void run(final IProgressMonitor monitor) throws CoreException {
-					if (!exists()) {
-						createRodinProject();
+			if (!exists()) {
+				RodinCore.run(new IWorkspaceRunnable() {
+					public void run(final IProgressMonitor monitor) throws CoreException {
+						createRodinProject().save(monitor, true);
 						// success
 						setTimeStamp(System.currentTimeMillis());
 					}
-
+				}, null);
+			}
+			RodinCore.run(new IWorkspaceRunnable() {
+				public void run(final IProgressMonitor monitor) throws CoreException {
 					SyncManager syncManager = new SyncManager();
 					for (EObject content : getContents()) {
-						if (content instanceof EventBElement) {
+						if (content instanceof Project) {
 							map.clear();
 							syncManager.saveModelElement((EventBElement) content, rodinProject, map, new NullProgressMonitor());
 							updateMap((Project) content);
@@ -215,6 +218,13 @@ public class ProjectResource extends ResourceImpl {
 	public class ProjectUpdater implements IResourceChangeListener {
 
 		public void resourceChanged(IResourceChangeEvent event) {
+
+			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(ProjectResource.this);
+
+			//if domain is null there is no editor that needs updating.
+			if (domain == null)
+				return;
+
 			// we are only interested in POST_CHANGE events
 			if (event.getType() != IResourceChangeEvent.POST_CHANGE)
 				return;
@@ -272,7 +282,7 @@ public class ProjectResource extends ResourceImpl {
 			}
 
 			final Project project = (Project) ProjectResource.this.getContents().get(0);
-			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(ProjectResource.this);
+
 			CompoundCommand cc = new CompoundCommand();
 
 			if (added.size() > 0)
