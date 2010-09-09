@@ -65,26 +65,4 @@ public class EventBDiffEngine extends GenericDiffEngine {
 		super.processUnmatchedElements(diffRoot, getReferencesChecker().filterUnmatchedElements(unmatched));
 	}
 
-	/**
-	 * This will process the {@link #unmatchedElements unmatched elements} list and create the appropriate {@link DiffElement}s.
-	 * <p>
-	 * This is called for three-way comparison. Clients can override this to alter the checks or add their own.
-	 * </p>
-	 * <p>
-	 * Filters Rodin internal detail EAnnotation and then defers to the generic diff engine.
-	 * </p>
-	 * <p>
-	 * FIXME: Make this extensible via an extension point so that extenders can decide what should be ignored.
-	 * </p>
-	 * 
-	 * @param diffRoot
-	 *            {@link DiffGroup} under which to create the {@link DiffElement}s.
-	 * @param unmatched
-	 *            The MatchModel's {@link UnmatchElement}s.
-	 */
-	@Override
-	protected void processUnmatchedElements(DiffGroup diffRoot, Map<UnmatchElement, Boolean> unmatched) {
-		super.processUnmatchedElements(diffRoot, getReferencesChecker().filterUnmatchedElements(unmatched));
-	}
-
 }
