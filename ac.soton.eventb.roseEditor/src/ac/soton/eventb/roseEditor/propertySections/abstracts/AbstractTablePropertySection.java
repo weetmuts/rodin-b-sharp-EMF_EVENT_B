@@ -40,6 +40,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -70,8 +71,8 @@ import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
 import org.eventb.emf.core.util.NameUtils;
-import org.eventb.eventBKeyboard.EventBTextModifyListener;
-import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.RodinKeyboardPlugin;
+import org.rodinp.keyboard.preferences.PreferenceConstants;
 
 import ac.soton.eventb.roseEditor.properties.SetValuesDialog;
 import ac.soton.eventb.roseEditor.properties.TextChangeHelper;
@@ -366,8 +367,8 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 
 	private Combo combo=null;
 	private Text text= null;
-	private final EventBTextModifyListener eventBListener = new EventBTextModifyListener();
-	private final Font font = JFaceResources.getFont(PreferenceConstants.EVENTB_MATH_FONT);
+	private final ModifyListener rodinKbdListener = RodinKeyboardPlugin.getDefault().createRodinModifyListener();
+	private final Font font = JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT);
 	private TableEditor editor;
 
 
@@ -393,7 +394,7 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 		FormData data;
 		table = getWidgetFactory().createTable(composite,SWT.FILL |SWT.FULL_SELECTION);
 		createTable();
-		table.setFont(JFaceResources.getFont(PreferenceConstants.EVENTB_MATH_FONT));
+		table.setFont(JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT));
 		editor= new TableEditor (table);
 	    editor.grabHorizontal = true;
 		Shell shell = new Shell();
@@ -609,7 +610,7 @@ private final Listener tableMouseListener = new Listener() {
 		if (getPossibleValues(column)==null) {	//if the list of names of possible values is null must be a text field
 			text = new Text(table, SWT.NONE);
 			//eventBListener
-			text.addModifyListener(eventBListener);
+			text.addModifyListener(rodinKbdListener);
 			text.setFont(font);
 			textChangeListener.startListeningTo(text);
 			textChangeListener.startListeningForEnter(text);

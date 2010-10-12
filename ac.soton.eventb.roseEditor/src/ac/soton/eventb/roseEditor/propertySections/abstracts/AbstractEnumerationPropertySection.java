@@ -36,7 +36,7 @@ import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
 import org.eventb.emf.core.util.NameUtils;
-import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.preferences.PreferenceConstants;
 
 /**
  * An abstract implementation of a section with an enumeration field using a
@@ -69,7 +69,7 @@ public abstract class AbstractEnumerationPropertySection extends AbstractEventBP
 		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
 		combo.setLayoutData(data);
 
-		Font font = JFaceResources.getFont(PreferenceConstants.EVENTB_MATH_FONT);
+		Font font = JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT);
 		combo.setFont(font);
 
 		CLabel nameLabel = getWidgetFactory().createCLabel(composite,getLabelText());
@@ -124,7 +124,7 @@ public abstract class AbstractEnumerationPropertySection extends AbstractEventBP
 	 *
 	 * @return the list of values of the feature as text.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	protected List getComboValues(){
 		Object feature = getFeature();
 		if (feature instanceof EReference){
@@ -149,6 +149,7 @@ public abstract class AbstractEnumerationPropertySection extends AbstractEventBP
 	 *
 	 * @return the value of the feature as text.
 	 */
+	@SuppressWarnings("rawtypes")
 	protected  String getCurrentValueAsText(){
 		String value = "<unknown feature>";
 		if (getFeature() instanceof EStructuralFeature){

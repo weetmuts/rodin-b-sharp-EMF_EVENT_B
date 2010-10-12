@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.preferences.PreferenceConstants;
 
 
 /**
@@ -67,7 +67,7 @@ public abstract class AbstractTableViewPropertySection
 		table = getWidgetFactory().createTable(composite,
 				SWT.FULL_SELECTION | SWT.READ_ONLY | SWT.SCROLL_LOCK); //SWT.H_SCROLL | SWT.V_SCROLL
 
-		Font font = JFaceResources.getFont(PreferenceConstants.EVENTB_MATH_FONT);
+		Font font = JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT);
 		table.setFont(font);
 
 

@@ -23,6 +23,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -42,8 +43,9 @@ import org.eventb.emf.core.EventBPredicate;
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.Convergence;
 import org.eventb.emf.core.util.NameUtils;
-import org.eventb.eventBKeyboard.EventBTextModifyListener;
-import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.RodinKeyboardPlugin;
+import org.rodinp.keyboard.preferences.PreferenceConstants;
+
 
 
 /**
@@ -53,6 +55,8 @@ import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
 
 
 public class SetValuesDialog extends Dialog {
+	
+	private static ModifyListener rodinKbdListener= RodinKeyboardPlugin.getDefault().createRodinModifyListener();
 
 	private class DefaultValue {
 
@@ -250,8 +254,8 @@ public class SetValuesDialog extends Dialog {
 		data.grabExcessVerticalSpace = false;
 		data.widthHint = 250;
 		text.setLayoutData(data);
-		text.addModifyListener(new EventBTextModifyListener());
-		Font font = JFaceResources.getFont(PreferenceConstants.EVENTB_MATH_FONT);
+		text.addModifyListener(rodinKbdListener);
+		Font font = JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT);
 		text.setFont(font);
 		return text;
 	}
@@ -284,7 +288,7 @@ public class SetValuesDialog extends Dialog {
 	protected Combo createCombo(final Composite parent, final String[] items) {
 		Combo combo = new Combo(parent, SWT.DROP_DOWN | SWT.READ_ONLY);
 		combo.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		combo.setFont(JFaceResources.getFont(PreferenceConstants.EVENTB_MATH_FONT));
+		combo.setFont(JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT));
 		combo.setItems(items);
 		combo.select(0);
 		return combo;

@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -21,8 +22,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.eventb.eventBKeyboard.EventBTextModifyListener;
-import org.eventb.eventBKeyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.RodinKeyboardPlugin;
+import org.rodinp.keyboard.preferences.PreferenceConstants;
 
 import ac.soton.eventb.roseEditor.properties.TextChangeHelper;
 
@@ -45,7 +46,7 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 	 * changed.
 	 */
 	protected TextChangeHelper listener;
-	private final EventBTextModifyListener eventBListener=new EventBTextModifyListener();
+	private final ModifyListener eventBListener=RodinKeyboardPlugin.getDefault().createRodinModifyListener();
 
 
 	@Override
@@ -69,7 +70,7 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 		nameLabel.setLayoutData(data);
 		text.addModifyListener(eventBListener);
 		// Using a special fonts for showing Event-B symbols.
-		Font font = JFaceResources.getFont(PreferenceConstants.EVENTB_MATH_FONT);
+		Font font = JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT);
 		text.setFont(font);
 
 		listener = new TextChangeHelper() {
