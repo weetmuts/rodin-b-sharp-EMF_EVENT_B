@@ -13,6 +13,7 @@ import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.engine.GenericMatchEngine;
+import org.eclipse.emf.compare.match.engine.MatchSettings;
 import org.eclipse.emf.compare.match.internal.statistic.NameSimilarity;
 import org.eclipse.emf.ecore.EObject;
 import org.eventb.emf.core.EventBNamed;
@@ -116,14 +117,27 @@ public class EventBMatchEngine extends GenericMatchEngine {
 				.getPredicate());
 	}
 
+	/* 
+	 * Overridden to set custom matching options.
+	 * (non-Javadoc)
+	 * @see org.eclipse.emf.compare.match.engine.GenericMatchEngine#updateSettings(org.eclipse.emf.compare.match.engine.MatchSettings, java.util.Map)
+	 */
+	@Override
+	protected void updateSettings(MatchSettings settings,
+			Map<String, Object> optionMap) {
+		super.updateSettings(settings, optionMap);
+		Map<String, Object> ignoreOptions = new HashMap<String, Object>();
+		
+		// don't compare by IDs as these can be not unique in current EMF of EventB
+		//FIXME: this can be removed if EMF is fixed to support unique IDs
+		ignoreOptions.put(MatchOptions.OPTION_IGNORE_XMI_ID, true);
+		ignoreOptions.put(MatchOptions.OPTION_IGNORE_ID, true);
+		super.updateSettings(settings, ignoreOptions);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	protected <T> T getOption(final String key) throws ClassCastException {
-		// don't compare by IDs as these can be not unique in current EMF of EventB
-		//FIXME this can be removed if EMF is fixed to support unique IDs
-		if (MatchOptions.OPTION_IGNORE_XMI_ID.equals(key) || MatchOptions.OPTION_IGNORE_ID.equals(key))
-			return (T) Boolean.TRUE;
-		
 		if (options.containsKey(key)) {
 			return (T) options.get(key);
 		} else {
