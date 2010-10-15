@@ -65,7 +65,7 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 				return null; //some extensions are not intended to be saved
 			rodinElementType = RodinCore.getInternalElementType(id);
 			// create Rodin element
-		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
+			IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 			return rodinElement;
 		} else
 			return null;

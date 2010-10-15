@@ -46,6 +46,8 @@ import org.rodinp.core.RodinDBException;
 
 public class RodinResource extends XMIResourceImpl {
 
+	private static final String ENCODING = "UTF-8"; //encoding for xmb XMI output format
+
 	private IRodinFile rodinFile;
 	private IRodinProject rodinProject;
 	private IFile file;
@@ -81,6 +83,7 @@ public class RodinResource extends XMIResourceImpl {
 
 			if ("xmb".equals(fileExtension)) {
 				isXmi = true;
+				encoding = ENCODING;
 				file = project.getFile(fileName);
 				rodinFile = null;
 				map = null;
@@ -99,6 +102,7 @@ public class RodinResource extends XMIResourceImpl {
 
 			if ("xmb".equals(fileExtension)) {
 				isXmi = true;
+				encoding = ENCODING;
 				//file = project.getFile(fileName);
 				rodinFile = null;
 				map = null;
