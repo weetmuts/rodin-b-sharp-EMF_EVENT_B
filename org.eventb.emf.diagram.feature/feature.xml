@@ -6,9 +6,9 @@
       provider-name="University of Southampton">
 
    <description>
-      Shows a diagram of the hierarchy of the Rodin components within
+      Shows the diagram of hierarchy of the Rodin components within
 a project.
-
+-------------------------------------------------------------
 v.1.0.0
 - Initial release
    </description>
