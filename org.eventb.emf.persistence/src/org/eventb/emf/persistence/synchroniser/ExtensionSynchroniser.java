@@ -56,7 +56,7 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
-		if (isMetaClassExtension((AbstractExtension) emfElement)) {
+		if (emfElement instanceof AbstractExtension && isMetaClassExtension((AbstractExtension) emfElement)) {
 			//if this extension just adds to its parents features, we don't need to do anything, just return the same parent
 			return asInternalElement(rodinParent);
 		} else if (emfElement instanceof Extension) {
