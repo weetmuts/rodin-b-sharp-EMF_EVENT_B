@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eventb.emf.core.CoreFactory;
+import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
 import org.eventb.emf.core.util.NameUtils;
@@ -101,6 +102,9 @@ public abstract class AbstractEnumerationPropertySection extends AbstractEventBP
 	public void refresh() {
 		combo.setItems(getComboValuesAsText().toArray(new String[0]));
 		combo.setText(getCurrentValueAsText());
+		if (owner instanceof EventBElement && ((EventBElement)owner).isGenerated()){
+			combo.setEnabled(false);
+		}
 	}
 
 	/**

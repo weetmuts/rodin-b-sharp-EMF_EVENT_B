@@ -568,6 +568,11 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 			item.setData(next);
 			if (isReadOnly(next)) item.setGrayed(true);
 		}
+
+		if (owner instanceof EventBElement && ((EventBElement)owner).isGenerated()){
+			table.setEnabled(false);
+			addButton.setEnabled(false);
+		}
 		table.redraw();
 	}
 

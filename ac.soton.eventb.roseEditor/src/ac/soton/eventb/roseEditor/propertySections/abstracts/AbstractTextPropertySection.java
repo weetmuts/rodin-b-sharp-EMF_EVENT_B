@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eventb.emf.core.EventBElement;
 import org.rodinp.keyboard.RodinKeyboardPlugin;
 import org.rodinp.keyboard.preferences.PreferenceConstants;
 
@@ -104,6 +105,9 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 	public void refresh() {
 		if (text==null) return;
 		text.setText(getFeatureAsText());
+		if (owner instanceof EventBElement && ((EventBElement)owner).isGenerated()){
+			text.setEnabled(false);
+		}
 	}
 
 	/**
