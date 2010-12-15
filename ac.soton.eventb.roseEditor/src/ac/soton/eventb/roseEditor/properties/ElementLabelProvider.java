@@ -127,7 +127,9 @@ public class ElementLabelProvider extends LabelProvider {
 		}else{
 			kindName="UNRECOGNISED ELEMENT";
 		}
-		return kindName+" - "+elementName;
+		String generated = "";
+		if (element.isGenerated()) generated = " (GENERATED)";
+		return kindName+" - "+elementName + generated;
 	}
 
 	/**
