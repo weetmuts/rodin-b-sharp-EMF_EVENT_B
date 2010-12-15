@@ -95,8 +95,8 @@ public class EventItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Event_convergence_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Event_convergence_feature", "_UI_Event_type"),
+				 getString("_UI_Event_convergence_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_convergence_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 MachinePackage.Literals.EVENT__CONVERGENCE,
 				 true,
 				 false,
@@ -117,8 +117,8 @@ public class EventItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Event_extended_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Event_extended_feature", "_UI_Event_type"),
+				 getString("_UI_Event_extended_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_extended_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 MachinePackage.Literals.EVENT__EXTENDED,
 				 true,
 				 false,
@@ -139,8 +139,8 @@ public class EventItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Event_refines_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Event_refines_feature", "_UI_Event_type"),
+				 getString("_UI_Event_refines_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_refines_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 MachinePackage.Literals.EVENT__REFINES,
 				 true,
 				 false,
@@ -161,8 +161,8 @@ public class EventItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Event_refinesNames_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Event_refinesNames_feature", "_UI_Event_type"),
+				 getString("_UI_Event_refinesNames_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_refinesNames_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 MachinePackage.Literals.EVENT__REFINES_NAMES,
 				 true,
 				 false,
@@ -228,8 +228,8 @@ public class EventItemProvider
 	public String getText(Object object) {
 		String label = ((Event)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Event_type") :
-			getString("_UI_Event_type") + " " + label;
+			getString("_UI_Event_type") : //$NON-NLS-1$
+			getString("_UI_Event_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

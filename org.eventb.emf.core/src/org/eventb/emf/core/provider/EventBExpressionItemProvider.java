@@ -16,9 +16,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -26,11 +24,11 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBExpression;
 
@@ -43,11 +41,7 @@ import org.eventb.emf.core.EventBExpression;
 public class EventBExpressionItemProvider
 	extends ItemProviderAdapter
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -85,8 +79,8 @@ public class EventBExpressionItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBExpression_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBExpression_expression_feature", "_UI_EventBExpression_type"),
+				 getString("_UI_EventBExpression_expression_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBExpression_expression_feature", "_UI_EventBExpression_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.EVENT_BEXPRESSION__EXPRESSION,
 				 true,
 				 false,
@@ -106,8 +100,8 @@ public class EventBExpressionItemProvider
 	public String getText(Object object) {
 		String label = ((EventBExpression)object).getExpression();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EventBExpression_type") :
-			getString("_UI_EventBExpression_type") + " " + label;
+			getString("_UI_EventBExpression_type") : //$NON-NLS-1$
+			getString("_UI_EventBExpression_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

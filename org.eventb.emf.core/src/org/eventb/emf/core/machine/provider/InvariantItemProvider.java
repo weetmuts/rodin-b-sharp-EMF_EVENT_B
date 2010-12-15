@@ -16,20 +16,16 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.machine.Invariant;
-
 import org.eventb.emf.core.provider.EventBNamedCommentedDerivedPredicateElementItemProvider;
-import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.internal.ui.EventBImage;
 import org.eventb.ui.IEventBSharedImages;
 
@@ -42,11 +38,7 @@ import org.eventb.ui.IEventBSharedImages;
 public class InvariantItemProvider
 	extends EventBNamedCommentedDerivedPredicateElementItemProvider
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
 	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_INVARIANT);
 
@@ -98,8 +90,8 @@ public class InvariantItemProvider
 	public String getText(Object object) {
 		String label = ((Invariant)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Invariant_type") :
-			getString("_UI_Invariant_type") + " " + label;
+			getString("_UI_Invariant_type") : //$NON-NLS-1$
+			getString("_UI_Invariant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

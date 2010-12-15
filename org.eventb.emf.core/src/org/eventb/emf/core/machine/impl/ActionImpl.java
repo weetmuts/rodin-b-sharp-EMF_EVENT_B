@@ -11,9 +11,7 @@
 package org.eventb.emf.core.machine.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eventb.emf.core.impl.EventBNamedCommentedActionElementImpl;
-
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.MachinePackage;
 

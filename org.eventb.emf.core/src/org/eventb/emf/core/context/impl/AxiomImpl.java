@@ -11,10 +11,8 @@
 package org.eventb.emf.core.context.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eventb.emf.core.context.Axiom;
 import org.eventb.emf.core.context.ContextPackage;
-
 import org.eventb.emf.core.impl.EventBNamedCommentedDerivedPredicateElementImpl;
 
 /**

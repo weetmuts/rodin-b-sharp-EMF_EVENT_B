@@ -12,12 +12,11 @@ package org.eventb.emf.core.context.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
@@ -32,11 +31,10 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eventb.emf.core.context.ContextPackage;
 import org.eventb.emf.core.context.util.ContextAdapterFactory;
-import org.eventb.emf.core.provider.CoreItemProviderAdapterFactory;
 import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 
 /**
@@ -93,6 +91,7 @@ public class ContextItemProviderAdapterFactory extends ContextAdapterFactory imp
 		supportedTypes.add(ITreeItemContentProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
 		supportedTypes.add(IItemPropertySource.class);
+		supportedTypes.add(ITableItemLabelProvider.class);
 	}
 
 	/**

@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -35,7 +34,6 @@ import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.externalisation.External;
 import org.eventb.emf.core.impl.EventBNamedCommentedComponentElementImpl;
 import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
-
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.Invariant;
 import org.eventb.emf.core.machine.Machine;

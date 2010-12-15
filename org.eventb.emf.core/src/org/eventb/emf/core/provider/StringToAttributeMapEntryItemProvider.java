@@ -17,11 +17,8 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -29,11 +26,11 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.CorePackage;
 
@@ -46,11 +43,7 @@ import org.eventb.emf.core.CorePackage;
 public class StringToAttributeMapEntryItemProvider
 	extends ItemProviderAdapter
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -88,8 +81,8 @@ public class StringToAttributeMapEntryItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StringToAttributeMapEntry_key_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StringToAttributeMapEntry_key_feature", "_UI_StringToAttributeMapEntry_type"),
+				 getString("_UI_StringToAttributeMapEntry_key_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_StringToAttributeMapEntry_key_feature", "_UI_StringToAttributeMapEntry_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.STRING_TO_ATTRIBUTE_MAP_ENTRY__KEY,
 				 true,
 				 false,
@@ -137,7 +130,7 @@ public class StringToAttributeMapEntryItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StringToAttributeMapEntry"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StringToAttributeMapEntry")); //$NON-NLS-1$
 	}
 
 	/**
@@ -149,7 +142,7 @@ public class StringToAttributeMapEntryItemProvider
 	@Override
 	public String getText(Object object) {
 		Map.Entry<?, ?> stringToAttributeMapEntry = (Map.Entry<?, ?>)object;
-		return "" + stringToAttributeMapEntry.getKey() + " -> " + stringToAttributeMapEntry.getValue();
+		return "" + stringToAttributeMapEntry.getKey() + " -> " + stringToAttributeMapEntry.getValue(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

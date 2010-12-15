@@ -16,18 +16,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.Extension;
 
 /**
@@ -39,11 +34,7 @@ import org.eventb.emf.core.Extension;
 public class ExtensionItemProvider
 	extends AbstractExtensionItemProvider
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -77,7 +68,7 @@ public class ExtensionItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Extension"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Extension")); //$NON-NLS-1$
 	}
 
 	/**
@@ -90,8 +81,8 @@ public class ExtensionItemProvider
 	public String getText(Object object) {
 		String label = ((Extension)object).getReference();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Extension_type") :
-			getString("_UI_Extension_type") + " " + label;
+			getString("_UI_Extension_type") : //$NON-NLS-1$
+			getString("_UI_Extension_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

@@ -13,12 +13,14 @@ package org.eventb.emf.core.context.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eventb.emf.core.context.*;
+import org.eventb.emf.core.context.Axiom;
+import org.eventb.emf.core.context.CarrierSet;
+import org.eventb.emf.core.context.Constant;
+import org.eventb.emf.core.context.Context;
+import org.eventb.emf.core.context.ContextFactory;
+import org.eventb.emf.core.context.ContextPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +37,7 @@ public class ContextFactoryImpl extends EFactoryImpl implements ContextFactory {
 	 */
 	public static ContextFactory init() {
 		try {
-			ContextFactory theContextFactory = (ContextFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/context"); 
+			ContextFactory theContextFactory = (ContextFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/context"); //$NON-NLS-1$ 
 			if (theContextFactory != null) {
 				return theContextFactory;
 			}
@@ -69,7 +71,7 @@ public class ContextFactoryImpl extends EFactoryImpl implements ContextFactory {
 			case ContextPackage.CARRIER_SET: return createCarrierSet();
 			case ContextPackage.AXIOM: return createAxiom();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

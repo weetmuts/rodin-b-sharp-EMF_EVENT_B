@@ -16,23 +16,18 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.provider.EObjectItemProvider;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBObject;
@@ -46,11 +41,7 @@ import org.eventb.emf.core.EventBObject;
 public class EventBObjectItemProvider
 	extends EObjectItemProvider
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -114,7 +105,7 @@ public class EventBObjectItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_EventBObject_type");
+		return getString("_UI_EventBObject_type"); //$NON-NLS-1$
 	}
 
 	/**

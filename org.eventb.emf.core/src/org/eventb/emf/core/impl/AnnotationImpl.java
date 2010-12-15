@@ -14,23 +14,18 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eventb.emf.core.Annotation;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBObject;
@@ -183,7 +178,7 @@ public class AnnotationImpl extends EventBObjectImpl implements Annotation {
 	public void setEventBObject(EventBObject newEventBObject) {
 		if (newEventBObject != eInternalContainer() || (eContainerFeatureID() != CorePackage.ANNOTATION__EVENT_BOBJECT && newEventBObject != null)) {
 			if (EcoreUtil.isAncestor(this, newEventBObject))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -380,7 +375,7 @@ public class AnnotationImpl extends EventBObjectImpl implements Annotation {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (source: ");
+		result.append(" (source: "); //$NON-NLS-1$
 		result.append(source);
 		result.append(')');
 		return result.toString();

@@ -11,7 +11,6 @@
 package org.eventb.emf.core.context;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eventb.emf.core.EventBNamedCommentedComponentElement;
 
 /**

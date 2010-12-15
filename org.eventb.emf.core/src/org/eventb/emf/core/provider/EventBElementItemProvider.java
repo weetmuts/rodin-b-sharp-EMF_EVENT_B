@@ -16,19 +16,17 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
@@ -42,11 +40,7 @@ import org.eventb.emf.core.EventBElement;
 public class EventBElementItemProvider
 	extends EventBObjectItemProvider
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -69,6 +63,8 @@ public class EventBElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addReferencePropertyDescriptor(object);
+			addGeneratedPropertyDescriptor(object);
+			addLocalGeneratedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -84,13 +80,57 @@ public class EventBElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBElement_reference_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBElement_reference_feature", "_UI_EventBElement_type"),
+				 getString("_UI_EventBElement_reference_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBElement_reference_feature", "_UI_EventBElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.EVENT_BELEMENT__REFERENCE,
 				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Generated feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGeneratedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBElement_generated_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBElement_generated_feature", "_UI_EventBElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 CorePackage.Literals.EVENT_BELEMENT__GENERATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Local Generated feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLocalGeneratedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBElement_localGenerated_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBElement_localGenerated_feature", "_UI_EventBElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 CorePackage.Literals.EVENT_BELEMENT__LOCAL_GENERATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -136,8 +176,8 @@ public class EventBElementItemProvider
 	public String getText(Object object) {
 		String label = ((EventBElement)object).getReference();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EventBElement_type") :
-			getString("_UI_EventBElement_type") + " " + label;
+			getString("_UI_EventBElement_type") : //$NON-NLS-1$
+			getString("_UI_EventBElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -153,6 +193,8 @@ public class EventBElementItemProvider
 
 		switch (notification.getFeatureID(EventBElement.class)) {
 			case CorePackage.EVENT_BELEMENT__REFERENCE:
+			case CorePackage.EVENT_BELEMENT__GENERATED:
+			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case CorePackage.EVENT_BELEMENT__EXTENSIONS:

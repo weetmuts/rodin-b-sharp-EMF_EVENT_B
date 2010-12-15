@@ -11,23 +11,20 @@
 package org.eventb.emf.core.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eventb.emf.core.Annotation;
-import org.eclipse.emf.ecore.impl.EModelElementImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBObject;
 

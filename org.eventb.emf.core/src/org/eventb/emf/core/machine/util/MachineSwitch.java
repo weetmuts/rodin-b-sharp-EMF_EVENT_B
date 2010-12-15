@@ -13,9 +13,7 @@ package org.eventb.emf.core.machine.util;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eventb.emf.core.EventBAction;
 import org.eventb.emf.core.EventBCommented;
 import org.eventb.emf.core.EventBCommentedElement;
@@ -31,8 +29,16 @@ import org.eventb.emf.core.EventBNamedCommentedElement;
 import org.eventb.emf.core.EventBNamedCommentedPredicateElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.EventBPredicate;
-
-import org.eventb.emf.core.machine.*;
+import org.eventb.emf.core.machine.Action;
+import org.eventb.emf.core.machine.Event;
+import org.eventb.emf.core.machine.Guard;
+import org.eventb.emf.core.machine.Invariant;
+import org.eventb.emf.core.machine.Machine;
+import org.eventb.emf.core.machine.MachinePackage;
+import org.eventb.emf.core.machine.Parameter;
+import org.eventb.emf.core.machine.Variable;
+import org.eventb.emf.core.machine.Variant;
+import org.eventb.emf.core.machine.Witness;
 
 /**
  * <!-- begin-user-doc -->

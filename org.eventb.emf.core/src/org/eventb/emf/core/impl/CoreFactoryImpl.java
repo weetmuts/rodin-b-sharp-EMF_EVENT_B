@@ -16,12 +16,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eventb.emf.core.*;
+import org.eventb.emf.core.Annotation;
+import org.eventb.emf.core.Attribute;
+import org.eventb.emf.core.AttributeType;
+import org.eventb.emf.core.CoreFactory;
+import org.eventb.emf.core.CorePackage;
+import org.eventb.emf.core.Extension;
+import org.eventb.emf.core.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +41,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 */
 	public static CoreFactory init() {
 		try {
-			CoreFactory theCoreFactory = (CoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core"); 
+			CoreFactory theCoreFactory = (CoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core"); //$NON-NLS-1$ 
 			if (theCoreFactory != null) {
 				return theCoreFactory;
 			}
@@ -74,7 +77,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.STRING_TO_STRING_MAP_ENTRY: return (EObject)createStringToStringMapEntry();
 			case CorePackage.ANNOTATION: return createAnnotation();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -89,7 +92,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.ATTRIBUTE_TYPE:
 				return createAttributeTypeFromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -104,7 +107,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 			case CorePackage.ATTRIBUTE_TYPE:
 				return convertAttributeTypeToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -175,7 +178,7 @@ public class CoreFactoryImpl extends EFactoryImpl implements CoreFactory {
 	 */
 	public AttributeType createAttributeTypeFromString(EDataType eDataType, String initialValue) {
 		AttributeType result = AttributeType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

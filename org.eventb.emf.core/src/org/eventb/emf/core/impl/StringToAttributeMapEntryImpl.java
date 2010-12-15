@@ -12,17 +12,13 @@ package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.CorePackage;
 
@@ -270,7 +266,7 @@ public class StringToAttributeMapEntryImpl extends EObjectImpl implements BasicE
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (key: ");
+		result.append(" (key: "); //$NON-NLS-1$
 		result.append(key);
 		result.append(')');
 		return result.toString();

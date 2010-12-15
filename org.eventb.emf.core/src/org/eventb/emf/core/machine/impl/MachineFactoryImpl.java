@@ -14,12 +14,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eventb.emf.core.machine.*;
+import org.eventb.emf.core.machine.Action;
+import org.eventb.emf.core.machine.Convergence;
+import org.eventb.emf.core.machine.Event;
+import org.eventb.emf.core.machine.Guard;
+import org.eventb.emf.core.machine.Invariant;
+import org.eventb.emf.core.machine.Machine;
+import org.eventb.emf.core.machine.MachineFactory;
+import org.eventb.emf.core.machine.MachinePackage;
+import org.eventb.emf.core.machine.Parameter;
+import org.eventb.emf.core.machine.Variable;
+import org.eventb.emf.core.machine.Variant;
+import org.eventb.emf.core.machine.Witness;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +44,7 @@ public class MachineFactoryImpl extends EFactoryImpl implements MachineFactory {
 	 */
 	public static MachineFactory init() {
 		try {
-			MachineFactory theMachineFactory = (MachineFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/machine"); 
+			MachineFactory theMachineFactory = (MachineFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/machine"); //$NON-NLS-1$ 
 			if (theMachineFactory != null) {
 				return theMachineFactory;
 			}
@@ -75,7 +83,7 @@ public class MachineFactoryImpl extends EFactoryImpl implements MachineFactory {
 			case MachinePackage.WITNESS: return createWitness();
 			case MachinePackage.ACTION: return createAction();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -90,7 +98,7 @@ public class MachineFactoryImpl extends EFactoryImpl implements MachineFactory {
 			case MachinePackage.CONVERGENCE:
 				return createConvergenceFromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -105,7 +113,7 @@ public class MachineFactoryImpl extends EFactoryImpl implements MachineFactory {
 			case MachinePackage.CONVERGENCE:
 				return convertConvergenceToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -206,7 +214,7 @@ public class MachineFactoryImpl extends EFactoryImpl implements MachineFactory {
 	 */
 	public Convergence createConvergenceFromString(EDataType eDataType, String initialValue) {
 		Convergence result = Convergence.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

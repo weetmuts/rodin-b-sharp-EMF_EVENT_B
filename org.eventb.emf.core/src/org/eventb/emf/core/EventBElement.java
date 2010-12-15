@@ -24,6 +24,8 @@ import org.eclipse.emf.common.util.EMap;
  *   <li>{@link org.eventb.emf.core.EventBElement#getExtensions <em>Extensions</em>}</li>
  *   <li>{@link org.eventb.emf.core.EventBElement#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.eventb.emf.core.EventBElement#getReference <em>Reference</em>}</li>
+ *   <li>{@link org.eventb.emf.core.EventBElement#isGenerated <em>Generated</em>}</li>
+ *   <li>{@link org.eventb.emf.core.EventBElement#isLocalGenerated <em>Local Generated</em>}</li>
  * </ul>
  * </p>
  *
@@ -116,5 +118,86 @@ public interface EventBElement extends EventBObject {
 	 * @generated
 	 */
 	void setReference(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Generated</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Generated</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Generated</em>' attribute.
+	 * @see #setGenerated(boolean)
+	 * @see org.eventb.emf.core.CorePackage#getEventBElement_Generated()
+	 * @model default="false" required="true" transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	boolean isGenerated();
+
+	/**
+	 * Sets the value of the '{@link org.eventb.emf.core.EventBElement#isGenerated <em>Generated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Generated</em>' attribute.
+	 * @see #isGenerated()
+	 * @generated
+	 */
+	void setGenerated(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Local Generated</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Local Generated</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Local Generated</em>' attribute.
+	 * @see #isSetLocalGenerated()
+	 * @see #unsetLocalGenerated()
+	 * @see #setLocalGenerated(boolean)
+	 * @see org.eventb.emf.core.CorePackage#getEventBElement_LocalGenerated()
+	 * @model default="" unsettable="true"
+	 * @generated
+	 */
+	boolean isLocalGenerated();
+
+	/**
+	 * Sets the value of the '{@link org.eventb.emf.core.EventBElement#isLocalGenerated <em>Local Generated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Local Generated</em>' attribute.
+	 * @see #isSetLocalGenerated()
+	 * @see #unsetLocalGenerated()
+	 * @see #isLocalGenerated()
+	 * @generated
+	 */
+	void setLocalGenerated(boolean value);
+
+	/**
+	 * Unsets the value of the '{@link org.eventb.emf.core.EventBElement#isLocalGenerated <em>Local Generated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLocalGenerated()
+	 * @see #isLocalGenerated()
+	 * @see #setLocalGenerated(boolean)
+	 * @generated
+	 */
+	void unsetLocalGenerated();
+
+	/**
+	 * Returns whether the value of the '{@link org.eventb.emf.core.EventBElement#isLocalGenerated <em>Local Generated</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Local Generated</em>' attribute is set.
+	 * @see #unsetLocalGenerated()
+	 * @see #isLocalGenerated()
+	 * @see #setLocalGenerated(boolean)
+	 * @generated
+	 */
+	boolean isSetLocalGenerated();
 
 } // EventBElement

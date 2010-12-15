@@ -16,9 +16,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -26,6 +24,7 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
@@ -42,11 +41,7 @@ import org.eventb.emf.core.EventBNamed;
 public class EventBNamedItemProvider
 	extends ItemProviderAdapter
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -84,8 +79,8 @@ public class EventBNamedItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBNamed_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBNamed_name_feature", "_UI_EventBNamed_type"),
+				 getString("_UI_EventBNamed_name_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBNamed_name_feature", "_UI_EventBNamed_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.EVENT_BNAMED__NAME,
 				 true,
 				 false,
@@ -105,8 +100,8 @@ public class EventBNamedItemProvider
 	public String getText(Object object) {
 		String label = ((EventBNamed)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EventBNamed_type") :
-			getString("_UI_EventBNamed_type") + " " + label;
+			getString("_UI_EventBNamed_type") : //$NON-NLS-1$
+			getString("_UI_EventBNamed_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**

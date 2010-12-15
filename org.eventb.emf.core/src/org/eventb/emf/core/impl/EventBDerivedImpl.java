@@ -11,12 +11,9 @@
 package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBDerived;
 
@@ -162,7 +159,7 @@ public abstract class EventBDerivedImpl extends EObjectImpl implements EventBDer
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (theorem: ");
+		result.append(" (theorem: "); //$NON-NLS-1$
 		result.append(theorem);
 		result.append(')');
 		return result.toString();

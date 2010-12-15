@@ -11,11 +11,8 @@
 package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.AttributeType;
 import org.eventb.emf.core.CorePackage;
@@ -214,9 +211,9 @@ public class AttributeImpl extends EventBObjectImpl implements Attribute {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (type: ");
+		result.append(" (type: "); //$NON-NLS-1$
 		result.append(type);
-		result.append(", value: ");
+		result.append(", value: "); //$NON-NLS-1$
 		result.append(value);
 		result.append(')');
 		return result.toString();

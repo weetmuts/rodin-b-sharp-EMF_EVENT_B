@@ -16,9 +16,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -26,16 +24,14 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eventb.emf.core.Annotation;
 import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.CorePackage;
-
 import org.eventb.emf.core.context.ContextFactory;
-
 import org.eventb.emf.core.machine.MachineFactory;
 
 /**
@@ -47,11 +43,7 @@ import org.eventb.emf.core.machine.MachineFactory;
 public class AnnotationItemProvider
 	extends EventBObjectItemProvider
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -90,8 +82,8 @@ public class AnnotationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Annotation_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_source_feature", "_UI_Annotation_type"),
+				 getString("_UI_Annotation_source_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_source_feature", "_UI_Annotation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.ANNOTATION__SOURCE,
 				 true,
 				 false,
@@ -112,8 +104,8 @@ public class AnnotationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Annotation_references_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_references_feature", "_UI_Annotation_type"),
+				 getString("_UI_Annotation_references_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Annotation_references_feature", "_UI_Annotation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.ANNOTATION__REFERENCES,
 				 true,
 				 false,
@@ -162,7 +154,7 @@ public class AnnotationItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Annotation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Annotation")); //$NON-NLS-1$
 	}
 
 	/**
@@ -175,8 +167,8 @@ public class AnnotationItemProvider
 	public String getText(Object object) {
 		String label = ((Annotation)object).getSource();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Annotation_type") :
-			getString("_UI_Annotation_type") + " " + label;
+			getString("_UI_Annotation_type") : //$NON-NLS-1$
+			getString("_UI_Annotation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -307,71 +299,6 @@ public class AnnotationItemProvider
 			(createChildParameter
 				(CorePackage.Literals.ANNOTATION__CONTENTS,
 				 EcoreFactory.eINSTANCE.createEObject()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEAttribute()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEAnnotation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEDataType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEEnum()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEEnumLiteral()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEFactory()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEOperation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEPackage()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEReference()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createEGenericType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(CorePackage.Literals.ANNOTATION__CONTENTS,
-				 EcoreFactory.eINSTANCE.createETypeParameter()));
 	}
 
 	/**
@@ -391,7 +318,7 @@ public class AnnotationItemProvider
 
 		if (qualify) {
 			return getString
-				("_UI_CreateChild_text2",
+				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);

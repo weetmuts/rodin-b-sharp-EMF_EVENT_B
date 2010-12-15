@@ -12,7 +12,6 @@ package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.CorePackage;
@@ -158,7 +157,7 @@ public abstract class AbstractExtensionImpl extends EventBElementImpl implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (extensionId: ");
+		result.append(" (extensionId: "); //$NON-NLS-1$
 		result.append(extensionId);
 		result.append(')');
 		return result.toString();

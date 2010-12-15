@@ -12,12 +12,8 @@ package org.eventb.emf.core.context.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eventb.emf.core.EventBCommented;
 import org.eventb.emf.core.EventBCommentedElement;
 import org.eventb.emf.core.EventBDerived;
@@ -29,8 +25,11 @@ import org.eventb.emf.core.EventBNamedCommentedElement;
 import org.eventb.emf.core.EventBNamedCommentedPredicateElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.EventBPredicate;
-
-import org.eventb.emf.core.context.*;
+import org.eventb.emf.core.context.Axiom;
+import org.eventb.emf.core.context.CarrierSet;
+import org.eventb.emf.core.context.Constant;
+import org.eventb.emf.core.context.Context;
+import org.eventb.emf.core.context.ContextPackage;
 
 /**
  * <!-- begin-user-doc -->

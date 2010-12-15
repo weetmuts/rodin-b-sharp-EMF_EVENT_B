@@ -11,11 +11,8 @@
 package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBDerived;
 import org.eventb.emf.core.EventBNamedCommentedDerivedPredicateElement;
@@ -194,7 +191,7 @@ public abstract class EventBNamedCommentedDerivedPredicateElementImpl extends Ev
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (theorem: ");
+		result.append(" (theorem: "); //$NON-NLS-1$
 		result.append(theorem);
 		result.append(')');
 		return result.toString();

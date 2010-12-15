@@ -11,11 +11,8 @@
 package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBNamedCommentedPredicateElement;
 import org.eventb.emf.core.EventBPredicate;
@@ -194,7 +191,7 @@ public abstract class EventBNamedCommentedPredicateElementImpl extends EventBNam
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (predicate: ");
+		result.append(" (predicate: "); //$NON-NLS-1$
 		result.append(predicate);
 		result.append(')');
 		return result.toString();

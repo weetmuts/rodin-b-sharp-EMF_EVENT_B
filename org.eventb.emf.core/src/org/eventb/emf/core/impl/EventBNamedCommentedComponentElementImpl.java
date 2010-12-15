@@ -11,7 +11,6 @@
 package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBNamedCommentedComponentElement;
 

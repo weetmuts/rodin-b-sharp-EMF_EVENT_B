@@ -155,7 +155,7 @@ public abstract class EventBPredicateImpl extends EObjectImpl implements EventBP
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (predicate: ");
+		result.append(" (predicate: "); //$NON-NLS-1$
 		result.append(predicate);
 		result.append(')');
 		return result.toString();

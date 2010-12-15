@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eventb.emf.core.CorePackage;
 
 /**
@@ -111,6 +110,24 @@ public interface MachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int MACHINE__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -258,6 +275,24 @@ public interface MachinePackage extends EPackage {
 	int VARIABLE__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -329,6 +364,24 @@ public interface MachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int INVARIANT__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVARIANT__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVARIANT__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -422,6 +475,24 @@ public interface MachinePackage extends EPackage {
 	int VARIANT__REFERENCE = CorePackage.EVENT_BCOMMENTED_EXPRESSION_ELEMENT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIANT__GENERATED = CorePackage.EVENT_BCOMMENTED_EXPRESSION_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIANT__LOCAL_GENERATED = CorePackage.EVENT_BCOMMENTED_EXPRESSION_ELEMENT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -493,6 +564,24 @@ public interface MachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -640,6 +729,24 @@ public interface MachinePackage extends EPackage {
 	int PARAMETER__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -711,6 +818,24 @@ public interface MachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int GUARD__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUARD__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GUARD__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -804,6 +929,24 @@ public interface MachinePackage extends EPackage {
 	int WITNESS__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITNESS__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITNESS__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -884,6 +1027,24 @@ public interface MachinePackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.

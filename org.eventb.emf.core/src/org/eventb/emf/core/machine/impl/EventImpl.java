@@ -574,10 +574,10 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (convergence: ");
+		result.append(" (convergence: "); //$NON-NLS-1$
 		result.append(convergence);
-		result.append(", extended: ");
-		if (extendedESet) result.append(extended); else result.append("<unset>");
+		result.append(", extended: "); //$NON-NLS-1$
+		if (extendedESet) result.append(extended); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}

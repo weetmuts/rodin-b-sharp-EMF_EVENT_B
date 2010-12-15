@@ -16,17 +16,16 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.AttributeType;
 import org.eventb.emf.core.CorePackage;
@@ -40,11 +39,7 @@ import org.eventb.emf.core.CorePackage;
 public class AttributeItemProvider
 	extends EventBObjectItemProvider
 	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -83,8 +78,8 @@ public class AttributeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Attribute_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_type_feature", "_UI_Attribute_type"),
+				 getString("_UI_Attribute_type_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_type_feature", "_UI_Attribute_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.ATTRIBUTE__TYPE,
 				 true,
 				 false,
@@ -105,8 +100,8 @@ public class AttributeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Attribute_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_value_feature", "_UI_Attribute_type"),
+				 getString("_UI_Attribute_value_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Attribute_value_feature", "_UI_Attribute_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 CorePackage.Literals.ATTRIBUTE__VALUE,
 				 true,
 				 false,
@@ -124,7 +119,7 @@ public class AttributeItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Attribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Attribute")); //$NON-NLS-1$
 	}
 
 	/**
@@ -138,8 +133,8 @@ public class AttributeItemProvider
 		AttributeType labelValue = ((Attribute)object).getType();
 		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Attribute_type") :
-			getString("_UI_Attribute_type") + " " + label;
+			getString("_UI_Attribute_type") : //$NON-NLS-1$
+			getString("_UI_Attribute_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
