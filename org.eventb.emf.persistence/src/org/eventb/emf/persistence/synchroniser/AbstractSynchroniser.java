@@ -2,8 +2,8 @@ package org.eventb.emf.persistence.synchroniser;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -57,6 +57,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		handledAttributes.add(EventBAttributes.LABEL_ATTRIBUTE);
 		handledAttributes.add(EventBAttributes.IDENTIFIER_ATTRIBUTE);
 		handledAttributes.add(EventBAttributes.COMMENT_ATTRIBUTE);
+		handledAttributes.add(EventBAttributes.GENERATED_ATTRIBUTE);
 	}
 
 	protected abstract EventBElement createEventBElement();
@@ -85,7 +86,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 				Object container = emfParent.eGet(feature, false);
 
 				if (container instanceof EList) {
-					((EList) container).add(eventBElement);
+					((EList<Object>) container).add(eventBElement);
 				} else {
 					emfParent.eSet(feature, eventBElement);
 				}
@@ -103,6 +104,12 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		rodinInternals.setSource(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
 		eventBElement.getAnnotations().add(rodinInternals);
 		rodinInternalDetails = rodinInternals.getDetails();
+
+		if (rodinElement.hasAttribute(EventBAttributes.GENERATED_ATTRIBUTE)) {
+			eventBElement.setLocalGenerated(rodinElement.getAttributeValue(EventBAttributes.GENERATED_ATTRIBUTE));
+		} else {
+			eventBElement.unsetLocalGenerated();
+		}
 
 		if (rodinElement instanceof IConfigurationElement) {
 			if (((IConfigurationElement) rodinElement).hasConfiguration()) {
@@ -238,13 +245,21 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			String oldName = rodinElement.getElementName();
 			rodinInternalDetails.removeKey("name");
 			rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName());
-			PersistencePlugin.getDefault().getLog().log(
-					new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Element name clash detected, renamed element " + oldName + " to " + rodinElement.getElementName()));
+			PersistencePlugin
+					.getDefault()
+					.getLog()
+					.log(new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Element name clash detected, renamed element " + oldName + " to "
+							+ rodinElement.getElementName()));
 		}
 		return rodinElement;
 	}
 
 	private void saveAttributes(final EventBElement eventBElement, final IProgressMonitor monitor, final IInternalElement rodinElement) throws RodinDBException {
+
+		if (eventBElement.isSetLocalGenerated()) {
+			rodinElement.setAttributeValue(EventBAttributes.GENERATED_ATTRIBUTE, eventBElement.isLocalGenerated(), monitor);
+		}
+
 		if (rodinElement instanceof IConfigurationElement) {
 			// make sure the element has a configuration
 			if (rodinInternalDetails.get(CONFIGURATION) == null) {
