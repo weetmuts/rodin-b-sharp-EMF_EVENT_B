@@ -48,19 +48,22 @@ public class VariantSynchroniser extends AbstractSynchroniser {
 	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 		// create EMF node
 		Variant eventBElement = (Variant) super.load(rodinElement, emfParent, monitor);
-		if (rodinElement instanceof IVariant && ((IVariant) rodinElement).hasExpressionString()) {
-			eventBElement.setExpression(((IVariant) rodinElement).getExpressionString());
+		if (rodinElement instanceof IVariant) {
+			if (((IVariant) rodinElement).hasExpressionString()) {
+				eventBElement.setExpression(((IVariant) rodinElement).getExpressionString());
+			}
 		}
 		return eventBElement;
 	}
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
-
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IVariant && emfElement instanceof Variant) {
-			((IVariant) rodinElement).setExpressionString(((Variant) emfElement).getExpression(), monitor);
+			if (((Variant) emfElement).getExpression() != null) {
+				((IVariant) rodinElement).setExpressionString(((Variant) emfElement).getExpression(), monitor);
+			}
 		}
 		return rodinElement;
 	}

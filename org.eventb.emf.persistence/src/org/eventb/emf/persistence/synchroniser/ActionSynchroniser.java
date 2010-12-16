@@ -49,20 +49,21 @@ public class ActionSynchroniser extends AbstractSynchroniser {
 		// create EMF node
 		Action eventBElement = (Action) super.load(rodinElement, emfParent, monitor);
 		if (rodinElement instanceof IAction) {
-			eventBElement.setAction(((IAction) rodinElement).getAssignmentString());
+			if (((IAction) rodinElement).hasAssignmentString()) {
+				eventBElement.setAction(((IAction) rodinElement).getAssignmentString());
+			}
 		}
 		return eventBElement;
 	}
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
-
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IAction && emfElement instanceof Action) {
-			((IAction) rodinElement).setAssignmentString(((Action) emfElement).getAction(), monitor);
-			// ((IAction)rodinElement).setDerived(((Action)emfElement).getDerived(),
-			// monitor);
+			if (((Action) emfElement).getAction() != null) {
+				((IAction) rodinElement).setAssignmentString(((Action) emfElement).getAction(), monitor);
+			}
 		}
 		return rodinElement;
 	}

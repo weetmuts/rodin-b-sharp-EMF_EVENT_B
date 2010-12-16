@@ -50,21 +50,22 @@ public class GuardSynchroniser extends AbstractSynchroniser {
 		// create EMF node
 		Guard eventBElement = (Guard) super.load(rodinElement, emfParent, monitor);
 		if (rodinElement instanceof IGuard) {
-			IGuard guard = (IGuard) rodinElement;
-			// TODO 'guard.hasTheorem() && ' may be removed when we move to the latest SVN revision of Rodin
-			eventBElement.setTheorem(guard.hasTheorem() && guard.isTheorem());
-			eventBElement.setPredicate(guard.getPredicateString());
+			eventBElement.setTheorem(((IGuard) rodinElement).isTheorem());
+			if (((IGuard) rodinElement).hasPredicateString()) {
+				eventBElement.setPredicate(((IGuard) rodinElement).getPredicateString());
+			}
 		}
 		return eventBElement;
 	}
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
-
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IGuard && emfElement instanceof Guard) {
-			((IGuard) rodinElement).setPredicateString(((Guard) emfElement).getPredicate(), monitor);
+			if (((Guard) emfElement).getPredicate() != null) {
+				((IGuard) rodinElement).setPredicateString(((Guard) emfElement).getPredicate(), monitor);
+			}
 			((IGuard) rodinElement).setTheorem(((Guard) emfElement).isTheorem(), monitor);
 
 		}

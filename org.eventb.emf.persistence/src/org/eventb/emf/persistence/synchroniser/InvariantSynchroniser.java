@@ -51,18 +51,21 @@ public class InvariantSynchroniser extends AbstractSynchroniser {
 		Invariant eventBElement = (Invariant) super.load(rodinElement, emfParent, monitor);
 		if (rodinElement instanceof IInvariant) {
 			eventBElement.setTheorem(((IInvariant) rodinElement).isTheorem());
-			eventBElement.setPredicate(((IInvariant) rodinElement).getPredicateString());
+			if (((IInvariant) rodinElement).hasPredicateString()) {
+				eventBElement.setPredicate(((IInvariant) rodinElement).getPredicateString());
+			}
 		}
 		return eventBElement;
 	}
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
-
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IInvariant && emfElement instanceof Invariant) {
-			((IInvariant) rodinElement).setPredicateString(((Invariant) emfElement).getPredicate(), monitor);
+			if (((Invariant) emfElement).getPredicate() != null) {
+				((IInvariant) rodinElement).setPredicateString(((Invariant) emfElement).getPredicate(), monitor);
+			}
 			((IInvariant) rodinElement).setTheorem(((Invariant) emfElement).isTheorem(), monitor);
 		}
 		return rodinElement;

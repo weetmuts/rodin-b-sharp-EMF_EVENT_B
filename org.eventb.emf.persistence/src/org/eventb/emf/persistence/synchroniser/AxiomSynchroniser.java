@@ -51,18 +51,21 @@ public class AxiomSynchroniser extends AbstractSynchroniser {
 		Axiom eventBElement = (Axiom) super.load(rodinElement, emfParent, monitor);
 		if (rodinElement instanceof IAxiom) {
 			eventBElement.setTheorem(((IAxiom) rodinElement).isTheorem());
-			eventBElement.setPredicate(((IAxiom) rodinElement).getPredicateString());
+			if (((IAxiom) rodinElement).hasPredicateString()) {
+				eventBElement.setPredicate(((IAxiom) rodinElement).getPredicateString());
+			}
 		}
 		return eventBElement;
 	}
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
-
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IAxiom && emfElement instanceof Axiom) {
-			((IAxiom) rodinElement).setPredicateString(((Axiom) emfElement).getPredicate(), monitor);
+			if (((Axiom) emfElement).getPredicate() != null) {
+				((IAxiom) rodinElement).setPredicateString(((Axiom) emfElement).getPredicate(), monitor);
+			}
 			((IAxiom) rodinElement).setTheorem(((Axiom) emfElement).isTheorem(), monitor);
 		}
 		return rodinElement;

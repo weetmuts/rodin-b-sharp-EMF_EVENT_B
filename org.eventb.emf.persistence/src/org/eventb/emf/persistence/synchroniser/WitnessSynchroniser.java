@@ -49,18 +49,21 @@ public class WitnessSynchroniser extends AbstractSynchroniser {
 		// create EMF node
 		Witness eventBElement = (Witness) super.load(rodinElement, emfParent, monitor);
 		if (rodinElement instanceof IWitness) {
-			eventBElement.setPredicate(((IWitness) rodinElement).getPredicateString());
+			if (((IWitness) rodinElement).hasPredicateString()) {
+				eventBElement.setPredicate(((IWitness) rodinElement).getPredicateString());
+			}
 		}
 		return eventBElement;
 	}
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
-
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		if (rodinElement instanceof IWitness && emfElement instanceof Witness) {
-			((IWitness) rodinElement).setPredicateString(((Witness) emfElement).getPredicate(), monitor);
+			if (((Witness) emfElement).getPredicate() != null) {
+				((IWitness) rodinElement).setPredicateString(((Witness) emfElement).getPredicate(), monitor);
+			}
 		}
 		return rodinElement;
 	}
