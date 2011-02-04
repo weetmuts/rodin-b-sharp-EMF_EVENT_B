@@ -10,7 +10,9 @@
  */
 package org.eventb.emf.core.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
@@ -78,7 +80,10 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	 * @generated NOT
 	 */
 	public void setName(String newName) {
+		String oldName = getName();
 		doSetName(newName);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BNAMED__NAME, oldName, newName));
 	}
 
 	/**

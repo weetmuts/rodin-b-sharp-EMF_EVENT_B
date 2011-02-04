@@ -10,7 +10,9 @@
  */
 package org.eventb.emf.core.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
@@ -78,7 +80,10 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * @generated not
 	 */
 	public void setName(String newName) {
+		String oldName = getName();
 		doSetName(newName);
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__NAME, oldName, newName));
 	}
 
 	/**
