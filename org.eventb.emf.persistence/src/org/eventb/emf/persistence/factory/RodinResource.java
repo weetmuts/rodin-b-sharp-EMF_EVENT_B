@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -72,7 +73,6 @@ public class RodinResource extends XMIResourceImpl {
 	@Override
 	public void setURI(final URI uri) {
 		String projectName;
-		super.setURI(uri);
 		final int segmentCount = uri.segmentCount();
 		if ("platform".equals(uri.scheme())) {
 			projectName = URI.decode(uri.segment(segmentCount - 2));
@@ -113,6 +113,7 @@ public class RodinResource extends XMIResourceImpl {
 				isXmi = false;
 			}
 		}
+		super.setURI(uri);
 
 	}
 
@@ -122,33 +123,41 @@ public class RodinResource extends XMIResourceImpl {
 			super.load(options);
 			return;
 		}
-		try {
-			isLoading = true;
+		if (!isLoaded) {
+			Notification notification = setLoaded(true);
+			try {
+				isLoading = true;
 
-			// does file already exist? -> load
-			if (exists()) {
-				SyncManager syncManager = new SyncManager();
-				try {
-					map.clear();
-					this.getContents().add(syncManager.loadRodinElement(rodinFile.getRoot(), null, map, null));
-					// syncManager.loadRodinRoot((IEventBRoot)
-					// rodinFile.getRoot(), this, null);
-				} catch (RodinDBException e) {
-					throw new IOException("Error while loading rodin file: " + e.getLocalizedMessage());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				// does file already exist? -> load
+				if (exists()) {
+					SyncManager syncManager = new SyncManager();
+					try {
+						map.clear();
+						EventBElement element = syncManager.loadRodinElement(rodinFile.getRoot(), null, map, null);
+						this.getContents().add(element);
+						// syncManager.loadRodinRoot((IEventBRoot)
+						// rodinFile.getRoot(), this, null);
+					} catch (RodinDBException e) {
+						throw new IOException("Error while loading rodin file: " + e.getLocalizedMessage());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					// success
+					setTimeStamp(System.currentTimeMillis());
+					setLoaded(true);
 				}
-				// success
-				setTimeStamp(System.currentTimeMillis());
-				setLoaded(true);
+				// otherwise throw exception
+				else {
+					throw new IOException("Resource does not exist");
+				}
+			} finally {
+				isLoading = false;
+				if (notification != null) {
+					eNotify(notification);
+				}
+				setModified(false);
 			}
-			// otherwise throw exception
-			else {
-				throw new IOException("Resource does not exist");
-			}
-		} finally {
-			isLoading = false;
 		}
 	}
 
