@@ -143,5 +143,13 @@
             type="prj">
       </parser>
    </extension>
+   <extension
+         point="org.rodinp.core.attributeTypes">
+      <attributeType
+            id="generator_ID"
+            kind="string"
+            name="Generator Plugin ID">
+      </attributeType>
+   </extension>
 
 </plugin>
