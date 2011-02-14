@@ -3,7 +3,12 @@
 ---
 Checklist of settings in ecore
 
-1) The root metaclass for your extension has an EAnnotation to list the allowable parents as the meta-classes that it extends (i.e. allowable parents)
+1) The root metaclass(es) for your extension must extend AbstractExtension from the core meta-model. This allows them to be added as a child in the 'extensions'
+   containment of any EventBElement.
+2) The root metaclass(es) for your extension may have an EAnnotation to list the allowable parents as the meta-classes that it extends (i.e. allowable parents). The
+   'source' should be set to 'org.eventb.emf.core.extendedMetaClasses'. You may add as many meta-classes as you like to the 'references' field of the EAnnotation.
+   This EAnnotation affects the item provider code generated in the *.edit plug-in. If you do not add an EAnnotation, your root metaclass can be added as a child to
+   ANY Event-B element.
 
 ---
 CheckList of changes to genmodel
@@ -24,12 +29,14 @@ Checklist of post-gen code changes (considering changing the Jet templates for t
 1) in generated edit plugin -> plugin.xml, in the extension point childCreationExtenders, change the package URI to the one containing the allowable parents 
    (e.g. http://emf.eventb.org/models/core/context) The generator always sets it to core. N.b. if more than one package, add another 
    extension point
-2) optional: edit providers to bypass the extension class in the editors (assuming the extension is not an element child).
-4) make customisations as in the core packages for inter-resource referencing (i.e. reference names derived attributes)
-5) make customisations for lazy proxy construction.
+2) optional: make customisations as in the core packages for inter-resource referencing (i.e. reference names derived attributes)
+3) optional: make customisations for lazy proxy construction.
 
+----------------------------------------------------------------
+Thats it! the rest is just notes about the customised code generators
+----------------------------------------------------------------
 
-Dynamic Templates (Under development)
+Customisations made to the Dynamic Templates (Under development)
 
 This allows the code generation to be customised so that the post-gen code changes above are not needed.
 The EMF templates have been copied from org.eclipse.emf.codegen.ecore into org.eventb.emf.core
