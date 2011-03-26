@@ -17,3 +17,4 @@ Export-Package: org.eventb.emf.persistence,
 Bundle-Activator: org.eventb.emf.persistence.PersistencePlugin
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
