@@ -620,7 +620,8 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	/**
 	 * This sets up the editing domain for the model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * >>> ADDED  && propertySheetPage.getCurrentTab()!=null after seeing npe in TabbedPropertySheetPage.refresh() <<<
+	 * @generated NOT
 	 */
 	protected void initializeEditingDomain() {
 		// Create an adapter factory that yields item providers.
@@ -651,7 +652,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 						if (mostRecentCommand != null) {
 							setSelectionToViewer(mostRecentCommand.getAffectedObjects());
 						}
-						if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
+						if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed() && propertySheetPage.getCurrentTab()!=null) {
 							propertySheetPage.refresh();
 						}
 					}
