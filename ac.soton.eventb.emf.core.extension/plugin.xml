@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://soton.ac.uk/models/eventb/coreextension"
+            class="ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage"
+            genModel="model/eventbcoreextension.genmodel"/>
+   </extension>
+
+</plugin>
