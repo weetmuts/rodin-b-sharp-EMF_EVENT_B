@@ -600,7 +600,11 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 			try {
 				 URI uri=null;
 				 if (proxy instanceof Event && getRefines().contains(proxy)){
-					 Machine refinedMachine = ((MachineImpl)eContainer).getRefines().get(0);
+					 EList<Machine> refineList = ((MachineImpl)eContainer).getRefines();
+					 if (refineList.size() == 0) {
+						throw new IllegalArgumentException(((MachineImpl)eContainer).getName() + " does not refine another machine.");
+					 }
+					Machine refinedMachine = refineList.get(0);
 					 uri = refinedMachine.getURI()
 					 	.appendFragment(proxy.eProxyURI().fragment());
 				 }
