@@ -210,7 +210,7 @@ public class RodinResource extends XMIResourceImpl {
 			}
 			// success
 			setTimeStamp(System.currentTimeMillis());
-			isModified = false;
+			setModified(false);
 
 		} finally {
 		}
