@@ -22,7 +22,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.eventb.emf.core.EventBElement;
 import org.rodinp.keyboard.RodinKeyboardPlugin;
 import org.rodinp.keyboard.preferences.PreferenceConstants;
 
@@ -37,10 +36,6 @@ import ac.soton.eventb.roseEditor.properties.TextChangeHelper;
 
 public abstract class AbstractTextPropertySection extends AbstractEventBPropertySection {
 
-	/**
-	 * the text control for the section.
-	 */
-	protected Text text;
 
 	/**
 	 * A helper to listen for events that indicate that a text field has been
@@ -55,24 +50,24 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 		super.createControls(parent, tabbedPropertySheetPage);
 		Composite composite = getWidgetFactory().createFlatFormComposite(parent);
 		FormData data;
-		text = getWidgetFactory().createText(composite, ""); //$NON-NLS-1$
+		widget = getWidgetFactory().createText(composite, ""); //$NON-NLS-1$
 		data = new FormData();
 		data.left = new FormAttachment(0, getStandardLabelWidth(composite,
 			new String[] {getLabelText()}));
 		data.right = new FormAttachment(getTextWidth(), 0);
 		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
-		text.setLayoutData(data);
+		((Control)widget).setLayoutData(data);
 
 		CLabel nameLabel = getWidgetFactory().createCLabel(composite,getLabelText());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(text, -ITabbedPropertyConstants.HSPACE);
-		data.top = new FormAttachment(text, 0, SWT.CENTER);
+		data.right = new FormAttachment(((Control)widget), -ITabbedPropertyConstants.HSPACE);
+		data.top = new FormAttachment(((Control)widget), 0, SWT.CENTER);
 		nameLabel.setLayoutData(data);
-		text.addModifyListener(eventBListener);
+		((Text)widget).addModifyListener(eventBListener);
 		// Using a special fonts for showing Event-B symbols.
 		Font font = JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT);
-		text.setFont(font);
+		((Control)widget).setFont(font);
 
 		listener = new TextChangeHelper() {
 
@@ -81,8 +76,8 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 				handleTextModified();
 			}
 		};
-		listener.startListeningTo(text);
-		listener.startListeningForEnter(text);
+		listener.startListeningTo(((Text)widget));
+		listener.startListeningForEnter(((Text)widget));
 	}
 
 	//the default  width may be overridden in extensions
@@ -94,7 +89,7 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 	 * Handle the text modified event.
 	 */
 	protected void handleTextModified() {
-		String newText = text.getText();
+		String newText = ((Text)widget).getText();
 		if (!isCurrent(newText)){
 			editingDomain.getCommandStack().execute(SetCommand.create(editingDomain, owner, getFeature(),getFeatureValue(newText)));
 		}
@@ -103,11 +98,9 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 
 	@Override
 	public void refresh() {
-		if (text==null) return;
-		text.setText(getFeatureAsText());
-		if (owner instanceof EventBElement && ((EventBElement)owner).isGenerated()){
-			text.setEnabled(false);
-		}
+		if (widget==null) return;
+		((Text)widget).setText(getFeatureAsText());
+		super.refresh();
 	}
 
 	/**
