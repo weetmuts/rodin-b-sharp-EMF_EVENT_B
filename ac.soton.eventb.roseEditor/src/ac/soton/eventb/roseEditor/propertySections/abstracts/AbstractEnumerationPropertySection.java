@@ -30,10 +30,10 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eventb.emf.core.CoreFactory;
-import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
 import org.eventb.emf.core.util.NameUtils;
@@ -49,37 +49,33 @@ import org.rodinp.keyboard.preferences.PreferenceConstants;
 public abstract class AbstractEnumerationPropertySection extends AbstractEventBPropertySection {
 
 	/**
-	 * the combo box control for the section.
-	 */
-	protected Combo combo;				//native opsys combo
-
-	/**
 	 * @see org.eclipse.ui.views.properties.tabbed.ISection#createControls(org.eclipse.swt.widgets.Composite,
 	 *      org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage)
 	 */
 	@Override
 	public void createControls(final Composite parent, final TabbedPropertySheetPage aTabbedPropertySheetPage) {
 		super.createControls(parent, aTabbedPropertySheetPage);
+		
 		Composite composite = getWidgetFactory().createFlatFormComposite(parent);
+		widget = new Combo(composite, SWT.READ_ONLY);
+		
 		FormData data;
-
-		combo = new Combo(composite, SWT.READ_ONLY);
 		data = new FormData();
 		data.left = new FormAttachment(0, getStandardLabelWidth(composite, new String[] {getLabelText()}));
 		data.right = new FormAttachment(50, 0);
 		data.top = new FormAttachment(0, ITabbedPropertyConstants.VSPACE);
-		combo.setLayoutData(data);
+		((Control)widget).setLayoutData(data);
 
 		Font font = JFaceResources.getFont(PreferenceConstants.RODIN_MATH_FONT);
-		combo.setFont(font);
+		((Control)widget).setFont(font);
 
 		CLabel nameLabel = getWidgetFactory().createCLabel(composite,getLabelText());
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
-		data.right = new FormAttachment(combo, -ITabbedPropertyConstants.HSPACE);
-		data.top = new FormAttachment(combo, 0, SWT.CENTER);
+		data.right = new FormAttachment(((Control)widget), -ITabbedPropertyConstants.HSPACE);
+		data.top = new FormAttachment(((Control)widget), 0, SWT.CENTER);
 		nameLabel.setLayoutData(data);
-		combo.addSelectionListener(new SelectionAdapter() {
+		((Combo)widget).addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(final SelectionEvent event) {handleComboModified();}
 		});
@@ -89,7 +85,7 @@ public abstract class AbstractEnumerationPropertySection extends AbstractEventBP
 	 * Handle the combo modified event.
 	 */
 	protected void handleComboModified() {
-		Object newValue = getNewValue(combo.getSelectionIndex());
+		Object newValue = getNewValue(((Combo)widget).getSelectionIndex());
 		if (newValue!=owner.eGet(getFeature())) {
 			editingDomain.getCommandStack().execute(SetCommand.create(editingDomain, owner, getFeature(), newValue));
 		}
@@ -100,11 +96,9 @@ public abstract class AbstractEnumerationPropertySection extends AbstractEventBP
 	 */
 	@Override
 	public void refresh() {
-		combo.setItems(getComboValuesAsText().toArray(new String[0]));
-		combo.setText(getCurrentValueAsText());
-		if (owner instanceof EventBElement && ((EventBElement)owner).isGenerated()){
-			combo.setEnabled(false);
-		}
+		((Combo)widget).setItems(getComboValuesAsText().toArray(new String[0]));
+		((Combo)widget).setText(getCurrentValueAsText());
+		super.refresh();
 	}
 
 	/**
