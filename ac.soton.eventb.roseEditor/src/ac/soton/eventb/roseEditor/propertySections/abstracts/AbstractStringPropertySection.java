@@ -9,6 +9,7 @@
 package ac.soton.eventb.roseEditor.propertySections.abstracts;
 
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * An abstract implementation of a section for a field with a String property
@@ -25,14 +26,11 @@ public abstract class AbstractStringPropertySection extends AbstractTextProperty
 
 	@Override
 	protected String getFeatureAsText() {
-		String string=null;
 		Object feature = null;
 		if (getFeature() instanceof EAttribute){
 			feature = owner.eGet(getFeature());
 			if (feature instanceof String) {
-				string = (String)feature;
-				if (string == null) return "";//$NON-NLS-1$
-				return string;
+				return (String)feature;
 			}else if (feature==null){
 				return "";
 			}
@@ -43,5 +41,9 @@ public abstract class AbstractStringPropertySection extends AbstractTextProperty
 	@Override
 	protected Object getFeatureValue(final String newText) {
 		return newText;
+	}
+	
+	protected Text getTextWidget() {
+		return (Text)widget;
 	}
 }
