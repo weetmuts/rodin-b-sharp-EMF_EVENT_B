@@ -88,10 +88,10 @@ public abstract class AbstractTableViewPropertySection
 
 
 
-		List labels = getColumnLabelText();
+		List<?> labels = getColumnLabelText();
 		columns = new ArrayList<TableColumn>();
 
-		for (Iterator i = labels.iterator(); i.hasNext();) {
+		for (Iterator<?> i = labels.iterator(); i.hasNext();) {
 			TableColumn column = new TableColumn(table, SWT.NONE);
 			column.setText((String) i.next());
 			columns.add(column);
@@ -119,7 +119,7 @@ public abstract class AbstractTableViewPropertySection
 
 	@Override
 	public boolean shouldUseExtraSpace() {
-		return false; //for stateDiag was true
+		return false;
 	}
 
 	/**
@@ -129,7 +129,7 @@ public abstract class AbstractTableViewPropertySection
 	public void refresh() {
 		table.removeAll();
 		table.redraw();
-		for (Iterator i = getOwnedRows().iterator(); i.hasNext();) {
+		for (Iterator<?> i = getOwnedRows().iterator(); i.hasNext();) {
 			Object next = i.next();
 			String key = getKeyForRow(next);
 
@@ -147,7 +147,7 @@ public abstract class AbstractTableViewPropertySection
 			// create the table item
 			TableItem item = new TableItem(table, SWT.NONE, k);
 			String[] values = new String[columns.size()];
-			List valuesForRow = getValuesForRow(next);
+			List<?> valuesForRow = getValuesForRow(next);
 			for (int j = 0; j < columns.size(); j++) {
 				values[j] = (String) valuesForRow.get(j);
 			}
@@ -175,7 +175,7 @@ public abstract class AbstractTableViewPropertySection
 	 *
 	 * @return the list of the row objects.
 	 */
-	protected abstract List getOwnedRows();
+	protected abstract List<?> getOwnedRows();
 
 	/**
 	 * Get the feature for the table field for the section.
@@ -201,14 +201,14 @@ public abstract class AbstractTableViewPropertySection
 	 *            an object in the row of the table.
 	 * @return the list of string values for the row.
 	 */
-	protected abstract List getValuesForRow(Object object);
+	protected abstract List<?> getValuesForRow(Object object);
 
 	/**
 	 * Get the labels for the columns for the table.
 	 *
 	 * @return the labels for the columns.
 	 */
-	protected abstract List getColumnLabelText();
+	protected abstract List<?> getColumnLabelText();
 
 	/**
 	 * Get a new child instance for the result of clicking the add button.
