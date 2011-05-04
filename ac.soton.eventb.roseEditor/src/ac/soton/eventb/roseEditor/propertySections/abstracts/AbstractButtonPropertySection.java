@@ -19,6 +19,7 @@ import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
@@ -35,7 +36,6 @@ import ac.soton.eventb.roseEditor.properties.TextChangeHelper;
 
 public abstract class AbstractButtonPropertySection extends AbstractEventBPropertySection {
 
-	protected Button button;
 
 	protected TextChangeHelper listener;
 
@@ -52,15 +52,15 @@ public abstract class AbstractButtonPropertySection extends AbstractEventBProper
 		int buttonHeight = point.y + 11;
 		gc.dispose();
 		shell.dispose();
-		button = getWidgetFactory().createButton(composite,
+		widget = getWidgetFactory().createButton(composite,
 				MessageFormat.format("{0}...",//$NON-NLS-1$
 					new Object[] {getButtonLabelText()}), SWT.PUSH);
 			data = new FormData();
 			data.left = new FormAttachment(0, 0);
 			data.bottom = new FormAttachment(100, 0);
 			data.top = new FormAttachment(100, -buttonHeight);
-			button.setLayoutData(data);
-			button.addSelectionListener(new SelectionAdapter() {
+			((Control)widget).setLayoutData(data);
+			((Button)widget).addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(final SelectionEvent event) {buttonAction(event);}
 			}
