@@ -19,6 +19,8 @@ import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
@@ -70,6 +72,12 @@ public abstract class AbstractEventBPropertySection extends AbstractPropertySect
 	 *
 	 */
 	protected Composite parent;
+	
+	/**
+	 * 
+	 * this is the widget that the property section controls
+	 */
+	protected Widget widget;
 
 	/*
 	 * Doesn't work because don't have the labels so disabled Get the standard
@@ -127,6 +135,17 @@ public abstract class AbstractEventBPropertySection extends AbstractPropertySect
 			}
 		}
 		super.setInput(part, new StructuredSelection(transformedSelection));
+	}
+	
+	@Override
+	public void refresh() {
+		if (widget instanceof Control){
+			if (owner instanceof EventBElement && ((EventBElement)owner).isGenerated()){
+				((Control)widget).setEnabled(false);
+			}else{
+				((Control)widget).setEnabled(true);
+			}
+		}
 	}
 
 	/*
