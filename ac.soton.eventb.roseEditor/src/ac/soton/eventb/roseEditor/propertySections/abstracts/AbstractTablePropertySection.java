@@ -122,7 +122,7 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 						value=(String)featureValue;
 					}else if (featureValue instanceof List){
 						value = "";
-						for (Object element : (List)featureValue) {
+						for (Object element : (List<?>)featureValue) {
 							if (element instanceof EventBNamed) {
 								if (value!="") value=value+",";
 								value = value+((EventBNamed)element).getName();
@@ -212,8 +212,7 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 		return possibles;
 	}
 
-	@SuppressWarnings("unchecked")
-	protected List getPossibleValues(final int col){
+	protected List<?> getPossibleValues(final int col){
 		Object feature = getFeatureForCol(col);
 		if (feature instanceof EReference){
 			EClass eClass = ((EReference)feature).getEReferenceType();
@@ -239,21 +238,19 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	protected Object getNewValue(final int col, final int index) {
 		Object newValue = null;
-		List<Object> possVals = getPossibleValues(col);
+		List<?> possVals = getPossibleValues(col);
 		if (possVals!=null) newValue=possVals.get(index);
 		if (newValue instanceof EEnumLiteral) newValue = ((EEnumLiteral)newValue).getInstance();
 		return newValue;
 	}
 
-	@SuppressWarnings("unchecked")
 	protected List<? extends Object> getElements() {
 		ArrayList<Object> ret= new ArrayList<Object>();
 		Object featureValue = owner.eGet(getFeature());
 		if (featureValue instanceof List)
-			for (Object element : (List)featureValue) {
+			for (Object element : (List<?>)featureValue) {
 				ret.add(element);
 			}
 		else if (featureValue instanceof Object){
@@ -316,19 +313,6 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 		refresh();
 	}
 
-//	protected Command getAddReferenceCommand(){
-//		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell,new BLabelProvider());
-//		dialog.setFilter(null);
-//		dialog.setElements(getPossibleChildren().toArray());
-//		dialog.setTitle(getNewChildrenDialogTitle());
-//		dialog.create();
-//		dialog.open();
-//		if (dialog.getReturnCode() == Window.CANCEL) return UnexecutableCommand.INSTANCE;
-//		Object[] result = dialog.getResult();
-//		return AddCommand.create(editingDomain, owner, getFeature(), Arrays.asList(result));
-//	}
-
-
 	protected void removeButtonAction() {
 		Object object = table.getSelection()[0].getData();
 		if (singular){
@@ -347,8 +331,8 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 		Object object = table.getSelection()[0].getData();
 		Object featureValue = owner.eGet(getFeature());
 		if (featureValue instanceof EList){
-			int pos = ((EList)featureValue).indexOf(object)+movement;
-			if (pos<0 || pos>((EList)featureValue).size()-1) return;
+			int pos = ((EList<?>)featureValue).indexOf(object)+movement;
+			if (pos<0 || pos>((EList<?>)featureValue).size()-1) return;
 			editingDomain.getCommandStack().execute(MoveCommand.create(editingDomain, owner, getFeature(), object, pos));
 			refresh();					//redraw the new table
 			table.select(pos);			//reselect the same object ready for another move
@@ -508,7 +492,6 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 		removeButton.setEnabled(true);
 		if (upButton!=null) upButton.setEnabled(true);
 		if (downButton!=null) downButton.setEnabled(true);
-		Object object = table.getSelection()[0].getData();
 	}
 
 	@Override
@@ -572,7 +555,11 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 		if (owner instanceof EventBElement && ((EventBElement)owner).isGenerated()){
 			table.setEnabled(false);
 			addButton.setEnabled(false);
+		}else{
+			table.setEnabled(true);
+			addButton.setEnabled(true);
 		}
+		
 		table.redraw();
 	}
 
