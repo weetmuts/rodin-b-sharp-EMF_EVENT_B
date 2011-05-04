@@ -37,6 +37,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
+import org.eventb.emf.core.EventBElement;
 
 /**
  * This is the action bar contributor for the Core model editor.
@@ -249,9 +250,11 @@ public class RoseEditorActionBarContributor extends EditingDomainActionBarContri
 	 * handling {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings
 	 * that can be added to the selected object and updating the menus accordingly.
 	 * <!-- begin-user-doc -->
+	 * This has been modified to check that the parent object is not a generated EventBElement
+	 * before adding child/sibling descriptors
 	 * <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
@@ -274,8 +277,12 @@ public class RoseEditorActionBarContributor extends EditingDomainActionBarContri
 
 			EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
 
-			newChildDescriptors = domain.getNewChildDescriptors(object, null);
-			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
+			if (!(object instanceof EventBElement && ((EventBElement)object).isGenerated())){
+				newChildDescriptors = domain.getNewChildDescriptors(object, null);
+			}
+			if (!(domain.getParent(object) instanceof EventBElement && ((EventBElement)domain.getParent(object)).isGenerated())){			
+				newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
+			}
 		}
 
 		// Generate actions for selection; populate and redraw the menus.
