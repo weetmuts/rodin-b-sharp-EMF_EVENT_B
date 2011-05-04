@@ -53,7 +53,7 @@ public class EventBNamedElementNamePropertySection extends AbstractStringPropert
 	 */
 	@Override
 	protected void handleTextModified() {
-		String newText = text.getText();
+		String newText = getTextWidget().getText();
 		if (!isCurrent(newText)){
 //			String oldText = getFeatureAsText();
 //
@@ -71,7 +71,4 @@ public class EventBNamedElementNamePropertySection extends AbstractStringPropert
 			super.handleTextModified();
 		}
 	}
-
-
-
 }
