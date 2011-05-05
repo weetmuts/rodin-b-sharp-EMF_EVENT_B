@@ -10,6 +10,31 @@
 
 <plugin>
 
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://soton.ac.uk/models/eventb/coreextension"
+            class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            uri="http://emf.eventb.org/models/core"
+            class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory$CoreChildCreationExtender"/>
+      <extender
+            uri="http://emf.eventb.org/models/core/machine"
+            class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory$MachineChildCreationExtender"/>
+      <extender
+            class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory$ContextChildCreationExtender"
+            uri="http://emf.eventb.org/models/core/context">
+      </extender>
+   </extension>
+
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://soton.ac.uk/models/eventb/coreextension"
