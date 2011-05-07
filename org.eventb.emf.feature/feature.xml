@@ -2,7 +2,7 @@
 <feature
       id="org.eventb.emf.feature"
       label="%featureName"
-      version="3.3.0"
+      version="3.4.0"
       provider-name="%providerName">
 
    <description>
@@ -51,6 +51,13 @@
 
    <plugin
          id="org.eventb.emf.compare"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="ac.soton.eventb.emf.core.extension"
          download-size="0"
          install-size="0"
          version="0.0.0"
