@@ -97,7 +97,6 @@ rule CopyAnnotation
 rule CopyMachine
 	transform s : Source!`Machine`
 	to t : Target!`Machine` {
-	
  
 	t.`reference` := s.`reference`;
  
@@ -121,9 +120,9 @@ rule CopyMachine
  
 	t.`attributes` ::= s.`attributes`;
  
-	t.`refines` ::= s.`refines`;
+	t.`refines` = s.refines.equivalent().select(s|s.isKindOf(Target!alaki));
  
-	t.`sees` ::= s.`sees`;
+	t.`sees` = s.sees.equivalent().select(s|s.isKindOf(Target!Context));
  
 	t.`variables` ::= s.`variables`;
  
