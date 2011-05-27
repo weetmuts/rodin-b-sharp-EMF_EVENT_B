@@ -29,10 +29,6 @@
       <extender
             uri="http://emf.eventb.org/models/core/machine"
             class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory$MachineChildCreationExtender"/>
-      <extender
-            class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory$ContextChildCreationExtender"
-            uri="http://emf.eventb.org/models/core/context">
-      </extender>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
