@@ -2,6 +2,7 @@
  * (c) 2009 Lehrstuhl fuer Softwaretechnik und Programmiersprachen, 
  * Heinrich Heine Universitaet Duesseldorf
  * This software is licenced under EPL 1.0 (http://www.eclipse.org/org/documents/epl-v10.html) 
+ * 
  * */
 
 package org.eventb.emf.compare.match;
@@ -9,13 +10,17 @@ package org.eventb.emf.compare.match;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.match.MatchOptions;
-import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.engine.GenericMatchEngine;
+import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.engine.MatchSettings;
 import org.eclipse.emf.compare.match.internal.statistic.NameSimilarity;
+import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.EventBNamedCommentedComponentElement;
 import org.eventb.emf.core.EventBPredicate;
@@ -33,7 +38,7 @@ public class EventBMatchEngine extends GenericMatchEngine {
 	private static final Map<String, Object> defaultOptions = new HashMap<String, Object>();
 
 	static {
-		defaultOptions.put(OPTION_DONT_COMPARE_COMPONENTS, false);
+		defaultOptions.put(OPTION_DONT_COMPARE_COMPONENTS, false);	
 	}
 
 	public EventBMatchEngine() {
@@ -53,6 +58,14 @@ public class EventBMatchEngine extends GenericMatchEngine {
 		final Boolean dontCompareComponents = getOption(OPTION_DONT_COMPARE_COMPONENTS);
 		if (dontCompareComponents && areSameComponentType(obj1, obj2)) {
 			return true;
+		}
+		
+		
+		if (obj1.eIsProxy() && obj2.eIsProxy()) {
+			URI p1 = ((InternalEObject)(obj1)).eProxyURI();
+			URI p2 = ((InternalEObject)(obj2)).eProxyURI();
+			if (p1.fragment().equals(p2.fragment()))
+				return true;
 		}
 
 		/*
@@ -126,6 +139,7 @@ public class EventBMatchEngine extends GenericMatchEngine {
 	protected void updateSettings(MatchSettings settings,
 			Map<String, Object> optionMap) {
 		super.updateSettings(settings, optionMap);
+		
 		Map<String, Object> ignoreOptions = new HashMap<String, Object>();
 		
 		// don't compare by IDs as these can be not unique in current EMF of EventB
@@ -134,6 +148,7 @@ public class EventBMatchEngine extends GenericMatchEngine {
 		ignoreOptions.put(MatchOptions.OPTION_IGNORE_ID, true);
 		super.updateSettings(settings, ignoreOptions);
 	}
+
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -189,4 +204,84 @@ public class EventBMatchEngine extends GenericMatchEngine {
 	private boolean areVariants(final EObject obj1, final EObject obj2) {
 		return areSameType(obj1, obj2) && obj2 instanceof Variant;
 	}
+	
+	////////////////////////// here are the public API extended to provide a custom MatchScopeProvider
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.compare.match.engine.IMatchEngine#contentMatch(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, java.util.Map)
+	 */
+	public MatchModel contentMatch(EObject leftObject, EObject rightObject, EObject ancestor,
+			Map<String, Object> optionMap) {
+		optionMap.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, 
+			new EventBMatchScopeProvider(leftObject,rightObject,ancestor));
+		return super.contentMatch(leftObject, rightObject, ancestor, optionMap);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.compare.match.engine.IMatchEngine#contentMatch(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.EObject, java.util.Map)
+	 */
+	public MatchModel contentMatch(EObject leftObject, EObject rightObject, 
+			Map<String, Object> optionMap) {
+		optionMap.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, 
+			new EventBMatchScopeProvider(leftObject,rightObject));
+		return super.contentMatch(leftObject, rightObject, optionMap);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.compare.match.engine.IMatchEngine#contentMatch(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, java.util.Map)
+	 */
+	public MatchModel modelMatch(EObject leftRoot, EObject rightRoot, EObject ancestor,
+			Map<String, Object> optionMap) {
+		optionMap.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, 
+			new EventBMatchScopeProvider(leftRoot,rightRoot,ancestor));
+		return super.contentMatch(leftRoot, rightRoot, ancestor, optionMap);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.compare.match.engine.IMatchEngine#contentMatch(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.EObject, java.util.Map)
+	 */
+	public MatchModel modelMatch(EObject leftRoot, EObject rightRoot, 
+			Map<String, Object> optionMap) {
+		optionMap.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, 
+			new EventBMatchScopeProvider(leftRoot,rightRoot));
+		return super.contentMatch(leftRoot, rightRoot, optionMap);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+
+	 */
+	public MatchModel resourceMatch(Resource leftResource, Resource rightResource, Resource ancestor,
+			Map<String, Object> optionMap) throws InterruptedException {
+		optionMap.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, 
+			new EventBMatchScopeProvider(leftResource,rightResource,ancestor));
+		return super.resourceMatch(leftResource, rightResource, ancestor, optionMap);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+
+	 */
+	public MatchModel resourceMatch(Resource leftResource, Resource rightResource, 
+			Map<String, Object> optionMap) throws InterruptedException {
+		optionMap.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, 
+			new EventBMatchScopeProvider(leftResource,rightResource));
+		return super.resourceMatch(leftResource, rightResource, optionMap);
+	}
+	
+	
 }
