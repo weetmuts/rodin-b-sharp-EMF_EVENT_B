@@ -12,7 +12,6 @@
 package org.eventb.emf.compare.diff;
 
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
