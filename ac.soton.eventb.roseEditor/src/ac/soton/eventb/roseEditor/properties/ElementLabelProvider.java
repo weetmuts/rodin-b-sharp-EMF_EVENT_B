@@ -10,6 +10,7 @@ package ac.soton.eventb.roseEditor.properties;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -17,7 +18,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.ITypeMapper;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
-import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.context.ContextPackage;
 import org.eventb.emf.core.machine.MachinePackage;
 
@@ -91,14 +91,26 @@ public class ElementLabelProvider extends LabelProvider {
 	 * @generated NOT
 	 */
 	protected String getLabelForElement(final EventBElement element){
-		String elementName = null;
-		if (element instanceof EventBNamed){
-			elementName = ((EventBNamed)element).getName();
-		}
-		if (elementName==null) elementName="<un-named>";
+		EPackage ePackage = element.eClass().getEPackage();
+		
+		String elementName="<un-named>";
+//		if (element instanceof EventBNamed){
+//			elementName = ((EventBNamed)element).getName();
+//		}else{
+			//try to find a feature that looks appropriate
+			Object label=null;
+			EStructuralFeature labelFeature = element.eClass().getEStructuralFeature("name");
+			if (labelFeature == null) labelFeature = element.eClass().getEStructuralFeature("label");
+			if (labelFeature == null) labelFeature = element.eClass().getEStructuralFeature("identifier");
+			if (labelFeature != null)
+				label = element.eGet(labelFeature);
+			if (label instanceof String){
+				elementName = (String)label;
+			}
+//		}
 		String kindName;
 		int umlbElementKind = element.eClass().getClassifierID();
-		EPackage ePackage = element.eClass().getEPackage();
+
 		if (ePackage == CorePackage.eINSTANCE){
 			switch (umlbElementKind){
 			case CorePackage.PROJECT: 					{kindName =  "Project"; break;}
@@ -116,6 +128,8 @@ public class ElementLabelProvider extends LabelProvider {
 			case MachinePackage.PARAMETER: 				{kindName =  "Parameter"; break;}
 			case MachinePackage.WITNESS: 				{kindName =  "Witness"; break;}
 			default:{kindName="UNRECOGNISED ELEMENT";}}
+			kindName = ePackage.getName()+" : "+kindName;
+			
 		}else if (ePackage == ContextPackage.eINSTANCE){
 			switch (umlbElementKind){
 			case ContextPackage.CONTEXT: 				{kindName =  "Context"; break;}
@@ -123,9 +137,11 @@ public class ElementLabelProvider extends LabelProvider {
 			case ContextPackage.CONSTANT: 				{kindName =  "Constant"; break;}
 			case ContextPackage.AXIOM: 					{kindName =  "Axiom"; break;}
 			default:{kindName="UNRECOGNISED ELEMENT";}}
+			kindName = ePackage.getName()+" : "+kindName;
 
 		}else{
-			kindName="UNRECOGNISED ELEMENT";
+			kindName = ePackage.getName()+" : "+element.eClass().getName();
+			//kindName="UNRECOGNISED ELEMENT";
 		}
 		String generated = "";
 		if (element.isGenerated()) generated = " (GENERATED)";
