@@ -130,6 +130,7 @@ import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.provider.MachineItemProviderAdapterFactory;
 import org.eventb.emf.core.provider.CoreItemProviderAdapterFactory;
 
+
 /**
  * This is an example of a Core model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
@@ -291,26 +292,39 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
 	/**
-	 * This listens for when the outline becomes active <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This listens for when the outline becomes active 
+	 * <!-- begin-user-doc -->
+	 * It also listens for possible deactivation of the editor (i.e. deactivation of the
+	 * content outline view, property sheets or the editor itself) and if the subsequent 
+	 * activation confirms that none of these associated views are being activated,
+	 *  and the editor is dirty, all changes are automatically saved.
+	 * This prevents editor conflicts if the same resource is edited with another editor.
+	 *  <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IPartListener partListener = new IPartListener() {
+		
+		private boolean deactivated = false;
+		
 		public void partActivated(IWorkbenchPart p) {
 			if (p instanceof ContentOutline) {
 				if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
 					getActionBarContributor().setActiveEditor(RoseEditor.this);
-
 					setCurrentViewer(contentOutlineViewer);
+					deactivated = false;
 				}
 			} else if (p instanceof PropertySheet) {
 				if (((PropertySheet) p).getCurrentPage() == propertySheetPage) {
 					getActionBarContributor().setActiveEditor(RoseEditor.this);
 					handleActivate();
+					deactivated = false;
 				}
 			} else if (p == RoseEditor.this) {
 				handleActivate();
+				deactivated = false;
 			}
+			if (deactivated && isDirty()) doSave(new NullProgressMonitor());
 		}
 
 		public void partBroughtToTop(IWorkbenchPart p) {
@@ -322,7 +336,17 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 		}
 
 		public void partDeactivated(IWorkbenchPart p) {
-			// Ignore.
+			if (p instanceof ContentOutline) {
+				if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
+					deactivated = true;
+				}
+			} else if (p instanceof PropertySheet) {
+				if (((PropertySheet) p).getCurrentPage() == propertySheetPage) {
+					deactivated = true;
+				}
+			} else if (p == RoseEditor.this) {
+				deactivated = true;
+			}
 		}
 
 		public void partOpened(IWorkbenchPart p) {
@@ -1735,7 +1759,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	 */
 	public void setSelection(ISelection selection) {
 		editorSelection = selection;
-
+		
 		for (ISelectionChangedListener listener : selectionChangedListeners) {
 			listener.selectionChanged(new SelectionChangedEvent(this, selection));
 		}
@@ -1887,4 +1911,5 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 		}
 		return null;
 	}
+	
 }
