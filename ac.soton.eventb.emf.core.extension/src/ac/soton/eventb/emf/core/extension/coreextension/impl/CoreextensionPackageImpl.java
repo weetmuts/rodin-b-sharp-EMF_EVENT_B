@@ -8,6 +8,7 @@ package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
 import ac.soton.eventb.emf.core.extension.coreextension.Type;
 import ac.soton.eventb.emf.core.extension.coreextension.TypedParameter;
 
@@ -41,6 +42,13 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 	 * @generated
 	 */
 	private EClass typeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBLabeledEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -138,6 +146,24 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEventBLabeled() {
+		return eventBLabeledEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBLabeled_Label() {
+		return (EAttribute)eventBLabeledEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CoreextensionFactory getCoreextensionFactory() {
 		return (CoreextensionFactory)getEFactoryInstance();
 	}
@@ -165,6 +191,9 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 
 		typeEClass = createEClass(TYPE);
 		createEAttribute(typeEClass, TYPE__TYPE);
+
+		eventBLabeledEClass = createEClass(EVENT_BLABELED);
+		createEAttribute(eventBLabeledEClass, EVENT_BLABELED__LABEL);
 	}
 
 	/**
@@ -206,6 +235,9 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 
 		initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getType_Type(), ecorePackage.getEString(), "type", null, 1, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBLabeledEClass, EventBLabeled.class, "EventBLabeled", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEventBLabeled_Label(), ecorePackage.getEString(), "label", "", 0, 1, EventBLabeled.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

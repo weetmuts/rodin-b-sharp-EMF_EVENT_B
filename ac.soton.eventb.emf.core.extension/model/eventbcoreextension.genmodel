@@ -13,5 +13,8 @@
     <genClasses image="false" ecoreClass="eventbcoreextension.ecore#//Type">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcoreextension.ecore#//Type/type"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="eventbcoreextension.ecore#//EventBLabeled">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcoreextension.ecore#//EventBLabeled/label"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

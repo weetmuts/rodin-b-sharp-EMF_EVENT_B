@@ -190,6 +190,35 @@ public interface CoreextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBLabeledImpl <em>Event BLabeled</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBLabeledImpl
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBLabeled()
+	 * @generated
+	 */
+	int EVENT_BLABELED = 2;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BLABELED__LABEL = 0;
+
+	/**
+	 * The number of structural features of the '<em>Event BLabeled</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BLABELED_FEATURE_COUNT = 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.eventb.emf.core.extension.coreextension.TypedParameter <em>Typed Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -219,6 +248,27 @@ public interface CoreextensionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getType_Type();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled <em>Event BLabeled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event BLabeled</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled
+	 * @generated
+	 */
+	EClass getEventBLabeled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled#getLabel()
+	 * @see #getEventBLabeled()
+	 * @generated
+	 */
+	EAttribute getEventBLabeled_Label();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -269,6 +319,24 @@ public interface CoreextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TYPE__TYPE = eINSTANCE.getType_Type();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBLabeledImpl <em>Event BLabeled</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBLabeledImpl
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBLabeled()
+		 * @generated
+		 */
+		EClass EVENT_BLABELED = eINSTANCE.getEventBLabeled();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT_BLABELED__LABEL = eINSTANCE.getEventBLabeled_Label();
 
 	}
 
