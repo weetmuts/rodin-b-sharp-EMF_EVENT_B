@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="ac.soton.eventb.emf.core.extension.navigator.itemProviderAdapterFactories" name="Extension Navigator Item Provider Adapter Factories" schema="schema/ac.soton.eventb.emf.core.extension.navigator.itemProvider.exsd"/>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionContentProvider"
+            id="ac.soton.eventb.emf.core.extension.navigator.content.emfContent"
+            labelProvider="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionLabelProvider"
+            name="Event-B Extension Content">
+         <triggerPoints>
+            <or>
+               <instanceof
+                     value="org.eventb.core.IEventBRoot">
+               </instanceof>
+               <instanceof
+                     value="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem">
+               </instanceof>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof
+                  value="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem">
+            </instanceof>
+         </possibleChildren>
+      </navigatorContent>
+      <commonFilter
+            activeByDefault="true"
+            class="ac.soton.eventb.emf.core.extension.navigator.filter.AnnotationFilter"
+            id="ac.soton.eventb.emf.core.extension.navigator.filter.annotationFilter"
+            name="Annotation Filter">
+      </commonFilter>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding
+            viewerId="fr.systerel.explorer.navigator.view">
+         <includes>
+            <contentExtension
+                  pattern="ac.soton.eventb.emf.core.extension.navigator.content.emfContent">
+            </contentExtension>
+            <contentExtension
+                  pattern="ac.soton.eventb.emf.core.extension.navigator.filter.annotationFilter">
+            </contentExtension></includes>
+      </viewerContentBinding>
+   </extension>
+
+</plugin>
