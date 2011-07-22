@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="ac.soton.eventb.emf.core.extension.navigator.itemProviderAdapterFactories" name="Extension Navigator Item Provider Adapter Factories" schema="schema/ac.soton.eventb.emf.core.extension.navigator.itemProvider.exsd"/>
+   <extension-point id="ac.soton.eventb.emf.core.extension.navigator.itemProviderAdapterFactories" name="%extension-point.name" schema="schema/ac.soton.eventb.emf.core.extension.navigator.itemProvider.exsd"/>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             contentProvider="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionContentProvider"
             id="ac.soton.eventb.emf.core.extension.navigator.content.emfContent"
             labelProvider="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionLabelProvider"
-            name="Event-B Extension Content">
+            name="%navigatorContent.name">
          <triggerPoints>
             <or>
                <instanceof
@@ -29,7 +29,7 @@
             activeByDefault="true"
             class="ac.soton.eventb.emf.core.extension.navigator.filter.AnnotationFilter"
             id="ac.soton.eventb.emf.core.extension.navigator.filter.annotationFilter"
-            name="Annotation Filter">
+            name="%commonFilter.name">
       </commonFilter>
    </extension>
    <extension

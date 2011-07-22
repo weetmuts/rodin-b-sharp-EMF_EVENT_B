@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Event-B Extension Navigator
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: ac.soton.eventb.emf.core.extension.navigator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: ac.soton.eventb.emf.core.extension.navigator.ExtensionNavigatorPlugin
-Bundle-Vendor: University of Southampton
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.navigator;bundle-version="[3.5.0,3.6.0)",

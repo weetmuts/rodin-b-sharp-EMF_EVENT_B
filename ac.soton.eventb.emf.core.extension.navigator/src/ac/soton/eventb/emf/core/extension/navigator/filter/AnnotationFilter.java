@@ -13,6 +13,13 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eventb.emf.core.Annotation;
 
+/**
+ * EventB EMF annotation filter class.
+ * Hides annotations if activated.
+ * 
+ * @author vitaly
+ *
+ */
 public class AnnotationFilter extends ViewerFilter {
 
 	@Override
