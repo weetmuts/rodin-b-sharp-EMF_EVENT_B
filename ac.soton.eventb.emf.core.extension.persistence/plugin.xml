@@ -6,7 +6,7 @@
       <internalElementType
             class="ac.soton.eventb.emf.core.extension.persistence.SerialisedExtension"
             id="serialisedExtension"
-            name="Serialised Extension">
+            name="%internalElementType.name">
       </internalElementType>
    </extension>
    <extension
@@ -14,7 +14,7 @@
       <attributeType
             id="serialised"
             kind="string"
-            name="Serialised">
+            name="%attributeType.name">
       </attributeType>
    </extension>
 

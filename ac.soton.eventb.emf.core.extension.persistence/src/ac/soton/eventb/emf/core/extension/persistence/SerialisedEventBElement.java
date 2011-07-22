@@ -13,6 +13,8 @@ import org.rodinp.core.IRodinElement;
 import org.rodinp.core.RodinDBException;
 
 /**
+ * Serialised EventB element type.
+ * 
  * @author vitaly
  *
  */

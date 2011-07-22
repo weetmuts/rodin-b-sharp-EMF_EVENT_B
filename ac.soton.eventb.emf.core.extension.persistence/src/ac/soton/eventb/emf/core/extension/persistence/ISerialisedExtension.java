@@ -12,6 +12,8 @@ import org.rodinp.core.IInternalElementType;
 import org.rodinp.core.RodinCore;
 
 /**
+ * Serialised extension Rodin element type interface.
+ * 
  * @author vitaly
  *
  */

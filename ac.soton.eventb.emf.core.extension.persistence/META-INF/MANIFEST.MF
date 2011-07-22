@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Extension Persistence
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: ac.soton.eventb.emf.core.extension.persistence;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: ac.soton.eventb.emf.core.extension.persistence.ExtensionPersistencePlugin
-Bundle-Vendor: University of Southampton
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eventb.core;bundle-version="[2.2.0,2.3.0)",

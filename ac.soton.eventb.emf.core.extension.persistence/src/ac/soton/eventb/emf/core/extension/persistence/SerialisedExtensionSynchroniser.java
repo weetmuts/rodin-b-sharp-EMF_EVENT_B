@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2011 University of Southampton.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
 package ac.soton.eventb.emf.core.extension.persistence;
 
 import java.io.IOException;
@@ -29,6 +36,17 @@ import org.rodinp.core.IRodinElement;
 import org.rodinp.core.RodinCore;
 import org.rodinp.core.RodinDBException;
 
+/**
+ * Serialised extension synchroniser abstract class.
+ * 
+ * Serialises EventB abstract extension to a string attribute.
+ * Implements all of the methods of AbstractSynchroniser except createEventBElement(),
+ * which must be provided by a client extension to create a correct EMF element
+ * on loading.
+ * 
+ * @author vitaly
+ *
+ */
 public abstract class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 	
 	private static final Set<IAttributeType> handledAttributes = new HashSet<IAttributeType>();
@@ -75,6 +93,8 @@ public abstract class SerialisedExtensionSynchroniser extends AbstractSynchronis
 				Resource resource = resourceSet.createResource(URI.createURI("http:///My.inp"));
 				ReadableInputStream in = new ReadableInputStream(new StringReader(loadString));
 				resource.load(in, null);
+				
+				// copy contents
 				if (!resource.getContents().isEmpty()) {
 					AbstractExtension ext = (AbstractExtension) resource.getContents().get(0);
 					EClass eClass = eventBElement.eClass();
@@ -98,6 +118,9 @@ public abstract class SerialisedExtensionSynchroniser extends AbstractSynchronis
 	public IRodinElement save(EventBElement emfElement,
 			IRodinElement rodinParent, IProgressMonitor monitor)
 			throws RodinDBException {
+		// important - to prevent creating Rodin elements for children
+		if (rodinParent instanceof ISerialisedExtension)
+			return null;
 		
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);

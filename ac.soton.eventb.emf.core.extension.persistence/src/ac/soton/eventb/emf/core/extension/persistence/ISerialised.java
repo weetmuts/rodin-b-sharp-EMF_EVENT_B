@@ -13,6 +13,9 @@ import org.rodinp.core.RodinCore;
 import org.rodinp.core.RodinDBException;
 
 /**
+ * Serialised element type interface.
+ * Contains Rodin string attribute 'serialised'.
+ * 
  * @author vitaly
  *
  */
