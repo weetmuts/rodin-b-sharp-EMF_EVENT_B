@@ -120,10 +120,12 @@ rule CopyMachine
  
 	t.`attributes` ::= s.`attributes`;
  
-	t.`refines` = s.refines.equivalent().select(s|s.isKindOf(Target!alaki));
+	//t.`refines` = s.refines.equivalent().select(s|s.isKindOf(Target!Machine));
+	t.`refines` = s.refines;
  
-	t.`sees` = s.sees.equivalent().select(s|s.isKindOf(Target!Context));
- 
+	//t.`sees` = s.sees.equivalent().select(s|s.isKindOf(Target!Context));
+ 	t.`sees` = s.sees;
+ 	
 	t.`variables` ::= s.`variables`;
  
 	t.`invariants` ::= s.`invariants`;
@@ -225,7 +227,8 @@ rule CopyEvent
  
 	t.`attributes` ::= s.`attributes`;
  
-	t.`refines` ::= s.`refines`;
+	//t.`refines` ::= s.`refines`;
+	t.`refines` = s.`refines`;
  
 	t.`parameters` ::= s.`parameters`;
  
