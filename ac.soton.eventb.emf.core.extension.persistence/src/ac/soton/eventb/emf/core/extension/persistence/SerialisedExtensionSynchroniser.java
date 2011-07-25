@@ -124,11 +124,15 @@ public abstract class SerialisedExtensionSynchroniser extends AbstractSynchronis
 		
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
+		
 		if (rodinElement instanceof ISerialisedExtension && emfElement instanceof AbstractExtension) {
-			String saveString;
+			ISerialisedExtension rodinExtension = (ISerialisedExtension) rodinElement;
+			AbstractExtension emfExtension = (AbstractExtension) emfElement;
+			
 			try {
-				saveString = XMIHelperImpl.saveString(Collections.emptyMap(), Collections.singletonList(emfElement), "UTF-8", null);
-				((ISerialisedExtension) rodinElement).setSerialised(saveString, monitor);
+				String saveString = XMIHelperImpl.saveString(Collections.emptyMap(), Collections.singletonList(emfExtension), "UTF-8", null);
+				rodinExtension.setSerialised(saveString, monitor);
+				rodinExtension.setExtensionId(emfExtension.getExtensionId(), monitor);
 			} catch (Exception e) {
 				RodinCore.getPlugin().getLog().log(
 						new Status(IStatus.ERROR, ExtensionPersistencePlugin.PLUGIN_ID, "Error when trying to serialise an extension.", e));

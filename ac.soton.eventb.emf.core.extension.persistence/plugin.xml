@@ -16,6 +16,11 @@
             kind="string"
             name="%attributeType.name">
       </attributeType>
+      <attributeType
+            id="extensionId"
+            kind="string"
+            name="Extension ID">
+      </attributeType>
    </extension>
 
 </plugin>
