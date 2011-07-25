@@ -17,7 +17,7 @@ import org.rodinp.core.RodinCore;
  * @author vitaly
  *
  */
-public interface ISerialisedExtension  extends ISerialised, IExtension {
+public interface ISerialisedExtension  extends ISerialised, IExtension, IInternalElement {
 
 	public static final IInternalElementType<? extends IInternalElement> ELEMENT_TYPE = RodinCore.getInternalElementType(ExtensionPersistencePlugin.PLUGIN_ID + ".serialisedExtension");
 
