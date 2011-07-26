@@ -22,6 +22,8 @@ import org.rodinp.core.RodinDBException;
 public interface ISerialised {
 	
 	public static IAttributeType.String SERIALISED_ATTRIBUTE = RodinCore.getStringAttrType(ExtensionPersistencePlugin.PLUGIN_ID + ".serialised");
+	public static IAttributeType.String EPACKAGE_URI_ATTRIBUTE = RodinCore.getStringAttrType(ExtensionPersistencePlugin.PLUGIN_ID + ".ePackageURI");
+	public static IAttributeType.String ECLASSIFIER_ATTRIBUTE = RodinCore.getStringAttrType(ExtensionPersistencePlugin.PLUGIN_ID + ".eClassifier");
 
 	/**
 	 * Tests whether a serialised string is set.
@@ -48,4 +50,49 @@ public interface ISerialised {
 	 */
 	public abstract void setSerialised(String string,
 			IProgressMonitor monitor) throws RodinDBException;
+	
+	/**
+	 * Is EPackage URI set?
+	 * @return
+	 * @throws RodinDBException
+	 */
+	public abstract boolean hasEPackageURI() throws RodinDBException;
+
+	/**
+	 * Returns EPackage URI.
+	 * @return
+	 * @throws RodinDBException
+	 */
+	public abstract String getEPackageURI() throws RodinDBException;
+
+	/**
+	 * Sets URI.
+	 * @param string EPackage URI
+	 * @param monitor
+	 * @throws RodinDBException
+	 */
+	public abstract void setEPackageURI(String string, IProgressMonitor monitor)
+			throws RodinDBException;
+
+	/**
+	 * Is EClassifier set?
+	 * @return 
+	 * @throws RodinDBException
+	 */
+	public abstract boolean hasEClassifier() throws RodinDBException;
+
+	/**
+	 * Returns EClassifier.
+	 * @return
+	 * @throws RodinDBException
+	 */
+	public abstract String getEClassifier() throws RodinDBException;
+
+	/**
+	 * Sets EClassifier.
+	 * @param string EClassifier name
+	 * @param monitor
+	 * @throws RodinDBException
+	 */
+	public abstract void setEClassifier(String string, IProgressMonitor monitor) throws RodinDBException;
 }

@@ -19,6 +19,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -47,7 +50,7 @@ import org.rodinp.core.RodinDBException;
  * @author vitaly
  *
  */
-public abstract class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
+public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 	
 	private static final Set<IAttributeType> handledAttributes = new HashSet<IAttributeType>();
 
@@ -55,9 +58,20 @@ public abstract class SerialisedExtensionSynchroniser extends AbstractSynchronis
 		handledAttributes.add(ISerialised.SERIALISED_ATTRIBUTE);
 	}
 
+	private String nsURI;
+	private String eClass;
+
 	@Override
 	protected EStructuralFeature getFeature() {
 		return CorePackage.eINSTANCE.getEventBElement_Extensions();
+	}
+
+	@Override
+	protected EventBElement createEventBElement() {
+		EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+		EFactory eFactory = ePackage.getEFactoryInstance();
+		EObject element = eFactory.create(ePackage.getEClassifier(eClass).eClass());
+		return element instanceof EventBElement ? (EventBElement) element : null;
 	}
 
 	@Override
@@ -77,6 +91,13 @@ public abstract class SerialisedExtensionSynchroniser extends AbstractSynchronis
 
 		assert rodinElement instanceof ISerialisedExtension;
 		ISerialisedExtension serialisedExtension = (ISerialisedExtension) rodinElement;
+		
+		// check required classifier and package URI are set
+		if ((serialisedExtension.hasEPackageURI() && serialisedExtension.hasEClassifier()) == false)
+			return null;
+		
+		nsURI = serialisedExtension.getEPackageURI();
+		eClass = serialisedExtension.getEClassifier();
 		
 		// create EMF node
 		AbstractExtension eventBElement = (AbstractExtension) super.load(rodinElement, emfParent, monitor);
@@ -131,8 +152,10 @@ public abstract class SerialisedExtensionSynchroniser extends AbstractSynchronis
 			
 			try {
 				String saveString = XMIHelperImpl.saveString(Collections.emptyMap(), Collections.singletonList(emfExtension), "UTF-8", null);
-				rodinExtension.setSerialised(saveString, monitor);
 				rodinExtension.setExtensionId(emfExtension.getExtensionId(), monitor);
+				rodinExtension.setSerialised(saveString, monitor);
+				rodinExtension.setEPackageURI(emfExtension.eClass().getEPackage().getNsURI(), monitor);
+				rodinExtension.setEClassifier(emfExtension.eClass().getName(), monitor);
 			} catch (Exception e) {
 				RodinCore.getPlugin().getLog().log(
 						new Status(IStatus.ERROR, ExtensionPersistencePlugin.PLUGIN_ID, "Error when trying to serialise an extension.", e));

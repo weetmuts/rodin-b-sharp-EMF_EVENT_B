@@ -63,4 +63,36 @@ public class SerialisedExtension extends EventBElement implements ISerialisedExt
 		setAttributeValue(SERIALISED_ATTRIBUTE, string, monitor);
 	}
 
+	@Override
+	public boolean hasEPackageURI() throws RodinDBException {
+		return hasAttribute(EPACKAGE_URI_ATTRIBUTE);
+	}
+
+	@Override
+	public String getEPackageURI() throws RodinDBException {
+		return getAttributeValue(EPACKAGE_URI_ATTRIBUTE);
+	}
+
+	@Override
+	public void setEPackageURI(String string, IProgressMonitor monitor)
+			throws RodinDBException {
+		setAttributeValue(EPACKAGE_URI_ATTRIBUTE, string, monitor);
+	}
+
+	@Override
+	public boolean hasEClassifier() throws RodinDBException {
+		return hasAttribute(ECLASSIFIER_ATTRIBUTE);
+	}
+
+	@Override
+	public String getEClassifier() throws RodinDBException {
+		return getAttributeValue(ECLASSIFIER_ATTRIBUTE);
+	}
+
+	@Override
+	public void setEClassifier(String string, IProgressMonitor monitor)
+			throws RodinDBException {
+		setAttributeValue(ECLASSIFIER_ATTRIBUTE, string, monitor);
+	}
+
 }

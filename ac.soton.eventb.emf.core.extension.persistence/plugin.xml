@@ -21,6 +21,16 @@
             kind="string"
             name="Extension ID">
       </attributeType>
+      <attributeType
+            id="ac.soton.eventb.emf.core.extension.persistence.ePackageURI"
+            kind="string"
+            name="EPackage URI">
+      </attributeType>
+      <attributeType
+            id="ac.soton.eventb.emf.core.extension.persistence.eClassifier"
+            kind="string"
+            name="EClassifier">
+      </attributeType>
    </extension>
 
 </plugin>
