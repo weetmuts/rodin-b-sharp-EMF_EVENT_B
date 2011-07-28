@@ -6,7 +6,7 @@
          <meta.schema plugin="ac.soton.eventb.emf.core.extension.navigator" id="ac.soton.eventb.emf.core.extension.navigator.itemProviderAdapterFactories" name="Extension Item Provider Adapter Factories"/>
       </appinfo>
       <documentation>
-         Extension point provides an exension to Event-B navigator to support the display of Event-B EMF extensions using user provided adapter factories.
+         This extension point provides an exension to a navigator to support the display of Event-B Extensions with correct labels and icons.
       </documentation>
    </annotation>
 
@@ -54,7 +54,7 @@
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="class" type="string">
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   The fully qualified Java class name of a subclass of ComposedAdapterFactory.
