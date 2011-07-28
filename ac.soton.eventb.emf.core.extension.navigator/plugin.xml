@@ -45,5 +45,15 @@
             </contentExtension></includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorPropertyTester"
+            id="ac.soton.eventb.emf.core.extension.navigator.propertyTester"
+            namespace="ac.soton.eventb.emf.core.extension.navigator"
+            properties="eventBRootChild"
+            type="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem">
+      </propertyTester>
+   </extension>
 
 </plugin>
