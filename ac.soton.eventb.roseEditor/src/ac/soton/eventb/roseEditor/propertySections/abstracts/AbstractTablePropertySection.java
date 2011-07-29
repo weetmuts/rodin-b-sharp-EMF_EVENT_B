@@ -67,6 +67,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.CorePackage;
+import org.eventb.emf.core.EventBCommented;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
@@ -74,7 +75,6 @@ import org.eventb.emf.core.util.NameUtils;
 import org.rodinp.keyboard.RodinKeyboardPlugin;
 import org.rodinp.keyboard.preferences.PreferenceConstants;
 
-import ac.soton.eventb.roseEditor.properties.SetValuesDialog;
 import ac.soton.eventb.roseEditor.properties.TextChangeHelper;
 
 /**
@@ -303,10 +303,8 @@ public abstract class AbstractTablePropertySection extends AbstractEventBPropert
 			}else{
 				command = AddCommand.create(editingDomain, owner, getFeature(), newValue);
 			}
-			if (newValue instanceof EObject){
-				SetValuesDialog dialog = new SetValuesDialog(command);
-				dialog.open();
-				if (dialog.getReturnCode() == Window.CANCEL) return;
+			if (newValue instanceof EventBCommented){
+				((EventBCommented)newValue).setComment("");
 			}
 		}
 		editingDomain.getCommandStack().execute(command);
