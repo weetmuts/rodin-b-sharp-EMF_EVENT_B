@@ -70,7 +70,7 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 	protected EventBElement createEventBElement() {
 		EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
 		EFactory eFactory = ePackage.getEFactoryInstance();
-		EObject element = eFactory.create(ePackage.getEClassifier(eClass).eClass());
+		EObject element = eFactory.create((EClass) ePackage.getEClassifier(eClass));
 		return element instanceof EventBElement ? (EventBElement) element : null;
 	}
 
@@ -120,8 +120,10 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 					AbstractExtension ext = (AbstractExtension) resource.getContents().get(0);
 					EClass eClass = eventBElement.eClass();
 					EList<EStructuralFeature> eFeatures = eClass.getEAllStructuralFeatures();
-					for (EStructuralFeature feature : eFeatures)
-						eventBElement.eSet(feature, ext.eGet(feature));
+					for (EStructuralFeature feature : eFeatures) {
+						if (eventBElement.eClass().getEStructuralFeature(feature.getName()) != null)
+							eventBElement.eSet(feature, ext.eGet(feature));
+					}
 					return eventBElement;
 				}
 			}

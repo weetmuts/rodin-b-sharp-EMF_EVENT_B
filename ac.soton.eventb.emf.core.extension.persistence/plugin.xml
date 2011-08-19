@@ -22,12 +22,12 @@
             name="Extension ID">
       </attributeType>
       <attributeType
-            id="ac.soton.eventb.emf.core.extension.persistence.ePackageURI"
+            id="ePackageURI"
             kind="string"
             name="EPackage URI">
       </attributeType>
       <attributeType
-            id="ac.soton.eventb.emf.core.extension.persistence.eClassifier"
+            id="eClassifier"
             kind="string"
             name="EClassifier">
       </attributeType>
