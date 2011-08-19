@@ -37,7 +37,7 @@ public class ExtensionNavigatorPlugin extends AbstractUIPlugin {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "ac.soton.eventb.emf.core.extension.navigator"; //$NON-NLS-1$
 
-	private static final String FACTORIES_EXTENSION_ID = "ac.soton.eventb.emf.core.extension.navigator.itemProviderAdapterFactories";
+	private static final String FACTORIES_EXTENSION_ID = "ac.soton.eventb.emf.core.extension.navigator.adapterFactories";
 
 	// The shared instance
 	private static ExtensionNavigatorPlugin plugin;
