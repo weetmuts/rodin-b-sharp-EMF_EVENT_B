@@ -99,7 +99,7 @@
       eSuperTypes="#//EventBCommentedElement #//EventBNamed"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventBPredicate" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="predicate" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="&quot;true&quot;"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBNamedCommentedPredicateElement"
       abstract="true" eSuperTypes="#//EventBNamedCommentedElement #//EventBPredicate"/>
