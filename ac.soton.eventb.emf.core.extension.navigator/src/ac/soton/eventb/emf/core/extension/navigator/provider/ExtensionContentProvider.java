@@ -23,7 +23,7 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
 import org.eventb.core.IEventBRoot;
-import org.eventb.emf.core.machine.Machine;
+import org.eventb.emf.core.EventBElement;
 
 import ac.soton.eventb.emf.core.extension.navigator.ExtensionNavigatorPlugin;
 
@@ -113,9 +113,9 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 			URI fileURI = URI.createPlatformResourceURI(root.getResource().getFullPath().toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			if (resource.isLoaded() && resource.getContents().isEmpty() == false) {
-				Machine machine = (Machine) resource.getContents().get(0);
+				EventBElement element = (EventBElement) resource.getContents().get(0);
 				return wrapEObjects(
-						machine.getExtensions().toArray(),
+						element.getExtensions().toArray(),
 						parentElement);
 			}
 		}
