@@ -22,7 +22,7 @@
    </url>
 
    <requires>
-      <import feature="org.eventb.emf.feature" version="3.4.0" match="compatible"/>
+      <import feature="org.eventb.emf.feature" version="3.5.2" match="compatible"/>
    </requires>
 
    <plugin
