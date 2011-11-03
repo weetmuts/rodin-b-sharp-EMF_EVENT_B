@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter.ReadableInputStream;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eventb.emf.core.AbstractExtension;
@@ -145,6 +146,8 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 		if (rodinParent instanceof ISerialisedExtension)
 			return null;
 		
+		addUniqueID(emfElement);
+		
 		// create Rodin element
 		IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
 		
@@ -165,6 +168,23 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 			}
 		}
 		return rodinElement;
+	}
+	
+	/**
+	 * Where missing, adds a unique id to the given element and all its children recursively.
+	 * 
+	 * @param eventBElement
+	 */
+	private void addUniqueID(EventBElement eventBElement) {
+		String id = EcoreUtil.getID(eventBElement);
+		String className = eventBElement.eClass().getInstanceClassName();
+		if (id == null || id.length() <= className.length() + 1)
+			EcoreUtil.setID(eventBElement, className + "." + EcoreUtil.generateUUID());
+		for (EObject element : eventBElement.eContents()){
+			if (element instanceof EventBElement){
+				addUniqueID((EventBElement)element);
+			}
+		}
 	}
 
 }
