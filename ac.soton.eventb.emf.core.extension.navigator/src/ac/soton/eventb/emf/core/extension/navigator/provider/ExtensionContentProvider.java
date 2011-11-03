@@ -22,7 +22,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
+import org.eventb.core.IContextRoot;
 import org.eventb.core.IEventBRoot;
+import org.eventb.core.IMachineRoot;
 import org.eventb.emf.core.EventBElement;
 
 import ac.soton.eventb.emf.core.extension.navigator.ExtensionNavigatorPlugin;
@@ -108,7 +110,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 
 	@Override
 	public Object[] getChildren(Object parentElement) {
-		if (parentElement instanceof IEventBRoot) {
+		if (parentElement instanceof IMachineRoot || parentElement instanceof IContextRoot) {
 			IEventBRoot root = (IEventBRoot) parentElement;
 			URI fileURI = URI.createPlatformResourceURI(root.getResource().getFullPath().toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);

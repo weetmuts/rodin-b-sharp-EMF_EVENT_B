@@ -12,7 +12,10 @@
          <triggerPoints>
             <or>
                <instanceof
-                     value="org.eventb.core.IEventBRoot">
+                     value="org.eventb.core.IMachineRoot">
+               </instanceof>
+               <instanceof
+                     value="org.eventb.core.IContextRoot">
                </instanceof>
                <instanceof
                      value="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem">
