@@ -52,9 +52,9 @@ import org.rodinp.core.RodinDBException;
 /**
  * Abstract basis for synchronisers that save/load between EMF and Rodin
  * 
- * cfs (04/01/12) Update the Annotation for rodin internal names when a new name is allocated. 
- * if updating an existing entry, disable notifications on the entry so that the transactional 
- * editing adapter doesn't object.
+ * cfs (04/01/12) Update the Annotation for rodin internal names when a new name
+ * is allocated. if updating an existing entry, disable notifications on the
+ * entry so that the transactional editing adapter doesn't object.
  * 
  * @author cfs/ff
  * 
@@ -229,11 +229,13 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	public IRodinElement save(final EventBElement eventBElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 		// get rodin details annotation or create if doesn't exist
 		Annotation rodinInternals = eventBElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
+		((Notifier) eventBElement).eSetDeliver(false); //we may need to update the Annotations without the Transactional Editing Adapter knowing
 		if (rodinInternals == null) {
 			rodinInternals = CoreFactory.eINSTANCE.createAnnotation();
 			rodinInternals.setSource(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
 			eventBElement.getAnnotations().add(rodinInternals);
 		}
+		((Notifier) rodinInternals).eSetDeliver(false); //we may need to update this Annotation without the Transactional Editing Adapter knowing
 		rodinInternalDetails = rodinInternals.getDetails();
 
 		// create Rodin element
@@ -255,6 +257,9 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			return null;
 		}
 		saveAttributes(eventBElement, monitor, rodinElement);
+
+		((Notifier) rodinInternals).eSetDeliver(true);
+		((Notifier) eventBElement).eSetDeliver(true);
 		return rodinElement;
 	}
 
@@ -282,11 +287,12 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 
 		if (rodinElement instanceof IConfigurationElement) {
 			// make sure the element has a configuration
-			if (rodinInternalDetails.get(CONFIGURATION) == null) {
-				rodinInternalDetails.put(CONFIGURATION, IConfigurationElement.DEFAULT_CONFIGURATION);
+			String configuration = rodinInternalDetails.get(CONFIGURATION);
+			if (configuration == null || "".equals(configuration)) {
+				configuration = IConfigurationElement.DEFAULT_CONFIGURATION;
+				rodinInternalDetails.put(CONFIGURATION, configuration);
 			}
-
-			((IConfigurationElement) rodinElement).setConfiguration(rodinInternalDetails.get(CONFIGURATION), monitor);
+			((IConfigurationElement) rodinElement).setConfiguration(configuration, monitor);
 		}
 
 		if (rodinElement instanceof ICommentedElement && eventBElement instanceof EventBCommented
