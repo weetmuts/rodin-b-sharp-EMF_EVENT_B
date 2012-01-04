@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Copyright (c) 2011 University of Duesseldorf, University of Southampton.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *******************************************************************************/
+
 package org.eventb.emf.persistence.synchroniser;
 
 import java.util.Arrays;
@@ -9,6 +17,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAttribute;
@@ -40,6 +49,17 @@ import org.rodinp.core.IRodinFile;
 import org.rodinp.core.RodinCore;
 import org.rodinp.core.RodinDBException;
 
+/**
+ * Abstract basis for synchronisers that save/load between EMF and Rodin
+ * 
+ * cfs (04/01/12) Update the Annotation for rodin internal names when a new name is allocated. 
+ * if updating an existing entry, disable notifications on the entry so that the transactional 
+ * editing adapter doesn't object.
+ * 
+ * @author cfs/ff
+ * 
+ */
+
 public abstract class AbstractSynchroniser implements ISynchroniser {
 
 	private static final String IDENTIFIER = "identifier";
@@ -48,7 +68,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	private static final String CONFIGURATION = "configuration";
 	private static final String COMMENT = "comment";
 
-	protected EMap<String, String> rodinInternalDetails;
+	private EMap<String, String> rodinInternalDetails;
 
 	private static final Set<IAttributeType> handledAttributes = new HashSet<IAttributeType>();
 
@@ -325,12 +345,28 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		}
 	}
 
-	protected String getInternalName() {
-		String name = rodinInternalDetails.get(NAME);
-		if (name == null) {
-			// no name retrieved from internal details so create one
-			return getNewName();
+	private String getInternalName() {
+		String name = null;
+		Entry<String, String> nameEntry = null;
+
+		//try to obtain the name from rodinInternalDetails
+		if (rodinInternalDetails.containsKey(NAME)) {
+			nameEntry = rodinInternalDetails.get(rodinInternalDetails.indexOfKey(NAME));
+			name = nameEntry.getValue();
 		}
+		// if no usuable name was obtained ...
+		if (name == null || "".equals(name)) {
+			//get a new name 
+			name = getNewName();
+			//remember the new name for next time
+			//(if a name entry already existed disable notifications so that Transactional Editing Adapter doesn't know we are changing it)
+			if (nameEntry != null)
+				((Notifier) nameEntry).eSetDeliver(false);
+			rodinInternalDetails.put(NAME, name);
+			if (nameEntry != null)
+				((Notifier) nameEntry).eSetDeliver(true);
+		}
+
 		return name;
 	}
 
