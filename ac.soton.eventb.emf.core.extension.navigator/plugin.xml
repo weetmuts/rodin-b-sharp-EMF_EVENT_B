@@ -32,7 +32,8 @@
             activeByDefault="true"
             class="ac.soton.eventb.emf.core.extension.navigator.filter.AnnotationFilter"
             id="ac.soton.eventb.emf.core.extension.navigator.filter.annotationFilter"
-            name="%commonFilter.name">
+            name="%commonFilter.name"
+            visibleInUI="true">
       </commonFilter>
    </extension>
    <extension
