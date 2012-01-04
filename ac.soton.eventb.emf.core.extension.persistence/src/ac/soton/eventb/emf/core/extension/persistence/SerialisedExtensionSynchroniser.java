@@ -48,6 +48,9 @@ import org.rodinp.core.RodinDBException;
  * which must be provided by a client extension to create a correct EMF element
  * on loading.
  * 
+ * cfs (04/01/12) : when adding unique id's disable notification of changes (eventBElement.eSetDeliver(false)) to
+ * 					prevent exceptions due to the change being made without a Transactional Command
+ * 
  * @author vitaly
  *
  */
@@ -167,19 +170,25 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 				return null;
 			}
 		}
+		
 		return rodinElement;
 	}
 	
 	/**
 	 * Where missing, adds a unique id to the given element and all its children recursively.
+	 * Note that notifications are disabled for the element while it is being changed - this 
+	 * prevents the Transactional Editing domain objecting to the change.
 	 * 
 	 * @param eventBElement
 	 */
 	private void addUniqueID(EventBElement eventBElement) {
 		String id = EcoreUtil.getID(eventBElement);
 		String className = eventBElement.eClass().getInstanceClassName();
-		if (id == null || id.length() <= className.length() + 1)
+		if (id == null || id.length() <= className.length() + 1){
+			eventBElement.eSetDeliver(false); //prevent notification of changes made here
 			EcoreUtil.setID(eventBElement, className + "." + EcoreUtil.generateUUID());
+			eventBElement.eSetDeliver(true); //prevent notification of changes made here
+		}
 		for (EObject element : eventBElement.eContents()){
 			if (element instanceof EventBElement){
 				addUniqueID((EventBElement)element);
