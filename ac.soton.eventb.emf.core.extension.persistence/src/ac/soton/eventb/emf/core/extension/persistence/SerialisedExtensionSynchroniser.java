@@ -176,7 +176,7 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 	
 	/**
 	 * Where missing, adds a unique id to the given element and all its children recursively.
-	 * Note that notifications are disabled for the element while it is being changed - this 
+	 * Note that TransactionChangeRecorders are disabled for the element while it is being changed - this 
 	 * prevents the Transactional Editing domain objecting to the change.
 	 * 
 	 * @param eventBElement
@@ -185,9 +185,9 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 		String id = EcoreUtil.getID(eventBElement);
 		String className = eventBElement.eClass().getInstanceClassName();
 		if (id == null || id.length() <= className.length() + 1){
-			eventBElement.eSetDeliver(false); //prevent notification of changes made here
+			disableTransactionChangeRecorders(eventBElement); //.eSetDeliver(false); //prevent notification of changes made here
 			EcoreUtil.setID(eventBElement, className + "." + EcoreUtil.generateUUID());
-			eventBElement.eSetDeliver(true); //prevent notification of changes made here
+			reEnableTransactionChangeRecorders(eventBElement); //re-enable notification of changes made here
 		}
 		for (EObject element : eventBElement.eContents()){
 			if (element instanceof EventBElement){

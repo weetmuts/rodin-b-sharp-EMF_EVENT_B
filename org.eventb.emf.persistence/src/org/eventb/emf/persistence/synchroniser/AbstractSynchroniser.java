@@ -8,8 +8,12 @@
 
 package org.eventb.emf.persistence.synchroniser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -17,6 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
@@ -24,6 +29,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.impl.TransactionChangeRecorder;
 import org.eventb.core.EventBAttributes;
 import org.eventb.core.ICommentedElement;
 import org.eventb.core.IConfigurationElement;
@@ -67,8 +73,6 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	private static final String NAME = "name";
 	private static final String CONFIGURATION = "configuration";
 	private static final String COMMENT = "comment";
-
-	private EMap<String, String> rodinInternalDetails;
 
 	private static final Set<IAttributeType> handledAttributes = new HashSet<IAttributeType>();
 
@@ -123,7 +127,8 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		Annotation rodinInternals = CoreFactory.eINSTANCE.createAnnotation();
 		rodinInternals.setSource(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
 		eventBElement.getAnnotations().add(rodinInternals);
-		rodinInternalDetails = rodinInternals.getDetails();
+
+		EMap<String, String> rodinInternalDetails = rodinInternals.getDetails();
 
 		if (rodinElement.hasAttribute(EventBAttributes.GENERATED_ATTRIBUTE)) {
 			eventBElement.setLocalGenerated(rodinElement.getAttributeValue(EventBAttributes.GENERATED_ATTRIBUTE));
@@ -229,14 +234,14 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	public IRodinElement save(final EventBElement eventBElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 		// get rodin details annotation or create if doesn't exist
 		Annotation rodinInternals = eventBElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
-		((Notifier) eventBElement).eSetDeliver(false); //we may need to update the Annotations without the Transactional Editing Adapter knowing
+
+		disableTransactionChangeRecorders(rodinInternals, eventBElement); //we may need to update the Annotations without the Transactional Editing Adapter knowing
 		if (rodinInternals == null) {
 			rodinInternals = CoreFactory.eINSTANCE.createAnnotation();
 			rodinInternals.setSource(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
 			eventBElement.getAnnotations().add(rodinInternals);
 		}
-		((Notifier) rodinInternals).eSetDeliver(false); //we may need to update this Annotation without the Transactional Editing Adapter knowing
-		rodinInternalDetails = rodinInternals.getDetails();
+		reEnableTransactionChangeRecorders(rodinInternals, eventBElement); //turn notification back on
 
 		// create Rodin element
 		IInternalElement rodinElement = null;
@@ -248,7 +253,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			rodinElement.clear(true, monitor);
 		} else if (rodinParent instanceof IInternalElement) {
 			try {
-				rodinElement = getNewRodinElement((IInternalElement) rodinParent, getRodinType());
+				rodinElement = getNewRodinElement((IInternalElement) rodinParent, getRodinType(), rodinInternals);
 				rodinElement.create(null, monitor);
 			} catch (RodinDBException e) {
 				PersistencePlugin.getDefault().getLog().log(new Status(IStatus.ERROR, PersistencePlugin.PLUGIN_ID, "Rodin Exception while saving: " + e.getMessage()));
@@ -256,20 +261,24 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		} else {
 			return null;
 		}
-		saveAttributes(eventBElement, monitor, rodinElement);
+		saveAttributes(eventBElement, monitor, rodinElement, rodinInternals);
 
-		((Notifier) rodinInternals).eSetDeliver(true);
-		((Notifier) eventBElement).eSetDeliver(true);
 		return rodinElement;
 	}
 
-	private IInternalElement getNewRodinElement(IInternalElement rodinParent, IInternalElementType<?> rodinType) throws RodinDBException {
-		IInternalElement rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName());
+	private IInternalElement getNewRodinElement(IInternalElement rodinParent, IInternalElementType<?> rodinType, Annotation rodinInternals) throws RodinDBException {
+		IInternalElement rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName(rodinInternals));
 		if (rodinElement.exists()) {
 			//if name clash, overwrite Rodin name with UUID - this should be extremely rare.
 			String oldName = rodinElement.getElementName();
-			rodinInternalDetails.removeKey("name");
-			rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName());
+
+			EMap<String, String> rodinInternalDetails = rodinInternals.getDetails();
+			disableTransactionChangeRecorders(rodinInternals, rodinInternalDetails, rodinInternalDetails.get(rodinInternalDetails.indexOfKey(NAME)));
+			rodinInternals.getDetails().removeKey(NAME);
+			reEnableTransactionChangeRecorders(rodinInternals, rodinInternalDetails, rodinInternalDetails.get(rodinInternalDetails.indexOfKey(NAME)));
+
+			rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName(rodinInternals));
+
 			PersistencePlugin
 					.getDefault()
 					.getLog()
@@ -279,7 +288,8 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		return rodinElement;
 	}
 
-	private void saveAttributes(final EventBElement eventBElement, final IProgressMonitor monitor, final IInternalElement rodinElement) throws RodinDBException {
+	private void saveAttributes(final EventBElement eventBElement, final IProgressMonitor monitor, final IInternalElement rodinElement, Annotation rodinInternals)
+			throws RodinDBException {
 
 		if (eventBElement.isSetLocalGenerated()) {
 			rodinElement.setAttributeValue(EventBAttributes.GENERATED_ATTRIBUTE, eventBElement.isLocalGenerated(), monitor);
@@ -287,10 +297,10 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 
 		if (rodinElement instanceof IConfigurationElement) {
 			// make sure the element has a configuration
-			String configuration = rodinInternalDetails.get(CONFIGURATION);
+			String configuration = rodinInternals.getDetails().get(CONFIGURATION);
 			if (configuration == null || "".equals(configuration)) {
 				configuration = IConfigurationElement.DEFAULT_CONFIGURATION;
-				rodinInternalDetails.put(CONFIGURATION, configuration);
+				//rodinInternalDetails.put(CONFIGURATION, configuration); not necessary and dangerous re Transaction notifications
 			}
 			((IConfigurationElement) rodinElement).setConfiguration(configuration, monitor);
 		}
@@ -300,19 +310,17 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			((ICommentedElement) rodinElement).setComment(((EventBCommented) eventBElement).getComment(), monitor);
 		}
 
-		String elementName = null;
+		String elementName = "";
 		if (eventBElement instanceof EventBNamed && ((EventBNamed) eventBElement).eIsSet(CorePackage.eINSTANCE.getEventBNamed_Name())) {
 			elementName = ((EventBNamed) eventBElement).getName();
 		}
 
 		if (rodinElement instanceof ILabeledElement) {
-			if (elementName != null)
-				((ILabeledElement) rodinElement).setLabel(elementName, monitor);
+			((ILabeledElement) rodinElement).setLabel(elementName, monitor);
 		}
 
 		if (rodinElement instanceof IIdentifierElement) {
-			if (elementName != null)
-				((IIdentifierElement) rodinElement).setIdentifierString(elementName, monitor);
+			((IIdentifierElement) rodinElement).setIdentifierString(elementName, monitor);
 		}
 
 		saveGenericAttributes(rodinElement, eventBElement, monitor);
@@ -351,10 +359,10 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		}
 	}
 
-	private String getInternalName() {
+	private String getInternalName(Annotation rodinInternals) {
 		String name = null;
 		Entry<String, String> nameEntry = null;
-
+		EMap<String, String> rodinInternalDetails = rodinInternals.getDetails();
 		//try to obtain the name from rodinInternalDetails
 		if (rodinInternalDetails.containsKey(NAME)) {
 			nameEntry = rodinInternalDetails.get(rodinInternalDetails.indexOfKey(NAME));
@@ -365,12 +373,10 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			//get a new name 
 			name = getNewName();
 			//remember the new name for next time
-			//(if a name entry already existed disable notifications so that Transactional Editing Adapter doesn't know we are changing it)
-			if (nameEntry != null)
-				((Notifier) nameEntry).eSetDeliver(false);
+			//(if a name entry already existed disable notifications so that TransactionChangeRecorder doesn't know we are changing it)
+			disableTransactionChangeRecorders(nameEntry, rodinInternals);
 			rodinInternalDetails.put(NAME, name);
-			if (nameEntry != null)
-				((Notifier) nameEntry).eSetDeliver(true);
+			reEnableTransactionChangeRecorders(nameEntry, rodinInternals);
 		}
 
 		return name;
@@ -378,6 +384,65 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 
 	protected String getNewName() {
 		return EcoreUtil.generateUUID();
+	}
+
+	////////////////////////////////////////////////////////////////
+
+	private final Map<Notifier, List<TransactionChangeRecorder>> savedAdapters = new HashMap<Notifier, List<TransactionChangeRecorder>>();;
+
+	/**
+	 * This removes and caches all adapters of type, TransactionChangeRecorder
+	 * from all the elements in the parameter list. This enables modifications
+	 * to be made to these elements even if the model is protected by the
+	 * Transactional Command Framework. (Only background annotations/properties
+	 * should be changed in this way since editors need to know of any major
+	 * changes to the model).
+	 * 
+	 * Any object, including null, can be passed to this method. Anything that
+	 * is not a notifier or has no TransactionChangeRecorder adapters will be
+	 * ignored.
+	 * 
+	 * @param elements
+	 */
+	protected void disableTransactionChangeRecorders(Object... elements) {
+		for (Object element : elements) {
+			if (element instanceof Notifier) {
+				List<TransactionChangeRecorder> tcrs = new ArrayList<TransactionChangeRecorder>();
+				for (Adapter adapter : ((Notifier) element).eAdapters()) {
+					if (adapter instanceof TransactionChangeRecorder) {
+						tcrs.add((TransactionChangeRecorder) adapter);
+					}
+				}
+				if (tcrs != null && tcrs.size() > 0) {
+					((Notifier) element).eAdapters().removeAll(tcrs);
+					savedAdapters.put((Notifier) element, tcrs);
+				}
+
+			}
+
+		}
+	}
+
+	/**
+	 * Replace TransactionChangeRecorder adapters that have previously been
+	 * removed via 'diableTransactionChangeRecorders' for all the elements in
+	 * the parameter list.
+	 * 
+	 * Any object, including null, can be passed to this method. Anything that
+	 * is not a notifier that is in the cached map of previously disabled
+	 * elements will be ignored.
+	 * 
+	 * @param elements
+	 */
+	protected void reEnableTransactionChangeRecorders(Object... elements) {
+		for (Object element : elements) {
+			if (element instanceof Notifier) {
+				if (savedAdapters.containsKey(element)) {
+					((Notifier) element).eAdapters().addAll(savedAdapters.get(element));
+					savedAdapters.remove(element);
+				}
+			}
+		}
 	}
 
 }
