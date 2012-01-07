@@ -74,8 +74,8 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * sets the name of this element by calling setName1()
-	 * (setName1() is defined in model and generated)
+	 * sets the name of this element by calling doSetName()
+	 * (doSetName() is defined in model and generated)
 	 * <!-- end-user-doc -->
 	 * @generated not
 	 */
