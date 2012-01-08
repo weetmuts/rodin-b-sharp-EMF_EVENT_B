@@ -164,6 +164,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @param abstractEventBElement
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	private EventBElement refineEventBElement(EventBElement abstractEventBElement) {
 
 		
