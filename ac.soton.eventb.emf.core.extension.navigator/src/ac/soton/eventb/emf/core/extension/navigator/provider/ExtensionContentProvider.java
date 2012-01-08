@@ -7,8 +7,10 @@
  *******************************************************************************/
 package ac.soton.eventb.emf.core.extension.navigator.provider;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
@@ -113,7 +115,19 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 		if (parentElement instanceof IMachineRoot || parentElement instanceof IContextRoot) {
 			IEventBRoot root = (IEventBRoot) parentElement;
 			URI fileURI = URI.createPlatformResourceURI(root.getResource().getFullPath().toString(), true);
-			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
+			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, false); //n.b. do not load until notifications disabled
+			if (resource == null){
+				resource = myEditingDomain.getResourceSet().createResource(fileURI);
+			}
+			if (!resource.isLoaded()){
+				resource.eSetDeliver(false);	// turn off notifications to Transactional Change Recorder while loading
+				try {
+					resource.load(Collections.emptyMap());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				resource.eSetDeliver(true);
+			}
 			if (resource.isLoaded() && resource.getContents().isEmpty() == false) {
 				EventBElement element = (EventBElement) resource.getContents().get(0);
 				return wrapEObjects(
@@ -170,7 +184,9 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 	void unloadAllResources() {
 		for (Resource nextResource : myEditingDomain.getResourceSet()
 				.getResources()) {
+			nextResource.eSetDeliver(false); // avoid notifications 
 			nextResource.unload();
+			nextResource.eSetDeliver(true);
 		}
 	}
 
