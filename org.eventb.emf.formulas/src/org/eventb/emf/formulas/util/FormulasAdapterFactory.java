@@ -8,17 +8,12 @@ package org.eventb.emf.formulas.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.Extension;
-
 import org.eventb.emf.formulas.*;
 
 /**

@@ -9,14 +9,11 @@ package org.eventb.emf.formulas.util;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.Extension;
-
 import org.eventb.emf.formulas.*;
 
 /**
