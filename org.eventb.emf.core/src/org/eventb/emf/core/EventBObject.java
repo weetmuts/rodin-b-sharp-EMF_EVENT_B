@@ -55,6 +55,8 @@ public interface EventBObject extends EObject {
 	 *
 	 * returns the nearest container of this element that is a sub-type eClass
 	 * or null if no container of that type
+	 * 
+	 * 	 * N.B. currently this returns the element itself if it is a subclass of the required kind
 	 *
 	 * @param 	the EClass that is the super-type of the returned elements
 	 * @return 	containing EventBObject that is a sub-type of eClass
