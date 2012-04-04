@@ -60,7 +60,6 @@ public class NameUtils {
 	 * @param list of UMLB elements
 	 * @return an array of names
 	 */
-	@SuppressWarnings("unchecked")
 	public static List<String> getNames(final List list){
 		return getNames(list,false,false);
 	}
@@ -73,7 +72,6 @@ public class NameUtils {
 	 * @param if true, include metaclass name (i.e. class name) as a prefix to the element name
 	 * @return an array of names
 	 */
-	@SuppressWarnings("unchecked")
 	public static List<String> getNames(final List list, final boolean incClassNames){
 		return getNames(list,incClassNames,false);
 	}
@@ -87,7 +85,6 @@ public class NameUtils {
 	 * @param if true, include owning construct name as a prefix to the element name
 	 * @return an array of names
 	 */
-	@SuppressWarnings("unchecked")
 	public static List<String> getNames(final List list, final boolean incClassNames, final boolean incOwners){
 		ArrayList<String> names = new ArrayList<String>();
 		if (list==null) return names;
