@@ -2,7 +2,7 @@
 <feature
       id="ac.soton.eventb.emf.core.extension.feature"
       label="%featureName"
-      version="1.0.4"
+      version="1.1.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -22,8 +22,6 @@
    </url>
 
    <requires>
-      <import feature="org.eventb.emf.feature" version="3.5.2" match="greaterOrEqual"/>
-      <import feature="org.eclipse.emf.transaction" version="1.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime" version="3.7.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore" version="2.7.0" match="compatible"/>
       <import plugin="org.eventb.emf.core" version="2.2.3" match="compatible"/>
@@ -36,7 +34,10 @@
       <import plugin="org.eclipse.emf.edit.ui" version="2.7.0" match="compatible"/>
       <import plugin="org.eclipse.emf.workspace" version="1.5.1" match="compatible"/>
       <import plugin="org.eclipse.core.expressions" version="3.4.300" match="compatible"/>
+      <import plugin="ac.soton.eventb.emf.core.extension.persistence" version="1.1.0" match="compatible"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.core" version="1.4.1" match="compatible"/>
       <import plugin="org.eventb.emf.persistence" version="2.3.1" match="compatible"/>
+      <import plugin="org.eclipse.emf.transaction" version="1.4.0" match="compatible"/>
    </requires>
 
    <plugin
