@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eventb.core.IEventBRoot;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.EventBNamed;
 import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IRefinementParticipant;
 import org.rodinp.core.RodinDBException;
@@ -198,7 +199,8 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 							for (EObject abstractReference : (EList<EObject>)(getKeyByValue(copier, eObject)).eGet(referenceFeature)){
 								((EList<EObject>)eObject.eGet(referenceFeature)).add(
 										 EMFCoreUtil.createProxy(
-												 (EClass)referenceFeature.getEType(),
+												 //(EClass)referenceFeature.getEType(),
+												 ((EObject) abstractReference).eClass(),
 												 referenceResourceURI.appendFragment(EcoreUtil.getURI(abstractReference).fragment()
 										)));
 							}
@@ -216,7 +218,8 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 									eObject.eSet(
 										referenceFeature, 
 										EMFCoreUtil.createProxy(
-												(EClass)referenceFeature.getEType(),
+												//(EClass)referenceFeature.getEType(),
+												((EObject) referencedObject).eClass(),
 												referenceResourceURI.appendFragment(EcoreUtil.getURI((EObject)referencedObject).fragment()
 												)));
 								}
