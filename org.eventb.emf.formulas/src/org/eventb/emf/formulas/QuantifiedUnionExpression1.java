@@ -44,52 +44,52 @@ public interface QuantifiedUnionExpression1 extends BExpressionResolved {
 	EList<IdentifierExpression> getIdentifiers();
 
 	/**
-	 * Returns the value of the '<em><b>Predicate</b></em>' reference.
+	 * Returns the value of the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Predicate</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Predicate</em>' reference.
+	 * @return the value of the '<em>Predicate</em>' containment reference.
 	 * @see #setPredicate(BPredicateResolved)
 	 * @see org.eventb.emf.formulas.FormulasPackage#getQuantifiedUnionExpression1_Predicate()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	BPredicateResolved getPredicate();
 
 	/**
-	 * Sets the value of the '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getPredicate <em>Predicate</em>}' reference.
+	 * Sets the value of the '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getPredicate <em>Predicate</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Predicate</em>' reference.
+	 * @param value the new value of the '<em>Predicate</em>' containment reference.
 	 * @see #getPredicate()
 	 * @generated
 	 */
 	void setPredicate(BPredicateResolved value);
 
 	/**
-	 * Returns the value of the '<em><b>Expression</b></em>' reference.
+	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expression</em>' reference.
+	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(BExpressionResolved)
 	 * @see org.eventb.emf.formulas.FormulasPackage#getQuantifiedUnionExpression1_Expression()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	BExpressionResolved getExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getExpression <em>Expression</em>}' reference.
+	 * Sets the value of the '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getExpression <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expression</em>' reference.
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
 	 * @see #getExpression()
 	 * @generated
 	 */

@@ -8,6 +8,7 @@ package org.eventb.emf.formulas.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -34,7 +35,7 @@ import org.eventb.emf.formulas.QuantifiedUnionExpression2;
  */
 public class QuantifiedUnionExpression2Impl extends BExpressionResolvedImpl implements QuantifiedUnionExpression2 {
 	/**
-	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' reference.
+	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPredicate()
@@ -78,14 +79,6 @@ public class QuantifiedUnionExpression2Impl extends BExpressionResolvedImpl impl
 	 * @generated
 	 */
 	public BPredicateResolved getPredicate() {
-		if (predicate != null && predicate.eIsProxy()) {
-			InternalEObject oldPredicate = (InternalEObject)predicate;
-			predicate = (BPredicateResolved)eResolveProxy(oldPredicate);
-			if (predicate != oldPredicate) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE, oldPredicate, predicate));
-			}
-		}
 		return predicate;
 	}
 
@@ -94,8 +87,14 @@ public class QuantifiedUnionExpression2Impl extends BExpressionResolvedImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BPredicateResolved basicGetPredicate() {
-		return predicate;
+	public NotificationChain basicSetPredicate(BPredicateResolved newPredicate, NotificationChain msgs) {
+		BPredicateResolved oldPredicate = predicate;
+		predicate = newPredicate;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE, oldPredicate, newPredicate);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -104,10 +103,17 @@ public class QuantifiedUnionExpression2Impl extends BExpressionResolvedImpl impl
 	 * @generated
 	 */
 	public void setPredicate(BPredicateResolved newPredicate) {
-		BPredicateResolved oldPredicate = predicate;
-		predicate = newPredicate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE, oldPredicate, predicate));
+		if (newPredicate != predicate) {
+			NotificationChain msgs = null;
+			if (predicate != null)
+				msgs = ((InternalEObject)predicate).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE, null, msgs);
+			if (newPredicate != null)
+				msgs = ((InternalEObject)newPredicate).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE, null, msgs);
+			msgs = basicSetPredicate(newPredicate, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE, newPredicate, newPredicate));
 	}
 
 	/**
@@ -154,11 +160,24 @@ public class QuantifiedUnionExpression2Impl extends BExpressionResolvedImpl impl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE:
+				return basicSetPredicate(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__PREDICATE:
-				if (resolve) return getPredicate();
-				return basicGetPredicate();
+				return getPredicate();
 			case FormulasPackage.QUANTIFIED_UNION_EXPRESSION2__EXPRESSION:
 				if (resolve) return getExpression();
 				return basicGetExpression();

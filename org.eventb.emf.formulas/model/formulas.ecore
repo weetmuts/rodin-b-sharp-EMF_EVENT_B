@@ -71,13 +71,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" lowerBound="1"
         upperBound="-1" eType="#//IdentifierExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
-        eType="#//BPredicateResolved"/>
+        eType="#//BPredicateResolved" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-        eType="#//BExpressionResolved"/>
+        eType="#//BExpressionResolved" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QuantifiedUnionExpression2" eSuperTypes="#//BExpressionResolved">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
-        eType="#//BPredicateResolved"/>
+        eType="#//BPredicateResolved" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
         eType="#//BExpressionResolved"/>
   </eClassifiers>
@@ -85,29 +85,29 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" lowerBound="1"
         upperBound="-1" eType="#//IdentifierExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
-        eType="#//BPredicateResolved"/>
+        eType="#//BPredicateResolved" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-        eType="#//BExpressionResolved"/>
+        eType="#//BExpressionResolved" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QuantifiedIntersectionExpression2" eSuperTypes="#//BExpressionResolved">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
-        eType="#//BPredicateResolved"/>
+        eType="#//BPredicateResolved" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-        eType="#//BExpressionResolved"/>
+        eType="#//BExpressionResolved" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SetComprehensionExpression1" eSuperTypes="#//BExpressionResolved">
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" lowerBound="1"
         upperBound="-1" eType="#//IdentifierExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
-        eType="#//BPredicateResolved"/>
+        eType="#//BPredicateResolved" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-        eType="#//BExpressionResolved"/>
+        eType="#//BExpressionResolved" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SetComprehensionExpression2" eSuperTypes="#//BExpressionResolved">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicate" lowerBound="1"
-        eType="#//BPredicateResolved"/>
+        eType="#//BPredicateResolved" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-        eType="#//BExpressionResolved"/>
+        eType="#//BExpressionResolved" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="INT" eSuperTypes="#//Constant #//BExpressionResolved"/>
   <eClassifiers xsi:type="ecore:EClass" name="NAT" eSuperTypes="#//Constant #//BExpressionResolved"/>

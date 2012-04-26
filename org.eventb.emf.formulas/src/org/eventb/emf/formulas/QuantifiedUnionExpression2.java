@@ -26,26 +26,26 @@ package org.eventb.emf.formulas;
  */
 public interface QuantifiedUnionExpression2 extends BExpressionResolved {
 	/**
-	 * Returns the value of the '<em><b>Predicate</b></em>' reference.
+	 * Returns the value of the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Predicate</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Predicate</em>' reference.
+	 * @return the value of the '<em>Predicate</em>' containment reference.
 	 * @see #setPredicate(BPredicateResolved)
 	 * @see org.eventb.emf.formulas.FormulasPackage#getQuantifiedUnionExpression2_Predicate()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	BPredicateResolved getPredicate();
 
 	/**
-	 * Sets the value of the '{@link org.eventb.emf.formulas.QuantifiedUnionExpression2#getPredicate <em>Predicate</em>}' reference.
+	 * Sets the value of the '{@link org.eventb.emf.formulas.QuantifiedUnionExpression2#getPredicate <em>Predicate</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Predicate</em>' reference.
+	 * @param value the new value of the '<em>Predicate</em>' containment reference.
 	 * @see #getPredicate()
 	 * @generated
 	 */

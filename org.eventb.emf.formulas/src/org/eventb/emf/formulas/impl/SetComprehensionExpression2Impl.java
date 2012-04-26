@@ -8,6 +8,7 @@ package org.eventb.emf.formulas.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -34,7 +35,7 @@ import org.eventb.emf.formulas.SetComprehensionExpression2;
  */
 public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl implements SetComprehensionExpression2 {
 	/**
-	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' reference.
+	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPredicate()
@@ -44,7 +45,7 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	protected BPredicateResolved predicate;
 
 	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getExpression()
@@ -78,14 +79,6 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	 * @generated
 	 */
 	public BPredicateResolved getPredicate() {
-		if (predicate != null && predicate.eIsProxy()) {
-			InternalEObject oldPredicate = (InternalEObject)predicate;
-			predicate = (BPredicateResolved)eResolveProxy(oldPredicate);
-			if (predicate != oldPredicate) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE, oldPredicate, predicate));
-			}
-		}
 		return predicate;
 	}
 
@@ -94,8 +87,14 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BPredicateResolved basicGetPredicate() {
-		return predicate;
+	public NotificationChain basicSetPredicate(BPredicateResolved newPredicate, NotificationChain msgs) {
+		BPredicateResolved oldPredicate = predicate;
+		predicate = newPredicate;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE, oldPredicate, newPredicate);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -104,10 +103,17 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	 * @generated
 	 */
 	public void setPredicate(BPredicateResolved newPredicate) {
-		BPredicateResolved oldPredicate = predicate;
-		predicate = newPredicate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE, oldPredicate, predicate));
+		if (newPredicate != predicate) {
+			NotificationChain msgs = null;
+			if (predicate != null)
+				msgs = ((InternalEObject)predicate).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE, null, msgs);
+			if (newPredicate != null)
+				msgs = ((InternalEObject)newPredicate).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE, null, msgs);
+			msgs = basicSetPredicate(newPredicate, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE, newPredicate, newPredicate));
 	}
 
 	/**
@@ -116,14 +122,6 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	 * @generated
 	 */
 	public BExpressionResolved getExpression() {
-		if (expression != null && expression.eIsProxy()) {
-			InternalEObject oldExpression = (InternalEObject)expression;
-			expression = (BExpressionResolved)eResolveProxy(oldExpression);
-			if (expression != oldExpression) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION, oldExpression, expression));
-			}
-		}
 		return expression;
 	}
 
@@ -132,8 +130,14 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BExpressionResolved basicGetExpression() {
-		return expression;
+	public NotificationChain basicSetExpression(BExpressionResolved newExpression, NotificationChain msgs) {
+		BExpressionResolved oldExpression = expression;
+		expression = newExpression;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION, oldExpression, newExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -142,10 +146,33 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	 * @generated
 	 */
 	public void setExpression(BExpressionResolved newExpression) {
-		BExpressionResolved oldExpression = expression;
-		expression = newExpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION, oldExpression, expression));
+		if (newExpression != expression) {
+			NotificationChain msgs = null;
+			if (expression != null)
+				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION, null, msgs);
+			if (newExpression != null)
+				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION, null, msgs);
+			msgs = basicSetExpression(newExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION, newExpression, newExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE:
+				return basicSetPredicate(null, msgs);
+			case FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION:
+				return basicSetExpression(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -157,11 +184,9 @@ public class SetComprehensionExpression2Impl extends BExpressionResolvedImpl imp
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FormulasPackage.SET_COMPREHENSION_EXPRESSION2__PREDICATE:
-				if (resolve) return getPredicate();
-				return basicGetPredicate();
+				return getPredicate();
 			case FormulasPackage.SET_COMPREHENSION_EXPRESSION2__EXPRESSION:
-				if (resolve) return getExpression();
-				return basicGetExpression();
+				return getExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

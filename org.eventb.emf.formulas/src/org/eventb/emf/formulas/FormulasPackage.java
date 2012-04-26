@@ -108,6 +108,24 @@ public interface FormulasPackage extends EPackage {
 	int BFORMULA__REFERENCE = CorePackage.EXTENSION__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BFORMULA__GENERATED = CorePackage.EXTENSION__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BFORMULA__LOCAL_GENERATED = CorePackage.EXTENSION__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -170,6 +188,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BEXPRESSION_RESOLVED__REFERENCE = BFORMULA__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEXPRESSION_RESOLVED__GENERATED = BFORMULA__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEXPRESSION_RESOLVED__LOCAL_GENERATED = BFORMULA__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -236,6 +272,24 @@ public interface FormulasPackage extends EPackage {
 	int BPREDICATE_RESOLVED__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPREDICATE_RESOLVED__GENERATED = BFORMULA__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BPREDICATE_RESOLVED__LOCAL_GENERATED = BFORMULA__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -298,6 +352,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BASSIGNMENT_RESOLVED__REFERENCE = BFORMULA__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASSIGNMENT_RESOLVED__GENERATED = BFORMULA__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASSIGNMENT_RESOLVED__LOCAL_GENERATED = BFORMULA__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -373,6 +445,24 @@ public interface FormulasPackage extends EPackage {
 	int CONSTANT__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__GENERATED = BFORMULA__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT__LOCAL_GENERATED = BFORMULA__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -435,6 +525,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNARY_OPERATOR__REFERENCE = BFORMULA__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATOR__GENERATED = BFORMULA__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_OPERATOR__LOCAL_GENERATED = BFORMULA__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -508,6 +616,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_OPERATOR__REFERENCE = BFORMULA__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATOR__GENERATED = BFORMULA__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_OPERATOR__LOCAL_GENERATED = BFORMULA__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -592,6 +718,24 @@ public interface FormulasPackage extends EPackage {
 	int MULTI_OPERAND__REFERENCE = BFORMULA__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_OPERAND__GENERATED = BFORMULA__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTI_OPERAND__LOCAL_GENERATED = BFORMULA__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -663,6 +807,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BECOMES_EQUAL_TO_ASSIGNMENT__REFERENCE = BASSIGNMENT_RESOLVED__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_EQUAL_TO_ASSIGNMENT__GENERATED = BASSIGNMENT_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_EQUAL_TO_ASSIGNMENT__LOCAL_GENERATED = BASSIGNMENT_RESOLVED__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -747,6 +909,24 @@ public interface FormulasPackage extends EPackage {
 	int BECOMES_MEMBER_OF_ASSIGNMENT__REFERENCE = BASSIGNMENT_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_MEMBER_OF_ASSIGNMENT__GENERATED = BASSIGNMENT_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_MEMBER_OF_ASSIGNMENT__LOCAL_GENERATED = BASSIGNMENT_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -827,6 +1007,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BECOMES_SUCH_THAT_ASSIGNMENT__REFERENCE = BASSIGNMENT_RESOLVED__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_SUCH_THAT_ASSIGNMENT__GENERATED = BASSIGNMENT_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BECOMES_SUCH_THAT_ASSIGNMENT__LOCAL_GENERATED = BASSIGNMENT_RESOLVED__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -911,6 +1109,24 @@ public interface FormulasPackage extends EPackage {
 	int INTEGER_LITERAL_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -982,6 +1198,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDENTIFIER_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIER_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTIFIER_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1057,6 +1291,24 @@ public interface FormulasPackage extends EPackage {
 	int BOUND_IDENTIFIER_EXPRESSION__REFERENCE = IDENTIFIER_EXPRESSION__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_IDENTIFIER_EXPRESSION__GENERATED = IDENTIFIER_EXPRESSION__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_IDENTIFIER_EXPRESSION__LOCAL_GENERATED = IDENTIFIER_EXPRESSION__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1128,6 +1380,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORALL_PREDICATE__REFERENCE = BPREDICATE_RESOLVED__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORALL_PREDICATE__GENERATED = BPREDICATE_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORALL_PREDICATE__LOCAL_GENERATED = BPREDICATE_RESOLVED__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1212,6 +1482,24 @@ public interface FormulasPackage extends EPackage {
 	int EXIST_PREDICATE__REFERENCE = BPREDICATE_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXIST_PREDICATE__GENERATED = BPREDICATE_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXIST_PREDICATE__LOCAL_GENERATED = BPREDICATE_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1292,6 +1580,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAMBDA_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAMBDA_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1385,6 +1691,24 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_UNION_EXPRESSION1__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_UNION_EXPRESSION1__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_UNION_EXPRESSION1__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1403,7 +1727,7 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_UNION_EXPRESSION1__IDENTIFIERS = BEXPRESSION_RESOLVED_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Predicate</b></em>' reference.
+	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1412,7 +1736,7 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_UNION_EXPRESSION1__PREDICATE = BEXPRESSION_RESOLVED_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1476,6 +1800,24 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_UNION_EXPRESSION2__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_UNION_EXPRESSION2__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_UNION_EXPRESSION2__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1485,7 +1827,7 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_UNION_EXPRESSION2__EXTENSION_ID = BEXPRESSION_RESOLVED__EXTENSION_ID;
 
 	/**
-	 * The feature id for the '<em><b>Predicate</b></em>' reference.
+	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1558,6 +1900,24 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION1__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_INTERSECTION_EXPRESSION1__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_INTERSECTION_EXPRESSION1__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1576,7 +1936,7 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION1__IDENTIFIERS = BEXPRESSION_RESOLVED_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Predicate</b></em>' reference.
+	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1585,7 +1945,7 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION1__PREDICATE = BEXPRESSION_RESOLVED_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1649,6 +2009,24 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION2__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_INTERSECTION_EXPRESSION2__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUANTIFIED_INTERSECTION_EXPRESSION2__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1658,7 +2036,7 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION2__EXTENSION_ID = BEXPRESSION_RESOLVED__EXTENSION_ID;
 
 	/**
-	 * The feature id for the '<em><b>Predicate</b></em>' reference.
+	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1667,7 +2045,7 @@ public interface FormulasPackage extends EPackage {
 	int QUANTIFIED_INTERSECTION_EXPRESSION2__PREDICATE = BEXPRESSION_RESOLVED_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1731,6 +2109,24 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION1__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPREHENSION_EXPRESSION1__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPREHENSION_EXPRESSION1__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1749,7 +2145,7 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION1__IDENTIFIERS = BEXPRESSION_RESOLVED_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Predicate</b></em>' reference.
+	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1758,7 +2154,7 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION1__PREDICATE = BEXPRESSION_RESOLVED_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1822,6 +2218,24 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION2__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPREHENSION_EXPRESSION2__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_COMPREHENSION_EXPRESSION2__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1831,7 +2245,7 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION2__EXTENSION_ID = BEXPRESSION_RESOLVED__EXTENSION_ID;
 
 	/**
-	 * The feature id for the '<em><b>Predicate</b></em>' reference.
+	 * The feature id for the '<em><b>Predicate</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1840,7 +2254,7 @@ public interface FormulasPackage extends EPackage {
 	int SET_COMPREHENSION_EXPRESSION2__PREDICATE = BEXPRESSION_RESOLVED_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1902,6 +2316,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int INT__REFERENCE = CONSTANT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1968,6 +2400,24 @@ public interface FormulasPackage extends EPackage {
 	int NAT__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAT__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAT__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2030,6 +2480,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAT1__REFERENCE = CONSTANT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAT1__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAT1__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2096,6 +2564,24 @@ public interface FormulasPackage extends EPackage {
 	int BOOL__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2158,6 +2644,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRUE__REFERENCE = CONSTANT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUE__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUE__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2224,6 +2728,24 @@ public interface FormulasPackage extends EPackage {
 	int FALSE__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSE__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSE__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2286,6 +2808,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EMPTYSET__REFERENCE = CONSTANT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTYSET__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTYSET__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2352,6 +2892,24 @@ public interface FormulasPackage extends EPackage {
 	int TRUTH__REFERENCE = CONSTANT__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUTH__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUTH__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2414,6 +2972,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FALSITY__REFERENCE = CONSTANT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSITY__GENERATED = CONSTANT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FALSITY__LOCAL_GENERATED = CONSTANT__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2480,6 +3056,24 @@ public interface FormulasPackage extends EPackage {
 	int SUCC_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCC_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUCC_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2544,6 +3138,24 @@ public interface FormulasPackage extends EPackage {
 	int PRED_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRED_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRED_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2606,6 +3218,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOL_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOL_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2681,6 +3311,24 @@ public interface FormulasPackage extends EPackage {
 	int CARD_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARD_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARD_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2752,6 +3400,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int POW_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POW_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POW_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2827,6 +3493,24 @@ public interface FormulasPackage extends EPackage {
 	int POW1_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POW1_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POW1_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2898,6 +3582,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int KUNION_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KUNION_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KUNION_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -2973,6 +3675,24 @@ public interface FormulasPackage extends EPackage {
 	int KINTERSECTION_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KINTERSECTION_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KINTERSECTION_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3044,6 +3764,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOMAIN_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3119,6 +3857,24 @@ public interface FormulasPackage extends EPackage {
 	int RANGE_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3190,6 +3946,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRJ1_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ1_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ1_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3265,6 +4039,24 @@ public interface FormulasPackage extends EPackage {
 	int PRJ1_GEN_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ1_GEN_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ1_GEN_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3327,6 +4119,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRJ2_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ2_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ2_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3402,6 +4212,24 @@ public interface FormulasPackage extends EPackage {
 	int PRJ2_GEN_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ2_GEN_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRJ2_GEN_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3464,6 +4292,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDENTITY_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3539,6 +4385,24 @@ public interface FormulasPackage extends EPackage {
 	int IDENTITY_GEN_EXPRESSION__REFERENCE = BEXPRESSION_RESOLVED__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_GEN_EXPRESSION__GENERATED = BEXPRESSION_RESOLVED__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_GEN_EXPRESSION__LOCAL_GENERATED = BEXPRESSION_RESOLVED__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3601,6 +4465,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNARY_MINUS_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_MINUS_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_MINUS_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3676,6 +4558,24 @@ public interface FormulasPackage extends EPackage {
 	int MIN_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIN_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MIN_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3747,6 +4647,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAX_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAX_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAX_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3822,6 +4740,24 @@ public interface FormulasPackage extends EPackage {
 	int INVERSE_EXPRESSION__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERSE_EXPRESSION__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERSE_EXPRESSION__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3893,6 +4829,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT_PREDICATE__REFERENCE = UNARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_PREDICATE__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_PREDICATE__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -3968,6 +4922,24 @@ public interface FormulasPackage extends EPackage {
 	int FINITE_PREDICATE__REFERENCE = UNARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINITE_PREDICATE__GENERATED = UNARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FINITE_PREDICATE__LOCAL_GENERATED = UNARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4039,6 +5011,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARALLEL_PRODUCT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARALLEL_PRODUCT_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARALLEL_PRODUCT_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4123,6 +5113,24 @@ public interface FormulasPackage extends EPackage {
 	int RANGE_RESTRICTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_RESTRICTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_RESTRICTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4203,6 +5211,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int RANGE_SUBTRACTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_SUBTRACTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_SUBTRACTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4287,6 +5313,24 @@ public interface FormulasPackage extends EPackage {
 	int UPTO_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPTO_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPTO_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4367,6 +5411,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPONENTIATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPONENTIATION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPONENTIATION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4451,6 +5513,24 @@ public interface FormulasPackage extends EPackage {
 	int SET_SUBTRACTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SUBTRACTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_SUBTRACTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4531,6 +5611,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4615,6 +5713,24 @@ public interface FormulasPackage extends EPackage {
 	int IMAGE_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4695,6 +5811,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int IMPLICATION_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICATION_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICATION_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4779,6 +5913,24 @@ public interface FormulasPackage extends EPackage {
 	int EQUIVALENCE_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUIVALENCE_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUIVALENCE_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4859,6 +6011,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUAL_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUAL_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -4943,6 +6113,24 @@ public interface FormulasPackage extends EPackage {
 	int NOT_EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_EQUAL_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_EQUAL_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5023,6 +6211,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BELONG_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BELONG_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BELONG_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5107,6 +6313,24 @@ public interface FormulasPackage extends EPackage {
 	int NOT_BELONG_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_BELONG_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_BELONG_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5187,6 +6411,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBSET_STRICT_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSET_STRICT_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSET_STRICT_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5271,6 +6513,24 @@ public interface FormulasPackage extends EPackage {
 	int NOT_SUBSET_STRICT_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_SUBSET_STRICT_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_SUBSET_STRICT_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5351,6 +6611,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBSET_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSET_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSET_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5435,6 +6713,24 @@ public interface FormulasPackage extends EPackage {
 	int NOT_SUBSET_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_SUBSET_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_SUBSET_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5515,6 +6811,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int LESS_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LESS_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LESS_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5599,6 +6913,24 @@ public interface FormulasPackage extends EPackage {
 	int LESS_EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LESS_EQUAL_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LESS_EQUAL_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5679,6 +7011,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int GREATER_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GREATER_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GREATER_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5763,6 +7113,24 @@ public interface FormulasPackage extends EPackage {
 	int GREATER_EQUAL_PREDICATE__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GREATER_EQUAL_PREDICATE__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GREATER_EQUAL_PREDICATE__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5843,6 +7211,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOMAIN_RESTRICTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_RESTRICTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_RESTRICTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -5927,6 +7313,24 @@ public interface FormulasPackage extends EPackage {
 	int DOMAIN_SUBTRACTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_SUBTRACTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN_SUBTRACTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6007,6 +7411,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIRECT_PRODUCT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_PRODUCT_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_PRODUCT_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6091,6 +7513,24 @@ public interface FormulasPackage extends EPackage {
 	int DIVISION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIVISION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6171,6 +7611,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBTRACT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBTRACT_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBTRACT_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6255,6 +7713,24 @@ public interface FormulasPackage extends EPackage {
 	int MODULO_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULO_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODULO_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6335,6 +7811,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARTESIAN_PRODUCT_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARTESIAN_PRODUCT_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARTESIAN_PRODUCT_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6419,6 +7913,24 @@ public interface FormulasPackage extends EPackage {
 	int PARTIAL_FUNCTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_FUNCTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_FUNCTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6499,6 +8011,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_FUNCTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_FUNCTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_FUNCTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6583,6 +8113,24 @@ public interface FormulasPackage extends EPackage {
 	int RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6663,6 +8211,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_SURJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SURJECTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SURJECTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6747,6 +8313,24 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_INJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_INJECTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_INJECTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6827,6 +8411,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARTIAL_SURJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_SURJECTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_SURJECTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -6911,6 +8513,24 @@ public interface FormulasPackage extends EPackage {
 	int PARTIAL_INJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_INJECTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_INJECTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6991,6 +8611,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOTAL_BIJECTION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_BIJECTION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_BIJECTION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7075,6 +8713,24 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_RELATION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_RELATION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7155,6 +8811,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int SURJECTIVE_RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURJECTIVE_RELATION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURJECTIVE_RELATION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7239,6 +8913,24 @@ public interface FormulasPackage extends EPackage {
 	int TOTAL_SURJECTIVE_RELATION_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SURJECTIVE_RELATION_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOTAL_SURJECTIVE_RELATION_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7319,6 +9011,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPLET_EXPRESSION__REFERENCE = BINARY_OPERATOR__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPLET_EXPRESSION__GENERATED = BINARY_OPERATOR__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPLET_EXPRESSION__LOCAL_GENERATED = BINARY_OPERATOR__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7403,6 +9113,24 @@ public interface FormulasPackage extends EPackage {
 	int SET_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7474,6 +9202,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int BACKWARD_COMPOSITION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKWARD_COMPOSITION_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BACKWARD_COMPOSITION_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7549,6 +9295,24 @@ public interface FormulasPackage extends EPackage {
 	int FORWARD_COMPOSITION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORWARD_COMPOSITION_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORWARD_COMPOSITION_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7620,6 +9384,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int RELATIONAL_OVERRIDING_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OVERRIDING_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_OVERRIDING_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7695,6 +9477,24 @@ public interface FormulasPackage extends EPackage {
 	int AND_PREDICATE__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_PREDICATE__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND_PREDICATE__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7766,6 +9566,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR_PREDICATE__REFERENCE = MULTI_OPERAND__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_PREDICATE__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_PREDICATE__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7841,6 +9659,24 @@ public interface FormulasPackage extends EPackage {
 	int ADD_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7912,6 +9748,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int MUL_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUL_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MUL_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -7987,6 +9841,24 @@ public interface FormulasPackage extends EPackage {
 	int INTERSECTION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
 
 	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERSECTION_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8058,6 +9930,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNION_EXPRESSION__REFERENCE = MULTI_OPERAND__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_EXPRESSION__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNION_EXPRESSION__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -8132,6 +10022,24 @@ public interface FormulasPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARTITION_PREDICATE__REFERENCE = MULTI_OPERAND__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTITION_PREDICATE__GENERATED = MULTI_OPERAND__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTITION_PREDICATE__LOCAL_GENERATED = MULTI_OPERAND__LOCAL_GENERATED;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -8539,10 +10447,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getQuantifiedUnionExpression1_Identifiers();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getPredicate <em>Predicate</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getPredicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predicate</em>'.
+	 * @return the meta object for the containment reference '<em>Predicate</em>'.
 	 * @see org.eventb.emf.formulas.QuantifiedUnionExpression1#getPredicate()
 	 * @see #getQuantifiedUnionExpression1()
 	 * @generated
@@ -8550,10 +10458,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getQuantifiedUnionExpression1_Predicate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.QuantifiedUnionExpression1#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
 	 * @see org.eventb.emf.formulas.QuantifiedUnionExpression1#getExpression()
 	 * @see #getQuantifiedUnionExpression1()
 	 * @generated
@@ -8571,10 +10479,10 @@ public interface FormulasPackage extends EPackage {
 	EClass getQuantifiedUnionExpression2();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.QuantifiedUnionExpression2#getPredicate <em>Predicate</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.QuantifiedUnionExpression2#getPredicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predicate</em>'.
+	 * @return the meta object for the containment reference '<em>Predicate</em>'.
 	 * @see org.eventb.emf.formulas.QuantifiedUnionExpression2#getPredicate()
 	 * @see #getQuantifiedUnionExpression2()
 	 * @generated
@@ -8614,10 +10522,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getQuantifiedIntersectionExpression1_Identifiers();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression1#getPredicate <em>Predicate</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression1#getPredicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predicate</em>'.
+	 * @return the meta object for the containment reference '<em>Predicate</em>'.
 	 * @see org.eventb.emf.formulas.QuantifiedIntersectionExpression1#getPredicate()
 	 * @see #getQuantifiedIntersectionExpression1()
 	 * @generated
@@ -8625,10 +10533,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getQuantifiedIntersectionExpression1_Predicate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression1#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression1#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
 	 * @see org.eventb.emf.formulas.QuantifiedIntersectionExpression1#getExpression()
 	 * @see #getQuantifiedIntersectionExpression1()
 	 * @generated
@@ -8646,10 +10554,10 @@ public interface FormulasPackage extends EPackage {
 	EClass getQuantifiedIntersectionExpression2();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression2#getPredicate <em>Predicate</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression2#getPredicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predicate</em>'.
+	 * @return the meta object for the containment reference '<em>Predicate</em>'.
 	 * @see org.eventb.emf.formulas.QuantifiedIntersectionExpression2#getPredicate()
 	 * @see #getQuantifiedIntersectionExpression2()
 	 * @generated
@@ -8657,10 +10565,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getQuantifiedIntersectionExpression2_Predicate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression2#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.QuantifiedIntersectionExpression2#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
 	 * @see org.eventb.emf.formulas.QuantifiedIntersectionExpression2#getExpression()
 	 * @see #getQuantifiedIntersectionExpression2()
 	 * @generated
@@ -8689,10 +10597,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getSetComprehensionExpression1_Identifiers();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.SetComprehensionExpression1#getPredicate <em>Predicate</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.SetComprehensionExpression1#getPredicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predicate</em>'.
+	 * @return the meta object for the containment reference '<em>Predicate</em>'.
 	 * @see org.eventb.emf.formulas.SetComprehensionExpression1#getPredicate()
 	 * @see #getSetComprehensionExpression1()
 	 * @generated
@@ -8700,10 +10608,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getSetComprehensionExpression1_Predicate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.SetComprehensionExpression1#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.SetComprehensionExpression1#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
 	 * @see org.eventb.emf.formulas.SetComprehensionExpression1#getExpression()
 	 * @see #getSetComprehensionExpression1()
 	 * @generated
@@ -8721,10 +10629,10 @@ public interface FormulasPackage extends EPackage {
 	EClass getSetComprehensionExpression2();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.SetComprehensionExpression2#getPredicate <em>Predicate</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.SetComprehensionExpression2#getPredicate <em>Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Predicate</em>'.
+	 * @return the meta object for the containment reference '<em>Predicate</em>'.
 	 * @see org.eventb.emf.formulas.SetComprehensionExpression2#getPredicate()
 	 * @see #getSetComprehensionExpression2()
 	 * @generated
@@ -8732,10 +10640,10 @@ public interface FormulasPackage extends EPackage {
 	EReference getSetComprehensionExpression2_Predicate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eventb.emf.formulas.SetComprehensionExpression2#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eventb.emf.formulas.SetComprehensionExpression2#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
 	 * @see org.eventb.emf.formulas.SetComprehensionExpression2#getExpression()
 	 * @see #getSetComprehensionExpression2()
 	 * @generated
@@ -9919,7 +11827,7 @@ public interface FormulasPackage extends EPackage {
 		EReference QUANTIFIED_UNION_EXPRESSION1__IDENTIFIERS = eINSTANCE.getQuantifiedUnionExpression1_Identifiers();
 
 		/**
-		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -9927,7 +11835,7 @@ public interface FormulasPackage extends EPackage {
 		EReference QUANTIFIED_UNION_EXPRESSION1__PREDICATE = eINSTANCE.getQuantifiedUnionExpression1_Predicate();
 
 		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -9945,7 +11853,7 @@ public interface FormulasPackage extends EPackage {
 		EClass QUANTIFIED_UNION_EXPRESSION2 = eINSTANCE.getQuantifiedUnionExpression2();
 
 		/**
-		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -9979,7 +11887,7 @@ public interface FormulasPackage extends EPackage {
 		EReference QUANTIFIED_INTERSECTION_EXPRESSION1__IDENTIFIERS = eINSTANCE.getQuantifiedIntersectionExpression1_Identifiers();
 
 		/**
-		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -9987,7 +11895,7 @@ public interface FormulasPackage extends EPackage {
 		EReference QUANTIFIED_INTERSECTION_EXPRESSION1__PREDICATE = eINSTANCE.getQuantifiedIntersectionExpression1_Predicate();
 
 		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10005,7 +11913,7 @@ public interface FormulasPackage extends EPackage {
 		EClass QUANTIFIED_INTERSECTION_EXPRESSION2 = eINSTANCE.getQuantifiedIntersectionExpression2();
 
 		/**
-		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10013,7 +11921,7 @@ public interface FormulasPackage extends EPackage {
 		EReference QUANTIFIED_INTERSECTION_EXPRESSION2__PREDICATE = eINSTANCE.getQuantifiedIntersectionExpression2_Predicate();
 
 		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10039,7 +11947,7 @@ public interface FormulasPackage extends EPackage {
 		EReference SET_COMPREHENSION_EXPRESSION1__IDENTIFIERS = eINSTANCE.getSetComprehensionExpression1_Identifiers();
 
 		/**
-		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10047,7 +11955,7 @@ public interface FormulasPackage extends EPackage {
 		EReference SET_COMPREHENSION_EXPRESSION1__PREDICATE = eINSTANCE.getSetComprehensionExpression1_Predicate();
 
 		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10065,7 +11973,7 @@ public interface FormulasPackage extends EPackage {
 		EClass SET_COMPREHENSION_EXPRESSION2 = eINSTANCE.getSetComprehensionExpression2();
 
 		/**
-		 * The meta object literal for the '<em><b>Predicate</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Predicate</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -10073,7 +11981,7 @@ public interface FormulasPackage extends EPackage {
 		EReference SET_COMPREHENSION_EXPRESSION2__PREDICATE = eINSTANCE.getSetComprehensionExpression2_Predicate();
 
 		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
