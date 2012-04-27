@@ -7,23 +7,26 @@
  *******************************************************************************/
 package ac.soton.eventb.emf.core.extension.navigator.refiner;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eventb.core.IEventBRoot;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
-import org.eventb.emf.core.EventBNamed;
 import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IRefinementParticipant;
 import org.rodinp.core.RodinDBException;
@@ -49,6 +52,19 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @return
 	 */
 	protected abstract String getExtensionID();
+
+	/**
+	 * A list of the EClasses which should not be copied into the refinement
+	 */
+	private static	List<EClass> filterList = new ArrayList<EClass>();
+
+	/**
+	 * Extenders may override this method to populate the list of EClasses 
+	 * which should not be copied into a refinement
+	 * @param filterList
+	 */
+	protected void populateFilterByTypeList(List<EClass> filterList) {	
+	}
 	
 	/**
 	 * A map of the references which need to be dealt with in the new refined model.
@@ -108,6 +124,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 */
 	protected AbstractExtensionRefiner() {
 		EXTENSION_ID = getExtensionID();
+		populateFilterByTypeList(filterList);
 		populateReferenceMap(referencemap);
 	}
 
@@ -165,7 +182,6 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @param abstractEventBElement
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	private EventBElement refineEventBElement(EventBElement abstractEventBElement) {
 
 		
@@ -176,7 +192,49 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		EventBElement concreteEventBElement = (EventBElement) copier.copy(abstractEventBElement); 
 
 		//copier.copyReferences();  THIS DOES NOT WORK - INSTEAD SEE BELOW
+		copyReferences(concreteEventBElement);
+
+		//having copied everything we may need to remove some kinds of elements that are not supposed to be
+		//copied into a refinement
+		filterElements(concreteEventBElement);
 		
+		return concreteEventBElement;
+	}
+
+	/*
+	 * This removes any elements that are of a type (EClass) listed in filterList
+	 */
+	@SuppressWarnings("unchecked")
+	private void filterElements(EventBElement concreteEventBElement) {
+		List<EObject> removeList = new ArrayList<EObject>();
+		for (EClass removeClass : filterList){
+			removeList.addAll(concreteEventBElement.getAllContained(removeClass, true));
+		}concreteEventBElement.eAllContents();
+		for (TreeIterator<EObject> contents = concreteEventBElement.eAllContents(); contents.hasNext(); ){
+			EObject eObject = contents.next();
+			if (removeList.contains(eObject)){
+				//prune the iterator to avoid iterating over the removed parts
+				contents.prune();
+				//remove the object from the model
+				EStructuralFeature feature = eObject.eContainingFeature();
+				feature.isMany();
+				if (feature.isMany()){
+					((EList<EObject>) eObject.eContainer().eGet(feature)).remove(eObject);
+				}else{
+					eObject.eContainer().eUnset(feature);
+				}
+				// remove from the copier map
+				copier.remove(getKeyByValue(copier, eObject));
+			}
+		}
+	}
+
+	/*
+	 * This sets up the references in the new refined model according to the 
+	 * settings in the referenceMap
+	 */
+	@SuppressWarnings("unchecked")
+	private void copyReferences(EventBElement concreteEventBElement) {
 		// Set up references in the new concrete model  (note that copier.copyReferences() does not work for this)
 		//get all the content of the root Element including itself
 		EList<EObject> contents = concreteEventBElement.getAllContained(CorePackage.Literals.EVENT_BELEMENT, true);
@@ -229,8 +287,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 				}
 			}
 		}
-
-		return concreteEventBElement;
 	}
+
 	
 }
