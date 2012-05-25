@@ -209,22 +209,18 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		List<EObject> removeList = new ArrayList<EObject>();
 		for (EClass removeClass : filterList){
 			removeList.addAll(concreteEventBElement.getAllContained(removeClass, true));
-		}concreteEventBElement.eAllContents();
-		for (TreeIterator<EObject> contents = concreteEventBElement.eAllContents(); contents.hasNext(); ){
-			EObject eObject = contents.next();
-			if (removeList.contains(eObject)){
-				//prune the iterator to avoid iterating over the removed parts
-				contents.prune();
-				//remove the object from the model
+		}
+		for (EObject eObject : removeList){
+			if (eObject != null){
 				EStructuralFeature feature = eObject.eContainingFeature();
-				feature.isMany();
-				if (feature.isMany()){
-					((EList<EObject>) eObject.eContainer().eGet(feature)).remove(eObject);
-				}else{
-					eObject.eContainer().eUnset(feature);
+				EObject parent = eObject.eContainer();
+				if (parent != null && feature!= null && parent.eClass().getEStructuralFeatures().contains(feature)) {
+					if (feature.isMany()){
+						((EList<EObject>) parent.eGet(feature)).remove(eObject);
+					}else{
+						parent.eUnset(feature);
+					}
 				}
-				// remove from the copier map
-				copier.remove(getKeyByValue(copier, eObject));
 			}
 		}
 	}
