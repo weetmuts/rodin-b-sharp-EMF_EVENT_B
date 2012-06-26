@@ -18,15 +18,18 @@ import org.rodinp.core.RodinDBException;
  */
 public class GeneratedCopier implements IRefinementParticipant {
 
+	IInternalElement targetRoot;
 
 	@Override
 	public void process(IInternalElement targetRoot,
 			IInternalElement sourceRoot, IProgressMonitor monitor)
-			throws RodinDBException {
-		
-		IRodinElement[] sourceElements = sourceRoot.getChildren();
-
-		for (IRodinElement sourceElement : sourceElements){
+			throws RodinDBException {	
+		this.targetRoot = targetRoot;
+		copyGenerated(sourceRoot, monitor);
+	}
+	
+	private void copyGenerated (IRodinElement sourceElement, IProgressMonitor monitor) throws RodinDBException {
+		if (sourceElement instanceof IInternalElement){
 			if (sourceElement instanceof EventBElement){
 				EventBElement sourceEventBElement = (EventBElement)sourceElement;
 				if (sourceEventBElement.isGenerated()){
@@ -34,12 +37,16 @@ public class GeneratedCopier implements IRefinementParticipant {
 					if (targetEventBElement != null){
 						targetEventBElement.setGenerated(true, monitor);
 					}
-					
 				}
+			}
+			IRodinElement[] children = ((IInternalElement)sourceElement).getChildren();
+			for (IRodinElement childElement : children){
+				copyGenerated (childElement, monitor);
 			}
 		}
 	}
 
+	
 	private EventBElement findCorrespondingTarget(IInternalElement targetRoot, EventBElement sourceEventBElement) throws RodinDBException {
 		String sourceLabel = sourceEventBElement.hasLabel() ? sourceEventBElement.getLabel() : "";
 		String sourceIdentifier = sourceEventBElement.hasIdentifierString() ? sourceEventBElement.getIdentifierString() : "";
@@ -57,6 +64,7 @@ public class GeneratedCopier implements IRefinementParticipant {
 				}	
 			}
 		}
+		
 		return null;
 	}
 			
