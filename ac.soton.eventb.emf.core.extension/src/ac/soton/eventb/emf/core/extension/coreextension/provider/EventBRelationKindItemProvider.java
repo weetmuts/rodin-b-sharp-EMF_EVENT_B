@@ -1,14 +1,15 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2012 - University of Southampton.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  */
 package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
 
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
 
 import java.util.Collection;
 import java.util.List;
@@ -31,12 +32,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled} object.
+ * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventBLabeledItemProvider
+public class EventBRelationKindItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -57,7 +58,7 @@ public class EventBLabeledItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventBLabeledItemProvider(AdapterFactory adapterFactory) {
+	public EventBRelationKindItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -72,29 +73,98 @@ public class EventBLabeledItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLabelPropertyDescriptor(object);
+			addSurjectivePropertyDescriptor(object);
+			addInjectivePropertyDescriptor(object);
+			addTotalPropertyDescriptor(object);
+			addFunctionalPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Label feature.
+	 * This adds a property descriptor for the Surjective feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLabelPropertyDescriptor(Object object) {
+	protected void addSurjectivePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBLabeled_label_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBLabeled_label_feature", "_UI_EventBLabeled_type"),
-				 CoreextensionPackage.Literals.EVENT_BLABELED__LABEL,
+				 getString("_UI_EventBRelationKind_surjective_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_surjective_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__SURJECTIVE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Injective feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInjectivePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBRelationKind_injective_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_injective_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__INJECTIVE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Total feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTotalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBRelationKind_total_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_total_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__TOTAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Functional feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFunctionalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBRelationKind_functional_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_functional_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__FUNCTIONAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -107,10 +177,8 @@ public class EventBLabeledItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EventBLabeled)object).getLabel();
-		return label == null || label.length() == 0 ?
-			getString("_UI_EventBLabeled_type") :
-			getString("_UI_EventBLabeled_type") + " " + label;
+		EventBRelationKind eventBRelationKind = (EventBRelationKind)object;
+		return getString("_UI_EventBRelationKind_type") + " " + eventBRelationKind.isSurjective();
 	}
 
 	/**
@@ -124,8 +192,11 @@ public class EventBLabeledItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EventBLabeled.class)) {
-			case CoreextensionPackage.EVENT_BLABELED__LABEL:
+		switch (notification.getFeatureID(EventBRelationKind.class)) {
+			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
+			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
+			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
+			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -1,14 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2012 - University of Southampton.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  */
 package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
 
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,17 +26,15 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled} object.
+ * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventBLabeledItemProvider
+public class EventBEventGroupItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -57,7 +55,7 @@ public class EventBLabeledItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventBLabeledItemProvider(AdapterFactory adapterFactory) {
+	public EventBEventGroupItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -72,29 +70,29 @@ public class EventBLabeledItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLabelPropertyDescriptor(object);
+			addElaboratesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Label feature.
+	 * This adds a property descriptor for the Elaborates feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLabelPropertyDescriptor(Object object) {
+	protected void addElaboratesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBLabeled_label_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBLabeled_label_feature", "_UI_EventBLabeled_type"),
-				 CoreextensionPackage.Literals.EVENT_BLABELED__LABEL,
+				 getString("_UI_EventBEventGroup_elaborates_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBEventGroup_elaborates_feature", "_UI_EventBEventGroup_type"),
+				 CoreextensionPackage.Literals.EVENT_BEVENT_GROUP__ELABORATES,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -107,10 +105,7 @@ public class EventBLabeledItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EventBLabeled)object).getLabel();
-		return label == null || label.length() == 0 ?
-			getString("_UI_EventBLabeled_type") :
-			getString("_UI_EventBLabeled_type") + " " + label;
+		return getString("_UI_EventBEventGroup_type");
 	}
 
 	/**
@@ -123,12 +118,6 @@ public class EventBLabeledItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(EventBLabeled.class)) {
-			case CoreextensionPackage.EVENT_BLABELED__LABEL:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

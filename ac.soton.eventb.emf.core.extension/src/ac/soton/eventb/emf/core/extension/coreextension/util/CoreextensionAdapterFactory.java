@@ -34,6 +34,12 @@ import org.eventb.emf.core.machine.Parameter;
  */
 public class CoreextensionAdapterFactory extends AdapterFactoryImpl {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "Copyright (c) 2012 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,6 +97,18 @@ public class CoreextensionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEventBLabeled(EventBLabeled object) {
 				return createEventBLabeledAdapter();
+			}
+			@Override
+			public Adapter caseEventBRelationKind(EventBRelationKind object) {
+				return createEventBRelationKindAdapter();
+			}
+			@Override
+			public Adapter caseEventBDataElaboration(EventBDataElaboration object) {
+				return createEventBDataElaborationAdapter();
+			}
+			@Override
+			public Adapter caseEventBEventGroup(EventBEventGroup object) {
+				return createEventBEventGroupAdapter();
 			}
 			@Override
 			public Adapter caseEventBObject(EventBObject object) {
@@ -179,6 +197,48 @@ public class CoreextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventBLabeledAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind <em>Event BRelation Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind
+	 * @generated
+	 */
+	public Adapter createEventBRelationKindAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration <em>Event BData Elaboration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration
+	 * @generated
+	 */
+	public Adapter createEventBDataElaborationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup <em>Event BEvent Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup
+	 * @generated
+	 */
+	public Adapter createEventBEventGroupAdapter() {
 		return null;
 	}
 
