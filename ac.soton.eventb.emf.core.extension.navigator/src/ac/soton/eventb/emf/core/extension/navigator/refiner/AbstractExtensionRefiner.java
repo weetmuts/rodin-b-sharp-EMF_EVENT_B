@@ -15,7 +15,6 @@ import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -31,6 +30,7 @@ import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IRefinementParticipant;
 import org.rodinp.core.RodinDBException;
 
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.core.extension.persistence.ISerialisedExtension;
 import ac.soton.eventb.emf.core.extension.persistence.SerialisedExtensionSynchroniser;
 
@@ -82,7 +82,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * into the refinement)
 	 */
 	protected void populateReferenceMap(Map<EReference,Boolean> referencemap){
-		
+		referencemap.put(CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES, false);
 	}
 	
 	/** 
