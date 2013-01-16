@@ -8,9 +8,6 @@ package ac.soton.eventb.emf.core.extension.coreextension.util;
 
 import ac.soton.eventb.emf.core.extension.coreextension.*;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.EPackage;
