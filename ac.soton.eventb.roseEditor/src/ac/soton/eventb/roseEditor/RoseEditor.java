@@ -43,6 +43,7 @@ import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -129,6 +130,9 @@ import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.provider.MachineItemProviderAdapterFactory;
 import org.eventb.emf.core.provider.CoreItemProviderAdapterFactory;
+import org.eventb.emf.persistence.factory.RodinResource;
+import org.rodinp.core.IRodinElement;
+import org.rodinp.core.RodinMarkerUtil;
 
 
 /**
@@ -700,9 +704,12 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	}
 
 	/**
-	 * This sets the selection into whichever viewer is active. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This sets the selection into whichever viewer is active.
+	 *  <!-- begin-user-doc --> 
+	 *  changed last line as advised in EMF bug report
+	 * <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setSelectionToViewer(Collection<?> collection) {
 		final Collection<?> theSelection = collection;
@@ -723,7 +730,7 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 					}
 				}
 			};
-			runnable.run();
+			getSite().getShell().getDisplay().asyncExec(runnable);
 		}
 	}
 
@@ -1674,9 +1681,13 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * Moves selection to the Marker that has been navigated from the problem view
+	 * As well as the usual EMF markers, this has been customised to handle rodin markers
+	 * by using the map maintained by the serialisation (Resource) when the model was loaded
+	 *  <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public void gotoMarker(IMarker marker) {
 		try {
@@ -1688,6 +1699,20 @@ public class RoseEditor extends MultiPageEditorPart implements IEditingDomainPro
 					if (eObject != null) {
 						setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
 					}
+				}
+			}else if (marker.getType().equals(RodinMarkerUtil.RODIN_PROBLEM_MARKER)){
+				IRodinElement rodinElement = RodinMarkerUtil.getElement(marker);
+				EList<Resource> resources = editingDomain.getResourceSet().getResources();
+				EObject eObject = null; 
+				for (Resource resource : resources){
+					if (resource instanceof RodinResource){
+						RodinResource rodinResource = (RodinResource)resource;
+						eObject = rodinResource.getMap().get(rodinElement);
+						if (eObject != null) break;
+					}
+				}
+				if (eObject != null) {
+					setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
 				}
 			}
 		} catch (CoreException exception) {
