@@ -35,7 +35,7 @@ public abstract class EventBPredicateImpl extends EObjectImpl implements EventBP
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PREDICATE_EDEFAULT = "true";
+	protected static final String PREDICATE_EDEFAULT = "\u22a4";
 
 	/**
 	 * The cached value of the '{@link #getPredicate() <em>Predicate</em>}' attribute.
