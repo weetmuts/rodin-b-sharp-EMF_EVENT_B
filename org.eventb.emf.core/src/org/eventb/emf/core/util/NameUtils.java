@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eventb.emf.core.CorePackage;
@@ -50,7 +51,41 @@ public class NameUtils {
 			return isin(getNames(namespace.getAllContained(CorePackage.eINSTANCE.getEventBElement(),false)),name);
 	}
 
-
+	/**
+	 * Returns a string representing the fully qualified name of an element 
+	 * 
+	 * @param eObject
+	 * @return
+	 */
+	public static String getQualifiedName(EObject eObject){
+		if (eObject.eContainer()==null){
+			return getName(eObject);
+		}else{
+			return getQualifiedName(eObject.eContainer())+"::"+getName(eObject);
+		}
+	}
+	
+	/**
+	 * Returns a user friendly name for the element.
+	 * If there is a feature called "name" this is returned, otherwise
+	 * If there is a feature called "label" this is returned, otherwise
+	 * the meta-class name is returned enclosed in angle brackets.
+	 * @param eObject
+	 * @return
+	 */
+	public static String getName(EObject eObject){
+		EClass eClass = eObject.eClass();
+		EStructuralFeature nameFeature = eClass.getEStructuralFeature("name");
+		if(nameFeature!=null){
+			return eObject.eGet(nameFeature).toString();
+		}
+		EStructuralFeature labelFeature = eClass.getEStructuralFeature("label");
+		if(labelFeature!=null){
+			return eObject.eGet(labelFeature).toString();
+		}
+		return "<"+eClass.getName()+">";
+	}
+	
 	////////////////////////////////////////////////////
 	// Following methods should be moved somewhere else //
 
