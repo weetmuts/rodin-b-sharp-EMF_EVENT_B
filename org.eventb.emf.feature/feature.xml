@@ -2,7 +2,7 @@
 <feature
       id="org.eventb.emf.feature"
       label="%featureName"
-      version="3.7.1"
+      version="3.7.1.r15527"
       provider-name="%providerName">
 
    <description>
