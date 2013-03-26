@@ -10,6 +10,7 @@ package ac.soton.eventb.emf.core.extension.coreextension.impl;
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.core.extension.coreextension.DataKind;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -17,25 +18,26 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eventb.emf.core.EventBNamed;
 
+import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
+
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Event BData Elaboration</b></em>'.
+ * An implementation of the model object '<em><b>Event BNamed Commented Data Elaboration Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBDataElaborationImpl#getElaborates <em>Elaborates</em>}</li>
- *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBDataElaborationImpl#getDataKind <em>Data Kind</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedDataElaborationElementImpl#getElaborates <em>Elaborates</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedDataElaborationElementImpl#getDataKind <em>Data Kind</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class EventBDataElaborationImpl extends EObjectImpl implements EventBDataElaboration {
+public abstract class EventBNamedCommentedDataElaborationElementImpl extends EventBNamedCommentedElementImpl implements EventBNamedCommentedDataElaborationElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +80,7 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EventBDataElaborationImpl() {
+	protected EventBNamedCommentedDataElaborationElementImpl() {
 		super();
 	}
 
@@ -89,7 +91,7 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION;
+		return CoreextensionPackage.Literals.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT;
 	}
 
 	/**
@@ -103,7 +105,7 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 			elaborates = (EventBNamed)eResolveProxy(oldElaborates);
 			if (elaborates != oldElaborates) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES, oldElaborates, elaborates));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES, oldElaborates, elaborates));
 			}
 		}
 		return elaborates;
@@ -127,7 +129,7 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 		EventBNamed oldElaborates = elaborates;
 		elaborates = newElaborates;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES, oldElaborates, elaborates));
+			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES, oldElaborates, elaborates));
 	}
 
 	/**
@@ -148,7 +150,7 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 		DataKind oldDataKind = dataKind;
 		dataKind = newDataKind == null ? DATA_KIND_EDEFAULT : newDataKind;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND, oldDataKind, dataKind));
+			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND, oldDataKind, dataKind));
 	}
 
 	/**
@@ -159,10 +161,10 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES:
 				if (resolve) return getElaborates();
 				return basicGetElaborates();
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND:
 				return getDataKind();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -176,10 +178,10 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES:
 				setElaborates((EventBNamed)newValue);
 				return;
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND:
 				setDataKind((DataKind)newValue);
 				return;
 		}
@@ -194,10 +196,10 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES:
 				setElaborates((EventBNamed)null);
 				return;
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND:
 				setDataKind(DATA_KIND_EDEFAULT);
 				return;
 		}
@@ -212,12 +214,46 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES:
 				return elaborates != null;
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND:
 				return dataKind != DATA_KIND_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == EventBDataElaboration.class) {
+			switch (derivedFeatureID) {
+				case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES: return CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES;
+				case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND: return CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == EventBDataElaboration.class) {
+			switch (baseFeatureID) {
+				case CoreextensionPackage.EVENT_BDATA_ELABORATION__ELABORATES: return CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES;
+				case CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND: return CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -236,4 +272,4 @@ public abstract class EventBDataElaborationImpl extends EObjectImpl implements E
 		return result.toString();
 	}
 
-} //EventBDataElaborationImpl
+} //EventBNamedCommentedDataElaborationElementImpl

@@ -1,17 +1,22 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2012/13 - University of Southampton.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  */
 package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.core.extension.coreextension.DataKind;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
 import ac.soton.eventb.emf.core.extension.coreextension.Type;
 import ac.soton.eventb.emf.core.extension.coreextension.TypedParameter;
@@ -20,8 +25,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eventb.emf.core.CorePackage;
@@ -40,7 +45,7 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "Copyright (c) 2012 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	public static final String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,6 +88,34 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 	 * @generated
 	 */
 	private EClass eventBEventGroupEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBCommentedLabeledEventGroupElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBCommentedLabeledElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedCommentedDataElaborationElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventBNamedCommentedRelationDataElaborationElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -295,6 +328,42 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEventBCommentedLabeledEventGroupElement() {
+		return eventBCommentedLabeledEventGroupElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBCommentedLabeledElement() {
+		return eventBCommentedLabeledElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamedCommentedDataElaborationElement() {
+		return eventBNamedCommentedDataElaborationElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventBNamedCommentedRelationDataElaborationElement() {
+		return eventBNamedCommentedRelationDataElaborationElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getDataKind() {
 		return dataKindEEnum;
 	}
@@ -348,6 +417,14 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 		eventBEventGroupEClass = createEClass(EVENT_BEVENT_GROUP);
 		createEReference(eventBEventGroupEClass, EVENT_BEVENT_GROUP__ELABORATES);
 
+		eventBCommentedLabeledEventGroupElementEClass = createEClass(EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT);
+
+		eventBCommentedLabeledElementEClass = createEClass(EVENT_BCOMMENTED_LABELED_ELEMENT);
+
+		eventBNamedCommentedDataElaborationElementEClass = createEClass(EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT);
+
+		eventBNamedCommentedRelationDataElaborationElementEClass = createEClass(EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT);
+
 		// Create enums
 		dataKindEEnum = createEEnum(DATA_KIND);
 	}
@@ -386,6 +463,14 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 		// Add supertypes to classes
 		typedParameterEClass.getESuperTypes().add(theMachinePackage.getParameter());
 		typedParameterEClass.getESuperTypes().add(this.getType());
+		eventBCommentedLabeledEventGroupElementEClass.getESuperTypes().add(this.getEventBCommentedLabeledElement());
+		eventBCommentedLabeledEventGroupElementEClass.getESuperTypes().add(this.getEventBEventGroup());
+		eventBCommentedLabeledElementEClass.getESuperTypes().add(theCorePackage.getEventBCommentedElement());
+		eventBCommentedLabeledElementEClass.getESuperTypes().add(this.getEventBLabeled());
+		eventBNamedCommentedDataElaborationElementEClass.getESuperTypes().add(theCorePackage.getEventBNamedCommentedElement());
+		eventBNamedCommentedDataElaborationElementEClass.getESuperTypes().add(this.getEventBDataElaboration());
+		eventBNamedCommentedRelationDataElaborationElementEClass.getESuperTypes().add(this.getEventBNamedCommentedDataElaborationElement());
+		eventBNamedCommentedRelationDataElaborationElementEClass.getESuperTypes().add(this.getEventBRelationKind());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(typedParameterEClass, TypedParameter.class, "TypedParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -408,6 +493,14 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 
 		initEClass(eventBEventGroupEClass, EventBEventGroup.class, "EventBEventGroup", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventBEventGroup_Elaborates(), theMachinePackage.getEvent(), null, "elaborates", null, 0, -1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventBCommentedLabeledEventGroupElementEClass, EventBCommentedLabeledEventGroupElement.class, "EventBCommentedLabeledEventGroupElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBCommentedLabeledElementEClass, EventBCommentedLabeledElement.class, "EventBCommentedLabeledElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBNamedCommentedDataElaborationElementEClass, EventBNamedCommentedDataElaborationElement.class, "EventBNamedCommentedDataElaborationElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventBNamedCommentedRelationDataElaborationElementEClass, EventBNamedCommentedRelationDataElaborationElement.class, "EventBNamedCommentedRelationDataElaborationElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(dataKindEEnum, DataKind.class, "DataKind");

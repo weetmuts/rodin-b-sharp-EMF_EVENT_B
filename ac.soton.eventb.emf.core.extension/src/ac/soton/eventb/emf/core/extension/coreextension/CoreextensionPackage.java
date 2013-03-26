@@ -1,8 +1,9 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2012/13 - University of Southampton.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  */
 package ac.soton.eventb.emf.core.extension.coreextension;
 
@@ -10,8 +11,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EReference;
+
+import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.machine.MachinePackage;
 
 /**
@@ -35,7 +37,7 @@ public interface CoreextensionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String copyright = "Copyright (c) 2012 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
 
 	/**
 	 * The package name.
@@ -51,7 +53,7 @@ public interface CoreextensionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://soton.ac.uk/models/eventb/coreextension";
+	String eNS_URI = "http://soton.ac.uk/models/eventb/coreextension/0313";
 
 	/**
 	 * The package namespace name.
@@ -68,6 +70,16 @@ public interface CoreextensionPackage extends EPackage {
 	 * @generated
 	 */
 	CoreextensionPackage eINSTANCE = ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl.init();
+
+	/**
+	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.TypeImpl <em>Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.TypeImpl
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getType()
+	 * @generated
+	 */
+	int TYPE = 1;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.TypedParameterImpl <em>Typed Parameter</em>}' class.
@@ -170,16 +182,6 @@ public interface CoreextensionPackage extends EPackage {
 	int TYPED_PARAMETER_FEATURE_COUNT = MachinePackage.PARAMETER_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.TypeImpl <em>Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.TypeImpl
-	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getType()
-	 * @generated
-	 */
-	int TYPE = 1;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,7 +198,6 @@ public interface CoreextensionPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_FEATURE_COUNT = 1;
-
 
 	/**
 	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBLabeledImpl <em>Event BLabeled</em>}' class.
@@ -225,7 +226,6 @@ public interface CoreextensionPackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BLABELED_FEATURE_COUNT = 1;
-
 
 	/**
 	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBRelationKindImpl <em>Event BRelation Kind</em>}' class.
@@ -348,6 +348,451 @@ public interface CoreextensionPackage extends EPackage {
 	int EVENT_BEVENT_GROUP_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledElementImpl <em>Event BCommented Labeled Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledElementImpl
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBCommentedLabeledElement()
+	 * @generated
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT = 7;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__ANNOTATIONS = CorePackage.EVENT_BCOMMENTED_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__EXTENSIONS = CorePackage.EVENT_BCOMMENTED_ELEMENT__EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__ATTRIBUTES = CorePackage.EVENT_BCOMMENTED_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__REFERENCE = CorePackage.EVENT_BCOMMENTED_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__GENERATED = CorePackage.EVENT_BCOMMENTED_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__LOCAL_GENERATED = CorePackage.EVENT_BCOMMENTED_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__COMMENT = CorePackage.EVENT_BCOMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT__LABEL = CorePackage.EVENT_BCOMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Event BCommented Labeled Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT = CorePackage.EVENT_BCOMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl <em>Event BCommented Labeled Event Group Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBCommentedLabeledEventGroupElement()
+	 * @generated
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ANNOTATIONS = EVENT_BCOMMENTED_LABELED_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENSIONS = EVENT_BCOMMENTED_LABELED_ELEMENT__EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ATTRIBUTES = EVENT_BCOMMENTED_LABELED_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__REFERENCE = EVENT_BCOMMENTED_LABELED_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GENERATED = EVENT_BCOMMENTED_LABELED_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__LOCAL_GENERATED = EVENT_BCOMMENTED_LABELED_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__COMMENT = EVENT_BCOMMENTED_LABELED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__LABEL = EVENT_BCOMMENTED_LABELED_ELEMENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Elaborates</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ELABORATES = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Event BCommented Labeled Event Group Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT_FEATURE_COUNT = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedDataElaborationElementImpl <em>Event BNamed Commented Data Elaboration Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedDataElaborationElementImpl
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBNamedCommentedDataElaborationElement()
+	 * @generated
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ANNOTATIONS = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__EXTENSIONS = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ATTRIBUTES = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__REFERENCE = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__LOCAL_GENERATED = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__COMMENT = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__NAME = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Elaborates</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Data Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Event BNamed Commented Data Elaboration Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT_FEATURE_COUNT = CorePackage.EVENT_BNAMED_COMMENTED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl <em>Event BNamed Commented Relation Data Elaboration Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBNamedCommentedRelationDataElaborationElement()
+	 * @generated
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__ANNOTATIONS = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Extensions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__EXTENSIONS = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__EXTENSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attributes</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__ATTRIBUTES = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__REFERENCE = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__GENERATED = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Local Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__LOCAL_GENERATED = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__COMMENT = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__NAME = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Elaborates</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__ELABORATES = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__ELABORATES;
+
+	/**
+	 * The feature id for the '<em><b>Data Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__DATA_KIND = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND;
+
+	/**
+	 * The feature id for the '<em><b>Surjective</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Injective</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Total</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Functional</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Event BNamed Commented Relation Data Elaboration Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT_FEATURE_COUNT = EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.DataKind <em>Data Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,7 +800,7 @@ public interface CoreextensionPackage extends EPackage {
 	 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getDataKind()
 	 * @generated
 	 */
-	int DATA_KIND = 6;
+	int DATA_KIND = 10;
 
 
 	/**
@@ -516,6 +961,46 @@ public interface CoreextensionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEventBEventGroup_Elaborates();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement <em>Event BCommented Labeled Event Group Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event BCommented Labeled Event Group Element</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement
+	 * @generated
+	 */
+	EClass getEventBCommentedLabeledEventGroupElement();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement <em>Event BCommented Labeled Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event BCommented Labeled Element</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement
+	 * @generated
+	 */
+	EClass getEventBCommentedLabeledElement();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement <em>Event BNamed Commented Data Elaboration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event BNamed Commented Data Elaboration Element</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement
+	 * @generated
+	 */
+	EClass getEventBNamedCommentedDataElaborationElement();
+
+	/**
+	 * Returns the meta object for class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement <em>Event BNamed Commented Relation Data Elaboration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event BNamed Commented Relation Data Elaboration Element</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement
+	 * @generated
+	 */
+	EClass getEventBNamedCommentedRelationDataElaborationElement();
 
 	/**
 	 * Returns the meta object for enum '{@link ac.soton.eventb.emf.core.extension.coreextension.DataKind <em>Data Kind</em>}'.
@@ -680,6 +1165,46 @@ public interface CoreextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_BEVENT_GROUP__ELABORATES = eINSTANCE.getEventBEventGroup_Elaborates();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl <em>Event BCommented Labeled Event Group Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBCommentedLabeledEventGroupElement()
+		 * @generated
+		 */
+		EClass EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT = eINSTANCE.getEventBCommentedLabeledEventGroupElement();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledElementImpl <em>Event BCommented Labeled Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledElementImpl
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBCommentedLabeledElement()
+		 * @generated
+		 */
+		EClass EVENT_BCOMMENTED_LABELED_ELEMENT = eINSTANCE.getEventBCommentedLabeledElement();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedDataElaborationElementImpl <em>Event BNamed Commented Data Elaboration Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedDataElaborationElementImpl
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBNamedCommentedDataElaborationElement()
+		 * @generated
+		 */
+		EClass EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT = eINSTANCE.getEventBNamedCommentedDataElaborationElement();
+
+		/**
+		 * The meta object literal for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl <em>Event BNamed Commented Relation Data Elaboration Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl
+		 * @see ac.soton.eventb.emf.core.extension.coreextension.impl.CoreextensionPackageImpl#getEventBNamedCommentedRelationDataElaborationElement()
+		 * @generated
+		 */
+		EClass EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT = eINSTANCE.getEventBNamedCommentedRelationDataElaborationElement();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.eventb.emf.core.extension.coreextension.DataKind <em>Data Kind</em>}' enum.

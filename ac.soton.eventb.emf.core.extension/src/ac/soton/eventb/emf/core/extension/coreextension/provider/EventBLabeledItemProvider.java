@@ -1,8 +1,9 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2012/13 - University of Southampton.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  */
 package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -43,13 +45,14 @@ public class EventBLabeledItemProvider
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
-		IItemPropertySource {
+		IItemPropertySource,
+		IItemColorProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "Copyright (c) 2012 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	public static final String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -92,7 +95,7 @@ public class EventBLabeledItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_EventBLabeled_label_feature", "_UI_EventBLabeled_type"),
 				 CoreextensionPackage.Literals.EVENT_BLABELED__LABEL,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -107,7 +110,7 @@ public class EventBLabeledItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((EventBLabeled)object).getLabel();
+		String label = crop(((EventBLabeled)object).getLabel());
 		return label == null || label.length() == 0 ?
 			getString("_UI_EventBLabeled_type") :
 			getString("_UI_EventBLabeled_type") + " " + label;

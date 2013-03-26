@@ -1,17 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2012/13 - University of Southampton.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  */
 package ac.soton.eventb.emf.core.extension.coreextension.util;
 
 import ac.soton.eventb.emf.core.extension.coreextension.*;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.eventb.emf.core.EventBCommented;
 import org.eventb.emf.core.EventBCommentedElement;
 import org.eventb.emf.core.EventBElement;
@@ -40,7 +42,8 @@ public class CoreextensionSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "Copyright (c) 2012 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	public static final String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -125,6 +128,58 @@ public class CoreextensionSwitch<T> extends Switch<T> {
 			case CoreextensionPackage.EVENT_BEVENT_GROUP: {
 				EventBEventGroup eventBEventGroup = (EventBEventGroup)theEObject;
 				T result = caseEventBEventGroup(eventBEventGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT: {
+				EventBCommentedLabeledEventGroupElement eventBCommentedLabeledEventGroupElement = (EventBCommentedLabeledEventGroupElement)theEObject;
+				T result = caseEventBCommentedLabeledEventGroupElement(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = caseEventBCommentedLabeledElement(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = caseEventBEventGroup(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = caseEventBCommentedElement(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = caseEventBLabeled(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = caseEventBElement(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = caseEventBCommented(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = caseEventBObject(eventBCommentedLabeledEventGroupElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_ELEMENT: {
+				EventBCommentedLabeledElement eventBCommentedLabeledElement = (EventBCommentedLabeledElement)theEObject;
+				T result = caseEventBCommentedLabeledElement(eventBCommentedLabeledElement);
+				if (result == null) result = caseEventBCommentedElement(eventBCommentedLabeledElement);
+				if (result == null) result = caseEventBLabeled(eventBCommentedLabeledElement);
+				if (result == null) result = caseEventBElement(eventBCommentedLabeledElement);
+				if (result == null) result = caseEventBCommented(eventBCommentedLabeledElement);
+				if (result == null) result = caseEventBObject(eventBCommentedLabeledElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT: {
+				EventBNamedCommentedDataElaborationElement eventBNamedCommentedDataElaborationElement = (EventBNamedCommentedDataElaborationElement)theEObject;
+				T result = caseEventBNamedCommentedDataElaborationElement(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = caseEventBNamedCommentedElement(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = caseEventBDataElaboration(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = caseEventBCommentedElement(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = caseEventBNamed(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = caseEventBElement(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = caseEventBCommented(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = caseEventBObject(eventBNamedCommentedDataElaborationElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT: {
+				EventBNamedCommentedRelationDataElaborationElement eventBNamedCommentedRelationDataElaborationElement = (EventBNamedCommentedRelationDataElaborationElement)theEObject;
+				T result = caseEventBNamedCommentedRelationDataElaborationElement(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBNamedCommentedDataElaborationElement(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBRelationKind(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBNamedCommentedElement(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBDataElaboration(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBCommentedElement(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBNamed(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBElement(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBCommented(eventBNamedCommentedRelationDataElaborationElement);
+				if (result == null) result = caseEventBObject(eventBNamedCommentedRelationDataElaborationElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -219,6 +274,66 @@ public class CoreextensionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEventBEventGroup(EventBEventGroup object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event BCommented Labeled Event Group Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event BCommented Labeled Event Group Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventBCommentedLabeledEventGroupElement(EventBCommentedLabeledEventGroupElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event BCommented Labeled Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event BCommented Labeled Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventBCommentedLabeledElement(EventBCommentedLabeledElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event BNamed Commented Data Elaboration Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event BNamed Commented Data Elaboration Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventBNamedCommentedDataElaborationElement(EventBNamedCommentedDataElaborationElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event BNamed Commented Relation Data Elaboration Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event BNamed Commented Relation Data Elaboration Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventBNamedCommentedRelationDataElaborationElement(EventBNamedCommentedRelationDataElaborationElement object) {
 		return null;
 	}
 

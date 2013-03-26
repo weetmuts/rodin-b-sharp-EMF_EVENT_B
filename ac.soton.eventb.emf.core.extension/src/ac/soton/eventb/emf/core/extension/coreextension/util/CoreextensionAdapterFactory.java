@@ -1,8 +1,9 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2012/13 - University of Southampton.
+ * All rights reserved. This program and the accompanying materials  are made
+ * available under the terms of the Eclipse Public License v1.0 which accompanies this 
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * 
  */
 package ac.soton.eventb.emf.core.extension.coreextension.util;
 
@@ -38,7 +39,8 @@ public class CoreextensionAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "Copyright (c) 2012 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	public static final String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -109,6 +111,22 @@ public class CoreextensionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEventBEventGroup(EventBEventGroup object) {
 				return createEventBEventGroupAdapter();
+			}
+			@Override
+			public Adapter caseEventBCommentedLabeledEventGroupElement(EventBCommentedLabeledEventGroupElement object) {
+				return createEventBCommentedLabeledEventGroupElementAdapter();
+			}
+			@Override
+			public Adapter caseEventBCommentedLabeledElement(EventBCommentedLabeledElement object) {
+				return createEventBCommentedLabeledElementAdapter();
+			}
+			@Override
+			public Adapter caseEventBNamedCommentedDataElaborationElement(EventBNamedCommentedDataElaborationElement object) {
+				return createEventBNamedCommentedDataElaborationElementAdapter();
+			}
+			@Override
+			public Adapter caseEventBNamedCommentedRelationDataElaborationElement(EventBNamedCommentedRelationDataElaborationElement object) {
+				return createEventBNamedCommentedRelationDataElaborationElementAdapter();
 			}
 			@Override
 			public Adapter caseEventBObject(EventBObject object) {
@@ -239,6 +257,62 @@ public class CoreextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventBEventGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement <em>Event BCommented Labeled Event Group Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement
+	 * @generated
+	 */
+	public Adapter createEventBCommentedLabeledEventGroupElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement <em>Event BCommented Labeled Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement
+	 * @generated
+	 */
+	public Adapter createEventBCommentedLabeledElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement <em>Event BNamed Commented Data Elaboration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement
+	 * @generated
+	 */
+	public Adapter createEventBNamedCommentedDataElaborationElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement <em>Event BNamed Commented Relation Data Elaboration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement
+	 * @generated
+	 */
+	public Adapter createEventBNamedCommentedRelationDataElaborationElementAdapter() {
 		return null;
 	}
 

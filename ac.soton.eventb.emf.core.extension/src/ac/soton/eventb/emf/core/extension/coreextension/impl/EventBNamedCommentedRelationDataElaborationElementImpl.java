@@ -8,6 +8,7 @@
 package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -15,25 +16,24 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Event BRelation Kind</b></em>'.
+ * An implementation of the model object '<em><b>Event BNamed Commented Relation Data Elaboration Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBRelationKindImpl#isSurjective <em>Surjective</em>}</li>
- *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBRelationKindImpl#isInjective <em>Injective</em>}</li>
- *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBRelationKindImpl#isTotal <em>Total</em>}</li>
- *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBRelationKindImpl#isFunctional <em>Functional</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl#isSurjective <em>Surjective</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl#isInjective <em>Injective</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl#isTotal <em>Total</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedRelationDataElaborationElementImpl#isFunctional <em>Functional</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class EventBRelationKindImpl extends EObjectImpl implements EventBRelationKind {
+public abstract class EventBNamedCommentedRelationDataElaborationElementImpl extends EventBNamedCommentedDataElaborationElementImpl implements EventBNamedCommentedRelationDataElaborationElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,7 +126,7 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EventBRelationKindImpl() {
+	protected EventBNamedCommentedRelationDataElaborationElementImpl() {
 		super();
 	}
 
@@ -137,7 +137,7 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CoreextensionPackage.Literals.EVENT_BRELATION_KIND;
+		return CoreextensionPackage.Literals.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT;
 	}
 
 	/**
@@ -158,7 +158,7 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 		boolean oldSurjective = surjective;
 		surjective = newSurjective;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE, oldSurjective, surjective));
+			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE, oldSurjective, surjective));
 	}
 
 	/**
@@ -179,7 +179,7 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 		boolean oldInjective = injective;
 		injective = newInjective;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE, oldInjective, injective));
+			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE, oldInjective, injective));
 	}
 
 	/**
@@ -200,7 +200,7 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 		boolean oldTotal = total;
 		total = newTotal;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL, oldTotal, total));
+			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL, oldTotal, total));
 	}
 
 	/**
@@ -221,7 +221,7 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 		boolean oldFunctional = functional;
 		functional = newFunctional;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL, oldFunctional, functional));
+			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL, oldFunctional, functional));
 	}
 
 	/**
@@ -232,13 +232,13 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE:
 				return isSurjective();
-			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE:
 				return isInjective();
-			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL:
 				return isTotal();
-			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL:
 				return isFunctional();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -252,16 +252,16 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE:
 				setSurjective((Boolean)newValue);
 				return;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE:
 				setInjective((Boolean)newValue);
 				return;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL:
 				setTotal((Boolean)newValue);
 				return;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL:
 				setFunctional((Boolean)newValue);
 				return;
 		}
@@ -276,16 +276,16 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE:
 				setSurjective(SURJECTIVE_EDEFAULT);
 				return;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE:
 				setInjective(INJECTIVE_EDEFAULT);
 				return;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL:
 				setTotal(TOTAL_EDEFAULT);
 				return;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL:
 				setFunctional(FUNCTIONAL_EDEFAULT);
 				return;
 		}
@@ -300,16 +300,54 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE:
 				return surjective != SURJECTIVE_EDEFAULT;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE:
 				return injective != INJECTIVE_EDEFAULT;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL:
 				return total != TOTAL_EDEFAULT;
-			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL:
 				return functional != FUNCTIONAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == EventBRelationKind.class) {
+			switch (derivedFeatureID) {
+				case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE: return CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE;
+				case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE: return CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE;
+				case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL: return CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL;
+				case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL: return CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == EventBRelationKind.class) {
+			switch (baseFeatureID) {
+				case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE: return CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE;
+				case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE: return CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE;
+				case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL: return CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL;
+				case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL: return CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**
@@ -334,4 +372,4 @@ public abstract class EventBRelationKindImpl extends EObjectImpl implements Even
 		return result.toString();
 	}
 
-} //EventBRelationKindImpl
+} //EventBNamedCommentedRelationDataElaborationElementImpl

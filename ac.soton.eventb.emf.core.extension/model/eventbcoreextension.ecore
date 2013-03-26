@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="coreextension"
-    nsURI="http://soton.ac.uk/models/eventb/coreextension" nsPrefix="coreextension">
+    nsURI="http://soton.ac.uk/models/eventb/coreextension/0313" nsPrefix="coreextension">
   <eClassifiers xsi:type="ecore:EClass" name="TypedParameter" eSuperTypes="../../org.eventb.emf.core/model/eventbcore.ecore#//machine/Parameter #//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -36,4 +36,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elaborates" upperBound="-1"
         eType="ecore:EClass ../../org.eventb.emf.core/model/eventbcore.ecore#//machine/Event"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventBCommentedLabeledEventGroupElement"
+      abstract="true" eSuperTypes="#//EventBCommentedLabeledElement #//EventBEventGroup"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EventBCommentedLabeledElement" abstract="true"
+      eSuperTypes="../../org.eventb.emf.core/model/eventbcore.ecore#//EventBCommentedElement #//EventBLabeled"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EventBNamedCommentedDataElaborationElement"
+      abstract="true" eSuperTypes="../../org.eventb.emf.core/model/eventbcore.ecore#//EventBNamedCommentedElement #//EventBDataElaboration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EventBNamedCommentedRelationDataElaborationElement"
+      abstract="true" eSuperTypes="#//EventBNamedCommentedDataElaborationElement #//EventBRelationKind"/>
 </ecore:EPackage>

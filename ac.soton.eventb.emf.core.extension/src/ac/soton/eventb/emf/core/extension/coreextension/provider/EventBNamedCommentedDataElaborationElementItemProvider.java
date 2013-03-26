@@ -9,7 +9,7 @@ package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
 
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,10 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,17 +26,18 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eventb.emf.core.provider.EventBNamedCommentedElementItemProvider;
+
 /**
- * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind} object.
+ * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventBRelationKindItemProvider
-	extends ItemProviderAdapter
+public class EventBNamedCommentedDataElaborationElementItemProvider
+	extends EventBNamedCommentedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -60,7 +58,7 @@ public class EventBRelationKindItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventBRelationKindItemProvider(AdapterFactory adapterFactory) {
+	public EventBNamedCommentedDataElaborationElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -75,98 +73,52 @@ public class EventBRelationKindItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSurjectivePropertyDescriptor(object);
-			addInjectivePropertyDescriptor(object);
-			addTotalPropertyDescriptor(object);
-			addFunctionalPropertyDescriptor(object);
+			addElaboratesPropertyDescriptor(object);
+			addDataKindPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Surjective feature.
+	 * This adds a property descriptor for the Elaborates feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSurjectivePropertyDescriptor(Object object) {
+	protected void addElaboratesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBRelationKind_surjective_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_surjective_feature", "_UI_EventBRelationKind_type"),
-				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__SURJECTIVE,
+				 getString("_UI_EventBDataElaboration_elaborates_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBDataElaboration_elaborates_feature", "_UI_EventBDataElaboration_type"),
+				 CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Injective feature.
+	 * This adds a property descriptor for the Data Kind feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInjectivePropertyDescriptor(Object object) {
+	protected void addDataKindPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBRelationKind_injective_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_injective_feature", "_UI_EventBRelationKind_type"),
-				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__INJECTIVE,
+				 getString("_UI_EventBDataElaboration_dataKind_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBDataElaboration_dataKind_feature", "_UI_EventBDataElaboration_type"),
+				 CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__DATA_KIND,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Total feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTotalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EventBRelationKind_total_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_total_feature", "_UI_EventBRelationKind_type"),
-				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__TOTAL,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Functional feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFunctionalPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EventBRelationKind_functional_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_functional_feature", "_UI_EventBRelationKind_type"),
-				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__FUNCTIONAL,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -179,8 +131,10 @@ public class EventBRelationKindItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		EventBRelationKind eventBRelationKind = (EventBRelationKind)object;
-		return getString("_UI_EventBRelationKind_type") + " " + eventBRelationKind.isSurjective();
+		String label = ((EventBNamedCommentedDataElaborationElement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_EventBNamedCommentedDataElaborationElement_type") :
+			getString("_UI_EventBNamedCommentedDataElaborationElement_type") + " " + label;
 	}
 
 	/**
@@ -194,11 +148,8 @@ public class EventBRelationKindItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EventBRelationKind.class)) {
-			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
-			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
-			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
-			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
+		switch (notification.getFeatureID(EventBNamedCommentedDataElaborationElement.class)) {
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_DATA_ELABORATION_ELEMENT__DATA_KIND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -215,17 +166,6 @@ public class EventBRelationKindItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

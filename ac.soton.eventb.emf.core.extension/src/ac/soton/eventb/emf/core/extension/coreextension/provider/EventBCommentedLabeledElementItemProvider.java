@@ -9,8 +9,7 @@ package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
 
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.DataKind;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,10 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -30,17 +26,18 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eventb.emf.core.provider.EventBCommentedElementItemProvider;
+
 /**
- * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration} object.
+ * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventBDataElaborationItemProvider
-	extends ItemProviderAdapter
+public class EventBCommentedLabeledElementItemProvider
+	extends EventBCommentedElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -61,7 +58,7 @@ public class EventBDataElaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventBDataElaborationItemProvider(AdapterFactory adapterFactory) {
+	public EventBCommentedLabeledElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -76,50 +73,27 @@ public class EventBDataElaborationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElaboratesPropertyDescriptor(object);
-			addDataKindPropertyDescriptor(object);
+			addLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Elaborates feature.
+	 * This adds a property descriptor for the Label feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElaboratesPropertyDescriptor(Object object) {
+	protected void addLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBDataElaboration_elaborates_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBDataElaboration_elaborates_feature", "_UI_EventBDataElaboration_type"),
-				 CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES,
+				 getString("_UI_EventBLabeled_label_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBLabeled_label_feature", "_UI_EventBLabeled_type"),
+				 CoreextensionPackage.Literals.EVENT_BLABELED__LABEL,
 				 true,
-				 false,
 				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Data Kind feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDataKindPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_EventBDataElaboration_dataKind_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBDataElaboration_dataKind_feature", "_UI_EventBDataElaboration_type"),
-				 CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__DATA_KIND,
-				 true,
-				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -134,11 +108,10 @@ public class EventBDataElaborationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		DataKind labelValue = ((EventBDataElaboration)object).getDataKind();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((EventBCommentedLabeledElement)object).getReference();
 		return label == null || label.length() == 0 ?
-			getString("_UI_EventBDataElaboration_type") :
-			getString("_UI_EventBDataElaboration_type") + " " + label;
+			getString("_UI_EventBCommentedLabeledElement_type") :
+			getString("_UI_EventBCommentedLabeledElement_type") + " " + label;
 	}
 
 	/**
@@ -152,8 +125,8 @@ public class EventBDataElaborationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EventBDataElaboration.class)) {
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND:
+		switch (notification.getFeatureID(EventBCommentedLabeledElement.class)) {
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_ELEMENT__LABEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -170,17 +143,6 @@ public class EventBDataElaborationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }
