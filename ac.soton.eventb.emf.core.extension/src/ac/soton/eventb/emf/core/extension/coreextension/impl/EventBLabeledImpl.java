@@ -85,19 +85,28 @@ public abstract class EventBLabeledImpl extends EObjectImpl implements EventBLab
 	 * 
 	 */
 	public String getLabel() {
+		return EventBLabeledImpl.getLabel(this);
+	}
+
+	/**
+	 * static version of getLabel so that other inheritance chains can use it
+	 * @param thisElement
+	 * @return
+	 */
+	public static String getLabel(EventBLabeled thisElement) {
 		Object label=null;
-		EStructuralFeature labelFeature = eClass().getEStructuralFeature("name");
+		EStructuralFeature labelFeature = thisElement.eClass().getEStructuralFeature("name");
 		//if this has a name return that
 		if (labelFeature != null && labelFeature.getEType() == EcorePackage.eINSTANCE.getEString()) 
-			return  (String)eGet(labelFeature);
+			return  (String)thisElement.eGet(labelFeature);
 		//otherwise look for a reference to something that may have a suitable label
-		labelFeature = eClass().getEStructuralFeature("refines");
+		labelFeature = thisElement.eClass().getEStructuralFeature("refines");
 		if (labelFeature == null) 
-			labelFeature = eClass().getEStructuralFeature("inherits");
+			labelFeature = thisElement.eClass().getEStructuralFeature("inherits");
 		if (labelFeature == null) 
-			labelFeature = eClass().getEStructuralFeature("elaborates");		
+			labelFeature = thisElement.eClass().getEStructuralFeature("elaborates");		
 		if (labelFeature != null)
-			label = labelFeature.eGet(labelFeature);
+			label = thisElement.eGet(labelFeature);
 		if (labelFeature.isMany() && label instanceof EList){
 			EList<?> elements = (EList<?>) label;
 			if (elements.isEmpty())
@@ -124,6 +133,7 @@ public abstract class EventBLabeledImpl extends EObjectImpl implements EventBLab
 		}
 	}
 
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

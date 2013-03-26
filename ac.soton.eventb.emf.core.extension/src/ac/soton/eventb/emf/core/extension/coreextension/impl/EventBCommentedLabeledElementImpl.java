@@ -68,12 +68,10 @@ public abstract class EventBCommentedLabeledElementImpl extends EventBCommentedE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getLabel() {
-		// TODO: implement this method to return the 'Label' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return EventBLabeledImpl.getLabel(this);
 	}
 
 	/**
