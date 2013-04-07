@@ -269,21 +269,18 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	private IInternalElement getNewRodinElement(IInternalElement rodinParent, IInternalElementType<?> rodinType, Annotation rodinInternals) throws RodinDBException {
 		IInternalElement rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName(rodinInternals));
 		if (rodinElement.exists()) {
-			//if name clash, overwrite Rodin name with UUID - this should be extremely rare.
-			String oldName = rodinElement.getElementName();
 
+			// OVERWRITING AN ELEMENT MAY BE INTENTIONAL BUT STILL NEEDS TO BE RENAMED
+			//TODO: INVESTIGATE FURTHER
+			//if name clash, overwrite Rodin name with UUID - this should be extremely rare.
 			EMap<String, String> rodinInternalDetails = rodinInternals.getDetails();
 			disableTransactionChangeRecorders(rodinInternals, rodinInternalDetails, rodinInternalDetails.get(rodinInternalDetails.indexOfKey(NAME)));
-			rodinInternals.getDetails().removeKey(NAME);
+			String oldName = rodinInternalDetails.put(NAME, getNewName());
 			reEnableTransactionChangeRecorders(rodinInternals, rodinInternalDetails, rodinInternalDetails.get(rodinInternalDetails.indexOfKey(NAME)));
-
 			rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName(rodinInternals));
 
-			PersistencePlugin
-					.getDefault()
-					.getLog()
-					.log(new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Element name clash detected, renamed element " + oldName + " to "
-							+ rodinElement.getElementName()));
+			PersistencePlugin.getDefault().getLog()
+					.log(new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Element name clash - renamed element " + oldName + " to " + rodinElement.getElementName()));
 		}
 		return rodinElement;
 	}
