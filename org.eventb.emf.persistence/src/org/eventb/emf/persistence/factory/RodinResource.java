@@ -203,7 +203,7 @@ public class RodinResource extends XMIResourceImpl {
 						}
 						rodinFile.save(null, true);
 					}
-				}, null);
+				}, project, null);
 
 			} catch (RodinDBException e) {
 				throw new IOException("Error while saving rodin file: " + e.getLocalizedMessage());
