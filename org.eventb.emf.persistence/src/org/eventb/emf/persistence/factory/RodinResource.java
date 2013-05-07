@@ -149,7 +149,7 @@ public class RodinResource extends XMIResourceImpl {
 				}
 				// otherwise throw exception
 				else {
-					throw new IOException("Resource does not exist");
+					throw new IOException("Resource does not exist : " + rodinFile.getPath());
 				}
 			} finally {
 				isLoading = false;
