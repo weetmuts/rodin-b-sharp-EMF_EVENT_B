@@ -7,9 +7,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eventb.core.EventBAttributes;
+import org.eventb.core.IConvergenceElement.Convergence;
 import org.eventb.core.IEvent;
 import org.eventb.core.IRefinesEvent;
-import org.eventb.core.IConvergenceElement.Convergence;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.MachineFactory;
@@ -81,7 +81,11 @@ public class EventSynchroniser extends AbstractSynchroniser {
 				refinesNames.add(INITIALISATION);
 			} else {
 				for (IRefinesEvent refinesEvent : event.getRefinesClauses()) {
-					refinesNames.add(refinesEvent.getAbstractEventLabel());
+					String refines = refinesEvent.getAbstractEventLabel();
+					//save the rodin internal name of the refinesEvent element for later use when saving
+					saveRodinReferenceInternalName(eventBElement, "refines", refines, refinesEvent.getElementName());
+					//add the refines to the EMF event
+					refinesNames.add(refines);
 				}
 			}
 		}
@@ -106,8 +110,8 @@ public class EventSynchroniser extends AbstractSynchroniser {
 
 			boolean extended = emfEvent.isExtended();
 			rodinEvent.setExtended(extended, monitor);
-
 			EList<String> refinesNames = emfEvent.getRefinesNames();
+
 			if (extended && INITIALISATION.equals(emfEvent.getName())) {
 				if (refinesNames.size() > 0) {
 					/*
@@ -120,14 +124,14 @@ public class EventSynchroniser extends AbstractSynchroniser {
 					 */
 					final String extendsName = refinesNames.get(0);
 					if (!INITIALISATION.equals(extendsName)) {
-						IRefinesEvent refinesEvent = rodinEvent.getRefinesClause(getNewName());
+						IRefinesEvent refinesEvent = rodinEvent.getRefinesClause(getRodinReferenceInternalName(emfEvent, "refines", extendsName));
 						refinesEvent.create(null, monitor);
 						refinesEvent.setAbstractEventLabel(extendsName, monitor);
 					}
 				}
 			} else {
 				for (String refinesName : refinesNames) {
-					IRefinesEvent refinesEvent = rodinEvent.getRefinesClause(getNewName());
+					IRefinesEvent refinesEvent = rodinEvent.getRefinesClause(getRodinReferenceInternalName(emfEvent, "refines", refinesName));
 					refinesEvent.create(null, monitor);
 					refinesEvent.setAbstractEventLabel(refinesName, monitor);
 				}
@@ -135,5 +139,4 @@ public class EventSynchroniser extends AbstractSynchroniser {
 		}
 		return rodinElement;
 	}
-
 }

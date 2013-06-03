@@ -60,11 +60,15 @@ public class MachineSynchroniser extends AbstractSynchroniser {
 			IMachineRoot machineRoot = (IMachineRoot) rodinElement;
 
 			for (IRefinesMachine refinesMachine : machineRoot.getRefinesClauses()) {
+				//save the rodin internal name of the refinesMachine element for later use when saving
+				saveRodinReferenceInternalName(eventBElement, "refines", refinesMachine.getAbstractMachineName(), refinesMachine.getElementName());
 				refinesNames.add(refinesMachine.getAbstractMachineName());
 			}
 
 			EList<String> seesNames = eventBElement.getSeesNames();
 			for (ISeesContext seesContext : machineRoot.getSeesClauses()) {
+				//save the rodin internal name of the seesContext element for later use when saving
+				saveRodinReferenceInternalName(eventBElement, "sees", seesContext.getSeenContextName(), seesContext.getElementName());
 				seesNames.add(seesContext.getSeenContextName());
 			}
 		}
@@ -83,13 +87,13 @@ public class MachineSynchroniser extends AbstractSynchroniser {
 		if (rodinElement instanceof IMachineRoot && emfElement instanceof Machine) {
 			EList<String> refinesNames = ((Machine) emfElement).getRefinesNames();
 			for (String refinesName : refinesNames) {
-				IRefinesMachine refinesMachine = ((IMachineRoot) rodinElement).getRefinesClause(getNewName());
+				IRefinesMachine refinesMachine = ((IMachineRoot) rodinElement).getRefinesClause(getRodinReferenceInternalName(emfElement, "refines", refinesName));
 				refinesMachine.create(null, monitor);
 				refinesMachine.setAbstractMachineName(refinesName, monitor);
 			}
 			EList<String> seesNames = ((Machine) emfElement).getSeesNames();
 			for (String seesName : seesNames) {
-				ISeesContext seesContext = ((IMachineRoot) rodinElement).getSeesClause(getNewName());
+				ISeesContext seesContext = ((IMachineRoot) rodinElement).getSeesClause(getRodinReferenceInternalName(emfElement, "sees", seesName));
 				seesContext.create(null, monitor);
 				seesContext.setSeenContextName(seesName, monitor);
 			}

@@ -57,6 +57,8 @@ public class ContextSynchroniser extends AbstractSynchroniser {
 		if (rodinElement instanceof IContextRoot) {
 			EList<String> extendsNames = eventBElement.getExtendsNames();
 			for (IExtendsContext extendsContext : ((IContextRoot) rodinElement).getExtendsClauses()) {
+				//save the rodin internal name of the extendsContext element for later use when saving
+				saveRodinReferenceInternalName(eventBElement, "extends", extendsContext.getAbstractContextName(), extendsContext.getElementName());
 				extendsNames.add(extendsContext.getAbstractContextName());
 			}
 		}
@@ -74,7 +76,7 @@ public class ContextSynchroniser extends AbstractSynchroniser {
 		if (rodinElement instanceof IContextRoot && emfElement instanceof Context) {
 			EList<String> extendsNames = ((Context) emfElement).getExtendsNames();
 			for (String extendsName : extendsNames) {
-				IExtendsContext extendsContext = ((IContextRoot) rodinElement).getExtendsClause(getNewName());
+				IExtendsContext extendsContext = ((IContextRoot) rodinElement).getExtendsClause(getRodinReferenceInternalName(emfElement, "extends", extendsName));
 				extendsContext.create(null, monitor);
 				extendsContext.setAbstractContextName(extendsName, monitor);
 			}

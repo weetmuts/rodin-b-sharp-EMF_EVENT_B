@@ -442,4 +442,58 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		}
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Support for adding an annotation to record the internal name of a rodin reference element so that it can be reused on save 
+	// (to avoid create a new name on each save which causes unnecessary changes which are a nuisance for comparisons)
+
+	/**
+	 * Saves the Rodin internal reference name with the key ..................
+	 * 'kind+" "+referencedElementName' in an annotation attached to the emf
+	 * element The annotation is created if one is not already attached to the
+	 * emf element. (This is intended to be called during load operations. if
+	 * called from a save it may be necessary to disable transactional change
+	 * recorders first)
+	 * 
+	 * @param emfElement
+	 * @param kind
+	 * @param referencedElementName
+	 * @param internalReferenceName
+	 */
+	protected void saveRodinReferenceInternalName(final EventBElement emfElement, String kind, String referencedElementName, String internalReferenceName) {
+		Annotation rodinReferenceNames = emfElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_REFERENCE_NAMES_ANNOTATION);
+		if (rodinReferenceNames == null) {
+			// create Annotation for rodin reference element name details
+			rodinReferenceNames = CoreFactory.eINSTANCE.createAnnotation();
+			rodinReferenceNames.setSource(PersistencePlugin.SOURCE_RODIN_REFERENCE_NAMES_ANNOTATION);
+			emfElement.getAnnotations().add(rodinReferenceNames);
+		}
+		// create Annotation for rodin reference element name details
+		rodinReferenceNames.getDetails().put(kind + " " + referencedElementName, internalReferenceName);
+	}
+
+	/**
+	 * Get a Rodin internal name for a Rodin reference element. Such elements do
+	 * not exist in EMF. If a name has been saved during load in an annotation
+	 * attached to the provided parent emf element, this will be retrieved using
+	 * the key 'kind+" "+referencedElementName' otherwise a new name will be
+	 * generated (and saved in an annotation for future use).
+	 * 
+	 * @param emfElement
+	 * @param kind
+	 * @param referencedElementName
+	 * @return
+	 */
+	protected String getRodinReferenceInternalName(final EventBElement emfElement, String kind, String referencedElementName) {
+		Annotation rodinReferenceNames = emfElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_REFERENCE_NAMES_ANNOTATION);
+		if (rodinReferenceNames != null && rodinReferenceNames.getDetails().containsKey(kind + " " + referencedElementName)) {
+			return rodinReferenceNames.getDetails().get(kind + " " + referencedElementName);
+		} else {
+			String newName = getNewName();
+			disableTransactionChangeRecorders(emfElement);
+			saveRodinReferenceInternalName(emfElement, kind, referencedElementName, newName);
+			reEnableTransactionChangeRecorders(emfElement);
+			return newName;
+		}
+	}
+
 }
