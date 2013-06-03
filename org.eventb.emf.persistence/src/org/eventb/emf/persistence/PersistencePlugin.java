@@ -14,6 +14,7 @@ public class PersistencePlugin extends Plugin {
 	 * elements
 	 */
 	public final static String SOURCE_RODIN_INTERNAL_ANNOTATION = "http:///org/eventb/core/RodinInternalAnnotations";
+	public final static String SOURCE_RODIN_REFERENCE_NAMES_ANNOTATION = "http:///org/eventb/core/RodinReferenceNamesAnnotations";
 
 	// The shared instance
 	private static PersistencePlugin plugin;

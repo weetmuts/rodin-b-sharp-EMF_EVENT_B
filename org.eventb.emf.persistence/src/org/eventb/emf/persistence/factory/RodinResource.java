@@ -55,6 +55,7 @@ public class RodinResource extends XMIResourceImpl {
 	private IProject project;
 	private Map<IRodinElement, EventBObject> map;
 	private boolean isXmi = false;
+	private final SyncManager syncManager = new SyncManager();
 
 	public boolean isXMI() {
 		return isXmi;
@@ -130,7 +131,6 @@ public class RodinResource extends XMIResourceImpl {
 
 				// does file already exist? -> load
 				if (exists()) {
-					SyncManager syncManager = new SyncManager();
 					try {
 						map.clear();
 						EventBElement element = syncManager.loadRodinElement(rodinFile.getRoot(), null, map, null);
@@ -194,7 +194,6 @@ public class RodinResource extends XMIResourceImpl {
 			try {
 				RodinCore.run(new IWorkspaceRunnable() {
 					public void run(final IProgressMonitor monitor) throws CoreException {
-						SyncManager syncManager = new SyncManager();
 						for (EObject content : getContents()) {
 							if (content instanceof EventBElement) {
 								map.clear();
