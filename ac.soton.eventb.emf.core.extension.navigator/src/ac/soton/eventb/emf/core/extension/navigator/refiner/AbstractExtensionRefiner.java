@@ -83,6 +83,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 */
 	protected void populateReferenceMap(Map<EReference,Boolean> referencemap){
 		referencemap.put(CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES, false);
+		referencemap.put(CoreextensionPackage.Literals.EVENT_BEVENT_GROUP__ELABORATES, false);
 	}
 	
 	/** 
