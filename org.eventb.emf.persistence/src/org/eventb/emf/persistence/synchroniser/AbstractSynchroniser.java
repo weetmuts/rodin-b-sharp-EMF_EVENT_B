@@ -62,6 +62,8 @@ import org.rodinp.core.RodinDBException;
  * is allocated. if updating an existing entry, disable notifications on the
  * entry so that the transactional editing adapter doesn't object.
  * 
+ * cfs (20/06/13) catch unknown attributes when saving generic attributes
+ * 
  * @author cfs/ff
  * 
  */
@@ -328,28 +330,33 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			String id = attribute.getKey();
 			Object value = attribute.getValue().getValue();
 			IAttributeValue rodinAttributeValue = null;
-			switch (attribute.getValue().getType().getValue()) {
-			case AttributeType.BOOLEAN_VALUE:
-				IAttributeType.Boolean booleanType = (IAttributeType.Boolean) RodinCore.getAttributeType(id);
-				rodinAttributeValue = booleanType.makeValue((Boolean) value);
-				break;
-			case AttributeType.HANDLE_VALUE:
-				IAttributeType.Handle handleType = (IAttributeType.Handle) RodinCore.getAttributeType(id);
-				rodinAttributeValue = handleType.makeValue((IRodinElement) value);
-				break;
-			case AttributeType.INTEGER_VALUE:
-				IAttributeType.Integer integerType = (IAttributeType.Integer) RodinCore.getAttributeType(id);
-				rodinAttributeValue = integerType.makeValue((Integer) value);
-				break;
-			case AttributeType.LONG_VALUE:
-				IAttributeType.Long longType = (IAttributeType.Long) RodinCore.getAttributeType(id);
-				rodinAttributeValue = longType.makeValue((Long) value);
-				break;
-			case AttributeType.STRING_VALUE:
-				IAttributeType.String stringType = (IAttributeType.String) RodinCore.getAttributeType(id);
-				rodinAttributeValue = stringType.makeValue((String) value);
-				break;
-			default:
+			try {
+				switch (attribute.getValue().getType().getValue()) {
+				case AttributeType.BOOLEAN_VALUE:
+					IAttributeType.Boolean booleanType = (IAttributeType.Boolean) RodinCore.getAttributeType(id);
+					rodinAttributeValue = booleanType.makeValue((Boolean) value);
+					break;
+				case AttributeType.HANDLE_VALUE:
+					IAttributeType.Handle handleType = (IAttributeType.Handle) RodinCore.getAttributeType(id);
+					rodinAttributeValue = handleType.makeValue((IRodinElement) value);
+					break;
+				case AttributeType.INTEGER_VALUE:
+					IAttributeType.Integer integerType = (IAttributeType.Integer) RodinCore.getAttributeType(id);
+					rodinAttributeValue = integerType.makeValue((Integer) value);
+					break;
+				case AttributeType.LONG_VALUE:
+					IAttributeType.Long longType = (IAttributeType.Long) RodinCore.getAttributeType(id);
+					rodinAttributeValue = longType.makeValue((Long) value);
+					break;
+				case AttributeType.STRING_VALUE:
+					IAttributeType.String stringType = (IAttributeType.String) RodinCore.getAttributeType(id);
+					rodinAttributeValue = stringType.makeValue((String) value);
+					break;
+				default:
+				}
+			} catch (IllegalArgumentException iae) {
+				PersistencePlugin.getDefault().getLog()
+						.log(new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Attribute of unknown type " + id + " was not saved : value = " + value));
 			}
 			if (rodinAttributeValue != null)
 				rodinElement.setAttributeValue(rodinAttributeValue, monitor);
