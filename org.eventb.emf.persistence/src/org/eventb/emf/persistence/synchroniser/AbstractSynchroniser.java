@@ -70,6 +70,8 @@ import org.rodinp.core.RodinDBException;
 
 public abstract class AbstractSynchroniser implements ISynchroniser {
 
+	private static final String UNKNOWN_ATTRIBUTES = PersistencePlugin.PLUGIN_ID + ".unknownAttributes";
+	private static final IAttributeType.String unknownAttributesType = RodinCore.getStringAttrType(UNKNOWN_ATTRIBUTES);
 	private static final String IDENTIFIER = "identifier";
 	private static final String LABEL = "label";
 	private static final String NAME = "name";
@@ -192,6 +194,25 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		availableTypes.removeAll(handledAttributes);
 		availableTypes.removeAll(otherwiseTypes);
 
+		// retrieve any attributes that were persisted as unknown attribute types
+		if (availableTypes.contains(unknownAttributesType)) {
+			String unknownAttributesValue = rodinElement.getAttributeValue(unknownAttributesType);
+			String[] unknownAttributes = unknownAttributesValue.split(":" + UNKNOWN_ATTRIBUTES + ":"); //[^a-zA-Z0-9_]+");
+			for (String unknown : unknownAttributes) {
+				int hash1 = unknown.indexOf("#");
+				int hash2 = unknown.indexOf("#", hash1 + 1);
+				if (hash1 >= 0 && hash2 > hash1) {
+					String id = unknown.substring(0, hash1);
+					String typeStr = unknown.substring(hash1 + 1, hash2);
+					String valueStr = unknown.substring(hash2 + 1);
+					Attribute eventBAttribute = CoreFactory.eINSTANCE.createAttribute();
+					eventBAttribute.setType(getType(typeStr));
+					eventBAttribute.setValue(getValue(typeStr, valueStr));
+					eventBElement.getAttributes().put(id, eventBAttribute);
+				}
+			}
+			availableTypes.remove(unknownAttributesType);
+		}
 		// add all remaining attributes
 		for (IAttributeType type : availableTypes) {
 			IAttributeValue rodinAttribute = rodinElement.getAttributeValue(type);
@@ -200,6 +221,34 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			eventBAttribute.setValue(rodinAttribute.getValue());
 			eventBElement.getAttributes().put(type.getId(), eventBAttribute);
 		}
+	}
+
+	private AttributeType getType(String typeStr) {
+		if (AttributeType.BOOLEAN.getLiteral().equals(typeStr))
+			return AttributeType.BOOLEAN;
+		else if (AttributeType.HANDLE.getLiteral().equals(typeStr))
+			return AttributeType.HANDLE;
+		else if (AttributeType.INTEGER.getLiteral().equals(typeStr))
+			return AttributeType.INTEGER;
+		else if (AttributeType.LONG.getLiteral().equals(typeStr))
+			return AttributeType.LONG;
+		else if (AttributeType.STRING.getLiteral().equals(typeStr))
+			return AttributeType.STRING;
+		return null;
+	}
+
+	private Object getValue(String typeStr, String valueStr) {
+		if (AttributeType.BOOLEAN.getLiteral().equals(typeStr))
+			return Boolean.parseBoolean(valueStr);
+		else if (AttributeType.HANDLE.getLiteral().equals(typeStr))
+			return valueStr;
+		else if (AttributeType.INTEGER.getLiteral().equals(typeStr))
+			return Integer.parseInt(valueStr);
+		else if (AttributeType.LONG.getLiteral().equals(typeStr))
+			return Long.parseLong(valueStr);
+		else if (AttributeType.STRING.getLiteral().equals(typeStr))
+			return valueStr;
+		return null;
 	}
 
 	private AttributeType getType(IAttributeValue rodinAttribute) {
@@ -271,9 +320,6 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	private IInternalElement getNewRodinElement(IInternalElement rodinParent, IInternalElementType<?> rodinType, Annotation rodinInternals) throws RodinDBException {
 		IInternalElement rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName(rodinInternals));
 		if (rodinElement.exists()) {
-
-			// OVERWRITING AN ELEMENT MAY BE INTENTIONAL BUT STILL NEEDS TO BE RENAMED
-			//TODO: INVESTIGATE FURTHER
 			//if name clash, overwrite Rodin name with UUID - this should be extremely rare.
 			EMap<String, String> rodinInternalDetails = rodinInternals.getDetails();
 			disableTransactionChangeRecorders(rodinInternals, rodinInternalDetails, rodinInternalDetails.get(rodinInternalDetails.indexOfKey(NAME)));
@@ -325,10 +371,11 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		saveGenericAttributes(rodinElement, eventBElement, monitor);
 	}
 
-	private void saveGenericAttributes(IInternalElement rodinElement, EventBElement eventBElement, IProgressMonitor monitor) throws RodinDBException {
+	private void saveGenericAttributes(IInternalElement rodinElement, EventBElement eventBElement, IProgressMonitor monitor) throws RodinDBException, IllegalArgumentException {
 		for (Entry<String, Attribute> attribute : eventBElement.getAttributes()) {
 			String id = attribute.getKey();
 			Object value = attribute.getValue().getValue();
+			String type = attribute.getValue().getType().getLiteral();
 			IAttributeValue rodinAttributeValue = null;
 			try {
 				switch (attribute.getValue().getType().getValue()) {
@@ -345,18 +392,29 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 					rodinAttributeValue = integerType.makeValue((Integer) value);
 					break;
 				case AttributeType.LONG_VALUE:
-					IAttributeType.Long longType = (IAttributeType.Long) RodinCore.getAttributeType(id);
+					IAttributeType.Long longType = RodinCore.getLongAttrType(id);
 					rodinAttributeValue = longType.makeValue((Long) value);
 					break;
 				case AttributeType.STRING_VALUE:
-					IAttributeType.String stringType = (IAttributeType.String) RodinCore.getAttributeType(id);
+					IAttributeType.String stringType = RodinCore.getStringAttrType(id);
 					rodinAttributeValue = stringType.makeValue((String) value);
 					break;
 				default:
 				}
 			} catch (IllegalArgumentException iae) {
-				PersistencePlugin.getDefault().getLog()
-						.log(new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Attribute of unknown type " + id + " was not saved : value = " + value));
+				PersistencePlugin
+						.getDefault()
+						.getLog()
+						.log(new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Attribute of unknown type " + id + " was saved in " + UNKNOWN_ATTRIBUTES + " \n value = "
+								+ value));
+
+				String currentValue = "";
+				if (rodinElement.hasAttribute(unknownAttributesType)) {
+					currentValue = rodinElement.getAttributeValue(unknownAttributesType);
+				}
+				if (!"".equals(currentValue))
+					currentValue = currentValue + ":" + UNKNOWN_ATTRIBUTES + ":";
+				rodinAttributeValue = unknownAttributesType.makeValue(currentValue + id + "#" + type + "#" + value.toString());
 			}
 			if (rodinAttributeValue != null)
 				rodinElement.setAttributeValue(rodinAttributeValue, monitor);

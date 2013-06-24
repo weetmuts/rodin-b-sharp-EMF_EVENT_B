@@ -150,6 +150,11 @@
             kind="string"
             name="Generator Plugin ID">
       </attributeType>
+      <attributeType
+            id="unknownAttributes"
+            kind="string"
+            name="Unknown Attributes">
+      </attributeType>
    </extension>
 
 </plugin>
