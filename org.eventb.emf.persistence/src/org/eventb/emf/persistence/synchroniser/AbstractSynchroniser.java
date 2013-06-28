@@ -407,7 +407,8 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 						.getLog()
 						.log(new Status(IStatus.WARNING, PersistencePlugin.PLUGIN_ID, "Attribute of unknown type " + id + " was saved in " + UNKNOWN_ATTRIBUTES + " \n value = "
 								+ value));
-
+				// this is a mechanism to persist the unknown attribute in string form so that it is not lost
+				// (it will be converted back to a Event-B_EMF generic attribute if the file is loaded again)
 				String currentValue = "";
 				if (rodinElement.hasAttribute(unknownAttributesType)) {
 					currentValue = rodinElement.getAttributeValue(unknownAttributesType);
@@ -523,6 +524,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	 * @param kind
 	 * @param referencedElementName
 	 * @param internalReferenceName
+	 * @since 2.5
 	 */
 	protected void saveRodinReferenceInternalName(final EventBElement emfElement, String kind, String referencedElementName, String internalReferenceName) {
 		Annotation rodinReferenceNames = emfElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_REFERENCE_NAMES_ANNOTATION);
@@ -547,6 +549,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	 * @param kind
 	 * @param referencedElementName
 	 * @return
+	 * @since 2.5
 	 */
 	protected String getRodinReferenceInternalName(final EventBElement emfElement, String kind, String referencedElementName) {
 		Annotation rodinReferenceNames = emfElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_REFERENCE_NAMES_ANNOTATION);
