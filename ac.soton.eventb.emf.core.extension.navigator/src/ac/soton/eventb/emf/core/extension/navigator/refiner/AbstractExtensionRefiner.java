@@ -56,7 +56,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	/**
 	 * A list of the EClasses which should not be copied into the refinement
 	 */
-	private static	List<EClass> filterList = new ArrayList<EClass>();
+	private	List<EClass> filterList = new ArrayList<EClass>();
 
 	/**
 	 * Extenders may override this method to populate the list of EClasses 
@@ -72,7 +72,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * the source element (e.g. refines) or a normal reference within the same resource level which
 	 * will be copied to simulate the abstract one..
 	 */
-	private static	Map<EReference,Boolean> referencemap = new HashMap<EReference,Boolean>();
+	private Map<EReference,Boolean> referencemap = new HashMap<EReference,Boolean>();
 	
 	/**
 	 * Extenders may override this method to populate the reference mapping with a list of 
