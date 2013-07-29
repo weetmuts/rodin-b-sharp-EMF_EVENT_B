@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="coreextension"
-    nsURI="http://soton.ac.uk/models/eventb/coreextension/0313" nsPrefix="coreextension">
+    nsURI="http://soton.ac.uk/models/eventb/coreextension/0613" nsPrefix="coreextension">
   <eClassifiers xsi:type="ecore:EClass" name="TypedParameter" eSuperTypes="../../org.eventb.emf.core/model/eventbcore.ecore#//machine/Parameter #//Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -35,6 +35,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="EventBEventGroup" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elaborates" upperBound="-1"
         eType="ecore:EClass ../../org.eventb.emf.core/model/eventbcore.ecore#//machine/Event"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extended" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//TypedParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="guards" upperBound="-1"
+        eType="ecore:EClass ../../org.eventb.emf.core/model/eventbcore.ecore#//machine/Guard"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
+        eType="ecore:EClass ../../org.eventb.emf.core/model/eventbcore.ecore#//machine/Action"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="witnesses" upperBound="-1"
+        eType="ecore:EClass ../../org.eventb.emf.core/model/eventbcore.ecore#//machine/Witness"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBCommentedLabeledEventGroupElement"
       abstract="true" eSuperTypes="#//EventBCommentedLabeledElement #//EventBEventGroup"/>

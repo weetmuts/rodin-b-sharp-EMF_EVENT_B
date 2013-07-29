@@ -325,6 +325,56 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventBEventGroup_Extended() {
+		return (EAttribute)eventBEventGroupEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventBEventGroup_Parameters() {
+		return (EReference)eventBEventGroupEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventBEventGroup_Guards() {
+		return (EReference)eventBEventGroupEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventBEventGroup_Actions() {
+		return (EReference)eventBEventGroupEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventBEventGroup_Witnesses() {
+		return (EReference)eventBEventGroupEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -416,6 +466,11 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 
 		eventBEventGroupEClass = createEClass(EVENT_BEVENT_GROUP);
 		createEReference(eventBEventGroupEClass, EVENT_BEVENT_GROUP__ELABORATES);
+		createEAttribute(eventBEventGroupEClass, EVENT_BEVENT_GROUP__EXTENDED);
+		createEReference(eventBEventGroupEClass, EVENT_BEVENT_GROUP__PARAMETERS);
+		createEReference(eventBEventGroupEClass, EVENT_BEVENT_GROUP__GUARDS);
+		createEReference(eventBEventGroupEClass, EVENT_BEVENT_GROUP__ACTIONS);
+		createEReference(eventBEventGroupEClass, EVENT_BEVENT_GROUP__WITNESSES);
 
 		eventBCommentedLabeledEventGroupElementEClass = createEClass(EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT);
 
@@ -493,6 +548,11 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 
 		initEClass(eventBEventGroupEClass, EventBEventGroup.class, "EventBEventGroup", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventBEventGroup_Elaborates(), theMachinePackage.getEvent(), null, "elaborates", null, 0, -1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventBEventGroup_Extended(), ecorePackage.getEBoolean(), "extended", "false", 1, 1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventBEventGroup_Parameters(), this.getTypedParameter(), null, "parameters", null, 0, -1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventBEventGroup_Guards(), theMachinePackage.getGuard(), null, "guards", null, 0, -1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventBEventGroup_Actions(), theMachinePackage.getAction(), null, "actions", null, 0, -1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventBEventGroup_Witnesses(), theMachinePackage.getWitness(), null, "witnesses", null, 0, -1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventBCommentedLabeledEventGroupElementEClass, EventBCommentedLabeledEventGroupElement.class, "EventBCommentedLabeledEventGroupElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

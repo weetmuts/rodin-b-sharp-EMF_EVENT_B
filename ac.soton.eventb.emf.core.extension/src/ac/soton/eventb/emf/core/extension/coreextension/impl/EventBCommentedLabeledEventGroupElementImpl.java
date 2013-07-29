@@ -11,15 +11,25 @@ import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup;
 
+import ac.soton.eventb.emf.core.extension.coreextension.TypedParameter;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.Event;
+import org.eventb.emf.core.machine.Guard;
+import org.eventb.emf.core.machine.Witness;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +39,11 @@ import org.eventb.emf.core.machine.Event;
  * The following features are implemented:
  * <ul>
  *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl#getElaborates <em>Elaborates</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl#isExtended <em>Extended</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl#getGuards <em>Guards</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl#getWitnesses <em>Witnesses</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,6 +66,72 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 	 * @ordered
 	 */
 	protected EList<Event> elaborates;
+
+	/**
+	 * The default value of the '{@link #isExtended() <em>Extended</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #isExtended()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean EXTENDED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isExtended() <em>Extended</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #isExtended()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean extended = EXTENDED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TypedParameter> parameters;
+
+	/**
+	 * The cached value of the '{@link #getGuards() <em>Guards</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getGuards()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Guard> guards;
+
+	/**
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Action> actions;
+
+	/**
+	 * The cached value of the '{@link #getWitnesses() <em>Witnesses</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getWitnesses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Witness> witnesses;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,6 +166,101 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isExtended() {
+		return extended;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExtended(boolean newExtended) {
+		boolean oldExtended = extended;
+		extended = newExtended;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED, oldExtended, extended));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TypedParameter> getParameters() {
+		if (parameters == null) {
+			parameters = new EObjectContainmentEList<TypedParameter>(TypedParameter.class, this, CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS);
+		}
+		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Guard> getGuards() {
+		if (guards == null) {
+			guards = new EObjectContainmentEList<Guard>(Guard.class, this, CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS);
+		}
+		return guards;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Action> getActions() {
+		if (actions == null) {
+			actions = new EObjectContainmentEList<Action>(Action.class, this, CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS);
+		}
+		return actions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Witness> getWitnesses() {
+		if (witnesses == null) {
+			witnesses = new EObjectContainmentEList<Witness>(Witness.class, this, CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES);
+		}
+		return witnesses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS:
+				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS:
+				return ((InternalEList<?>)getGuards()).basicRemove(otherEnd, msgs);
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS:
+				return ((InternalEList<?>)getActions()).basicRemove(otherEnd, msgs);
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES:
+				return ((InternalEList<?>)getWitnesses()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -93,6 +269,16 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 		switch (featureID) {
 			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ELABORATES:
 				return getElaborates();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED:
+				return isExtended();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS:
+				return getParameters();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS:
+				return getGuards();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS:
+				return getActions();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES:
+				return getWitnesses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +296,25 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 				getElaborates().clear();
 				getElaborates().addAll((Collection<? extends Event>)newValue);
 				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED:
+				setExtended((Boolean)newValue);
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends TypedParameter>)newValue);
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS:
+				getGuards().clear();
+				getGuards().addAll((Collection<? extends Guard>)newValue);
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS:
+				getActions().clear();
+				getActions().addAll((Collection<? extends Action>)newValue);
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES:
+				getWitnesses().clear();
+				getWitnesses().addAll((Collection<? extends Witness>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -125,6 +330,21 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ELABORATES:
 				getElaborates().clear();
 				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED:
+				setExtended(EXTENDED_EDEFAULT);
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS:
+				getParameters().clear();
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS:
+				getGuards().clear();
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS:
+				getActions().clear();
+				return;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES:
+				getWitnesses().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -139,6 +359,16 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 		switch (featureID) {
 			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ELABORATES:
 				return elaborates != null && !elaborates.isEmpty();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED:
+				return extended != EXTENDED_EDEFAULT;
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS:
+				return guards != null && !guards.isEmpty();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS:
+				return actions != null && !actions.isEmpty();
+			case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES:
+				return witnesses != null && !witnesses.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -153,6 +383,11 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 		if (baseClass == EventBEventGroup.class) {
 			switch (derivedFeatureID) {
 				case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ELABORATES: return CoreextensionPackage.EVENT_BEVENT_GROUP__ELABORATES;
+				case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED: return CoreextensionPackage.EVENT_BEVENT_GROUP__EXTENDED;
+				case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS: return CoreextensionPackage.EVENT_BEVENT_GROUP__PARAMETERS;
+				case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS: return CoreextensionPackage.EVENT_BEVENT_GROUP__GUARDS;
+				case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS: return CoreextensionPackage.EVENT_BEVENT_GROUP__ACTIONS;
+				case CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES: return CoreextensionPackage.EVENT_BEVENT_GROUP__WITNESSES;
 				default: return -1;
 			}
 		}
@@ -169,10 +404,31 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 		if (baseClass == EventBEventGroup.class) {
 			switch (baseFeatureID) {
 				case CoreextensionPackage.EVENT_BEVENT_GROUP__ELABORATES: return CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ELABORATES;
+				case CoreextensionPackage.EVENT_BEVENT_GROUP__EXTENDED: return CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED;
+				case CoreextensionPackage.EVENT_BEVENT_GROUP__PARAMETERS: return CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS;
+				case CoreextensionPackage.EVENT_BEVENT_GROUP__GUARDS: return CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS;
+				case CoreextensionPackage.EVENT_BEVENT_GROUP__ACTIONS: return CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS;
+				case CoreextensionPackage.EVENT_BEVENT_GROUP__WITNESSES: return CoreextensionPackage.EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (extended: ");
+		result.append(extended);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EventBCommentedLabeledEventGroupElementImpl

@@ -40,7 +40,7 @@ public class CoreextensionFactoryImpl extends EFactoryImpl implements Coreextens
 	 */
 	public static CoreextensionFactory init() {
 		try {
-			CoreextensionFactory theCoreextensionFactory = (CoreextensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://soton.ac.uk/models/eventb/coreextension/0313"); 
+			CoreextensionFactory theCoreextensionFactory = (CoreextensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://soton.ac.uk/models/eventb/coreextension/0613"); 
 			if (theCoreextensionFactory != null) {
 				return theCoreextensionFactory;
 			}

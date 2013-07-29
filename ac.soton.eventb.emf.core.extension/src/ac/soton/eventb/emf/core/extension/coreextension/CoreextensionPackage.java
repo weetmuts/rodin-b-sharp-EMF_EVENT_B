@@ -53,7 +53,7 @@ public interface CoreextensionPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://soton.ac.uk/models/eventb/coreextension/0313";
+	String eNS_URI = "http://soton.ac.uk/models/eventb/coreextension/0613";
 
 	/**
 	 * The package namespace name.
@@ -339,13 +339,63 @@ public interface CoreextensionPackage extends EPackage {
 	int EVENT_BEVENT_GROUP__ELABORATES = 0;
 
 	/**
+	 * The feature id for the '<em><b>Extended</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BEVENT_GROUP__EXTENDED = 1;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BEVENT_GROUP__PARAMETERS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Guards</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BEVENT_GROUP__GUARDS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->>
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BEVENT_GROUP__ACTIONS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Witnesses</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BEVENT_GROUP__WITNESSES = 5;
+
+	/**
 	 * The number of structural features of the '<em>Event BEvent Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BEVENT_GROUP_FEATURE_COUNT = 1;
+	int EVENT_BEVENT_GROUP_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledElementImpl <em>Event BCommented Labeled Element</em>}' class.
@@ -530,13 +580,63 @@ public interface CoreextensionPackage extends EPackage {
 	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ELABORATES = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Extended</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__EXTENDED = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__PARAMETERS = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Guards</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__GUARDS = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__ACTIONS = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Witnesses</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT__WITNESSES = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Event BCommented Labeled Event Group Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT_FEATURE_COUNT = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 1;
+	int EVENT_BCOMMENTED_LABELED_EVENT_GROUP_ELEMENT_FEATURE_COUNT = EVENT_BCOMMENTED_LABELED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBNamedCommentedDataElaborationElementImpl <em>Event BNamed Commented Data Elaboration Element</em>}' class.
@@ -963,6 +1063,66 @@ public interface CoreextensionPackage extends EPackage {
 	EReference getEventBEventGroup_Elaborates();
 
 	/**
+	 * Returns the meta object for the attribute '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#isExtended <em>Extended</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extended</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#isExtended()
+	 * @see #getEventBEventGroup()
+	 * @generated
+	 */
+	EAttribute getEventBEventGroup_Extended();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getParameters()
+	 * @see #getEventBEventGroup()
+	 * @generated
+	 */
+	EReference getEventBEventGroup_Parameters();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getGuards <em>Guards</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Guards</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getGuards()
+	 * @see #getEventBEventGroup()
+	 * @generated
+	 */
+	EReference getEventBEventGroup_Guards();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getActions <em>Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Actions</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getActions()
+	 * @see #getEventBEventGroup()
+	 * @generated
+	 */
+	EReference getEventBEventGroup_Actions();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getWitnesses <em>Witnesses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Witnesses</em>'.
+	 * @see ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup#getWitnesses()
+	 * @see #getEventBEventGroup()
+	 * @generated
+	 */
+	EReference getEventBEventGroup_Witnesses();
+
+	/**
 	 * Returns the meta object for class '{@link ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement <em>Event BCommented Labeled Event Group Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1165,6 +1325,51 @@ public interface CoreextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_BEVENT_GROUP__ELABORATES = eINSTANCE.getEventBEventGroup_Elaborates();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT_BEVENT_GROUP__EXTENDED = eINSTANCE.getEventBEventGroup_Extended();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_BEVENT_GROUP__PARAMETERS = eINSTANCE.getEventBEventGroup_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Guards</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_BEVENT_GROUP__GUARDS = eINSTANCE.getEventBEventGroup_Guards();
+
+		/**
+		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_BEVENT_GROUP__ACTIONS = eINSTANCE.getEventBEventGroup_Actions();
+
+		/**
+		 * The meta object literal for the '<em><b>Witnesses</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_BEVENT_GROUP__WITNESSES = eINSTANCE.getEventBEventGroup_Witnesses();
 
 		/**
 		 * The meta object literal for the '{@link ac.soton.eventb.emf.core.extension.coreextension.impl.EventBCommentedLabeledEventGroupElementImpl <em>Event BCommented Labeled Event Group Element</em>}' class.
