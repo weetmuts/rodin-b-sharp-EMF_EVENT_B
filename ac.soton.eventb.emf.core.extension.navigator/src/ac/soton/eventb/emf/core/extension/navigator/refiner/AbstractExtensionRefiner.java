@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eventb.core.IEventBRoot;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.machine.MachinePackage;
 import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IRefinementParticipant;
 import org.rodinp.core.RodinDBException;
@@ -60,10 +61,17 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 
 	/**
 	 * Extenders may override this method to populate the list of EClasses 
-	 * which should not be copied into a refinement
+	 * which should not be copied into a refinement.
+	 * 
+	 * Extenders may call super.populateFilterByTypeList(filterList) to filter
+	 *   MachinePackage.Literals.WITNESS and 
+	 *   MachinePackage.Literals.INVARIANT
+	 *   
 	 * @param filterList
 	 */
-	protected void populateFilterByTypeList(List<EClass> filterList) {	
+	protected void populateFilterByTypeList(List<EClass> filterList) {
+		filterList.add(MachinePackage.Literals.WITNESS);
+		filterList.add(MachinePackage.Literals.INVARIANT);
 	}
 	
 	/**
@@ -79,7 +87,11 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * EReference features in their model extension. For each one indicate whether it should be dealt 
 	 * with as a reference to the original source element (e.g. refines).
 	 * (If the reference mapping is not populated the default behaviour is to not copy any references
-	 * into the refinement)
+	 * into the refinement).
+	 * 
+	 * Extenders may call super.populateReferenceMap(referencemap) to set 
+	 * 	EVENT_BDATA_ELABORATION__ELABORATES, false and
+	 * 	EVENT_BEVENT_GROUP__ELABORATES, false
 	 */
 	protected void populateReferenceMap(Map<EReference,Boolean> referencemap){
 		referencemap.put(CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES, false);
