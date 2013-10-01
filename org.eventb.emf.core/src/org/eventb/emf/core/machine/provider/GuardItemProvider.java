@@ -40,7 +40,9 @@ public class GuardItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_INVARIANT);
+	private static final Image IMAGE_GRD = EventBImage.getImage(IEventBSharedImages.IMG_GUARD);
+	private static final Image IMAGE_THM = EventBImage.getImage(IEventBSharedImages.IMG_THEOREM);
+
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -76,22 +78,29 @@ public class GuardItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return IMAGE!=null ? IMAGE : 
-			overlayImage(object, getResourceLocator().getImage("full/obj16/Guard"));
+		return ((Guard)object).isTheorem() ?
+				IMAGE_THM!=null ? IMAGE_THM : overlayImage(object, getResourceLocator().getImage("full/obj16/Theorem")) :
+				IMAGE_GRD!=null ? IMAGE_GRD : overlayImage(object, getResourceLocator().getImage("full/obj16/Guard")) ;
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Guard)object).getName();
+		String predicate = ((Guard)object).getPredicate();
+		String kind = ((Guard)object).isTheorem() ? 
+				"Theorem" :
+				getString("_UI_Guard_type");
 		return label == null || label.length() == 0 ?
-			getString("_UI_Guard_type") : //$NON-NLS-1$
-			getString("_UI_Guard_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			kind : //$NON-NLS-1$
+			predicate == null || predicate.length() == 0 ?
+			  kind + " " + label+": ?" : //$NON-NLS-1$ //$NON-NLS-2$
+			  kind + " " + label+": "+predicate	; //$NON-NLS-1$ //$NON-NLS-2$  //$NON-NLS-3$
 	}
 
 	/**

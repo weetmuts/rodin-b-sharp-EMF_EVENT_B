@@ -26,6 +26,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.provider.EventBNamedCommentedActionElementItemProvider;
+import org.eventb.internal.ui.EventBImage;
+import org.eventb.ui.IEventBSharedImages;
 
 /**
  * This is the item provider adapter for a {@link org.eventb.emf.core.machine.Action} object.
@@ -38,7 +40,7 @@ public class ActionItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE = null; //EventBImage.getImage(IEventBSharedImages.IMG_ACTION);
+	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_ACTION);
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -82,14 +84,18 @@ public class ActionItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Action)object).getName();
+		String action = ((Action)object).getAction();
+		String kind = getString("_UI_Action_type");  //$NON-NLS-1$
 		return label == null || label.length() == 0 ?
-			getString("_UI_Action_type") : //$NON-NLS-1$
-			getString("_UI_Action_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			kind : //$NON-NLS-1$
+			action == null || action.length() == 0 ?
+			  kind + " " + label+": ?" : //$NON-NLS-1$ //$NON-NLS-2$
+			  kind + " " + label+": "+action	; //$NON-NLS-1$ //$NON-NLS-2$  //$NON-NLS-3$
 	}
 
 	/**

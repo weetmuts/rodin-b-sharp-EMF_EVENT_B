@@ -40,7 +40,8 @@ public class AxiomItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_AXIOM);
+	private static final Image IMAGE_AXM = EventBImage.getImage(IEventBSharedImages.IMG_AXIOM);
+	private static final Image IMAGE_THM = EventBImage.getImage(IEventBSharedImages.IMG_THEOREM);
 
 
 	/**
@@ -77,22 +78,29 @@ public class AxiomItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return IMAGE!=null ? IMAGE : 
-			overlayImage(object, getResourceLocator().getImage("full/obj16/Axiom"));
+		return ((Axiom)object).isTheorem() ?
+				IMAGE_THM!=null ? IMAGE_THM : overlayImage(object, getResourceLocator().getImage("full/obj16/Theorem")) :
+				IMAGE_AXM!=null ? IMAGE_AXM : overlayImage(object, getResourceLocator().getImage("full/obj16/Axiom")) ;
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Axiom)object).getName();
+		String predicate = ((Axiom)object).getPredicate();
+		String kind = ((Axiom)object).isTheorem() ? 
+				"Theorem" :
+				getString("_UI_Axiom_type");
 		return label == null || label.length() == 0 ?
-			getString("_UI_Axiom_type") : //$NON-NLS-1$
-			getString("_UI_Axiom_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+				kind : //$NON-NLS-1$
+				predicate == null || predicate.length() == 0 ?
+				  kind + " " + label+": ?" : //$NON-NLS-1$ //$NON-NLS-2$
+				  kind + " " + label+": "+predicate	; //$NON-NLS-1$ //$NON-NLS-2$  //$NON-NLS-3$
 	}
 
 	/**

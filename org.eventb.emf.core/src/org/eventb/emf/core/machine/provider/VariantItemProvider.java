@@ -26,6 +26,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.machine.Variant;
 import org.eventb.emf.core.provider.EventBCommentedExpressionElementItemProvider;
+import org.eventb.internal.ui.EventBImage;
+import org.eventb.ui.IEventBSharedImages;
 
 /**
  * This is the item provider adapter for a {@link org.eventb.emf.core.machine.Variant} object.
@@ -87,9 +89,13 @@ public class VariantItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Variant)object).getReference();
+		String expression = ((Variant)object).getExpression();
+		String kind = getString("_UI_Witness_type"); //$NON-NLS-1$
 		return label == null || label.length() == 0 ?
-			getString("_UI_Variant_type") : //$NON-NLS-1$
-			getString("_UI_Variant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+				kind : //$NON-NLS-1$
+				expression == null || expression.length() == 0 ?
+				  kind + " " + label+": ?" : //$NON-NLS-1$ //$NON-NLS-2$
+				  kind + " " + label+": "+expression	; //$NON-NLS-1$ //$NON-NLS-2$  //$NON-NLS-3$
 	}
 
 	/**

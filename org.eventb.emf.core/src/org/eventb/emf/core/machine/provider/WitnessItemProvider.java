@@ -89,9 +89,13 @@ public class WitnessItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Witness)object).getName();
+		String predicate = ((Witness)object).getPredicate();
+		String kind = getString("_UI_Witness_type"); //$NON-NLS-1$
 		return label == null || label.length() == 0 ?
-			getString("_UI_Witness_type") : //$NON-NLS-1$
-			getString("_UI_Witness_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			kind : //$NON-NLS-1$
+			predicate == null || predicate.length() == 0 ?
+			  kind + " " + label+": ?" : //$NON-NLS-1$ //$NON-NLS-2$
+			  kind + " " + label+": "+predicate	; //$NON-NLS-1$ //$NON-NLS-2$  //$NON-NLS-3$
 	}
 
 	/**

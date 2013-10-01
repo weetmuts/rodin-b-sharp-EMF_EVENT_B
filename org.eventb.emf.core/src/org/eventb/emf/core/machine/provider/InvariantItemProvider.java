@@ -40,7 +40,8 @@ public class InvariantItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_INVARIANT);
+	private static final Image IMAGE_INV = EventBImage.getImage(IEventBSharedImages.IMG_INVARIANT);
+	private static final Image IMAGE_THM = EventBImage.getImage(IEventBSharedImages.IMG_THEOREM);
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -76,22 +77,29 @@ public class InvariantItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return IMAGE!=null ? IMAGE : 
-			overlayImage(object, getResourceLocator().getImage("full/obj16/Invariant"));
+		return ((Invariant)object).isTheorem() ?
+				IMAGE_THM!=null ? IMAGE_THM : overlayImage(object, getResourceLocator().getImage("full/obj16/Theorem")) :
+				IMAGE_INV!=null ? IMAGE_INV : overlayImage(object, getResourceLocator().getImage("full/obj16/Invariant")) ;
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Invariant)object).getName();
+		String predicate = ((Invariant)object).getPredicate();
+		String kind = ((Invariant)object).isTheorem() ? 
+				"Theorem" :
+				getString("_UI_Invariant_type");
 		return label == null || label.length() == 0 ?
-			getString("_UI_Invariant_type") : //$NON-NLS-1$
-			getString("_UI_Invariant_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			kind : //$NON-NLS-1$
+			predicate == null || predicate.length() == 0 ?
+			  kind + " " + label+": ?" : //$NON-NLS-1$ //$NON-NLS-2$
+			  kind + " " + label+": "+predicate	; //$NON-NLS-1$ //$NON-NLS-2$  //$NON-NLS-3$
 	}
 
 	/**
