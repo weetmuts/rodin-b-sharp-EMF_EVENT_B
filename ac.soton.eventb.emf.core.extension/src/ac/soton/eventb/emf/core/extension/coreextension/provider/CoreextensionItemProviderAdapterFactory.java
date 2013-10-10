@@ -22,6 +22,7 @@ import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.edit.command.CommandParameter;
@@ -300,7 +301,7 @@ public class CoreextensionItemProviderAdapterFactory extends CoreextensionAdapte
 			protected EditingDomain editingDomain;
 
 			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
+			 * Creates the switch for populating child descriptors in the given domain.
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
@@ -316,10 +317,15 @@ public class CoreextensionItemProviderAdapterFactory extends CoreextensionAdapte
 			 */
 			@Override
 			public Object caseAnnotation(Annotation object) {
-				newChildDescriptors.add
-					(createChildParameter
-						(CorePackage.Literals.ANNOTATION__CONTENTS,
-						 CoreextensionFactory.eINSTANCE.createTypedParameter()));
+			
+			EAnnotation annotation = null;
+				
+				annotation = CoreextensionPackage.Literals.TYPED_PARAMETER.getEAnnotation("org.eventb.emf.core.extendedMetaClasses");
+				if (annotation == null  || annotation.getReferences().contains(object.eClass()))
+					newChildDescriptors.add
+						(createChildParameter
+							(CorePackage.Literals.ANNOTATION__CONTENTS,
+							 CoreextensionFactory.eINSTANCE.createTypedParameter()));
 
 				return null;
 			}
@@ -387,7 +393,7 @@ public class CoreextensionItemProviderAdapterFactory extends CoreextensionAdapte
 			protected EditingDomain editingDomain;
 
 			/**
-			 * Creates the a switch for populating child descriptors in the given domain.
+			 * Creates the switch for populating child descriptors in the given domain.
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
@@ -403,10 +409,15 @@ public class CoreextensionItemProviderAdapterFactory extends CoreextensionAdapte
 			 */
 			@Override
 			public Object caseEvent(Event object) {
-				newChildDescriptors.add
-					(createChildParameter
-						(MachinePackage.Literals.EVENT__PARAMETERS,
-						 CoreextensionFactory.eINSTANCE.createTypedParameter()));
+			
+			EAnnotation annotation = null;
+				
+				annotation = CoreextensionPackage.Literals.TYPED_PARAMETER.getEAnnotation("org.eventb.emf.core.extendedMetaClasses");
+				if (annotation == null  || annotation.getReferences().contains(object.eClass()))
+					newChildDescriptors.add
+						(createChildParameter
+							(MachinePackage.Literals.EVENT__PARAMETERS,
+							 CoreextensionFactory.eINSTANCE.createTypedParameter()));
 
 				return null;
 			}
