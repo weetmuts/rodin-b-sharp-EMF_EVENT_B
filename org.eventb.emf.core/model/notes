@@ -4,6 +4,7 @@
 WARNINGS:
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 AFTER REGENERATING MODEL CODE YOU ALWAYS NEED TO EDIT getURI in EventBObjectImpl to remove the <URI>
+ALSO, change "\\u22a4" to "\u22a4" in CorePackage
 IF YOU ADDED ANY FEATURES TO EventBElement YOU ALSO NEED TO UPDATE eGet IN EventBElementImpl
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

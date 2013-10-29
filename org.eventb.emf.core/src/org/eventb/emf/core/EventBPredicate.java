@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface EventBPredicate extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Predicate</b></em>' attribute.
-	 * The default value is <code>"\"true\""</code>.
+	 * The default value is <code>"\u22a4"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Predicate</em>' attribute isn't clear,
@@ -41,7 +41,7 @@ public interface EventBPredicate extends EObject {
 	 * @return the value of the '<em>Predicate</em>' attribute.
 	 * @see #setPredicate(String)
 	 * @see org.eventb.emf.core.CorePackage#getEventBPredicate_Predicate()
-	 * @model default="\"true\"" required="true"
+	 * @model default="\u22a4" required="true"
 	 * @generated
 	 */
 	String getPredicate();

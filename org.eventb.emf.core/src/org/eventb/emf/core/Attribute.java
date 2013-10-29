@@ -31,7 +31,7 @@ package org.eventb.emf.core;
 public interface Attribute extends EventBObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The default value is <code>""</code>.
+	 * The default value is <code>"Boolean"</code>.
 	 * The literals are from the enumeration {@link org.eventb.emf.core.AttributeType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -43,7 +43,7 @@ public interface Attribute extends EventBObject {
 	 * @see org.eventb.emf.core.AttributeType
 	 * @see #setType(AttributeType)
 	 * @see org.eventb.emf.core.CorePackage#getAttribute_Type()
-	 * @model default="" required="true"
+	 * @model default="Boolean" required="true"
 	 * @generated
 	 */
 	AttributeType getType();

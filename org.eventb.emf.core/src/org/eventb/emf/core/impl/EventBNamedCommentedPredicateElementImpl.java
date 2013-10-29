@@ -34,9 +34,11 @@ public abstract class EventBNamedCommentedPredicateElementImpl extends EventBNam
 	/**
 	 * The default value of the '{@link #getPredicate() <em>Predicate</em>}' attribute.
 	 * <!-- begin-user-doc -->
+	 * The default is the unicode character for true = T 'top'.
+	 * (the generator adds another  \ hence generated NOT)
 	 * <!-- end-user-doc -->
 	 * @see #getPredicate()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
 	protected static final String PREDICATE_EDEFAULT = "\u22a4";
