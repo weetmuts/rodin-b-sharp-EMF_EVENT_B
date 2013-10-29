@@ -64,7 +64,7 @@ public interface EventBDataElaboration extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Data Kind</b></em>' attribute.
-	 * The default value is <code>""</code>.
+	 * The default value is <code>"Variable"</code>.
 	 * The literals are from the enumeration {@link ac.soton.eventb.emf.core.extension.coreextension.DataKind}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -76,7 +76,7 @@ public interface EventBDataElaboration extends EObject {
 	 * @see ac.soton.eventb.emf.core.extension.coreextension.DataKind
 	 * @see #setDataKind(DataKind)
 	 * @see ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage#getEventBDataElaboration_DataKind()
-	 * @model default=""
+	 * @model default="Variable"
 	 * @generated
 	 */
 	DataKind getDataKind();

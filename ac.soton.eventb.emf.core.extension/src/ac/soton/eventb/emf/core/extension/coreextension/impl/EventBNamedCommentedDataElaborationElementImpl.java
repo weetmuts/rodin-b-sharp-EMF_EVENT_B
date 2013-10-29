@@ -63,7 +63,7 @@ public abstract class EventBNamedCommentedDataElaborationElementImpl extends Eve
 	 * @generated
 	 * @ordered
 	 */
-	protected static final DataKind DATA_KIND_EDEFAULT = DataKind.SET;
+	protected static final DataKind DATA_KIND_EDEFAULT = DataKind.VARIABLE;
 
 	/**
 	 * The cached value of the '{@link #getDataKind() <em>Data Kind</em>}' attribute.

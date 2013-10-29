@@ -544,7 +544,7 @@ public class CoreextensionPackageImpl extends EPackageImpl implements Coreextens
 
 		initEClass(eventBDataElaborationEClass, EventBDataElaboration.class, "EventBDataElaboration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventBDataElaboration_Elaborates(), theCorePackage.getEventBNamed(), null, "elaborates", null, 0, 1, EventBDataElaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEventBDataElaboration_DataKind(), this.getDataKind(), "dataKind", "", 0, 1, EventBDataElaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventBDataElaboration_DataKind(), this.getDataKind(), "dataKind", "Variable", 0, 1, EventBDataElaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventBEventGroupEClass, EventBEventGroup.class, "EventBEventGroup", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventBEventGroup_Elaborates(), theMachinePackage.getEvent(), null, "elaborates", null, 0, -1, EventBEventGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
