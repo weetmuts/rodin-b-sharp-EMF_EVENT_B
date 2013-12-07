@@ -73,6 +73,11 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 	@Override
 	protected EventBElement createEventBElement() {
 		EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+		if (ePackage == null){
+			RodinCore.getPlugin().getLog().log(
+					new Status(IStatus.WARNING, ExtensionPersistencePlugin.PLUGIN_ID, "Missing EMF EPackage: "+nsURI, null));
+			return null;
+		}
 		EFactory eFactory = ePackage.getEFactoryInstance();
 		EObject element = eFactory.create((EClass) ePackage.getEClassifier(eClass));
 		return element instanceof EventBElement ? (EventBElement) element : null;
@@ -105,6 +110,7 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 		
 		// create EMF node
 		AbstractExtension eventBElement = (AbstractExtension) super.load(rodinElement, emfParent, monitor);
+		if (eventBElement==null) return null;
 		
 		if (serialisedExtension.hasSerialised() && !serialisedExtension.getSerialised().isEmpty()) {
 			String loadString = serialisedExtension.getSerialised();
