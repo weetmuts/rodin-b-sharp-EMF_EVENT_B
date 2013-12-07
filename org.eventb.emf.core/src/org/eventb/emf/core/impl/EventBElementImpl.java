@@ -170,23 +170,26 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * modified to set a default hasn't been set
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getReference() {
+		if (reference ==null) reference = this.eStaticClass().getInstanceClassName();
 		return reference;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * modified to use getReference()
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getReferenceWithoutResolving() {
 		if (this.eIsProxy()){
 			return ((InternalEObject)this).eProxyURI().fragment();
 		}else{
-			return reference;
+			return getReference();
 		}
 	}
 
