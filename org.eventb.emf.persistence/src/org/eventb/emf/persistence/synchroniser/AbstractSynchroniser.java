@@ -103,6 +103,8 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 
 		// create EMF node
 		final EventBElement eventBElement = createEventBElement();
+		if (eventBElement == null)
+			return null;
 
 		loadAttributes((IInternalElement) rodinElement, eventBElement);
 
@@ -304,7 +306,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 			rodinElement.clear(true, monitor);
 		} else if (rodinParent instanceof IInternalElement) {
 			try {
-				rodinElement = getNewRodinElement((IInternalElement) rodinParent, getRodinType(), rodinInternals);
+				rodinElement = getNewRodinElement((IInternalElement) rodinParent, rodinInternals);
 				rodinElement.create(null, monitor);
 			} catch (RodinDBException e) {
 				PersistencePlugin.getDefault().getLog().log(new Status(IStatus.ERROR, PersistencePlugin.PLUGIN_ID, "Rodin Exception while saving: " + e.getMessage()));
@@ -317,7 +319,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		return rodinElement;
 	}
 
-	private IInternalElement getNewRodinElement(IInternalElement rodinParent, IInternalElementType<?> rodinType, Annotation rodinInternals) throws RodinDBException {
+	private IInternalElement getNewRodinElement(IInternalElement rodinParent, Annotation rodinInternals) throws RodinDBException {
 		IInternalElement rodinElement = rodinParent.getInternalElement(getRodinType(), getInternalName(rodinInternals));
 		if (rodinElement.exists()) {
 			//if name clash, overwrite Rodin name with UUID - this should be extremely rare.
