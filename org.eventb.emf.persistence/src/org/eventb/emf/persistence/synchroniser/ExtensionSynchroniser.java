@@ -25,7 +25,12 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 	private static final String metaClassExtenderID = "org.eventb.emf.core.extendedMetaClasses";
 
 	private static final Set<IAttributeType> handledAttributes = new HashSet<IAttributeType>();
-	private static IInternalElementType<?> rodinElementType;
+
+	//WARNING: this changes depending on the extension being loaded... 
+	// only used to convey the required type to the AbstractSynchroniser during a save
+	private IInternalElementType<?> rodinElementType;
+
+	//private static IAttributeType extIDAtt = RodinCore.getAttributeType("ac.soton.eventb.emf.core.extension.persistence.extensionId");
 
 	@Override
 	protected Set<IAttributeType> getHandledAttributeTypes() {
@@ -51,21 +56,28 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
 		// create EMF node
 		Extension eventBElement = (Extension) super.load(rodinElement, emfParent, monitor);
+		// the extension ID is used to record the Rodin element type ID for subsequent saves 
+		if (rodinElement instanceof IInternalElement) {
+			IInternalElementType<? extends IInternalElement> elType = ((IInternalElement) rodinElement).getElementType();
+			eventBElement.setExtensionId(elType.getId());
+		}
 		return eventBElement;
 	}
 
 	@Override
 	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
 		if (emfElement instanceof AbstractExtension && isMetaClassExtension((AbstractExtension) emfElement)) {
-			//if this extension just adds to its parents features, we don't need to do anything, just return the same parent
+			// if this extension just adds to its parents features, we don't need to do anything, just return the same parent
 			return asInternalElement(rodinParent);
 		} else if (emfElement instanceof Extension) {
+			// get the Rodin element type ID from the emf elements 'extensionID';
 			String id = ((Extension) emfElement).getExtensionId();
 			if (id == null || "".equals(id))
-				return null; //some extensions are not intended to be saved
+				return null; // some extensions are not intended to be saved
 			rodinElementType = RodinCore.getInternalElementType(id);
 			// create Rodin element
 			IRodinElement rodinElement = super.save(emfElement, rodinParent, monitor);
+			rodinElementType = null;
 			return rodinElement;
 		} else
 			return null;
