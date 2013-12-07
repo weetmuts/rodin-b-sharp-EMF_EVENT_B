@@ -102,17 +102,18 @@ public class SyncManager {
 
 		final ISynchroniser synchroniser = idMapping.get(id);
 
-		if (synchroniser != null) {
-			// call synchroniser
-			emfElement = synchroniser.load(rElement, emfParent, monitor);
-		} else {
-			// use default generic synchroniser
-			emfElement = genericSynchroniser.load(rElement, emfParent, monitor);
+		EventBElement e = null; //temp var so we can make emfElement final
+		//try to use synchroniser to load emfelement
+		if (synchroniser == null || (e = synchroniser.load(rElement, emfParent, monitor)) == null) {
+			// if no synchroniser or synchroniser returns null, use default generic synchroniser
+			e = genericSynchroniser.load(rElement, emfParent, monitor);
 		}
+		emfElement = e;
+
 		map.put(rElement, emfElement);
 		List<EObject> childOrder = new ArrayList<EObject>();
 		for (final IRodinElement child : ((IParent) rElement).getChildren()) {
-			childOrder.add(loadRodinElement(child, emfElement, map, monitor));
+			childOrder.add(doLoadRodinElement(child, emfElement, map, monitor));
 		}
 		order.put(emfElement, childOrder);
 		return emfElement;
@@ -122,6 +123,9 @@ public class SyncManager {
 			throws CoreException {
 		final IRodinElement rodinElement;
 
+		if (emfElement.getClass().toString().contains("State")) {
+
+		}
 		// get mapping and call synchroniser
 		final ISynchroniser synchroniser = emfMapping.get(emfElement.eClass());
 
@@ -161,9 +165,9 @@ public class SyncManager {
 	/**
 	 * Finds the required position of the child element in childOrder by looking
 	 * at its position in the EMF containment feature. The child order should
-	 * not be changed unless necessary. The child may have been be moved or
-	 * added in which case the position of the next element in childOrder that
-	 * it must precede is returned.. Returns -1 if the current position is ok
+	 * not be changed unless necessary. The child may have been moved or added
+	 * in which case the position of the next element in childOrder that it must
+	 * precede is returned.. Returns -1 if the current position is ok
 	 * (childOrder should not be changed).
 	 * 
 	 * @param parent
