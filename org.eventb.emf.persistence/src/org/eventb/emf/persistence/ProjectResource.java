@@ -83,8 +83,8 @@ public class ProjectResource extends ResourceImpl {
 	@Override
 	public void setURI(final URI uri) {
 		super.setURI(uri);
-		final int segmentCount = uri.segmentCount();
-		final String projectName = URI.decode(uri.segment(segmentCount - 2));
+		//final int segmentCount = uri.segmentCount();
+		final String projectName = URI.decode(uri.segment(1)); //segmentCount - 2));
 
 		rodinProject = RodinCore.getRodinDB().getRodinProject(projectName);
 		map = new HashMap<IRodinElement, EventBObject>();
@@ -188,8 +188,8 @@ public class ProjectResource extends ResourceImpl {
 		final IProjectDescription description = project.getDescription();
 		final String[] natures = description.getNatureIds();
 		boolean alreadyRodin = false;
-		for (int i = 0; i < natures.length; ++i) {
-			if (RodinCore.NATURE_ID.equals(natures[i])) {
+		for (String nature : natures) {
+			if (RodinCore.NATURE_ID.equals(nature)) {
 				alreadyRodin = true;
 				break;
 			}
