@@ -12,10 +12,10 @@ package org.eventb.emf.core.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eventb.emf.core.CorePackage;
-import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 
 /**
@@ -41,6 +41,16 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = "";
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,40 +84,37 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * sets the name of this element by calling doSetName()
-	 * (doSetName() is defined in model and generated)
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setName(String newName) {
-		String oldName = getName();
-		doSetName(newName);
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BNAMED__NAME, oldName, newName));
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BNAMED__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <getName() should be changed to call this method>
+	 * Returns this element's name or, if it is a proxy, gets the name from the URI fragment
+	 * (Calling this method will not resolve any unresolved proxies).
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("cast")
 	public String doGetName() {
-		assert (this instanceof EventBElement);
-		String reference = ((EventBElement)this).getReferenceWithoutResolving();
-		return reference.length() > this.eStaticClass().getInstanceClassName().length() ?
-			reference.substring(this.eStaticClass().getInstanceClassName().length()+1)
-			: "";
+		if (this.eIsProxy()){
+			String fragment = ((InternalEObject)this).eProxyURI().fragment();
+			int ind = fragment.lastIndexOf("::");
+			if (ind>-1) fragment = fragment.substring(ind+2);
+			fragment = fragment.substring(fragment.lastIndexOf('.')+1);
+			return fragment;
+		}else{
+			return name;
+		}
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void doSetName(String newName) {
-		((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+"."+newName);
-	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,9 +168,25 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case CorePackage.EVENT_BNAMED__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: "); //$NON-NLS-1$
+		result.append(name);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EventBNamedImpl

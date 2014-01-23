@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eventb.emf.core.CorePackage;
+import org.eventb.emf.core.impl.EventBElementImpl;
 import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.Convergence;
@@ -320,7 +321,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = MachineFactory.eINSTANCE.createEvent();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Event.class.getName()+"."+newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Event>)getRefines()).setUnique(index, proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -357,7 +358,7 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 	protected void addRefinesName(int index, String newName) {
 		Event proxy = MachineFactory.eINSTANCE.createEvent();
 		//add the new proxy (using addUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Event.class.getName()+"."+newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 		((BasicEList<Event>)getRefines()).addUnique(index, proxy);
 	}
 
@@ -595,24 +596,20 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 
 	@Override
 	public EObject eResolveProxy(InternalEObject proxy){
-		if (proxy != null && proxy.eIsProxy()){
-			if (eResource()==null) return proxy;
-			try {
-				 URI uri=null;
-				 if (proxy instanceof Event && getRefines().contains(proxy)){
-					 EList<Machine> refineList = ((MachineImpl)eContainer).getRefines();
-					 if (refineList.size() == 0) {
-						throw new IllegalArgumentException(((MachineImpl)eContainer).getName() + " does not refine another machine.");
-					 }
-					Machine refinedMachine = refineList.get(0);
-					 uri = refinedMachine.getURI()
-					 	.appendFragment(proxy.eProxyURI().fragment());
-				 }
-				 if (uri!=null) proxy.eSetProxyURI(uri);
+		if (proxy instanceof Event && proxy.eIsProxy() && getRefines().contains(proxy) && eResource()!=null){
+			URI proxyURI = proxy.eProxyURI();
+			try { 
+				 Machine refinedMachine = ((MachineImpl)eContainer).getRefines().get(0);
+				 String prefix = ((EventBElementImpl)proxy).getElementTypePrefix();
+				 String reference = prefix+"::"+refinedMachine.getName()+"."+proxyURI.fragment();
+				 proxy.eSetProxyURI(refinedMachine.getURI().appendFragment(reference));
+				 EObject resolved = super.eResolveProxy(proxy);
+				 if (resolved.eIsProxy()) throw new Exception();
+				 return resolved;
 			} catch (Exception e){
 				RodinCore.getPlugin().getLog().log(
-						new Status(Status.ERROR, "org.eventb.emf.core",
-								"Cannot resolve: " + proxy, e));
+						new Status(Status.ERROR, "org.eventb.emf.core","Cannot resolve: " + proxy, e));
+				proxy.eSetProxyURI(proxyURI);	//revert uri to original
 				return proxy;
 			}
 		}

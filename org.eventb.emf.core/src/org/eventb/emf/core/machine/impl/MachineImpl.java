@@ -32,6 +32,7 @@ import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.externalisation.External;
+import org.eventb.emf.core.impl.EventBElementImpl;
 import org.eventb.emf.core.impl.EventBNamedCommentedComponentElementImpl;
 import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
 import org.eventb.emf.core.machine.Event;
@@ -218,7 +219,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = MachineFactory.eINSTANCE.createMachine();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Machine.class.getName()+"."+newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Machine>)getRefines()).setUnique(index, proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -255,7 +256,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	protected void addRefinesName(int index, String newName) {
 		Machine proxy = MachineFactory.eINSTANCE.createMachine();
 		//add the new proxy (using setUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Machine.class.getName()+"."+newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 		((BasicEList<Machine>)getRefines()).addUnique(index,proxy);
 	}
 
@@ -334,7 +335,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = ContextFactory.eINSTANCE.createContext();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Context>)getSees()).setUnique(index, proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -371,7 +372,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	protected void addSeesName(int index, String newName) {
 		Context proxy = ContextFactory.eINSTANCE.createContext();
 		//add the new proxy (using setUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 		((BasicEList<Context>)getSees()).addUnique(index, proxy);
 	}
 
@@ -623,36 +624,31 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 
 	@Override
 	public EObject eResolveProxy(InternalEObject proxy){
-	  if (proxy != null && proxy.eIsProxy()){
-		  if (eResource()==null) return proxy;
+	  if (((proxy instanceof Machine && getRefines().contains(proxy))||(proxy instanceof Context && getSees().contains(proxy))) 
+			  && proxy.eIsProxy() && eResource()!=null){
+		  URI proxyURI = proxy.eProxyURI();
 		  try{
-			 String reference = proxy.eProxyURI().fragment();
-			 
+			 String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+proxyURI.fragment();
 			 // if resolved already in the parent, do not resolve again
 			 if (eContainer() != null)
 				 for (EObject component : eContainer().eContents())
 					 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
 						 return component;
-			 
-			 // attempt to construct a suitable proxy URI
-			 URI uri=null;
-			 String projectName = getURI().trimSegments(getURI().segmentCount()-2).lastSegment();
-			 String resourceName = reference.substring(reference.lastIndexOf(".")+1);
 
-			 if (proxy instanceof Machine && getRefines().contains(proxy)){
-				 uri = URI.createPlatformResourceURI(projectName, true)
-				 	.appendSegment(resourceName)
-				 	.appendFileExtension(External.getString("FileExtensions.machine"))
-				 	.appendFragment(reference);
-			 }else if (proxy instanceof Context && getSees().contains(proxy)){
-				 uri = URI.createPlatformResourceURI(projectName, true)
-				 	.appendSegment(resourceName)
-				 	.appendFileExtension(External.getString("FileExtensions.context"))
-				 	.appendFragment(reference);				 
-			 }
-			 if (uri!=null) proxy.eSetProxyURI(uri);
+			 // attempt to construct a suitable proxy URI
+			 String extension = proxy instanceof Machine ? 
+					 	External.getString("FileExtensions.machine") :
+						External.getString("FileExtensions.context");
+			 proxy.eSetProxyURI(URI.createPlatformResourceURI(getURI().segment(1), true) //project name
+					 	.appendSegment(proxyURI.fragment())		//resource name
+					 	.appendFileExtension(extension)
+					 	.appendFragment(reference));
+			 EObject resolved = super.eResolveProxy(proxy);
+			 if (resolved.eIsProxy()) throw new Exception();
+			 return resolved;
 		  }catch (Exception e){
-				RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
+			  RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
+			  proxy.eSetProxyURI(proxyURI);	//revert uri to original
 			  return proxy;
 		  }
 	  }

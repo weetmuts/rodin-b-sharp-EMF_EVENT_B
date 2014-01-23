@@ -44,7 +44,7 @@ public class MachineFactoryImpl extends EFactoryImpl implements MachineFactory {
 	 */
 	public static MachineFactory init() {
 		try {
-			MachineFactory theMachineFactory = (MachineFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/machine"); //$NON-NLS-1$ 
+			MachineFactory theMachineFactory = (MachineFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/machine/2014"); //$NON-NLS-1$ 
 			if (theMachineFactory != null) {
 				return theMachineFactory;
 			}

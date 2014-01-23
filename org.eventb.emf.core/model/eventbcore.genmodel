@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2006-2010&#xD;University of Southampton, Heinrich-Heine University Dusseldorf and others.&#xD;All rights reserved. This program and the accompanying materials  are made&#xD;available under the terms of the Eclipse Public License v1.0 which accompanies this &#xD;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html&#xA;"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2006-2014&#xD;University of Southampton, Heinrich-Heine University Dusseldorf and others.&#xD;All rights reserved. This program and the accompanying materials  are made&#xD;available under the terms of the Eclipse Public License v1.0 which accompanies this &#xD;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html&#xA;"
     modelDirectory="/org.eventb.emf.core/src" editDirectory="/org.eventb.emf.core/src"
     modelPluginID="org.eventb.emf.core" templateDirectory="/org.eventb.emf.core/templates"
     dynamicTemplates="true" modelName="Eventbcore" nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore"
@@ -39,10 +39,8 @@
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/reference"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/generated"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/localGenerated"/>
-      <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/getReferenceWithoutResolving"/>
-      <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/doSetReference">
-        <genParameters ecoreParameter="eventbcore.ecore#//EventBElement/doSetReference/newReference"/>
-      </genOperations>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/doGetReference"/>
+      <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/getElementTypePrefix"/>
     </genClasses>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBCommented">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBCommented/comment"/>
@@ -55,9 +53,6 @@
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamed">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBNamed/name"/>
       <genOperations ecoreOperation="eventbcore.ecore#//EventBNamed/doGetName"/>
-      <genOperations ecoreOperation="eventbcore.ecore#//EventBNamed/doSetName">
-        <genParameters ecoreParameter="eventbcore.ecore#//EventBNamed/doSetName/newName"/>
-      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBNamedCommentedElement"/>
     <genClasses image="false" ecoreClass="eventbcore.ecore#//EventBPredicate">

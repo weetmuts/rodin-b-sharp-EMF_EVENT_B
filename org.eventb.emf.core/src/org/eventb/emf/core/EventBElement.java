@@ -77,47 +77,12 @@ public interface EventBElement extends EventBObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' attribute.
-	 * @see #setReference(String)
 	 * @see org.eventb.emf.core.CorePackage#getEventBElement_Reference()
-	 * @model default="" id="true" required="true"
+	 * @model default="" id="true" required="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getReference();
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Returns the 'reference' attribute of this element.
-	 * If this element is a proxy, the reference is obtained from the proxy URI fragment. Otherwise the value of the reference attribute is returned
-	 * <!-- end-model-doc -->
-	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\treturn ((InternalEObject)this).eProxyURI().fragment();\n}else{\n\treturn reference;\n}'"
-	 * @generated
-	 */
-	String getReferenceWithoutResolving();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Sets the 'reference' attribute of this element.
-	 * If this element is a proxy, the reference is seet in the proxy URI fragment. Otherwise the value of the reference attribute is set.
-	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\t((InternalEObject)this).eProxyURI().appendFragment(newReference);\n}else{\n\treference = newReference;\n}'"
-	 * @generated
-	 */
-	void doSetReference(String newReference);
-
-	/**
-	 * Sets the value of the '{@link org.eventb.emf.core.EventBElement#getReference <em>Reference</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Reference</em>' attribute.
-	 * @see #getReference()
-	 * @generated
-	 */
-	void setReference(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Generated</b></em>' attribute.
@@ -199,5 +164,30 @@ public interface EventBElement extends EventBObject {
 	 * @generated
 	 */
 	boolean isSetLocalGenerated();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * returns a fully qualified reference id in the format 
+	 * <PackageNSURI>::<class>::<parentageBelowProject>.<id>
+	 * Where id is either the 'name' attribute or a UUID
+	 * <!-- end-model-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\treturn ((InternalEObject)this).eProxyURI().fragment();\n}else{\n\tString ref = getElementIdentification();\n\tEObject container = this.eContainer();\n\twhile (container instanceof EventBElementImpl && !(container instanceof Project)){\n\t\tref = ((EventBElementImpl)container).getElementIdentification()+\".\"+ref;\n\t\tcontainer = container.eContainer();\n\t}\n\tref = getElementTypePrefix()+\"::\"+ref;\n\treturn ref;\n}'"
+	 * @generated
+	 */
+	String doGetReference();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This returns the prefix part of a reference for the type of this element
+	 * <!-- end-model-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return this.eClass().getEPackage().getNsURI()+\"::\"+this.eClass().getName();'"
+	 * @generated
+	 */
+	String getElementTypePrefix();
 
 } // EventBElement

@@ -132,7 +132,7 @@ public abstract class EventBObjectImpl extends EObjectImpl implements EventBObje
 	 * [AFTER RE-GENERATING REMOVE THE TYPE PARAMETER <URI>]
 	 * 
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public  URI getURI() {
 		if (eIsProxy()){

@@ -37,7 +37,7 @@ public class ContextFactoryImpl extends EFactoryImpl implements ContextFactory {
 	 */
 	public static ContextFactory init() {
 		try {
-			ContextFactory theContextFactory = (ContextFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/context"); //$NON-NLS-1$ 
+			ContextFactory theContextFactory = (ContextFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/context/2014"); //$NON-NLS-1$ 
 			if (theContextFactory != null) {
 				return theContextFactory;
 			}

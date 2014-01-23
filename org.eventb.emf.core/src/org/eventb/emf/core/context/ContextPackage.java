@@ -46,7 +46,7 @@ public interface ContextPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://emf.eventb.org/models/core/context";
+	String eNS_URI = "http://emf.eventb.org/models/core/context/2014";
 
 	/**
 	 * The package namespace name.

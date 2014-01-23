@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core" nsURI="http://emf.eventb.org/models/core" nsPrefix="core">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="core" nsURI="http://emf.eventb.org/models/core/2014" nsPrefix="core">
   <eClassifiers xsi:type="ecore:EClass" name="EventBObject" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
     <eOperations name="getContaining" lowerBound="1" eType="#//EventBObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -39,26 +39,25 @@
         eType="#//Annotation" containment="true" resolveProxies="false" eOpposite="#//Annotation/eventBObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBElement" abstract="true" eSuperTypes="#//EventBObject">
-    <eOperations name="getReferenceWithoutResolving" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eOperations name="doGetReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="if (this.eIsProxy()){&#xA;&#x9;return ((InternalEObject)this).eProxyURI().fragment();&#xA;}else{&#xA;&#x9;return reference;&#xA;}"/>
-        <details key="documentation" value="Returns the 'reference' attribute of this element.&#xD;If this element is a proxy, the reference is obtained from the proxy URI fragment. Otherwise the value of the reference attribute is returned"/>
+        <details key="body" value="if (this.eIsProxy()){&#xA;&#x9;return ((InternalEObject)this).eProxyURI().fragment();&#xA;}else{&#xA;&#x9;String ref = getElementIdentification();&#xA;&#x9;EObject container = this.eContainer();&#xA;&#x9;while (container instanceof EventBElementImpl &amp;&amp; !(container instanceof Project)){&#xA;&#x9;&#x9;ref = ((EventBElementImpl)container).getElementIdentification()+&quot;.&quot;+ref;&#xA;&#x9;&#x9;container = container.eContainer();&#xA;&#x9;}&#xA;&#x9;ref = getElementTypePrefix()+&quot;::&quot;+ref;&#xA;&#x9;return ref;&#xA;}"/>
+        <details key="documentation" value="returns a fully qualified reference id in the format &#xA;&lt;PackageNSURI>::&lt;class>::&lt;parentageBelowProject>.&lt;id>&#xA;Where id is either the 'name' attribute or a UUID"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="doSetReference">
+    <eOperations name="getElementTypePrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="if (this.eIsProxy()){&#xA;&#x9;((InternalEObject)this).eProxyURI().appendFragment(newReference);&#xA;}else{&#xA;&#x9;reference = newReference;&#xA;}"/>
-        <details key="documentation" value="Sets the 'reference' attribute of this element.&#xD;If this element is a proxy, the reference is seet in the proxy URI fragment. Otherwise the value of the reference attribute is set."/>
+        <details key="body" value="return this.eClass().getEPackage().getNsURI()+&quot;::&quot;+this.eClass().getName();"/>
+        <details key="documentation" value="This returns the prefix part of a reference for the type of this element"/>
       </eAnnotations>
-      <eParameters name="newReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="extensions" upperBound="-1"
         eType="#//AbstractExtension" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//StringToAttributeMapEntry" containment="true" eKeys="#//StringToAttributeMapEntry/key"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reference" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""
-        iD="true"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" changeable="false"
+        volatile="true" defaultValueLiteral="" derived="true" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="generated" lowerBound="1"
         eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
         volatile="true" transient="true" defaultValueLiteral="false" derived="true"/>
@@ -79,19 +78,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="EventBNamed" abstract="true">
     <eOperations name="doGetName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="assert (this instanceof &lt;%org.eventb.emf.core.EventBElement%>);&#xA;String reference = ((EventBElement)this).getReferenceWithoutResolving();&#xD;return reference.length() > this.eStaticClass().getInstanceClassName().length() ?&#xA;&#x9;reference.substring(this.eStaticClass().getInstanceClassName().length()+1)&#xA;&#x9;: &quot;&quot;;"/>
-        <details key="documentation" value="&lt;getName() should be changed to call this method>&#xD;&#xD;Assumes this is a subclass of EventBElement.&#xD;Returns this element's name or, if it is a proxy, the name being referenced.&#xD;The name is derived from the element's 'reference' attribute which&#xD; includes the element type to ensure that references are unique within a resource.&#xD;(Calling this method will not resolve any unresolved proxies)."/>
+        <details key="body" value="if (this.eIsProxy()){&#xA;&#x9;String fragment = ((InternalEObject)this).eProxyURI().fragment();&#xA;&#x9;int ind = fragment.lastIndexOf(&quot;::&quot;);&#xA;&#x9;if (ind>-1) fragment = fragment.substring(ind+2);&#xA;&#x9;fragment = fragment.substring(fragment.lastIndexOf('.')+1);&#xA;&#x9;return fragment;&#xA;}else{&#xA;&#x9;return name;&#xA;}"/>
+        <details key="documentation" value="&lt;getName() should be changed to call this method>&#xD;Returns this element's name or, if it is a proxy, gets the name from the URI fragment&#xD;(Calling this method will not resolve any unresolved proxies)."/>
       </eAnnotations>
-    </eOperations>
-    <eOperations name="doSetName">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="((EventBElement)this).setReference(this.eStaticClass().getInstanceClassName()+&quot;.&quot;+newName);"/>
-        <details key="documentation" value="&lt;setName() should be changed to call this method>&#xD;&#xD;If this is not a subclass of EventBElement this method does nothing.&#xD;Sets the name of this element or, if it is a proxy, the name being referenced. &#xD;The name is stored in the 'reference' attribute which also contains the element's &#xD;type to ensure that references are unique winthin a resource.&#xD;(Calling this method will not resolve any unresolved proxies).&#xD;&#xD;"/>
-      </eAnnotations>
-      <eParameters name="newName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
+        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventBNamedCommentedElement" abstract="true"
       eSuperTypes="#//EventBCommentedElement #//EventBNamed"/>
@@ -157,7 +149,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
         eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
-  <eSubpackages name="machine" nsURI="http://emf.eventb.org/models/core/machine" nsPrefix="machine">
+  <eSubpackages name="machine" nsURI="http://emf.eventb.org/models/core/machine/2014"
+      nsPrefix="machine">
     <eClassifiers xsi:type="ecore:EClass" name="Machine" eSuperTypes="#//EventBNamedCommentedComponentElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="refines" upperBound="-1"
           eType="#//machine/Machine"/>
@@ -209,7 +202,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="Witness" eSuperTypes="#//EventBNamedCommentedPredicateElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//EventBNamedCommentedActionElement"/>
   </eSubpackages>
-  <eSubpackages name="context" nsURI="http://emf.eventb.org/models/core/context" nsPrefix="context">
+  <eSubpackages name="context" nsURI="http://emf.eventb.org/models/core/context/2014"
+      nsPrefix="context">
     <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//EventBNamedCommentedComponentElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="extends" upperBound="-1"
           eType="#//context/Context"/>

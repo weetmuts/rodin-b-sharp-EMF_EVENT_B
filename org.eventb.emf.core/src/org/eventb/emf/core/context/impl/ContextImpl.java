@@ -35,6 +35,7 @@ import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.context.ContextPackage;
 import org.eventb.emf.core.externalisation.External;
+import org.eventb.emf.core.impl.EventBElementImpl;
 import org.eventb.emf.core.impl.EventBNamedCommentedComponentElementImpl;
 import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
 import org.rodinp.core.RodinCore;
@@ -188,7 +189,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 			//if currently has a proxy at that index, re-use it for the new reference otherwise create a new one.
 			if (!proxy.eIsProxy()) proxy = ContextFactory.eINSTANCE.createContext();
 			//set the proxy uri to a dummy with fragment set to newName
-			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
+			((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 			//set the proxy at the given index (using setUnique to avoid checking uniqueness because it involves resolving and loading)
 			((BasicEList<Context>)getExtends()).setUnique(index,proxy);
 		}catch (IndexOutOfBoundsException e){
@@ -225,7 +226,7 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 	protected void addExtendsName(int index, String newName) {
 		Context proxy = ContextFactory.eINSTANCE.createContext();
 		//add the new proxy (using setUnique to avoid checking uniqueness because it involves resolving and loading)
-		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(Context.class.getName()+"."+newName));
+		((InternalEObject)proxy).eSetProxyURI(CorePackage.dummyURI.appendFragment(newName));
 		((BasicEList<Context>)getExtends()).addUnique(index, proxy);
 	}
 
@@ -400,31 +401,28 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 
 	@Override
 	public EObject eResolveProxy(InternalEObject proxy){
-		if (proxy != null && proxy.eIsProxy()){
-			if (eResource()==null) return proxy;
+		if (proxy instanceof Context && proxy.eIsProxy() && getExtends().contains(proxy) && eResource()!=null){
+			URI proxyURI = proxy.eProxyURI();
 			try{
-				String reference = proxy.eProxyURI().fragment();
-
+				String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+proxyURI.fragment();
 				// if resolved already in the parent, do not resolve again
 				if (eContainer() != null)
 					 for (EObject component : eContainer().eContents())
 						 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
 							 return component;
-				
-				URI uri=null;
-				String projectName = getURI().trimSegments(getURI().segmentCount()-2).lastSegment();
-				String resourceName = reference.substring(reference.lastIndexOf(".")+1);
-				
-				if (proxy instanceof Context && getExtends().contains(proxy)){
-					uri = URI.createPlatformResourceURI(projectName, true)
-						.appendSegment(resourceName)
+
+				// attempt to construct a suitable proxy URI
+				proxy.eSetProxyURI(URI.createPlatformResourceURI(getURI().segment(1), true)
+						.appendSegment(proxyURI.fragment())
 						.appendFileExtension(External.getString("FileExtensions.context"))
-						.appendFragment(reference);
-				}
-				if (uri!=null) proxy.eSetProxyURI(uri);
+						.appendFragment(reference));
+				 EObject resolved = super.eResolveProxy(proxy);
+				 if (resolved.eIsProxy()) throw new Exception();
+				 return resolved;
 			}catch (Exception e){
  				RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
-				return proxy;
+ 				 proxy.eSetProxyURI(proxyURI);	//revert uri to original
+ 				return proxy;
 			}
 		}
 		return super.eResolveProxy(proxy);

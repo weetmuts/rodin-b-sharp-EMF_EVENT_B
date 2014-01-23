@@ -17,16 +17,20 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eventb.emf.core.AbstractExtension;
 import org.eventb.emf.core.Attribute;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.EventBNamed;
+import org.eventb.emf.core.Project;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,17 +78,7 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String REFERENCE_EDEFAULT = "";
-
-	/**
-	 * The cached value of the '{@link #getReference() <em>Reference</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getReference()
-	 * @generated
-	 * @ordered
-	 */
-	protected String reference = REFERENCE_EDEFAULT;
+	protected static final String REFERENCE_EDEFAULT = ""; //$NON-NLS-1$
 
 	/**
 	 * The default value of the '{@link #isGenerated() <em>Generated</em>}' attribute.
@@ -170,54 +164,39 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * modified to set a default hasn't been set
+	 * returns a fully qualified reference id in the format
+	 * <PackageNSURI>::<class>::<parentageBelowProject>.<id>
+	 * Where id is either the 'name' attribute or a UUID
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getReference() {
-		if (reference ==null) reference = this.eStaticClass().getInstanceClassName();
-		return reference;
+		return doGetReference();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * modified to use getReference()
-	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * element identification - uses name if possible,
+	 * failing this, the element is given a uuid
+	 * @return
 	 */
-	public String getReferenceWithoutResolving() {
-		if (this.eIsProxy()){
-			return ((InternalEObject)this).eProxyURI().fragment();
+	private String getElementIdentification(){
+		if (this instanceof EventBNamed){
+			return ((EventBNamed)this).getName();
 		}else{
-			return getReference();
+			if (id == null || "".equals(id)) {
+				id = EcoreUtil.generateUUID();
+			}
+			return id;
 		}
 	}
-
+	
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This returns the prefix part of a reference for the type of this element
+	 * @return
 	 */
-	public void doSetReference(String newReference) {
-		if (this.eIsProxy()){
-			((InternalEObject)this).eProxyURI().appendFragment(newReference);
-		}else{
-			reference = newReference;
-		}
+	public String getElementTypePrefix(){
+		return this.eClass().getEPackage().getNsURI()+"::"+this.eClass().getName();
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReference(String newReference) {
-		String oldReference = reference;
-		reference = newReference;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BELEMENT__REFERENCE, oldReference, reference));
-	}
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -310,6 +289,26 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String doGetReference() {
+		if (this.eIsProxy()){
+			return ((InternalEObject)this).eProxyURI().fragment();
+		}else{
+			String ref = getElementIdentification();
+			EObject container = this.eContainer();
+			while (container instanceof EventBElementImpl && !(container instanceof Project)){
+				ref = ((EventBElementImpl)container).getElementIdentification()+"."+ref;
+				container = container.eContainer();
+			}
+			ref = getElementTypePrefix()+"::"+ref;
+			return ref;
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -327,11 +326,7 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * This has been customised for feature ID= 3 (reference attribute)
 	 * to prevent it resolving proxies if resolve is false;
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	/*
-	 * 			case CorePackage.EVENT_BELEMENT__REFERENCE:
-	 *			return resolve? getReference() : getReferenceWithoutResolving();
+	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
@@ -342,7 +337,7 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				if (coreType) return getAttributes();
 				else return getAttributes().map();
 			case CorePackage.EVENT_BELEMENT__REFERENCE:
-				return resolve? getReference() : getReferenceWithoutResolving();
+				return getReference();
 			case CorePackage.EVENT_BELEMENT__GENERATED:
 				return isGenerated();
 			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
@@ -367,9 +362,6 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				return;
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				((EStructuralFeature.Setting)getAttributes()).set(newValue);
-				return;
-			case CorePackage.EVENT_BELEMENT__REFERENCE:
-				setReference((String)newValue);
 				return;
 			case CorePackage.EVENT_BELEMENT__GENERATED:
 				setGenerated((Boolean)newValue);
@@ -396,9 +388,6 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				getAttributes().clear();
 				return;
-			case CorePackage.EVENT_BELEMENT__REFERENCE:
-				setReference(REFERENCE_EDEFAULT);
-				return;
 			case CorePackage.EVENT_BELEMENT__GENERATED:
 				setGenerated(GENERATED_EDEFAULT);
 				return;
@@ -422,7 +411,7 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 			case CorePackage.EVENT_BELEMENT__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
 			case CorePackage.EVENT_BELEMENT__REFERENCE:
-				return REFERENCE_EDEFAULT == null ? reference != null : !REFERENCE_EDEFAULT.equals(reference);
+				return REFERENCE_EDEFAULT == null ? getReference() != null : !REFERENCE_EDEFAULT.equals(getReference());
 			case CorePackage.EVENT_BELEMENT__GENERATED:
 				return isGenerated() != GENERATED_EDEFAULT;
 			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
@@ -441,12 +430,38 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (reference: "); //$NON-NLS-1$
-		result.append(reference);
-		result.append(", localGenerated: "); //$NON-NLS-1$
+		result.append(" (localGenerated: "); //$NON-NLS-1$
 		if (localGeneratedESet) result.append(localGenerated); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}
 
+	
+	////////////////////////ONLY FOR PERSISTENCE AND NOT IN INTERFACE//////////////////////
+	/**
+	 * returns the internal id of this element if it has one
+	 * (internal id is used to construct references for elements that do not have a name)
+	 * THIS METHOD IS ONLY PROVIDED FOR PERSISTENCE TO SAVE THE ID
+	 * OTHER USERS SHOULD NOT BE USING THIS METHOD
+	 * N.B. Named elements DO NOT have ids - they use name instead.
+	 * @return UUID string or null
+	 */	
+	public String getId(){
+		return this instanceof EventBNamed || id==null || "".equals(id)? null : id;
+	}
+	
+	/**
+	 * set the internal id of this element if it is allowed one
+	 * (internal id is used to construct references for elements that do not have a name)
+	 * THIS METHOD IS ONLY PROVIDED FOR PERSISTENCE TO LOAD THE ID
+	 * OTHER USERS SHOULD NOT BE USING THIS METHOD
+	 * N.B. Named elements DO NOT have ids - they use name instead.
+	 * @param UUID string
+	 */
+	public void setId(String newId) {
+		if (!(this instanceof EventBNamed)) id = newId;
+	}
+	
+	private String id;
+	
 } //EventBElementImpl

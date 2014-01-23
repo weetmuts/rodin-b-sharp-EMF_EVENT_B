@@ -48,7 +48,7 @@ public interface CorePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://emf.eventb.org/models/core";
+	String eNS_URI = "http://emf.eventb.org/models/core/2014";
 
 	/**
 	 * The package namespace name.
