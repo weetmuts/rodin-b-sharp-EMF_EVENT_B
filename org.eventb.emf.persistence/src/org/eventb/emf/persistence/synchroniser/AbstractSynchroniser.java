@@ -43,6 +43,7 @@ import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBCommented;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
+import org.eventb.emf.core.impl.EventBElementImpl;
 import org.eventb.emf.persistence.ISynchroniser;
 import org.eventb.emf.persistence.PersistencePlugin;
 import org.rodinp.core.IAttributeType;
@@ -71,7 +72,10 @@ import org.rodinp.core.RodinDBException;
 public abstract class AbstractSynchroniser implements ISynchroniser {
 
 	private static final String UNKNOWN_ATTRIBUTES = PersistencePlugin.PLUGIN_ID + ".unknownAttributes";
+	private static final String EMF_ID = PersistencePlugin.PLUGIN_ID + ".emf_id";
 	private static final IAttributeType.String unknownAttributesType = RodinCore.getStringAttrType(UNKNOWN_ATTRIBUTES);
+	private static final IAttributeType.String emfIdType = RodinCore.getStringAttrType(EMF_ID);
+
 	private static final String IDENTIFIER = "identifier";
 	private static final String LABEL = "label";
 	private static final String NAME = "name";
@@ -86,6 +90,8 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		handledAttributes.add(EventBAttributes.IDENTIFIER_ATTRIBUTE);
 		handledAttributes.add(EventBAttributes.COMMENT_ATTRIBUTE);
 		handledAttributes.add(EventBAttributes.GENERATED_ATTRIBUTE);
+		handledAttributes.add(unknownAttributesType);
+		handledAttributes.add(emfIdType);
 	}
 
 	protected abstract EventBElement createEventBElement();
@@ -135,6 +141,10 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		eventBElement.getAnnotations().add(rodinInternals);
 
 		EMap<String, String> rodinInternalDetails = rodinInternals.getDetails();
+
+		if (rodinElement.hasAttribute(emfIdType)) {
+			((EventBElementImpl) eventBElement).setId(rodinElement.getAttributeValue(emfIdType));
+		}
 
 		if (rodinElement.hasAttribute(EventBAttributes.GENERATED_ATTRIBUTE)) {
 			eventBElement.setLocalGenerated(rodinElement.getAttributeValue(EventBAttributes.GENERATED_ATTRIBUTE));
@@ -337,6 +347,11 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 
 	private void saveAttributes(final EventBElement eventBElement, final IProgressMonitor monitor, final IInternalElement rodinElement, Annotation rodinInternals)
 			throws RodinDBException {
+
+		String id = ((EventBElementImpl) eventBElement).getId();
+		if (id != null) {
+			rodinElement.setAttributeValue(emfIdType, id, monitor);
+		}
 
 		if (eventBElement.isSetLocalGenerated()) {
 			rodinElement.setAttributeValue(EventBAttributes.GENERATED_ATTRIBUTE, eventBElement.isLocalGenerated(), monitor);

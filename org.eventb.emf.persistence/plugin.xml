@@ -155,6 +155,11 @@
             kind="string"
             name="Unknown Attributes">
       </attributeType>
+      <attributeType
+            id="emf_id"
+            kind="string"
+            name="EMF Identifier">
+      </attributeType>
    </extension>
 
 </plugin>
