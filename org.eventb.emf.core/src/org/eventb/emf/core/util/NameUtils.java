@@ -90,37 +90,37 @@ public class NameUtils {
 	// Following methods should be moved somewhere else //
 
 	/**
-	 * Takes an List of UMLB elements and returns a list of their names
+	 * Takes an List of model elements and returns a list of their names
 	 *
-	 * @param list of UMLB elements
+	 * @param list of elements
 	 * @return an array of names
 	 */
-	public static List<String> getNames(final List list){
+	public static List<String> getNames(final List<?> list){
 		return getNames(list,false,false);
 	}
 
 	/**
-	 * Takes an List of UMLB elements and returns a list of their names
-	 * Optionally the meta class name (excluding 'UMLB') can be included
+	 * Takes an List of elements and returns a list of their names
+	 * Optionally the meta-class name can be included
 	 *
-	 * @param list of UMLB elements
-	 * @param if true, include metaclass name (i.e. class name) as a prefix to the element name
+	 * @param list of elements
+	 * @param if true, include meta-class name (i.e. class name) as a prefix to the element name
 	 * @return an array of names
 	 */
-	public static List<String> getNames(final List list, final boolean incClassNames){
+	public static List<String> getNames(final List<?> list, final boolean incClassNames){
 		return getNames(list,incClassNames,false);
 	}
 	/**
-	 * Takes an List of B elements and returns a list of their names
-	 * Optionally the meta class name can be included
+	 * Takes an List of elements and returns a list of their names
+	 * Optionally the meta-class name can be included
 	 * and the owning construct can be included
 	 *
-	 * @param list of B elements
-	 * @param if true, include metaclass name (i.e. class name) as a prefix to the element name
+	 * @param list of elements
+	 * @param if true, include meta-class name (i.e. class name) as a prefix to the element name
 	 * @param if true, include owning construct name as a prefix to the element name
 	 * @return an array of names
 	 */
-	public static List<String> getNames(final List list, final boolean incClassNames, final boolean incOwners){
+	public static List<String> getNames(final List<?> list, final boolean incClassNames, final boolean incOwners){
 		ArrayList<String> names = new ArrayList<String>();
 		if (list==null) return names;
 		for (Object o: list){
@@ -143,4 +143,59 @@ public class NameUtils {
 			if (element!=null && element.equals(name)) return true;
 		return false;
 	}
+	
+//	/**
+//	 * Takes an List of model elements and returns a list of their names
+//	 *
+//	 * @param list of elements
+//	 * @return an array of names
+//	 */
+//	public static List<String> getNames(final List<?> list){
+//		return getNames(list,false,false);
+//	}
+//
+//	/**
+//	 * Takes an List of elements and returns a list of their names
+//	 * Optionally the meta-class name can be included
+//	 *
+//	 * @param list of elements
+//	 * @param if true, include meta-class name (i.e. class name) as a prefix to the element name
+//	 * @return an array of names
+//	 */
+//	public static List<String> getNames(final List<?> list, final boolean incClassNames){
+//		return getNames(list,incClassNames,false);
+//	}
+//	/**
+//	 * Takes an List of elements and returns a list of their names
+//	 * Optionally the meta-class name can be included
+//	 * and the owning construct can be included
+//	 *
+//	 * @param list of elements
+//	 * @param if true, include meta-class name (i.e. class name) as a prefix to the element name
+//	 * @param if true, include owning construct name as a prefix to the element name
+//	 * @return an array of names
+//	 */
+//	public static List<String> getNames(final List<?> list, final boolean incClassNames, final boolean incOwners){
+//		ArrayList<String> names = new ArrayList<String>();
+//		if (list==null) return names;
+//		for (Object o: list){
+//			String prefix = "";
+//			if (incOwners && o instanceof EventBElement)
+//				prefix= ((EventBNamed)((EventBElement)o).getContaining(CorePackage.eINSTANCE.getEventBNamedCommentedComponentElement())).getName()+" :: ";
+//			if (incClassNames && o instanceof EObject)
+//				prefix=	prefix+ ((EObject) o).eClass().getName()+" - ";
+//			if (o==null) names.add("<null>");
+//			else if (o instanceof Enumerator ) names.add(prefix+((Enumerator)o).getName());
+//			else if (o instanceof EventBNamed) names.add(prefix+((EventBNamed)o).getName());
+//			else if (o instanceof Boolean) names.add(prefix+((Boolean)o).toString());
+//			else names.add("<WARNING: unsupported item>");
+//		}
+//		return names;
+//	}
+//
+//	private static boolean isin(final List<String> names, final String name){
+//		for (String element : names)
+//			if (element!=null && element.equals(name)) return true;
+//		return false;
+//	}
 }
