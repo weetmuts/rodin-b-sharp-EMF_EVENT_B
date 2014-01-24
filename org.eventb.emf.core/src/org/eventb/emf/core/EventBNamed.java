@@ -60,7 +60,7 @@ public interface EventBNamed extends EObject {
 	 * Returns this element's name or, if it is a proxy, gets the name from the URI fragment
 	 * (Calling this method will not resolve any unresolved proxies).
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\tString fragment = ((InternalEObject)this).eProxyURI().fragment();\n\tfragment = fragment.substring(fragment.lastIndexOf(\"::\")+2);\n\tfragment = fragment.substring(fragment.lastIndexOf(\'.\')+1);\n\treturn fragment;\n}else{\n\treturn name;\n}'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.eIsProxy()){\n\tString fragment = ((InternalEObject)this).eProxyURI().fragment();\n\tint ind = fragment.lastIndexOf(\"::\");\n\tif (ind>-1) fragment = fragment.substring(ind+2);\n\tfragment = fragment.substring(fragment.lastIndexOf(\'.\')+1);\n\treturn fragment;\n}else{\n\treturn name;\n}'"
 	 * @generated
 	 */
 	String doGetName();
