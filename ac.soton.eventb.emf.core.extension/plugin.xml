@@ -26,10 +26,10 @@
 
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <extender
-            uri="http://emf.eventb.org/models/core"
+            uri="http://emf.eventb.org/models/core/2014"
             class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory$CoreChildCreationExtender"/>
       <extender
-            uri="http://emf.eventb.org/models/core/machine"
+            uri="http://emf.eventb.org/models/core/machine/2014"
             class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory$MachineChildCreationExtender"/>
    </extension>
 
