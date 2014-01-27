@@ -39,6 +39,7 @@
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/reference"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/generated"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/localGenerated"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventbcore.ecore#//EventBElement/internalId"/>
       <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/doGetReference"/>
       <genOperations ecoreOperation="eventbcore.ecore#//EventBElement/getElementTypePrefix"/>
     </genClasses>

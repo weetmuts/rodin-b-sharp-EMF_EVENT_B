@@ -65,6 +65,7 @@ public class EventBElementItemProvider
 			addReferencePropertyDescriptor(object);
 			addGeneratedPropertyDescriptor(object);
 			addLocalGeneratedPropertyDescriptor(object);
+			addInternalIdPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -136,6 +137,28 @@ public class EventBElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Internal Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInternalIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBElement_internalId_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBElement_internalId_feature", "_UI_EventBElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 CorePackage.Literals.EVENT_BELEMENT__INTERNAL_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -195,6 +218,7 @@ public class EventBElementItemProvider
 			case CorePackage.EVENT_BELEMENT__REFERENCE:
 			case CorePackage.EVENT_BELEMENT__GENERATED:
 			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
+			case CorePackage.EVENT_BELEMENT__INTERNAL_ID:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case CorePackage.EVENT_BELEMENT__EXTENSIONS:

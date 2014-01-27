@@ -26,8 +26,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.machine.Variant;
 import org.eventb.emf.core.provider.EventBCommentedExpressionElementItemProvider;
-import org.eventb.internal.ui.EventBImage;
-import org.eventb.ui.IEventBSharedImages;
 
 /**
  * This is the item provider adapter for a {@link org.eventb.emf.core.machine.Variant} object.

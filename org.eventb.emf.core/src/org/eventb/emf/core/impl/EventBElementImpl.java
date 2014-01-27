@@ -44,6 +44,7 @@ import org.eventb.emf.core.Project;
  *   <li>{@link org.eventb.emf.core.impl.EventBElementImpl#getReference <em>Reference</em>}</li>
  *   <li>{@link org.eventb.emf.core.impl.EventBElementImpl#isGenerated <em>Generated</em>}</li>
  *   <li>{@link org.eventb.emf.core.impl.EventBElementImpl#isLocalGenerated <em>Local Generated</em>}</li>
+ *   <li>{@link org.eventb.emf.core.impl.EventBElementImpl#getInternalId <em>Internal Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +121,35 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	protected boolean localGeneratedESet;
 
 	/**
+	 * The default value of the '{@link #getInternalId() <em>Internal Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInternalId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String INTERNAL_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getInternalId() <em>Internal Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInternalId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String internalId = INTERNAL_ID_EDEFAULT;
+
+	/**
+	 * This is true if the Internal Id attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean internalIdESet;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -183,10 +213,10 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 		if (this instanceof EventBNamed){
 			return ((EventBNamed)this).getName();
 		}else{
-			if (id == null || "".equals(id)) {
-				id = EcoreUtil.generateUUID();
+			if (getInternalId() == null) {
+				setInternalId(EcoreUtil.generateUUID());
 			}
-			return id;
+			return getInternalId();
 		}
 	}
 	
@@ -342,6 +372,8 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				return isGenerated();
 			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
 				return isLocalGenerated();
+			case CorePackage.EVENT_BELEMENT__INTERNAL_ID:
+				return getInternalId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,6 +401,9 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
 				setLocalGenerated((Boolean)newValue);
 				return;
+			case CorePackage.EVENT_BELEMENT__INTERNAL_ID:
+				setInternalId((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -394,6 +429,9 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
 				unsetLocalGenerated();
 				return;
+			case CorePackage.EVENT_BELEMENT__INTERNAL_ID:
+				unsetInternalId();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -416,6 +454,8 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 				return isGenerated() != GENERATED_EDEFAULT;
 			case CorePackage.EVENT_BELEMENT__LOCAL_GENERATED:
 				return isSetLocalGenerated();
+			case CorePackage.EVENT_BELEMENT__INTERNAL_ID:
+				return isSetInternalId();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -432,12 +472,14 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (localGenerated: "); //$NON-NLS-1$
 		if (localGeneratedESet) result.append(localGenerated); else result.append("<unset>"); //$NON-NLS-1$
+		result.append(", internalId: "); //$NON-NLS-1$
+		if (internalIdESet) result.append(internalId); else result.append("<unset>"); //$NON-NLS-1$
 		result.append(')');
 		return result.toString();
 	}
 
 	
-	////////////////////////ONLY FOR PERSISTENCE AND NOT IN INTERFACE//////////////////////
+	////////////////////////ONLY FOR PERSISTENCE//////////////////////
 	/**
 	 * returns the internal id of this element if it has one
 	 * (internal id is used to construct references for elements that do not have a name)
@@ -445,9 +487,11 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * OTHER USERS SHOULD NOT BE USING THIS METHOD
 	 * N.B. Named elements DO NOT have ids - they use name instead.
 	 * @return UUID string or null
+	 * @generated NOT
 	 */	
-	public String getId(){
-		return this instanceof EventBNamed || id==null || "".equals(id)? null : id;
+	public String getInternalId(){
+		if (this instanceof EventBNamed) return null;
+		return internalId;
 	}
 	
 	/**
@@ -457,11 +501,40 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	 * OTHER USERS SHOULD NOT BE USING THIS METHOD
 	 * N.B. Named elements DO NOT have ids - they use name instead.
 	 * @param UUID string
+	 * @generated NOT
 	 */
-	public void setId(String newId) {
-		if (!(this instanceof EventBNamed)) id = newId;
+	public void setInternalId(String newInternalId) {
+		if (this instanceof EventBNamed) return;
+		String oldInternalId = internalId;
+		internalId = newInternalId;
+		boolean oldInternalIdESet = internalIdESet;
+		internalIdESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BELEMENT__INTERNAL_ID, oldInternalId, internalId, !oldInternalIdESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetInternalId() {
+		String oldInternalId = internalId;
+		boolean oldInternalIdESet = internalIdESet;
+		internalId = INTERNAL_ID_EDEFAULT;
+		internalIdESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, CorePackage.EVENT_BELEMENT__INTERNAL_ID, oldInternalId, INTERNAL_ID_EDEFAULT, oldInternalIdESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetInternalId() {
+		return internalIdESet;
 	}
 	
-	private String id;
 	
 } //EventBElementImpl

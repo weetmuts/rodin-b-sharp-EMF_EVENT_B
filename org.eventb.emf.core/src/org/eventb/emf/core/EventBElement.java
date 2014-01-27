@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EMap;
  *   <li>{@link org.eventb.emf.core.EventBElement#getReference <em>Reference</em>}</li>
  *   <li>{@link org.eventb.emf.core.EventBElement#isGenerated <em>Generated</em>}</li>
  *   <li>{@link org.eventb.emf.core.EventBElement#isLocalGenerated <em>Local Generated</em>}</li>
+ *   <li>{@link org.eventb.emf.core.EventBElement#getInternalId <em>Internal Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,7 +79,7 @@ public interface EventBElement extends EventBObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' attribute.
 	 * @see org.eventb.emf.core.CorePackage#getEventBElement_Reference()
-	 * @model default="" id="true" required="true" changeable="false" volatile="true" derived="true"
+	 * @model default="" id="true" required="true" transient="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	String getReference();
@@ -164,6 +165,59 @@ public interface EventBElement extends EventBObject {
 	 * @generated
 	 */
 	boolean isSetLocalGenerated();
+
+	/**
+	 * Returns the value of the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Internal Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Internal Id</em>' attribute.
+	 * @see #isSetInternalId()
+	 * @see #unsetInternalId()
+	 * @see #setInternalId(String)
+	 * @see org.eventb.emf.core.CorePackage#getEventBElement_InternalId()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	String getInternalId();
+
+	/**
+	 * Sets the value of the '{@link org.eventb.emf.core.EventBElement#getInternalId <em>Internal Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Internal Id</em>' attribute.
+	 * @see #isSetInternalId()
+	 * @see #unsetInternalId()
+	 * @see #getInternalId()
+	 * @generated
+	 */
+	void setInternalId(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.eventb.emf.core.EventBElement#getInternalId <em>Internal Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetInternalId()
+	 * @see #getInternalId()
+	 * @see #setInternalId(String)
+	 * @generated
+	 */
+	void unsetInternalId();
+
+	/**
+	 * Returns whether the value of the '{@link org.eventb.emf.core.EventBElement#getInternalId <em>Internal Id</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Internal Id</em>' attribute is set.
+	 * @see #unsetInternalId()
+	 * @see #getInternalId()
+	 * @see #setInternalId(String)
+	 * @generated
+	 */
+	boolean isSetInternalId();
 
 	/**
 	 * <!-- begin-user-doc -->

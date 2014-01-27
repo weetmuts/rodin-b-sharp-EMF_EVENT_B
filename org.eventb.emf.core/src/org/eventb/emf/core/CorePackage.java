@@ -159,13 +159,22 @@ public interface CorePackage extends EPackage {
 	int EVENT_BELEMENT__LOCAL_GENERATED = EVENT_BOBJECT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BELEMENT__INTERNAL_ID = EVENT_BOBJECT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Event BElement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_BELEMENT_FEATURE_COUNT = EVENT_BOBJECT_FEATURE_COUNT + 5;
+	int EVENT_BELEMENT_FEATURE_COUNT = EVENT_BOBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eventb.emf.core.impl.EventBCommentedImpl <em>Event BCommented</em>}' class.
@@ -258,6 +267,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BCOMMENTED_ELEMENT__LOCAL_GENERATED = EVENT_BELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_ELEMENT__INTERNAL_ID = EVENT_BELEMENT__INTERNAL_ID;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -368,6 +386,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BCOMMENTED_EXPRESSION_ELEMENT__LOCAL_GENERATED = EVENT_BCOMMENTED_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BCOMMENTED_EXPRESSION_ELEMENT__INTERNAL_ID = EVENT_BCOMMENTED_ELEMENT__INTERNAL_ID;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -489,6 +516,15 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED = EVENT_BCOMMENTED_ELEMENT__LOCAL_GENERATED;
 
 	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_ELEMENT__INTERNAL_ID = EVENT_BCOMMENTED_ELEMENT__INTERNAL_ID;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -606,6 +642,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__LOCAL_GENERATED = EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__INTERNAL_ID = EVENT_BNAMED_COMMENTED_ELEMENT__INTERNAL_ID;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -734,6 +779,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__LOCAL_GENERATED = EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_DERIVED_PREDICATE_ELEMENT__INTERNAL_ID = EVENT_BNAMED_COMMENTED_PREDICATE_ELEMENT__INTERNAL_ID;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -873,6 +927,15 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__LOCAL_GENERATED = EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
 
 	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_ACTION_ELEMENT__INTERNAL_ID = EVENT_BNAMED_COMMENTED_ELEMENT__INTERNAL_ID;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -973,6 +1036,15 @@ public interface CorePackage extends EPackage {
 	int EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__LOCAL_GENERATED = EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
 
 	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT__INTERNAL_ID = EVENT_BNAMED_COMMENTED_ELEMENT__INTERNAL_ID;
+
+	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1062,6 +1134,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int PROJECT__LOCAL_GENERATED = EVENT_BNAMED_COMMENTED_ELEMENT__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__INTERNAL_ID = EVENT_BNAMED_COMMENTED_ELEMENT__INTERNAL_ID;
 
 	/**
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -1164,6 +1245,15 @@ public interface CorePackage extends EPackage {
 	int ABSTRACT_EXTENSION__LOCAL_GENERATED = EVENT_BELEMENT__LOCAL_GENERATED;
 
 	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EXTENSION__INTERNAL_ID = EVENT_BELEMENT__INTERNAL_ID;
+
+	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1244,6 +1334,15 @@ public interface CorePackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTENSION__LOCAL_GENERATED = ABSTRACT_EXTENSION__LOCAL_GENERATED;
+
+	/**
+	 * The feature id for the '<em><b>Internal Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENSION__INTERNAL_ID = ABSTRACT_EXTENSION__INTERNAL_ID;
 
 	/**
 	 * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -1552,6 +1651,17 @@ public interface CorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEventBElement_LocalGenerated();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eventb.emf.core.EventBElement#getInternalId <em>Internal Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Internal Id</em>'.
+	 * @see org.eventb.emf.core.EventBElement#getInternalId()
+	 * @see #getEventBElement()
+	 * @generated
+	 */
+	EAttribute getEventBElement_InternalId();
 
 	/**
 	 * Returns the meta object for class '{@link org.eventb.emf.core.EventBCommented <em>Event BCommented</em>}'.
@@ -2065,6 +2175,14 @@ public interface CorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EVENT_BELEMENT__LOCAL_GENERATED = eINSTANCE.getEventBElement_LocalGenerated();
+
+		/**
+		 * The meta object literal for the '<em><b>Internal Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT_BELEMENT__INTERNAL_ID = eINSTANCE.getEventBElement_InternalId();
 
 		/**
 		 * The meta object literal for the '{@link org.eventb.emf.core.impl.EventBCommentedImpl <em>Event BCommented</em>}' class.
