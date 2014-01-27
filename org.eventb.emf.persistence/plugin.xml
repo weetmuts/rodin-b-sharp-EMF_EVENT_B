@@ -23,7 +23,7 @@
          point="org.eventb.emf.persistence.synchroniser">
             <emfPackage
                   name="MachinePackage"
-                  nsURI="http://emf.eventb.org/models/core/machine">
+                  nsURI="http://emf.eventb.org/models/core/machine/2014">
                <synchroniser
                      synchroniser_class="org.eventb.emf.persistence.synchroniser.MachineSynchroniser"
                      emf_class="Machine"
@@ -81,7 +81,7 @@
             </emfPackage>
             <emfPackage
                   name="ContextPackage"
-                  nsURI="http://emf.eventb.org/models/core/context">
+                  nsURI="http://emf.eventb.org/models/core/context/2014">
                <synchroniser
 		            synchroniser_class="org.eventb.emf.persistence.synchroniser.ContextSynchroniser"
 		            emf_class="Context"
@@ -109,7 +109,7 @@
             </emfPackage>
             <emfPackage
                   name="CorePackage"
-                  nsURI="http://emf.eventb.org/models/core">
+                  nsURI="http://emf.eventb.org/models/core/2014">
                <synchroniser
                      emf_class="Project"
                      name="Project"
