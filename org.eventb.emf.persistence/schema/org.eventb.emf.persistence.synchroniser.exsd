@@ -141,7 +141,7 @@ e.g. org.eventb.core.invariant
          point=&quot;org.eventb.emf.persistence.synchroniser&quot;&gt;
             &lt;emfPackage
                   name=&quot;ContextPackage&quot;
-                  nsURI=&quot;http://emf.eventb.org/models/core/context&quot;&gt;
+                  nsURI=&quot;http://emf.eventb.org/models/core/context/2014&quot;&gt;
                &lt;synchroniser
               synchroniser=&quot;org.eventb.emf.persistence.synchroniser.ContextSynchroniser&quot;
               emf_class=&quot;Context&quot;

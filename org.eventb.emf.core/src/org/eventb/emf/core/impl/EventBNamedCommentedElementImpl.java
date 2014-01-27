@@ -73,10 +73,10 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * returns the name of this element by calling getName1()
-	 * (getName1() is defined in model and generated)
+	 * returns the name of this element by calling doGetName()
+	 * (doGetName() is defined in model and generated)
 	 * <!-- end-user-doc -->
-	 * @generated not
+	 * @generated NOT
 	 */
 	public String getName() {
 		return doGetName();
@@ -103,7 +103,6 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("cast")
 	public String doGetName() {
 		if (this.eIsProxy()){
 			String fragment = ((InternalEObject)this).eProxyURI().fragment();
