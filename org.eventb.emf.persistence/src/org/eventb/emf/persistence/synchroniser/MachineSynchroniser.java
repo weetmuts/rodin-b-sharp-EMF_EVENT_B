@@ -3,6 +3,7 @@ package org.eventb.emf.persistence.synchroniser;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -51,7 +52,7 @@ public class MachineSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException, CoreException {
 		// create EMF node for machine
 		final Machine eventBElement = (Machine) super.load(rodinElement, emfParent, monitor);
 
@@ -77,7 +78,7 @@ public class MachineSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException, CoreException {
 		// get machine file if synchronised from project
 		final IRodinElement parent = rodinParent instanceof IRodinProject ? ((IEventBProject) rodinParent.getAdapter(IEventBProject.class))
 				.getMachineFile(((EventBNamed) emfElement).getName()) : rodinParent;

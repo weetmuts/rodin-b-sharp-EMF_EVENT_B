@@ -7,7 +7,7 @@ import org.rodinp.core.IRodinElement;
 import org.rodinp.core.RodinDBException;
 
 public interface ISynchroniser {
-	public <T extends EventBElement> EventBElement load(IRodinElement rodinElement, EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException;
+	public <T extends EventBElement> EventBElement load(IRodinElement rodinElement, EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException, CoreException;
 
 	public IRodinElement save(EventBElement emfElement, IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException, CoreException;
 }

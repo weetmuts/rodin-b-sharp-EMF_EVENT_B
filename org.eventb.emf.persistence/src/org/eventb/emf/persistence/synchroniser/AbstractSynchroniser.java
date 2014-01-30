@@ -103,7 +103,8 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 	protected abstract Set<IAttributeType> getHandledAttributeTypes();
 
 	@SuppressWarnings("unchecked")
-	public <T extends EventBElement> EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public <T extends EventBElement> EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException,
+			CoreException {
 		if (!(rodinElement instanceof IInternalElement))
 			throw new RodinDBException(new Exception("Not an Internal Element"), IRodinDBStatusConstants.CORE_EXCEPTION);
 
@@ -294,7 +295,7 @@ public abstract class AbstractSynchroniser implements ISynchroniser {
 		}
 	}
 
-	public IRodinElement save(final EventBElement eventBElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement eventBElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException, CoreException {
 		// get rodin details annotation or create if doesn't exist
 		Annotation rodinInternals = eventBElement.getAnnotation(PersistencePlugin.SOURCE_RODIN_INTERNAL_ANNOTATION);
 

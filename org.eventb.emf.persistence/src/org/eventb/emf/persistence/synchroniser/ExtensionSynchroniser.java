@@ -3,6 +3,7 @@ package org.eventb.emf.persistence.synchroniser;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
@@ -53,7 +54,7 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException {
+	public EventBElement load(final IRodinElement rodinElement, final EventBElement emfParent, final IProgressMonitor monitor) throws RodinDBException, CoreException {
 		// create EMF node
 		Extension eventBElement = (Extension) super.load(rodinElement, emfParent, monitor);
 		// the extension ID is used to record the Rodin element type ID for subsequent saves 
@@ -65,7 +66,7 @@ public class ExtensionSynchroniser extends AbstractSynchroniser {
 	}
 
 	@Override
-	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException {
+	public IRodinElement save(final EventBElement emfElement, final IRodinElement rodinParent, final IProgressMonitor monitor) throws RodinDBException, CoreException {
 		if (emfElement instanceof AbstractExtension && isMetaClassExtension((AbstractExtension) emfElement)) {
 			// if this extension just adds to its parents features, we don't need to do anything, just return the same parent
 			return asInternalElement(rodinParent);
