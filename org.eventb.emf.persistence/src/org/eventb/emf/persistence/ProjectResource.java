@@ -83,8 +83,7 @@ public class ProjectResource extends ResourceImpl {
 	@Override
 	public void setURI(final URI uri) {
 		super.setURI(uri);
-		//final int segmentCount = uri.segmentCount();
-		final String projectName = URI.decode(uri.segment(1)); //segmentCount - 2));
+		final String projectName = URI.decode(uri.segment(1));
 
 		rodinProject = RodinCore.getRodinDB().getRodinProject(projectName);
 		map = new HashMap<IRodinElement, EventBObject>();
@@ -107,11 +106,8 @@ public class ProjectResource extends ResourceImpl {
 					map.clear();
 					getContents().add(syncManager.loadRodinElement(rodinProject, null, map, null));
 
-				} catch (RodinDBException e) {
-					throw new IOException("Error while loading rodin project: " + e.getLocalizedMessage());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					throw new IOException("Error while loading rodin project: " + e.getLocalizedMessage());
 				}
 				// success
 				setTimeStamp(System.currentTimeMillis());
