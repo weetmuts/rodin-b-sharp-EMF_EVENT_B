@@ -76,7 +76,7 @@ public class RodinResource extends XMIResourceImpl {
 		String projectName;
 		final int segmentCount = uri.segmentCount();
 		if ("platform".equals(uri.scheme())) {
-			projectName = URI.decode(uri.segment(segmentCount - 2));
+			projectName = URI.decode(uri.segment(1));
 			final String fileName = URI.decode(uri.segment(segmentCount - 1));
 			final String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
 			rodinProject = RodinCore.getRodinDB().getRodinProject(projectName);
