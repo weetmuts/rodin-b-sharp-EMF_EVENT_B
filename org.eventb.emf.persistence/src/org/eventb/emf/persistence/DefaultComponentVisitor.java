@@ -13,7 +13,6 @@ import org.eventb.core.IParameter;
 import org.eventb.core.IRefinesEvent;
 import org.eventb.core.IRefinesMachine;
 import org.eventb.core.ISeesContext;
-import org.eventb.core.ITheorem;
 import org.eventb.core.IVariable;
 import org.eventb.core.IVariant;
 import org.eventb.core.IWitness;
@@ -22,11 +21,10 @@ import org.rodinp.core.IRodinElement;
 import org.rodinp.core.RodinDBException;
 
 public class DefaultComponentVisitor {
-	public void accept(final IRodinElement internalElement)
-			throws RodinDBException {
+	public void accept(final IRodinElement internalElement) throws RodinDBException {
 		if (internalElement != null) {
 			final Object[] args = { internalElement };
-			final Class[] types = { internalElement.getClass() };
+			final Class<?>[] types = { internalElement.getClass() };
 
 			try {
 				this.getClass().getMethod("visit", types).invoke(this, args);
@@ -133,20 +131,6 @@ public class DefaultComponentVisitor {
 		defaultIn(node);
 	}
 
-	protected void visit(final ITheorem node) throws RodinDBException {
-		in(node);
-		// leaf, don't visit children
-		out(node);
-	}
-
-	protected void in(final ITheorem node) {
-		defaultIn(node);
-	}
-
-	protected void out(final ITheorem node) {
-		defaultIn(node);
-	}
-
 	protected void visit(final IVariant node) throws RodinDBException {
 		in(node);
 		// leaf, don't visit children
@@ -175,8 +159,7 @@ public class DefaultComponentVisitor {
 		defaultIn(node);
 	}
 
-	protected void visit(final IConvergenceElement node)
-			throws RodinDBException {
+	protected void visit(final IConvergenceElement node) throws RodinDBException {
 		in(node);
 		// leaf, don't visit children
 		out(node);
