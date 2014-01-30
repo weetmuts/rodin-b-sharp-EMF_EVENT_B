@@ -84,12 +84,16 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Set the name attribute.
+	 * Since : and . are used as delimiters in references which are formed from name, 
+	 * these characters are not permitted and are changed automatically
+	 * to ; and , respectively.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setName(String newName) {
 		String oldName = name;
-		name = newName;
+		name = newName.replaceAll("\\.", ",").replaceAll(":", ";");
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CorePackage.EVENT_BNAMED__NAME, oldName, name));
 	}
@@ -102,7 +106,6 @@ public abstract class EventBNamedImpl extends EObjectImpl implements EventBNamed
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("cast")
 	public String doGetName() {
 		if (this.eIsProxy()){
 			String fragment = ((InternalEObject)this).eProxyURI().fragment();
