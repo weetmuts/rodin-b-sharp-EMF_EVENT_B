@@ -32,7 +32,7 @@ import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.context.ContextPackage;
 import org.eventb.emf.core.provider.EventBNamedCommentedComponentElementItemProvider;
-import org.eventb.internal.ui.EventBImage;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.ui.IEventBSharedImages;
 
 /**
@@ -46,7 +46,7 @@ public class ContextItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_CONTEXT);
+	private static final Image IMAGE = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_CONTEXT);
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

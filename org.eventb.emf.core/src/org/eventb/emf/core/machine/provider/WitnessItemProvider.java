@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.machine.Witness;
 import org.eventb.emf.core.provider.EventBNamedCommentedPredicateElementItemProvider;
-import org.eventb.internal.ui.EventBImage;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.ui.IEventBSharedImages;
 
 /**
@@ -40,7 +40,7 @@ public class WitnessItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_INVARIANT);
+	private static final Image IMAGE = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_INVARIANT);
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

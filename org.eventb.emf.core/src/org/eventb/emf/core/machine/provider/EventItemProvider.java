@@ -33,7 +33,7 @@ import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.provider.EventBNamedCommentedElementItemProvider;
-import org.eventb.internal.ui.EventBImage;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.ui.IEventBSharedImages;
 
 /**
@@ -53,7 +53,7 @@ public class EventItemProvider
 		IItemPropertySource,
 		ITableItemLabelProvider {
 	
-	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_EVENT);
+	private static final Image IMAGE = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_EVENT);
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

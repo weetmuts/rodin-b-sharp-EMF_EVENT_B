@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.context.Constant;
 import org.eventb.emf.core.provider.EventBNamedCommentedElementItemProvider;
-import org.eventb.internal.ui.EventBImage;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.ui.IEventBSharedImages;
 
 /**
@@ -40,7 +40,7 @@ public class ConstantItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE = EventBImage.getImage(IEventBSharedImages.IMG_CONSTANT);
+	private static final Image IMAGE = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_CONSTANT);
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

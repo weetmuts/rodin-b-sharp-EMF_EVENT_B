@@ -13,6 +13,9 @@ package org.eventb.emf.core.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.graphics.Image;
+import org.eventb.ui.EventBUIPlugin;
 
 /**
  * This is the central singleton for the Eventbcore edit plugin.
@@ -37,6 +40,17 @@ public final class EventbcoreEditPlugin extends EMFPlugin {
 	 */
 	private static Implementation plugin;
 
+
+	/**
+	 * gets a registered image from the Rodin Event-B image registry
+	 * The key should be as in the Rodin Event-B UI
+	 * 
+	 */
+	public static Image getEventBImage(String key){
+		return IMAGES.get(key);
+	}
+	private static final ImageRegistry IMAGES = EventBUIPlugin.getDefault().getImageRegistry();
+	
 	/**
 	 * Create the instance.
 	 * <!-- begin-user-doc -->

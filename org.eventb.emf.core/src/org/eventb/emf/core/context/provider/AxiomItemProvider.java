@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.context.Axiom;
 import org.eventb.emf.core.provider.EventBNamedCommentedDerivedPredicateElementItemProvider;
-import org.eventb.internal.ui.EventBImage;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.ui.IEventBSharedImages;
 
 /**
@@ -40,8 +40,8 @@ public class AxiomItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE_AXM = EventBImage.getImage(IEventBSharedImages.IMG_AXIOM);
-	private static final Image IMAGE_THM = EventBImage.getImage(IEventBSharedImages.IMG_THEOREM);
+	private static final Image IMAGE_AXM = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_AXIOM);
+	private static final Image IMAGE_THM = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_THEOREM);
 
 
 	/**

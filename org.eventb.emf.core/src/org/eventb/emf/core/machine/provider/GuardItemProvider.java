@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eventb.emf.core.machine.Guard;
 import org.eventb.emf.core.provider.EventBNamedCommentedDerivedPredicateElementItemProvider;
-import org.eventb.internal.ui.EventBImage;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 import org.eventb.ui.IEventBSharedImages;
 
 /**
@@ -40,8 +40,8 @@ public class GuardItemProvider
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider {
 	
-	private static final Image IMAGE_GRD = EventBImage.getImage(IEventBSharedImages.IMG_GUARD);
-	private static final Image IMAGE_THM = EventBImage.getImage(IEventBSharedImages.IMG_THEOREM);
+	private static final Image IMAGE_GRD = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_GUARD);
+	private static final Image IMAGE_THM = EventbcoreEditPlugin.getEventBImage(IEventBSharedImages.IMG_THEOREM);
 
 
 	/**
