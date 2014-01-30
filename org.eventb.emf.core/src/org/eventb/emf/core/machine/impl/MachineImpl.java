@@ -42,7 +42,7 @@ import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.Variable;
 import org.eventb.emf.core.machine.Variant;
-import org.rodinp.core.RodinCore;
+import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -647,7 +647,7 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			 if (resolved.eIsProxy()) throw new Exception();
 			 return resolved;
 		  }catch (Exception e){
-			  RodinCore.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
+			  EventbcoreEditPlugin.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
 			  proxy.eSetProxyURI(proxyURI);	//revert uri to original
 			  return proxy;
 		  }
