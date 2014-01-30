@@ -5,12 +5,9 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eventb.core.EventBAttributes;
 import org.eventb.core.ICommentedElement;
 import org.eventb.core.IMachineRoot;
-import org.eventb.emf.core.CoreFactory;
-import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.machine.Machine;
 import org.rodinp.core.IAttributeType;
@@ -22,9 +19,9 @@ import org.rodinp.core.RodinDBException;
 
 public class DynamicSynchroniser extends AbstractSynchroniser {
 
-	private static EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
-	private static CorePackage eventBPackage = CorePackage.eINSTANCE;
-	private static CoreFactory eventBFactory = CoreFactory.eINSTANCE;
+	//	private static EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
+	//	private static CorePackage eventBPackage = CorePackage.eINSTANCE;
+	//	private static CoreFactory eventBFactory = CoreFactory.eINSTANCE;
 
 	private static final Set<IAttributeType> handledAttributes = new HashSet<IAttributeType>();
 
@@ -50,11 +47,11 @@ public class DynamicSynchroniser extends AbstractSynchroniser {
 		if (rodinElement instanceof ICommentedElement) {
 			//			bElement.setComment(((ICommentedElement) rodinElement).getComment());
 		}
-		for (final IAttributeType attributeType : ((IInternalElement) rodinElement).getAttributeTypes()) {
-			// TODO deal with attributes
-			// still needed now that AbstractSynchroniser handles arbitrary
-			// attributes?
-		}
+		//		for (final IAttributeType attributeType : ((IInternalElement) rodinElement).getAttributeTypes()) {
+		//			// TODO deal with attributes
+		//			// still needed now that AbstractSynchroniser handles arbitrary
+		//			// attributes?
+		//		}
 
 		// attach new node to parent as an exte nsion
 		//		emfParent.getExtensions().add((EventBExtension) bElement);

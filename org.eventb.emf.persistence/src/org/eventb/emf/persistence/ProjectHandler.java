@@ -1,7 +1,5 @@
 package org.eventb.emf.persistence;
 
-import java.util.Map;
-
 import org.eventb.emf.core.EventBNamedCommentedComponentElement;
 import org.eventb.emf.core.Project;
 import org.eventb.emf.core.context.Context;
@@ -9,12 +7,12 @@ import org.eventb.emf.core.machine.Machine;
 import org.rodinp.core.IRodinProject;
 
 public class ProjectHandler {
-	private final Project project = null; // optionally initialised in
-	// getProject(), affects
-	// saveProject()
-	private final IRodinProject rodinProject = null; // must be set in a
-	// constructor
-	private Map<String, EventBNamedCommentedComponentElement> cache;
+	//	private final Project project = null; // optionally initialised in
+	//	// getProject(), affects
+	//	// saveProject()
+	//	private final IRodinProject rodinProject = null; // must be set in a
+	//	// constructor
+	//	private Map<String, EventBNamedCommentedComponentElement> cache;
 
 	// public ProjectHandler(Shell parent) {} // NOT HERE! open project
 	// selection dialog
