@@ -182,8 +182,8 @@ public class SyncManager {
 		//EStructuralFeature feature = child.eContainingFeature();
 		Object featureContent = parent.eGet(child.eContainingFeature());
 		if (featureContent instanceof EList) {
-			EList elist = (EList) featureContent;
-			int p = ((EList) featureContent).indexOf(child);
+			EList<?> elist = (EList<?>) featureContent;
+			int p = ((EList<?>) featureContent).indexOf(child);
 			while (p + 1 < elist.size() && nextChild == null) {
 				p = p + 1;
 				if (childOrder.contains(elist.get(p))) {
