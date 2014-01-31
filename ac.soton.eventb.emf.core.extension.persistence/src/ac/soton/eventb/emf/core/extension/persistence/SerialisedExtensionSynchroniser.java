@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -96,7 +97,7 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 	@Override
 	public <T extends EventBElement> EventBElement load(
 			IRodinElement rodinElement, EventBElement emfParent,
-			IProgressMonitor monitor) throws RodinDBException {
+			IProgressMonitor monitor) throws RodinDBException, CoreException {
 
 		assert rodinElement instanceof ISerialisedExtension;
 		ISerialisedExtension serialisedExtension = (ISerialisedExtension) rodinElement;
@@ -152,7 +153,7 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 	@Override
 	public IRodinElement save(EventBElement emfElement,
 			IRodinElement rodinParent, IProgressMonitor monitor)
-			throws RodinDBException {
+			throws RodinDBException, CoreException {
 		// important - to prevent creating Rodin elements for children
 		if (rodinParent instanceof ISerialisedExtension)
 			return null;
