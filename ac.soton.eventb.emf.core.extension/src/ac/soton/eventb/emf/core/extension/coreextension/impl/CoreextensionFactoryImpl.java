@@ -7,16 +7,17 @@
  */
 package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
-import ac.soton.eventb.emf.core.extension.coreextension.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.DataKind;
+import ac.soton.eventb.emf.core.extension.coreextension.TypedParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +41,7 @@ public class CoreextensionFactoryImpl extends EFactoryImpl implements Coreextens
 	 */
 	public static CoreextensionFactory init() {
 		try {
-			CoreextensionFactory theCoreextensionFactory = (CoreextensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://soton.ac.uk/models/eventb/coreextension/0613"); 
+			CoreextensionFactory theCoreextensionFactory = (CoreextensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://soton.ac.uk/models/eventb/coreextension/2014"); 
 			if (theCoreextensionFactory != null) {
 				return theCoreextensionFactory;
 			}
