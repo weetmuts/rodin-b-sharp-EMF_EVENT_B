@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -152,7 +153,12 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		String projectName = sourceRoot.getRodinProject().getElementName();
 		abstractResourceURI = URI.createURI("platform:/resource/" + projectName + "/" + abstractEventBRoot.getComponentName() + ".bum");
 		concreteResourceURI = URI.createURI("platform:/resource/" + projectName + "/" + concreteEventBRoot.getComponentName() + ".bum");
-		refineExtensions(concreteEventBRoot, abstractEventBRoot, monitor);
+		try {
+			refineExtensions(concreteEventBRoot, abstractEventBRoot, monitor);
+		} catch (CoreException e) {
+			// FIXME: For Rodin 3.0 we can throw this directly
+			throw new RodinDBException(e);
+		}
 	}
 
 	/**
@@ -164,7 +170,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @param monitor progress monitor
 	 * @throws RodinDBException 
 	 */
-	private void refineExtensions(IEventBRoot concreteEventBRoot, IEventBRoot abstractEventBRoot, IProgressMonitor monitor) throws RodinDBException {
+	private void refineExtensions(IEventBRoot concreteEventBRoot, IEventBRoot abstractEventBRoot, IProgressMonitor monitor) throws RodinDBException, CoreException {
 		for (ISerialisedExtension extension : abstractEventBRoot.getChildrenOfType(ISerialisedExtension.ELEMENT_TYPE)) {
 			if (extension.hasExtensionId() && extension.getExtensionId().startsWith(EXTENSION_ID))
 				refineExtension(concreteEventBRoot, extension, monitor);
@@ -180,7 +186,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @param monitor progress monitor
 	 * @throws RodinDBException 
 	 */
-	private void refineExtension(IEventBRoot concreteEventBRoot, ISerialisedExtension abstractExtensionRoot, IProgressMonitor monitor) throws RodinDBException 	{
+	private void refineExtension(IEventBRoot concreteEventBRoot, ISerialisedExtension abstractExtensionRoot, IProgressMonitor monitor) throws RodinDBException, CoreException 	{
 		
 		EventBElement extension = synchroniser.load(abstractExtensionRoot, null, monitor);
 		
