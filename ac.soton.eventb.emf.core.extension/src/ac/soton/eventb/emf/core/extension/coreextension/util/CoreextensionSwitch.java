@@ -7,23 +7,29 @@
  */
 package ac.soton.eventb.emf.core.extension.coreextension.util;
 
-import ac.soton.eventb.emf.core.extension.coreextension.*;
-
 import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.util.Switch;
-
 import org.eventb.emf.core.EventBCommented;
 import org.eventb.emf.core.EventBCommentedElement;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.EventBNamedCommentedElement;
 import org.eventb.emf.core.EventBObject;
-
 import org.eventb.emf.core.machine.Parameter;
+
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBEventGroup;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
+import ac.soton.eventb.emf.core.extension.coreextension.Type;
+import ac.soton.eventb.emf.core.extension.coreextension.TypedParameter;
 
 /**
  * <!-- begin-user-doc -->

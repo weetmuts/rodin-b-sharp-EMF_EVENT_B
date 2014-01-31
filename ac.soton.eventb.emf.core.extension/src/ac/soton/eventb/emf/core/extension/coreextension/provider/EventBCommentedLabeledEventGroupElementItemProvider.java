@@ -8,16 +8,11 @@
 package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
 
-import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
-import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,6 +25,10 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eventb.emf.core.machine.MachineFactory;
+
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement;
 
 /**
  * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledEventGroupElement} object.

@@ -9,16 +9,15 @@ package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
 import java.util.ArrayList;
 
-import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eventb.emf.core.EventBNamed;
+
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
 
 /**
  * <!-- begin-user-doc -->

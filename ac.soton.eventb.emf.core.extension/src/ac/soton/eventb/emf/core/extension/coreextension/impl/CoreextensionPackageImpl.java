@@ -7,6 +7,15 @@
  */
 package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eventb.emf.core.CorePackage;
+import org.eventb.emf.core.machine.MachinePackage;
+
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionFactory;
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.core.extension.coreextension.DataKind;
@@ -20,18 +29,6 @@ import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRela
 import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
 import ac.soton.eventb.emf.core.extension.coreextension.Type;
 import ac.soton.eventb.emf.core.extension.coreextension.TypedParameter;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eventb.emf.core.CorePackage;
-
-import org.eventb.emf.core.machine.MachinePackage;
 
 /**
  * <!-- begin-user-doc -->

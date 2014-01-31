@@ -7,13 +7,12 @@
  */
 package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eventb.emf.core.impl.EventBCommentedElementImpl;
+
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBCommentedLabeledElement;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBLabeled;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eventb.emf.core.impl.EventBCommentedElementImpl;
 
 /**
  * <!-- begin-user-doc -->

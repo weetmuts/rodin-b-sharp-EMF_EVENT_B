@@ -7,21 +7,17 @@
  */
 package ac.soton.eventb.emf.core.extension.coreextension.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eventb.emf.core.EventBNamed;
+import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
+
 import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
 import ac.soton.eventb.emf.core.extension.coreextension.DataKind;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration;
 import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedDataElaborationElement;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eventb.emf.core.EventBNamed;
-
-import org.eventb.emf.core.impl.EventBNamedCommentedElementImpl;
 
 /**
  * <!-- begin-user-doc -->

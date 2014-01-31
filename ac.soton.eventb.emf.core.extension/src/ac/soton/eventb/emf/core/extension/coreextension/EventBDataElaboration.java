@@ -8,7 +8,6 @@
 package ac.soton.eventb.emf.core.extension.coreextension;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eventb.emf.core.EventBNamed;
 
 /**
