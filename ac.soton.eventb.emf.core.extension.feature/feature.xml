@@ -34,7 +34,7 @@
       <import plugin="org.eclipse.core.expressions" version="3.4.300" match="compatible"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core" version="1.4.1" match="compatible"/>
       <import plugin="org.eclipse.emf.transaction" version="1.4.0" match="compatible"/>
-      <import feature="org.eventb.emf.feature" version="3.7.2" match="compatible"/>
+      <import feature="org.eventb.emf.feature" version="4.0.0" match="compatible"/>
    </requires>
 
    <plugin
