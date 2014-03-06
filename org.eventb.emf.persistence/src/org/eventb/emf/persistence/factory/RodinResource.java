@@ -125,7 +125,7 @@ public class RodinResource extends XMIResourceImpl {
 			return;
 		}
 		if (!isLoaded) {
-			Notification notification = setLoaded(true);
+			Notification notification = null;
 			try {
 				isLoading = true;
 
@@ -145,7 +145,7 @@ public class RodinResource extends XMIResourceImpl {
 					}
 					// success
 					setTimeStamp(System.currentTimeMillis());
-					setLoaded(true);
+					notification = setLoaded(true);
 				}
 				// otherwise throw exception
 				else {
