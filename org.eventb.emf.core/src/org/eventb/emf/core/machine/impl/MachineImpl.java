@@ -628,28 +628,32 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			  && proxy.eIsProxy() && eResource()!=null){
 		  URI proxyURI = proxy.eProxyURI();
 		  try{
-			 String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+proxyURI.fragment();
-			 // if resolved already in the parent, do not resolve again
-			 if (eContainer() != null)
+			  assert (proxyURI.trimFragment().equals(CorePackage.dummyURI));   //should always be a dummy
+			  String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+proxyURI.fragment();
+			  // if resolved already in the parent, do not resolve again
+			  if (eContainer() != null)
 				 for (EObject component : eContainer().eContents())
 					 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
 						 return component;
 
-			 // attempt to construct a suitable proxy URI
-			 String extension = proxy instanceof Machine ? 
-					 	External.getString("FileExtensions.machine") :
-						External.getString("FileExtensions.context");
-			 proxy.eSetProxyURI(URI.createPlatformResourceURI(getURI().segment(1), true) //project name
-					 	.appendSegment(proxyURI.fragment())		//resource name
-					 	.appendFileExtension(extension)
-					 	.appendFragment(reference));
+			  //replace dummy URI with the proper one
+			  String extension = proxy instanceof Machine ? 
+					External.getString("FileExtensions.machine") : 
+					External.getString("FileExtensions.context");
+			  proxy.eSetProxyURI(URI.createPlatformResourceURI(getURI().segment(1), true) //project name
+					  .appendSegment(proxyURI.fragment())		//resource name
+					  .appendFileExtension(extension)
+					  .appendFragment(reference));
+
+			  //resolve it
 			 EObject resolved = super.eResolveProxy(proxy);
 			 if (resolved.eIsProxy()) throw new Exception();
 			 return resolved;
 		  }catch (Exception e){
 			  EventbcoreEditPlugin.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
-			  proxy.eSetProxyURI(proxyURI);	//revert uri to original
 			  return proxy;
+		  }finally{
+			  proxy.eSetProxyURI(proxyURI);	//revert uri to original dummy
 		  }
 	  }
 	  return super.eResolveProxy(proxy);

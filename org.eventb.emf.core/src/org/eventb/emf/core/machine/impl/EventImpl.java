@@ -599,19 +599,23 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 		if (proxy instanceof Event && proxy.eIsProxy() && getRefines().contains(proxy) && eResource()!=null){
 			URI proxyURI = proxy.eProxyURI();
 			try { 
-				 Machine refinedMachine = ((MachineImpl)eContainer).getRefines().get(0);
-				 String prefix = ((EventBElementImpl)proxy).getElementTypePrefix();
-				 String reference = prefix+"::"+refinedMachine.getName()+"."+proxyURI.fragment();
-				 proxy.eSetProxyURI(refinedMachine.getURI().appendFragment(reference));
-				 EObject resolved = super.eResolveProxy(proxy);
-				 if (resolved.eIsProxy()) throw new Exception();
-				 return resolved;
+				assert (proxyURI.trimFragment().equals(CorePackage.dummyURI));   //should always be a dummy if finally works
+				Machine refinedMachine = ((MachineImpl)eContainer).getRefines().get(0);
+				String prefix = ((EventBElementImpl)proxy).getElementTypePrefix();
+				String reference = prefix+"::"+refinedMachine.getName()+"."+proxyURI.fragment();
+				proxy.eSetProxyURI(refinedMachine.getURI().appendFragment(reference));
+				//resolve it
+				EObject resolved = super.eResolveProxy(proxy);
+				if (resolved.eIsProxy()) throw new Exception();
+				return resolved;
 			} catch (Exception e){
 				EventbcoreEditPlugin.getPlugin().getLog().log(
 						new Status(Status.ERROR, "org.eventb.emf.core","Cannot resolve: " + proxy, e));
-				proxy.eSetProxyURI(proxyURI);	//revert uri to original
 				return proxy;
+			} finally {
+				proxy.eSetProxyURI(proxyURI);	//revert uri to original dummy	
 			}
+			
 		}
 		return super.eResolveProxy(proxy);
 	}
