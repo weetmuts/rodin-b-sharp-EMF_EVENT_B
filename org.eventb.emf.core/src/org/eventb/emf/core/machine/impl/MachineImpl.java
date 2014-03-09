@@ -617,7 +617,10 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 	 * until this point. When a proxy is resolved, the URI is constructed based on this elements resource URI.
 	 * Therefore, proxies will not resolve until this element has been associated with a resource.
 	 *
-	 * Following construction of the URI, the proxy resolution is deferred to super
+	 * Following construction of the URI, the proxy resolution is deferred to super.
+	 * 
+	 * (The construction cannot rely on the proxy being in this dummy form since the reference will be returned to a 
+	 *  (non-dummy) proxy if the target is altered. Hence the proxy is not returned to being a dummy after construction.) 
 	 *
 	 * @custom
 	 */
@@ -628,32 +631,35 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 			  && proxy.eIsProxy() && eResource()!=null){
 		  URI proxyURI = proxy.eProxyURI();
 		  try{
-			  assert (proxyURI.trimFragment().equals(CorePackage.dummyURI));   //should always be a dummy
-			  String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+proxyURI.fragment();
+
+			  String fragment = proxyURI.fragment();
+			  if (fragment.contains("::")) {
+				  fragment = fragment.substring(fragment.lastIndexOf("::",fragment.length())+2, fragment.length());
+			  }
+			  String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+fragment;
+			  
 			  // if resolved already in the parent, do not resolve again
 			  if (eContainer() != null)
 				 for (EObject component : eContainer().eContents())
 					 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
 						 return component;
-
-			  //replace dummy URI with the proper one
+			  
 			  String extension = proxy instanceof Machine ? 
 					External.getString("FileExtensions.machine") : 
 					External.getString("FileExtensions.context");
 			  proxy.eSetProxyURI(URI.createPlatformResourceURI(getURI().segment(1), true) //project name
-					  .appendSegment(proxyURI.fragment())		//resource name
+					  .appendSegment(fragment)		//resource name
 					  .appendFileExtension(extension)
 					  .appendFragment(reference));
-
+			  
 			  //resolve it
-			 EObject resolved = super.eResolveProxy(proxy);
-			 if (resolved.eIsProxy()) throw new Exception();
-			 return resolved;
+			  EObject resolved = super.eResolveProxy(proxy);
+			  if (resolved.eIsProxy()) throw new Exception();
+			  return resolved;
+			  
 		  }catch (Exception e){
 			  EventbcoreEditPlugin.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
 			  return proxy;
-		  }finally{
-			  proxy.eSetProxyURI(proxyURI);	//revert uri to original dummy
 		  }
 	  }
 	  return super.eResolveProxy(proxy);

@@ -591,6 +591,9 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 	 *
 	 * Following construction of the URI, the proxy resolution is deferred to super
 	 *
+	 *	(The construction cannot rely on the proxy being in this dummy form since the reference will be returned to a 
+	 *  (non-dummy) proxy if the target is altered. Hence the proxy is not returned to being a dummy after construction.) 
+	 *
 	 * @custom
 	 */
 
@@ -599,31 +602,54 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 		if (proxy instanceof Event && proxy.eIsProxy() && getRefines().contains(proxy) && eResource()!=null){
 			URI proxyURI = proxy.eProxyURI();
 			try { 
-				assert (proxyURI.trimFragment().equals(CorePackage.dummyURI));   //should always be a dummy if finally works
+
 				Machine refinedMachine = ((MachineImpl)eContainer).getRefines().get(0);
-				String prefix = ((EventBElementImpl)proxy).getElementTypePrefix();
-				String reference = prefix+"::"+refinedMachine.getName()+"."+proxyURI.fragment();
+
+				String fragment = proxyURI.fragment();
+				  if (fragment.contains("::")) {
+					  fragment = fragment.substring(fragment.lastIndexOf("::",fragment.length())+2, fragment.length());
+				  }	
+				  if (fragment.contains(".")) {
+					  fragment = fragment.substring(fragment.lastIndexOf(".",fragment.length())+1, fragment.length());
+				  }
+				  
+				String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+refinedMachine.getName()+"."+fragment;
+				
 				proxy.eSetProxyURI(refinedMachine.getURI().appendFragment(reference));
+
 				//resolve it
 				EObject resolved = super.eResolveProxy(proxy);
 				if (resolved.eIsProxy()) throw new Exception();
 				return resolved;
+				
 			} catch (Exception e){
 				EventbcoreEditPlugin.getPlugin().getLog().log(
 						new Status(Status.ERROR, "org.eventb.emf.core","Cannot resolve: " + proxy, e));
 				return proxy;
-			} finally {
-				proxy.eSetProxyURI(proxyURI);	//revert uri to original dummy	
 			}
 			
 		}
 		return super.eResolveProxy(proxy);
 	}
 
-
+	/**
+	 * Overrides to always require notification. This is to ensure that changes to derived features can be reflected in the 
+	 * main features from which they are derived
+	 */
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.common.notify.impl.BasicNotifierImpl#eNotificationRequired()
+	 */
 	@Override
 	public boolean eNotificationRequired(){return true;}
 
+	/**
+	 * Intercepts notification to reflect any changes made to the 'refinesNames' list into
+	 * the 'refines' collection from which they are derived.
+	 * Then defers to super.
+	 */
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.common.notify.impl.BasicNotifierImpl#eNotify(org.eclipse.emf.common.notify.Notification)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eNotify(Notification notification){
