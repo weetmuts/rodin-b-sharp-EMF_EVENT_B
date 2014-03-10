@@ -139,9 +139,6 @@ public class RodinResource extends XMIResourceImpl {
 						// rodinFile.getRoot(), this, null);
 					} catch (Exception e) {
 						throw new IOException("Error while loading rodin file: " + e.getLocalizedMessage());
-						//					} catch (Exception e) {
-						//						// TODO Auto-generated catch block
-						//						e.printStackTrace();
 					}
 					// success
 					setTimeStamp(System.currentTimeMillis());
