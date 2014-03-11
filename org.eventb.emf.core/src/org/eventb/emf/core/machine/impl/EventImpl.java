@@ -616,16 +616,10 @@ public class EventImpl extends EventBNamedCommentedElementImpl implements Event 
 				String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+refinedMachine.getName()+"."+fragment;
 				
 				proxy.eSetProxyURI(refinedMachine.getURI().appendFragment(reference));
-
-				//resolve it
-				EObject resolved = super.eResolveProxy(proxy);
-				if (resolved.eIsProxy()) throw new Exception();
-				return resolved;
 				
 			} catch (Exception e){
 				EventbcoreEditPlugin.getPlugin().getLog().log(
 						new Status(Status.ERROR, "org.eventb.emf.core","Cannot resolve: " + proxy, e));
-				return proxy;
 			}
 			
 		}
