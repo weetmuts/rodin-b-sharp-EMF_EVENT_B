@@ -27,7 +27,9 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eventb.core.IEventBRoot;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.machine.MachinePackage;
+import org.eventb.emf.persistence.EMFRodinDB;
 import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IRefinementParticipant;
 import org.rodinp.core.RodinDBException;
@@ -105,11 +107,17 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	private SerialisedExtensionSynchroniser synchroniser = new SerialisedExtensionSynchroniser();;
 	
 	/**
-	 * The URI's for the abstract and concrete Resources
+	 * The URIs for the abstract and concrete Resources
 	 */
 	private URI abstractResourceURI;
 	private URI concreteResourceURI;
 
+	/**
+	 * The names for the abstract and concrete components
+	 */
+	private String abstractComponentName;
+	private String concreteComponentName;
+	
 	/**
 	 * The instance of the copier.
 	 * Note that this is also a mapping from source to target once the copy has been performed
@@ -151,6 +159,8 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		final IEventBRoot abstractEventBRoot = (IEventBRoot) sourceRoot;
 		// machine URIs
 		String projectName = sourceRoot.getRodinProject().getElementName();
+		abstractComponentName = abstractEventBRoot.getComponentName();
+		concreteComponentName = concreteEventBRoot.getComponentName();
 		abstractResourceURI = URI.createURI("platform:/resource/" + projectName + "/" + abstractEventBRoot.getComponentName() + ".bum");
 		concreteResourceURI = URI.createURI("platform:/resource/" + projectName + "/" + concreteEventBRoot.getComponentName() + ".bum");
 		try {
@@ -173,7 +183,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	private void refineExtensions(IEventBRoot concreteEventBRoot, IEventBRoot abstractEventBRoot, IProgressMonitor monitor) throws RodinDBException, CoreException {
 		for (ISerialisedExtension extension : abstractEventBRoot.getChildrenOfType(ISerialisedExtension.ELEMENT_TYPE)) {
 			if (extension.hasExtensionId() && extension.getExtensionId().startsWith(EXTENSION_ID))
-				refineExtension(concreteEventBRoot, extension, monitor);
+				refineExtension(concreteEventBRoot, abstractEventBRoot, extension, monitor);
 		}
 	}
 
@@ -186,10 +196,10 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @param monitor progress monitor
 	 * @throws RodinDBException 
 	 */
-	private void refineExtension(IEventBRoot concreteEventBRoot, ISerialisedExtension abstractExtensionRoot, IProgressMonitor monitor) throws RodinDBException, CoreException 	{
-		
-		EventBElement extension = synchroniser.load(abstractExtensionRoot, null, monitor);
-		
+	private void refineExtension(IEventBRoot concreteEventBRoot, IEventBRoot abstractEventBRoot, ISerialisedExtension abstractExtensionRoot, IProgressMonitor monitor) throws RodinDBException, CoreException 	{		
+		//obtain the EMF version of the abstract serialised extension by loading it into a Rodin Resource
+		EventBObject extension = EMFRodinDB.INSTANCE.loadElement(abstractExtensionRoot);
+		//serialise refined extension back into the RodinDB concreteEventBRoot (not into EMF resource as this does not exist yet)
 		synchroniser.save(refineEventBElement(extension), concreteEventBRoot, monitor);
 	}
 
@@ -198,17 +208,17 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * Returns refined component from root component.
 	 * 
 	 * 
-	 * @param abstractEventBElement
+	 * @param extension
 	 * @return
 	 */
-	private EventBElement refineEventBElement(EventBElement abstractEventBElement) {
+	private EventBElement refineEventBElement(EventBObject extension) {
 
 		
 		copier = new Copier(true,false);
 		// create refined Component using copier.
 		// this does a deep copy of all the children and properties of the copied element
 		// but it does not copy any references
-		EventBElement concreteEventBElement = (EventBElement) copier.copy(abstractEventBElement); 
+		EventBElement concreteEventBElement = (EventBElement) copier.copy(extension); 
 
 		//copier.copyReferences();  THIS DOES NOT WORK - INSTEAD SEE BELOW
 		copyReferences(concreteEventBElement);
@@ -263,38 +273,55 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 				for (Entry<EReference, Boolean> referenceEntry : referencemap.entrySet()){
 					referenceFeature = referenceEntry.getKey(); 
 					if (referenceFeature.getEContainingClass().isSuperTypeOf(eObject.eClass())){
-						if (referenceEntry.getValue().booleanValue() == true){
-							referenceResourceURI = abstractResourceURI;
-						}else{
-							referenceResourceURI = concreteResourceURI;
-						}
+						//NOTE: *** Cannot use the concrete elements to create URIs because their parentage is not complete ***
 						if (referenceFeature.isMany()){
-							for (EObject abstractReference : (EList<EObject>)(getKeyByValue(copier, eObject)).eGet(referenceFeature)){
-								((EList<EObject>)eObject.eGet(referenceFeature)).add(
-										 EMFCoreUtil.createProxy(
-												 //(EClass)referenceFeature.getEType(),
-												 ((EObject) abstractReference).eClass(),
-												 referenceResourceURI.appendFragment(EcoreUtil.getURI(abstractReference).fragment()
-										)));
+							for (EObject abstractReferencedObject : (EList<EObject>)(getKeyByValue(copier, eObject)).eGet(referenceFeature)){
+								String fragment;
+								if (referenceEntry.getValue().booleanValue() == true){
+									referenceResourceURI = abstractResourceURI;
+									fragment = abstractReferencedObject instanceof EventBElement ?
+											((EventBElement)abstractReferencedObject).getReference()
+											: null;
+								}else{
+									referenceResourceURI = concreteResourceURI;
+									fragment = abstractReferencedObject instanceof EventBElement ? 
+											((EventBElement)abstractReferencedObject).getReference().replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".") 
+											: null;
+								}
+								if (abstractReferencedObject instanceof EObject && fragment != null){
+									((EList<EObject>)eObject.eGet(referenceFeature)).add(
+											 EMFCoreUtil.createProxy(
+													 //(EClass)referenceFeature.getEType(),
+													 ((EObject) abstractReferencedObject).eClass(),
+													 referenceResourceURI.appendFragment(fragment)
+											));
+								}
 							}
 						}else{
 							if (referenceFeature.getEType() instanceof EClass){
-								Object referencedObject;
+								Object abstractReferencedObject;
+								String fragment;
 								if (referenceEntry.getValue().booleanValue() == true){
 									//for references back to the abstract source e.g. refines
-									referencedObject = getKeyByValue(copier, eObject); 
+									referenceResourceURI = abstractResourceURI;
+									abstractReferencedObject = getKeyByValue(copier, eObject);
+									fragment = abstractReferencedObject instanceof EventBElement ?
+											((EventBElement)abstractReferencedObject).getReference()
+											: null;
 								}else{
 									//for references to other objects in the concrete model
-									referencedObject = getKeyByValue(copier, eObject).eGet(referenceFeature);
+									referenceResourceURI = concreteResourceURI;
+									abstractReferencedObject = getKeyByValue(copier, eObject).eGet(referenceFeature);
+									fragment = abstractReferencedObject instanceof EventBElement ? 
+											((EventBElement)abstractReferencedObject).getReference().replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".") 
+											: null;
 								}
-								if (referencedObject instanceof EObject){
-									eObject.eSet(
-										referenceFeature, 
+								if (abstractReferencedObject instanceof EObject && fragment != null){
+									eObject.eSet(referenceFeature, 
 										EMFCoreUtil.createProxy(
-												//(EClass)referenceFeature.getEType(),
-												((EObject) referencedObject).eClass(),
-												referenceResourceURI.appendFragment(EcoreUtil.getURI((EObject)referencedObject).fragment()
-												)));
+												((EObject) abstractReferencedObject).eClass(),
+												referenceResourceURI.appendFragment(fragment)
+												));
 								}
 							}
 						}
