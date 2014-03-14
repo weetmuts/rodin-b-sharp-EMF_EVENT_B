@@ -48,16 +48,17 @@ public final class EMFRodinDB {
 		@Override
 		public void persistentResourceChanged(RodinResource resource) {
 			if (resource.isLoaded()) {
-				resource.eSetDeliver(false);
 				resource.unload();
+				resource.eSetDeliver(false);
 				try {
 					resource.load(Collections.EMPTY_MAP);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} finally {
+					resource.eSetDeliver(true);
 				}
 			}
-			resource.eSetDeliver(true);
 		}
 	}
 
