@@ -13,6 +13,7 @@ import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.persistence.factory.ChangeListenerRegistry;
 import org.eventb.emf.persistence.factory.IChangeListener;
+import org.eventb.emf.persistence.factory.ModelUpdateTool;
 import org.eventb.emf.persistence.factory.RodinResource;
 import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IRodinElement;
@@ -52,6 +53,7 @@ public final class EMFRodinDB {
 				resource.unload();
 				try {
 					resource.load(Collections.EMPTY_MAP);
+					ModelUpdateTool.updateDiagnostics(resource);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -105,6 +107,9 @@ public final class EMFRodinDB {
 	 */
 	public EventBElement loadEventBComponent(URI fileURI) {
 		Resource resource = loadResource(fileURI);
+		if (resource == null) {
+			return null;
+		}
 		if (resource.isLoaded() && !resource.getContents().isEmpty() && resource.getContents().get(0) instanceof EventBElement) {
 			return (EventBElement) resource.getContents().get(0);
 		} else {
