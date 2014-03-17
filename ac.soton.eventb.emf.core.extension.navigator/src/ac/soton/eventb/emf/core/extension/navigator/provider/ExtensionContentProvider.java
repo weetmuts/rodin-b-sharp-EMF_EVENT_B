@@ -73,7 +73,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 					public boolean handleResourceChanged(final Resource resource) {
 						resource.eSetDeliver(false);
 						resource.unload();
-						resource.eSetDeliver(false);
+						resource.eSetDeliver(true);
 						asyncRefresh();
 						return true;
 					}
@@ -81,7 +81,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 					public boolean handleResourceDeleted(Resource resource) {
 						resource.eSetDeliver(false);
 						resource.unload();
-						resource.eSetDeliver(false);
+						resource.eSetDeliver(true);
 						asyncRefresh();
 						return true;
 					}
@@ -90,7 +90,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 							final URI newURI) {
 						resource.eSetDeliver(false);
 						resource.unload();
-						resource.eSetDeliver(false);
+						resource.eSetDeliver(true);
 						asyncRefresh();
 						return true;
 					}
