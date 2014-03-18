@@ -6,9 +6,8 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.persistence.factory.ChangeListenerRegistry;
@@ -19,14 +18,13 @@ import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IRodinElement;
 
 /**
- * This class maintains an AdapterFactoryEditingDomain
- * (TransactionalEditingDomain) with a ResourceSet of Rodin components loaded
- * into EMF as Resources. It is intended for applications that work with the
- * Event-B EMF framework and require access to the components but do not have an
- * editing domain set up. If the underlying Rodin file changes the resource will
- * be re-loaded. Various load methods are provided to obtain either the
- * resource, an EMF root element or a specific element within the contents.
- * Client may use the editing domain for workspace synchronisation.
+ * This class maintains a ResourceSet of Rodin components loaded into EMF as
+ * Resources. It is intended for applications that work with the Event-B EMF
+ * framework and require access to the components but do not have an editing
+ * domain set up. If the underlying Rodin file changes the resource will be
+ * re-loaded or, if it has been deleted, removed from the resource set. Various
+ * load methods are provided to obtain either the resource, an EMF root element
+ * or a specific element within the contents.
  * 
  * 
  * @author cfs
@@ -42,8 +40,7 @@ public final class EMFRodinDB {
 	private EMFRodinDB() {
 	} //do not allow instantiation
 
-	private final AdapterFactoryEditingDomain editingDomain = (AdapterFactoryEditingDomain) TransactionalEditingDomain.Factory.INSTANCE
-			.createEditingDomain(new ListeningRodinResourceSet());
+	private final ResourceSet resourceSet = new ListeningRodinResourceSet();
 
 	private final class resourceListener implements IChangeListener {
 		@Override
@@ -52,13 +49,17 @@ public final class EMFRodinDB {
 				resource.eSetDeliver(false);
 				resource.unload();
 				try {
-					resource.load(Collections.EMPTY_MAP);
-					ModelUpdateTool.updateDiagnostics(resource);
+					if (resource.getUnderlyingResource().exists()) {
+						resource.load(Collections.EMPTY_MAP);
+						ModelUpdateTool.updateDiagnostics(resource);
+						resource.eSetDeliver(true);
+					} else {
+						//underlying Rodin file has been deleted so remove this resource
+						resourceSet.getResources().remove(resource);
+					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} finally {
-					resource.eSetDeliver(true);
 				}
 			}
 		}
@@ -76,14 +77,13 @@ public final class EMFRodinDB {
 	}
 
 	/**
-	 * returns the editing domain as an AdapterFactoryEditingDomain. Can be
-	 * downcast to TransactionalEditingDomain (e.g. for use in a
-	 * WorkspaceSynchronizer)
+	 * get the resource set (Clients may want to use the resource set in an
+	 * editing domain).
 	 * 
 	 * @return
 	 */
-	public AdapterFactoryEditingDomain getEditingDomain() {
-		return editingDomain;
+	public ResourceSet getResourceSet() {
+		return resourceSet;
 	}
 
 	/**
@@ -137,9 +137,11 @@ public final class EMFRodinDB {
 	 * @return
 	 */
 	public Resource loadResource(URI fileURI) {
-		Resource resource = editingDomain.getResourceSet().getResource(fileURI, false); //n.b. do not load until notifications disabled
+		Resource resource = resourceSet.getResource(fileURI, false); //n.b. do not load until notifications disabled
+		//editingDomain.getResourceSet().getResource(fileURI, false); //n.b. do not load until notifications disabled
 		if (resource == null) {
-			resource = editingDomain.getResourceSet().createResource(fileURI);
+			resource = resourceSet.createResource(fileURI);
+			//			resource = editingDomain.getResourceSet().createResource(fileURI);
 		}
 		if (!resource.isLoaded()) {
 			resource.eSetDeliver(false); // turn off notifications while loading
