@@ -9,10 +9,12 @@ package ac.soton.eventb.emf.core.extension.navigator.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
@@ -40,7 +42,7 @@ import ac.soton.eventb.emf.core.extension.navigator.ExtensionNavigatorPlugin;
  */
 public class ExtensionContentProvider implements ICommonContentProvider {
 
-	protected AdapterFactoryContentProvider myAdapterFctoryContentProvier;
+	protected AdapterFactoryContentProvider myAdapterFactoryContentProvier;
 
 	protected static final Object[] EMPTY_ARRAY = new Object[0];
 
@@ -50,13 +52,26 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 
 	private Runnable myViewerRefreshRunnable;
 
+	private TransactionalEditingDomain editingDomain;
+
 	/**
 	 * Constructor
 	 */
+	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public ExtensionContentProvider() {
-		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
+		myAdapterFactoryContentProvier = new AdapterFactoryContentProvider(
 				ExtensionNavigatorPlugin.getDefault()
 						.getItemProvidersAdapterFactory());
+		editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(EMFRodinDB.INSTANCE.getResourceSet());
+		((AdapterFactoryEditingDomain) editingDomain).setResourceToReadOnlyMap(new HashMap() {
+			public Object get(Object key) {
+				if (!containsKey(key)) {
+					put(key, Boolean.TRUE);
+				}
+				return super.get(key);
+			}
+		});
+		
 		myViewerRefreshRunnable = new Runnable() {
 			public void run() {
 				if (myViewer != null) {
@@ -64,8 +79,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 				}
 			}
 		};
-		myWorkspaceSynchronizer = new WorkspaceSynchronizer(
-				(TransactionalEditingDomain) EMFRodinDB.INSTANCE.getEditingDomain(),
+		myWorkspaceSynchronizer = new WorkspaceSynchronizer( editingDomain,
 				new WorkspaceSynchronizer.Delegate() {
 					public void dispose() {
 					}
@@ -116,7 +130,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 		
 		if (parentElement instanceof ExtensionNavigatorItem) {
 			return wrapEObjects(
-					myAdapterFctoryContentProvier.getChildren(((ExtensionNavigatorItem) parentElement)
+					myAdapterFactoryContentProvier.getChildren(((ExtensionNavigatorItem) parentElement)
 							.getEObject()), parentElement);
 		}
 		return EMPTY_ARRAY;
@@ -128,7 +142,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 			if (objects[i] instanceof EObject) {
 				result.add(new ExtensionNavigatorItem(
 						(EObject) objects[i], parentElement,
-						myAdapterFctoryContentProvier));
+						myAdapterFactoryContentProvier));
 			}
 		}
 		return result.toArray();
@@ -154,6 +168,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 		myWorkspaceSynchronizer = null;
 		myViewerRefreshRunnable = null;
 		myViewer = null;
+		editingDomain.dispose();
 	}
 
 	void asyncRefresh() {
