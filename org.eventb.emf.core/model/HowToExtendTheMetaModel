@@ -28,7 +28,7 @@ Package Records
 
 Checklist of post-gen code changes (considering changing the Jet templates for these)
 1) in generated edit plugin -> plugin.xml, in the extension point childCreationExtenders, change the package URI to the one containing the allowable parents 
-   (e.g. http://emf.eventb.org/models/core/context) The generator always sets it to core. N.b. if more than one package, add another 
+   (e.g. http://emf.eventb.org/models/core/context/2014) The generator always sets it to core. N.b. if more than one package, add another 
    extension point
 2) This item only applies if you want to save your extension model as a string attribute and not generate rodin elements for each element in your extension. 
 [The alternative is to define Rodin equivalents for each part of your metamodel and then write synchronisers for all of them. For example see the Records plugin]

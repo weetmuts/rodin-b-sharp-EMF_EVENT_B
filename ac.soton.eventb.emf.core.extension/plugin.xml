@@ -13,7 +13,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://soton.ac.uk/models/eventb/coreextension/0313"
+            uri="http://soton.ac.uk/models/eventb/coreextension/2014"
             class="ac.soton.eventb.emf.core.extension.coreextension.provider.CoreextensionItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -35,7 +35,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://soton.ac.uk/models/eventb/coreextension/0313"
+            uri="http://soton.ac.uk/models/eventb/coreextension/2014"
             class="ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage"
             genModel="model/eventbcoreextension.genmodel"/>
    </extension>
