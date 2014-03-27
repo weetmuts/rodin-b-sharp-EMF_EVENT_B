@@ -2,7 +2,7 @@
 <feature
       id="ac.soton.eventb.roseEditor.feature"
       label="%featureName"
-      version="1.3.0"
+      version="1.4.0"
       provider-name="%providerName">
 
    <description>
@@ -22,7 +22,7 @@
    </url>
 
    <requires>
-      <import feature="org.eventb.emf.feature" version="3.0.0" match="compatible"/>
+      <import feature="org.eventb.emf.feature" version="3.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
