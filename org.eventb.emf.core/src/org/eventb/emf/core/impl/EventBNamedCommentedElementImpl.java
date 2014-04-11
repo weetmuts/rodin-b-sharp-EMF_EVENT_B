@@ -92,6 +92,7 @@ public abstract class EventBNamedCommentedElementImpl extends EventBCommentedEle
 	 * @generated NOT
 	 */
 	public void setName(String newName) {
+		if (newName == null) return;
 		String oldName = name;
 		name = newName.replaceAll("\\.", ",").replaceAll(":", ";");
 		if (eNotificationRequired())
