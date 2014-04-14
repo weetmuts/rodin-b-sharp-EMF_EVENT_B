@@ -138,10 +138,8 @@ public final class EMFRodinDB {
 	 */
 	public Resource loadResource(URI fileURI) {
 		Resource resource = resourceSet.getResource(fileURI, false); //n.b. do not load until notifications disabled
-		//editingDomain.getResourceSet().getResource(fileURI, false); //n.b. do not load until notifications disabled
 		if (resource == null) {
 			resource = resourceSet.createResource(fileURI);
-			//			resource = editingDomain.getResourceSet().createResource(fileURI);
 		}
 		if (!resource.isLoaded()) {
 			resource.eSetDeliver(false); // turn off notifications while loading
