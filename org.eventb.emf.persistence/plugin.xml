@@ -161,5 +161,19 @@
             name="EMF Identifier">
       </attributeType>
    </extension>
+   <extension
+         point="org.rodinp.core.itemRelations">
+      <ubiquitous>
+         <attributeType
+               typeId="org.eventb.emf.persistence.generator_ID">
+         </attributeType>
+         <attributeType
+               typeId="org.eventb.emf.persistence.attributeType3">
+         </attributeType>
+         <attributeType
+               typeId="org.eventb.emf.persistence.emf_id">
+         </attributeType>
+      </ubiquitous>
+   </extension>
 
 </plugin>
