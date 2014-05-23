@@ -37,7 +37,7 @@ import org.eventb.emf.core.CoreFactory;
 import org.eventb.emf.core.EventBNamed;
 import org.eventb.emf.core.Project;
 import org.eventb.emf.core.util.NameUtils;
-import org.rodinp.keyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.ui.preferences.PreferenceConstants;
 
 /**
  * An abstract implementation of a section with an enumeration field using a

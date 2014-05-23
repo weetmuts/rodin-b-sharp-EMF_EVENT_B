@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.rodinp.keyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.ui.preferences.PreferenceConstants;
 
 
 /**

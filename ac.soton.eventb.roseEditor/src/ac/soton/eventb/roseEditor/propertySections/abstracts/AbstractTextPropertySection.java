@@ -22,8 +22,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-import org.rodinp.keyboard.RodinKeyboardPlugin;
-import org.rodinp.keyboard.preferences.PreferenceConstants;
+import org.rodinp.keyboard.ui.RodinKeyboardUIPlugin;
+import org.rodinp.keyboard.ui.preferences.PreferenceConstants;
 
 import ac.soton.eventb.roseEditor.properties.TextChangeHelper;
 
@@ -42,7 +42,7 @@ public abstract class AbstractTextPropertySection extends AbstractEventBProperty
 	 * changed.
 	 */
 	protected TextChangeHelper listener;
-	private final ModifyListener eventBListener=RodinKeyboardPlugin.getDefault().createRodinModifyListener();
+	private final ModifyListener eventBListener=RodinKeyboardUIPlugin.getDefault().createRodinModifyListener();
 
 
 	@Override
