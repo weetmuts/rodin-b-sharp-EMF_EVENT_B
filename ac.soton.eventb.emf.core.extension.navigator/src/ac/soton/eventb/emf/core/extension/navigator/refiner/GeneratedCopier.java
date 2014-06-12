@@ -2,21 +2,30 @@ package ac.soton.eventb.emf.core.extension.navigator.refiner;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eventb.core.basis.EventBElement;
+import org.rodinp.core.IAttributeType;
 import org.rodinp.core.IInternalElement;
 import org.rodinp.core.IInternalElementType;
 import org.rodinp.core.IRefinementParticipant;
 import org.rodinp.core.IRodinElement;
+import org.rodinp.core.RodinCore;
 import org.rodinp.core.RodinDBException;
 
 /**
  * This refinement participant sets the generated attribute of a target element
- * whenever the corresponding source element has the generated attribute set to true.
- * This is because the normal machine refinement does not preserve the generated attribute.
+ * whenever the corresponding source element has the generated attribute set to true
+ * and the source element has a GENERATOR_ID attribute.
+ * This is because the normal machine refinement does not preserve the generated attribute
+ * and generators that use the GENERATOR_ID attribute are higher level refine-able models. (I.e.
+ * if any changes are to be made in a refinement they must be done in the higher-level model,
+ *  not in the generated elements). 
  * 
  * @author cfs
  *
  */
 public class GeneratedCopier implements IRefinementParticipant {
+	
+	private static final IAttributeType GENERATOR_ID_ATTRIBUTETYPE = RodinCore.getAttributeType("org.eventb.emf.persistence.generator_ID");
+
 
 	IInternalElement targetRoot;
 
@@ -32,7 +41,7 @@ public class GeneratedCopier implements IRefinementParticipant {
 		if (sourceElement instanceof IInternalElement){
 			if (sourceElement instanceof EventBElement){
 				EventBElement sourceEventBElement = (EventBElement)sourceElement;
-				if (sourceEventBElement.isGenerated()){
+				if (sourceEventBElement.isGenerated() && sourceEventBElement.hasAttribute(GENERATOR_ID_ATTRIBUTETYPE)){
 					EventBElement targetEventBElement = findCorrespondingTarget(targetRoot, sourceEventBElement);
 					if (targetEventBElement != null){
 						targetEventBElement.setGenerated(true, monitor);
