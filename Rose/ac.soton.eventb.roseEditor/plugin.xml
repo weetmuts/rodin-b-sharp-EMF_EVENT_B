@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            class="ac.soton.eventb.roseEditor.RoseEditor"
+            contributorClass="ac.soton.eventb.roseEditor.RoseEditorActionBarContributor"
+            default="false"
+            extensions="core,buc,bum,xmb"
+            icon="icons/full/obj16/Rose.gif"
+            id="ac.soton.eventb.roseEditor.editorID"
+            name="%_UI_EventBStructuredEditor_label">
+            <contentTypeBinding contentTypeId="org.eventb.core.machineFile"/>
+         	<contentTypeBinding contentTypeId="org.eventb.core.contextFile"/>
+      </editor>
+   </extension>
+
+<!-- CUSTOM ADDED SECTION -->
+
+<!-- Property view contributors -->
+    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="ac.soton.eventb.roseEditor.editorID"
+            labelProvider="ac.soton.eventb.roseEditor.properties.ElementLabelProvider"
+            typeMapper="ac.soton.eventb.roseEditor.properties.ElementTypeMapper">
+         <propertyCategory category="common"/>
+         <propertyCategory category="project"/>
+         <propertyCategory category="context"/>
+         <propertyCategory category="machine"/>
+         <propertyCategory category="event"/>
+         <propertyCategory category="domain"/>
+      </propertyContributor>
+   </extension>
+   
+<!-- Property tabs -->   
+         <!--"ac.soton.umlb.umlbMetamodel.commonDiagramUtilities.UMLBPropertiesView"-->
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="ac.soton.eventb.roseEditor.editorID">
+         <!-- Common Tabs-->
+         <propertyTab
+               	category="common"
+               	id="common.tab.overview"
+               	label="%tab.Overview"/>
+               	
+         <!-- Machine Tabs-->              	
+         <propertyTab
+               	category="machine"
+               	id="machine.tab.variables"
+               	label="%tab.Variables"
+               	afterTab="common.tab.overview"
+               	/>        	               	               	
+         <propertyTab
+              	category="machine"
+               	id="machine.tab.invariants"
+               	label="%tab.Invariants"
+               	afterTab="machine.tab.variables"
+               	/>
+         <propertyTab
+               	category="machine"
+              	id="machine.tab.events"
+               	label="%tab.Events"
+               	afterTab="machine.tab.invariants"
+               	/>
+               	
+         <!-- Event Tabs-->                	
+        <propertyTab
+               	category="event"
+               	id="event.tab.parameters"
+               	label="%tab.Parameters"
+               	afterTab="common.tab.overview"
+               	/>
+         <propertyTab
+               	category="event"
+               	id="event.tab.guards"
+               	label="%tab.Guards"
+               	afterTab="event.tab.parameters"
+               	/> 
+         <propertyTab
+               	category="event"
+               	id="event.tab.actions"
+               	label="%tab.Actions"
+               	afterTab="event.tab.guards"
+               	/>
+               	
+         <!-- Context Tabs-->              	
+         <propertyTab
+               	category="context"
+               	id="context.tab.sets"
+               	label="%tab.Sets"
+               	afterTab="common.tab.overview"
+               	/>  
+         <propertyTab
+               	category="context"
+               	id="context.tab.constants"
+               	label="%tab.Constants"
+               	afterTab="context.tab.sets"
+               	/>   
+         <propertyTab
+               	category="context"
+               	id="context.tab.axioms"
+               	label="%tab.Axioms"
+               	afterTab="context.tab.axioms"
+               	/> 
+               	                              
+         <propertyTab
+               	category="domain"
+                id="domain.tab.advanced"
+                label="%tab.Advanced"
+                afterTab="event.tab.actions"
+                />
+               
+      </propertyTabs>
+   </extension>
+
+<!-- properties -->
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="ac.soton.eventb.roseEditor.editorID">
+            
+         <!-- property sections in the 'Overview' tab - common -->
+         <propertySection
+               id="common.section.name"
+               tab="common.tab.overview"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBNamedElementNamePropertySection"
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBNamedElementNamePropertySection">
+         </propertySection>
+         <propertySection
+               id="common.section.comment"
+               tab="common.tab.overview"
+               afterSection="common.section.name"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBCommentedCommentPropertySection"
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBCommentedCommentPropertySection">
+         </propertySection>  
+		 <!-- property sections in the 'Overview' tab - machine -->               
+         <propertySection
+               id="machine.section.variant"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariantPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariantPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.refines"
+               tab="common.tab.overview"
+               afterSection="machine.section.variant"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineRefinesNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineRefinesNamesPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.sees"
+               tab="common.tab.overview"
+               afterSection="machine.section.refines"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineSeesNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineSeesNamesPropertySection">
+         </propertySection>
+
+		 <!-- property sections in the 'Overview' tab - event -->          
+         <propertySection
+               id="event.section.convergence"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="ac.soton.eventb.roseEditor.propertySections.enumerations.EventConvergencePropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.enumerations.EventConvergencePropertySection">
+         </propertySection>
+         <propertySection
+               id="event.section.extended"
+               tab="common.tab.overview"
+               afterSection="event.section.convergence"
+               class="ac.soton.eventb.roseEditor.propertySections.enumerations.EventExtendedPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.enumerations.EventExtendedPropertySection">
+         </propertySection>
+         <propertySection
+               id="event.section.refines"
+               tab="common.tab.overview"
+               afterSection="event.section.extended"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventRefinesNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventRefinesNamesPropertySection">
+         </propertySection>
+
+		 <!-- property sections in the 'Overview' tab - context -->
+         <propertySection
+               id="context.section.extends"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextExtendsNamesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextExtendsNamesPropertySection">
+         </propertySection>
+         
+		 <!-- property sections in the 'Overview' tab - predicate --> 		          
+         <propertySection
+               id="predicate.section.predicate"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBPredicatePredicatePropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBPredicatePredicatePropertySection">
+         </propertySection> 
+         <propertySection
+               id="predicate.section.derived"
+               tab="common.tab.overview"
+               afterSection="predicate.section.predicate"
+               class="ac.soton.eventb.roseEditor.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.enumerations.EventBDerivedPredicateTheoremPropertySection">
+         </propertySection>
+
+		 <!-- property sections in the 'Overview' tab - action --> 
+         <propertySection
+               id="action.section.action"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.ActionActionPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.ActionActionPropertySection">
+         </propertySection> 
+
+		 <!-- property sections in the 'Overview' tab - expression --> 
+         <propertySection
+               id="expression.section.expression"
+               tab="common.tab.overview"
+               afterSection="common.section.comment"
+               class="ac.soton.eventb.roseEditor.propertySections.textFields.EventBExpressionExpressionPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.textFields.EventBExpressionExpressionPropertySection">
+         </propertySection> 
+                  
+         <!-- in the machine tabs -->
+         <propertySection
+               id="machine.section.variables"
+               tab="machine.tab.variables"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariablesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineVariablesPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.invariants"
+               tab="machine.tab.invariants"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineInvariantsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineInvariantsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="machine.section.events"
+               tab="machine.tab.events"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.MachineEventsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.MachineEventsPropertySection">
+         </propertySection>  
+         
+                  
+         <!-- in the event tabs -->
+         <propertySection
+               id="event.section.parameters"
+               tab="event.tab.parameters"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventParametersPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventParametersPropertySection">
+         </propertySection>
+         		<!-- n.b.witnesses are in with the parameters -->
+         <propertySection
+               id="event.section.witnesses"
+               tab="event.tab.parameters"
+               afterSection="event.section.parameters"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventWitnessesPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventWitnessesPropertySection">
+         </propertySection> 
+         <propertySection
+               id="event.section.guards"
+               tab="event.tab.guards"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventGuardsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventGuardsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="event.section.actions"
+               tab="event.tab.actions"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventActionsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventActionsPropertySection">
+         </propertySection>
+         
+                  
+         <!-- in the context tabs -->
+         <propertySection
+               id="context.section.sets"
+               tab="context.tab.sets"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextSetsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextSetsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="context.section.constants"
+               tab="context.tab.constants"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextConstantsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextConstantsPropertySection">
+         </propertySection> 
+         <propertySection
+               id="context.section.axioms"
+               tab="context.tab.axioms"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.ContextAxiomsPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.ContextAxiomsPropertySection">
+         </propertySection>
+         
+         <propertySection
+               id="domain.section.advanced"
+               tab="domain.tab.advanced"
+               class="ac.soton.eventb.roseEditor.propertySections.editTables.EventBAdvancedPropertySection"
+               filter="ac.soton.eventb.roseEditor.propertySections.editTables.EventBAdvancedPropertySection">
+         </propertySection>
+         
+      </propertySections>
+   </extension>
+
+</plugin>
