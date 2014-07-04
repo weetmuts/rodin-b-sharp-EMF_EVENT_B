@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.rodinp.core.internalElementTypes">
+      <internalElementType
+            class="ac.soton.eventb.emf.core.extension.persistence.SerialisedExtension"
+            id="serialisedExtension"
+            name="%internalElementType.name">
+      </internalElementType>
+   </extension>
+   <extension
+         point="org.rodinp.core.attributeTypes">
+      <attributeType
+            id="serialised"
+            kind="string"
+            name="%attributeType.name">
+      </attributeType>
+      <attributeType
+            id="extensionId"
+            kind="string"
+            name="Extension ID">
+      </attributeType>
+      <attributeType
+            id="ePackageURI"
+            kind="string"
+            name="EPackage URI">
+      </attributeType>
+      <attributeType
+            id="eClassifier"
+            kind="string"
+            name="EClassifier">
+      </attributeType>
+   </extension>
+   <extension
+         point="org.rodinp.core.itemRelations">
+      <ubiquitous>
+         <childType
+               typeId="ac.soton.eventb.emf.core.extension.persistence.serialisedExtension">
+         </childType>
+      </ubiquitous>
+      <relationship
+            parentTypeId="ac.soton.eventb.emf.core.extension.persistence.serialisedExtension">
+         <attributeType
+               typeId="ac.soton.eventb.emf.core.extension.persistence.extensionId">
+         </attributeType>
+         <attributeType
+               typeId="ac.soton.eventb.emf.core.extension.persistence.ePackageURI">
+         </attributeType>
+         <attributeType
+               typeId="ac.soton.eventb.emf.core.extension.persistence.eClassifier">
+         </attributeType>
+         <attributeType
+               typeId="ac.soton.eventb.emf.core.extension.persistence.serialised">
+         </attributeType>
+      </relationship>
+   </extension>
+
+</plugin>
