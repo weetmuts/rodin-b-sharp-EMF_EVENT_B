@@ -78,7 +78,7 @@ public abstract class EventBLabeledImpl extends EObjectImpl implements EventBLab
 	 * if this element has an attribute feature called 'name', the value of name is returned,
 	 * else, if the element has a relationship feature called refines, inherits or elaborates
 	 * the label of the element targeted by this relationship is returned (note this may be recursive).
-	 * if the relationship is 'many' a comma separated list is returned 
+	 * if the relationship is 'many' a comma separated list is returned wrapped after 50 chars
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 * 
@@ -117,7 +117,19 @@ public abstract class EventBLabeledImpl extends EObjectImpl implements EventBLab
 				}else if (element instanceof EventBLabeled){
 					result.add(((EventBLabeled)element).getLabel());
 				}
-			return result.toString().replaceAll("(^.)|(.$)", "");
+			String rawLabel = result.toString().replaceAll("(^.)|(.$)", "");
+			String formattedLabel = "";
+			int j=0;
+			for (int i=0; i<rawLabel.length();i++){
+				if (j>=50 && ','==rawLabel.charAt(i-1)){
+					formattedLabel = formattedLabel+"\n";
+					j=-1;
+				}else{
+					formattedLabel = formattedLabel + rawLabel.charAt(i);
+				}
+				j++;
+			}
+			return formattedLabel;
 		}else{
 			if (label instanceof EventBNamed){
 				return ((EventBNamed)label).getName();
