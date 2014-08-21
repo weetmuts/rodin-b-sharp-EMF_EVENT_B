@@ -427,5 +427,21 @@ public abstract class EventBCommentedLabeledEventGroupElementImpl extends EventB
 		result.append(')');
 		return result.toString();
 	}
+	
+	/* 
+	 * Overriden to fix problem with notification of label change on EReference 'elaborates' change.
+	 * A notification that the label has changed will be sent whenever the elaborates property is changed
+	 */
+	@Override
+	public void eNotify(Notification notification) {
+		super.eNotify(notification);
+		int type = notification.getEventType();
+		Object feature = notification.getFeature();
+		if (	CoreextensionPackage.Literals.EVENT_BEVENT_GROUP__ELABORATES.equals(feature)
+				&& (type == Notification.ADD || type == Notification.ADD_MANY
+						|| type == Notification.REMOVE || type == Notification.REMOVE_MANY))
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.SET, CoreextensionPackage.Literals.EVENT_BLABELED__LABEL, notification.getOldValue(), notification.getNewValue()));
+	}
 
 } //EventBCommentedLabeledEventGroupElementImpl
