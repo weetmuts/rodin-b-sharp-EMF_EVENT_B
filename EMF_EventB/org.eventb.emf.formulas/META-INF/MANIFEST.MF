@@ -10,5 +10,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: 
  org.eventb.emf.formulas,
  org.eventb.emf.formulas.util
-Require-Bundle: org.eventb.emf.core;bundle-version="[2.2.3,4.0.0)";visibility:=reexport
+Require-Bundle: org.eventb.emf.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Bundle-ActivationPolicy: lazy
