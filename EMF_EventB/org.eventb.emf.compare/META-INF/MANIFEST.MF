@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Event-B EMF Compare Utility
 Bundle-SymbolicName: org.eventb.emf.compare;singleton:=true
-Bundle-Version: 1.4.3
+Bundle-Version: 1.4.4
 Bundle-Activator: org.eventb.emf.compare.EventBEMFComparePlugin
 Bundle-Vendor: University of Southampton
 Require-Bundle: org.eclipse.ui;bundle-version="[3.7.0,4.0.0)",
