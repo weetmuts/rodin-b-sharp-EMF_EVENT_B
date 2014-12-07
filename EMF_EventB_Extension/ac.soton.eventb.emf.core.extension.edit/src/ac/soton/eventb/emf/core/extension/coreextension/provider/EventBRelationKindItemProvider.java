@@ -1,19 +1,26 @@
 /**
- * Copyright (c) 2012/13 - University of Southampton.
+ * Copyright (c) 2012-2014 - University of Southampton.
  * All rights reserved. This program and the accompanying materials  are made
  * available under the terms of the Eclipse Public License v1.0 which accompanies this 
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
+ *
+ * $Id$
  */
 package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
+
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -27,17 +34,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.DataKind;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration;
-
 /**
- * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBDataElaboration} object.
+ * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventBDataElaborationItemProvider
+public class EventBRelationKindItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +54,7 @@ public class EventBDataElaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	public static final String copyright = "Copyright (c) 2012-2014 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -59,7 +62,7 @@ public class EventBDataElaborationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventBDataElaborationItemProvider(AdapterFactory adapterFactory) {
+	public EventBRelationKindItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,52 +77,98 @@ public class EventBDataElaborationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addElaboratesPropertyDescriptor(object);
-			addDataKindPropertyDescriptor(object);
+			addSurjectivePropertyDescriptor(object);
+			addInjectivePropertyDescriptor(object);
+			addTotalPropertyDescriptor(object);
+			addFunctionalPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Elaborates feature.
+	 * This adds a property descriptor for the Surjective feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElaboratesPropertyDescriptor(Object object) {
+	protected void addSurjectivePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBDataElaboration_elaborates_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBDataElaboration_elaborates_feature", "_UI_EventBDataElaboration_type"),
-				 CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES,
+				 getString("_UI_EventBRelationKind_surjective_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_surjective_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__SURJECTIVE,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Data Kind feature.
+	 * This adds a property descriptor for the Injective feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDataKindPropertyDescriptor(Object object) {
+	protected void addInjectivePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_EventBDataElaboration_dataKind_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_EventBDataElaboration_dataKind_feature", "_UI_EventBDataElaboration_type"),
-				 CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__DATA_KIND,
+				 getString("_UI_EventBRelationKind_injective_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_injective_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__INJECTIVE,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Total feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTotalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBRelationKind_total_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_total_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__TOTAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Functional feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFunctionalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_EventBRelationKind_functional_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_EventBRelationKind_functional_feature", "_UI_EventBRelationKind_type"),
+				 CoreextensionPackage.Literals.EVENT_BRELATION_KIND__FUNCTIONAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -132,11 +181,8 @@ public class EventBDataElaborationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		DataKind labelValue = ((EventBDataElaboration)object).getDataKind();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_EventBDataElaboration_type") :
-			getString("_UI_EventBDataElaboration_type") + " " + label;
+		EventBRelationKind eventBRelationKind = (EventBRelationKind)object;
+		return getString("_UI_EventBRelationKind_type") + " " + eventBRelationKind.isSurjective();
 	}
 
 	/**
@@ -150,8 +196,11 @@ public class EventBDataElaborationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EventBDataElaboration.class)) {
-			case CoreextensionPackage.EVENT_BDATA_ELABORATION__DATA_KIND:
+		switch (notification.getFeatureID(EventBRelationKind.class)) {
+			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
+			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
+			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
+			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

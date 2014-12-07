@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012/13 - University of Southampton.&#xD;All rights reserved. This program and the accompanying materials  are made&#xD;available under the terms of the Eclipse Public License v1.0 which accompanies this &#xD;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html&#xA;"
-    modelDirectory="/ac.soton.eventb.emf.core.extension/src" editDirectory="/ac.soton.eventb.emf.core.extension/src"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2012-2014 - University of Southampton.&#xD;All rights reserved. This program and the accompanying materials  are made&#xD;available under the terms of the Eclipse Public License v1.0 which accompanies this &#xD;distribution, and is available at http://www.eclipse.org/legal/epl-v10.html&#xA;"
+    modelDirectory="/ac.soton.eventb.emf.core.extension/src" editDirectory="/ac.soton.eventb.emf.core.extension.edit/src"
     modelPluginID="ac.soton.eventb.emf.core.extension" templateDirectory="/org.eventb.emf.core/templates"
     dynamicTemplates="true" modelName="Eventbcoreextension" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="6.0" colorProviders="true" runtimeVersion="2.7" language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eventb.emf.core/model/eventbcore.genmodel#//core">

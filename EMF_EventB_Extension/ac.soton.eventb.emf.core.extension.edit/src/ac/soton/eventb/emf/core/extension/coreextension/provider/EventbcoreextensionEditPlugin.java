@@ -1,15 +1,20 @@
 /**
- * Copyright (c) 2012/13 - University of Southampton.
+ * Copyright (c) 2012-2014 - University of Southampton.
  * All rights reserved. This program and the accompanying materials  are made
  * available under the terms of the Eclipse Public License v1.0 which accompanies this 
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
+ *
+ * $Id$
  */
 package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+
 import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 
 /**
@@ -24,7 +29,7 @@ public final class EventbcoreextensionEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	public static final String copyright = "Copyright (c) 2012-2014 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
 
 	/**
 	 * Keep track of the singleton.

@@ -1,21 +1,25 @@
 /**
- * Copyright (c) 2012/13 - University of Southampton.
+ * Copyright (c) 2012-2014 - University of Southampton.
  * All rights reserved. This program and the accompanying materials  are made
  * available under the terms of the Eclipse Public License v1.0 which accompanies this 
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
+ *
+ * $Id$
  */
 package ac.soton.eventb.emf.core.extension.coreextension.provider;
 
+
+import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
+import ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,20 +28,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import ac.soton.eventb.emf.core.extension.coreextension.CoreextensionPackage;
-import ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind;
-
 /**
- * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBRelationKind} object.
+ * This is the item provider adapter for a {@link ac.soton.eventb.emf.core.extension.coreextension.EventBNamedCommentedRelationDataElaborationElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventBRelationKindItemProvider
-	extends ItemProviderAdapter
+public class EventBNamedCommentedRelationDataElaborationElementItemProvider
+	extends EventBNamedCommentedDataElaborationElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -50,7 +50,7 @@ public class EventBRelationKindItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "Copyright (c) 2012/13 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
+	public static final String copyright = "Copyright (c) 2012-2014 - University of Southampton.\rAll rights reserved. This program and the accompanying materials  are made\ravailable under the terms of the Eclipse Public License v1.0 which accompanies this \rdistribution, and is available at http://www.eclipse.org/legal/epl-v10.html\n";
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -58,7 +58,7 @@ public class EventBRelationKindItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventBRelationKindItemProvider(AdapterFactory adapterFactory) {
+	public EventBNamedCommentedRelationDataElaborationElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -177,8 +177,10 @@ public class EventBRelationKindItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		EventBRelationKind eventBRelationKind = (EventBRelationKind)object;
-		return getString("_UI_EventBRelationKind_type") + " " + eventBRelationKind.isSurjective();
+		String label = ((EventBNamedCommentedRelationDataElaborationElement)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_EventBNamedCommentedRelationDataElaborationElement_type") :
+			getString("_UI_EventBNamedCommentedRelationDataElaborationElement_type") + " " + label;
 	}
 
 	/**
@@ -192,11 +194,11 @@ public class EventBRelationKindItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EventBRelationKind.class)) {
-			case CoreextensionPackage.EVENT_BRELATION_KIND__SURJECTIVE:
-			case CoreextensionPackage.EVENT_BRELATION_KIND__INJECTIVE:
-			case CoreextensionPackage.EVENT_BRELATION_KIND__TOTAL:
-			case CoreextensionPackage.EVENT_BRELATION_KIND__FUNCTIONAL:
+		switch (notification.getFeatureID(EventBNamedCommentedRelationDataElaborationElement.class)) {
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__SURJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__INJECTIVE:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__TOTAL:
+			case CoreextensionPackage.EVENT_BNAMED_COMMENTED_RELATION_DATA_ELABORATION_ELEMENT__FUNCTIONAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -213,17 +215,6 @@ public class EventBRelationKindItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }
