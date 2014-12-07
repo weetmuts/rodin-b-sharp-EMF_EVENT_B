@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.IStatusHandler;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -42,7 +45,6 @@ import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.MachinePackage;
 import org.eventb.emf.core.machine.Variable;
 import org.eventb.emf.core.machine.Variant;
-import org.eventb.emf.core.provider.EventbcoreEditPlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -653,7 +655,13 @@ public class MachineImpl extends EventBNamedCommentedComponentElementImpl implem
 					  .appendFragment(reference));
 			  
 		  }catch (Exception e){
-			  EventbcoreEditPlugin.getPlugin().getLog().log(new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e));
+				Status st = new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e);
+				 IStatusHandler sh = DebugPlugin.getDefault().getStatusHandler(st);
+				 try {
+					sh.handleStatus(st, proxy);
+				} catch (CoreException e1) {
+					e1.printStackTrace();
+				}
 		  }
 	  }
 	  return super.eResolveProxy(proxy);

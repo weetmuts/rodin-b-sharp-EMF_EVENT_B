@@ -14,64 +14,25 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://emf.eventb.org/models/core/2014"
-            class="org.eventb.emf.core.provider.CoreItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource
-               org.eclipse.emf.edit.provider.ITableItemLabelProvider"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://emf.eventb.org/models/core/machine/2014"
-            class="org.eventb.emf.core.machine.provider.MachineItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource
-               org.eclipse.emf.edit.provider.ITableItemLabelProvider"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://emf.eventb.org/models/core/context/2014"
-            class="org.eventb.emf.core.context.provider.ContextItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource
-               org.eclipse.emf.edit.provider.ITableItemLabelProvider"/>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://emf.eventb.org/models/core/2014"
             class="org.eventb.emf.core.CorePackage"
             genModel="model/eventbcore.genmodel"/>
    </extension>
-
+   
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://emf.eventb.org/models/core/machine/2014"
             class="org.eventb.emf.core.machine.MachinePackage"
             genModel="model/eventbcore.genmodel"/>
    </extension>
-
+   
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://emf.eventb.org/models/core/context/2014"
             class="org.eventb.emf.core.context.ContextPackage"
             genModel="model/eventbcore.genmodel"/>
    </extension>
-
+   
 </plugin>
