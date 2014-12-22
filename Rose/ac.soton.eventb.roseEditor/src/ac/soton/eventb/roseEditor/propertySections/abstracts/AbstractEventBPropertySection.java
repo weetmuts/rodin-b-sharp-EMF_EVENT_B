@@ -49,11 +49,6 @@ import ac.soton.eventb.roseEditor.RoseEditor;
 public abstract class AbstractEventBPropertySection extends AbstractPropertySection implements IPropertySourceProvider {
 
 	/**
-	 * the property sheet page for this section.
-	 */
-	protected TabbedPropertySheetPage propertySheetPage;
-
-	/**
 	 * the GMF editing domain for the current diagram editor
 	 */
 	protected EditingDomain editingDomain = null;
@@ -110,7 +105,6 @@ public abstract class AbstractEventBPropertySection extends AbstractPropertySect
 	public void createControls(final Composite parent, final TabbedPropertySheetPage propertySheetPage) {
 		super.createControls(parent, propertySheetPage);
 		this.parent = parent;
-		this.propertySheetPage = propertySheetPage;
 		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (activeEditor instanceof RoseEditor) {
 			editingDomain = ((RoseEditor) activeEditor).getEditingDomain();

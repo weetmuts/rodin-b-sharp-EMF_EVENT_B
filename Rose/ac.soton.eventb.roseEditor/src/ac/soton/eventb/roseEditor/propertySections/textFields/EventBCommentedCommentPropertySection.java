@@ -47,4 +47,9 @@ public class EventBCommentedCommentPropertySection extends AbstractStringPropert
 		return CorePackage.eINSTANCE.getEventBCommented_Comment();
 	}
 
+	@Override	
+	protected boolean isMultiLine(){
+		return true;
+	}
+	
 }

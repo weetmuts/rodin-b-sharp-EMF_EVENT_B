@@ -45,4 +45,15 @@ public class EventBPredicatePredicatePropertySection extends AbstractStringPrope
 	protected EAttribute getFeature() {
 		return CorePackage.eINSTANCE.getEventBPredicate_Predicate();
 	}
+
+	@Override
+	protected boolean isRodinKeyboard(){
+		return true;
+	}
+	
+	@Override	
+	protected boolean isMultiLine(){
+		return true;
+	}
+	
 }

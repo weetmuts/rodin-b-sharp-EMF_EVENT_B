@@ -42,4 +42,22 @@ public abstract class AbstractDerivedPredicateTablePropertySection extends Abstr
 		}
 	}
 
+
+	@Override
+	protected boolean isRodinKeyboard(final int col) {
+		return col==2 ? true : false;
+	}
+	
+	@Override
+	protected boolean isMulti(final int col){
+		switch (col) {
+		case 0 : return false;	//name
+		case 1 : return false;	//derived field
+		case 2 : return true;	//predicate field
+		case 3 : return true;	//comment field
+		default : return false;	//unknown
+		}
+	}
+
+	
 }

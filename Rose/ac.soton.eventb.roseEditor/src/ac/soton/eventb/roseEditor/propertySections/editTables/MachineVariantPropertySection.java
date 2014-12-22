@@ -67,4 +67,14 @@ public class MachineVariantPropertySection extends AbstractTablePropertySection 
 		}
 	}
 
+	@Override
+	protected boolean isRodinKeyboard(final int col){
+		return col==0;
+	}
+
+	@Override
+	protected boolean isMulti(final int col){
+		return true;
+	}
+
 }

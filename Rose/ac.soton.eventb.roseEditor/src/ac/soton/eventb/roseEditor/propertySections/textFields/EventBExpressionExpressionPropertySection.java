@@ -45,4 +45,15 @@ public class EventBExpressionExpressionPropertySection extends AbstractStringPro
 	protected EAttribute getFeature() {
 		return CorePackage.eINSTANCE.getEventBExpression_Expression();
 	}
+
+	@Override
+	protected boolean isRodinKeyboard(){
+		return true;
+	}
+	
+	@Override	
+	protected boolean isMultiLine(){
+		return true;
+	}
+	
 }

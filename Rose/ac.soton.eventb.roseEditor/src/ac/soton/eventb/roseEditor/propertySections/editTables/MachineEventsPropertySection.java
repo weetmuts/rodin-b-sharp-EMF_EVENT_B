@@ -66,5 +66,10 @@ public class MachineEventsPropertySection extends AbstractTablePropertySection i
 		default : return -1;
 		}
 	}
+	
+	@Override
+	protected boolean isMulti(final int col){
+		return col==3;
+	}
 
 }

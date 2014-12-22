@@ -21,7 +21,7 @@ import org.eventb.emf.core.CorePackage;
  */
 
 public abstract class AbstractPredicateTablePropertySection extends AbstractTablePropertySection{
-
+	
 	@Override
 	protected EAttribute getFeatureForCol(final int col) {
 		switch (col) {
@@ -39,6 +39,22 @@ public abstract class AbstractPredicateTablePropertySection extends AbstractTabl
 		case 1 : return 400;	//predicate field
 		case 2 : return 400;	//comment field
 		default : return -1;	//unknown
+		}
+	}
+
+
+	@Override
+	protected boolean isRodinKeyboard(final int col) {
+		return col==1 ? true : false;
+	}
+	
+	@Override
+	protected boolean isMulti(final int col){
+		switch (col) {
+		case 0 : return false;	//name
+		case 1 : return true;	//predicate field
+		case 2 : return true;	//comment field
+		default : return false;	//unknown
 		}
 	}
 

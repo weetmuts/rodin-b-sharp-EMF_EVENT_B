@@ -14,7 +14,7 @@ import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.MachinePackage;
 
-import ac.soton.eventb.roseEditor.propertySections.abstracts.AbstractPredicateTablePropertySection;
+import ac.soton.eventb.roseEditor.propertySections.abstracts.AbstractDerivedPredicateTablePropertySection;
 
 /**
  * The Guards tab table section.
@@ -22,7 +22,7 @@ import ac.soton.eventb.roseEditor.propertySections.abstracts.AbstractPredicateTa
  * @author Colin Snook
  */
 
-public class EventGuardsPropertySection extends AbstractPredicateTablePropertySection implements IFilter {
+public class EventGuardsPropertySection extends AbstractDerivedPredicateTablePropertySection implements IFilter {
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.jface.viewers.IFilter#select(java.lang.Object)
@@ -42,4 +42,5 @@ public class EventGuardsPropertySection extends AbstractPredicateTablePropertySe
 		return MachinePackage.eINSTANCE.getEvent_Guards();
 	}
 
+	
 }

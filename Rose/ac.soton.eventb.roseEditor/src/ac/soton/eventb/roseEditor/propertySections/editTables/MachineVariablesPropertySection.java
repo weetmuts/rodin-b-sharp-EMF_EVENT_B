@@ -63,4 +63,9 @@ public class MachineVariablesPropertySection extends AbstractTablePropertySectio
 		}
 	}
 
+	@Override
+	protected boolean isMulti(final int col){
+		return col==1;
+	}
+
 }

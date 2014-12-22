@@ -45,4 +45,15 @@ public class ActionActionPropertySection extends AbstractStringPropertySection i
 	protected EAttribute getFeature() {
 		return CorePackage.eINSTANCE.getEventBAction_Action();
 	}
+
+	@Override
+	protected boolean isRodinKeyboard(){
+		return true;
+	}
+	
+	@Override	
+	protected boolean isMultiLine(){
+		return true;
+	}
+	
 }

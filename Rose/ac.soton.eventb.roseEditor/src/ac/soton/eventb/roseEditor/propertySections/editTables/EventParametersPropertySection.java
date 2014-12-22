@@ -39,22 +39,10 @@ public class EventParametersPropertySection extends AbstractTablePropertySection
 		}
 	}
 
-//	@Override
-//	protected String getButtonLabelText(){
-//		return "Parameter";
-//	}
-
 	@Override
 	protected EReference getFeature() {
 		return MachinePackage.eINSTANCE.getEvent_Parameters();
 	}
-
-//	@Override
-//	protected List<String> getColumnLabelText() {
-//		ArrayList<String> ret = new ArrayList<String>();
-//		ret.add("Name");
-//		return ret;
-//	}
 
 	@Override
 	protected EStructuralFeature getFeatureForCol(final int col) {
@@ -72,6 +60,11 @@ public class EventParametersPropertySection extends AbstractTablePropertySection
 		case 1 : return 400;	//comment field
 		default : return -1;	//unknown
 		}
+	}
+	
+	@Override
+	protected boolean isMulti(final int col){
+		return col==1;
 	}
 
 }
