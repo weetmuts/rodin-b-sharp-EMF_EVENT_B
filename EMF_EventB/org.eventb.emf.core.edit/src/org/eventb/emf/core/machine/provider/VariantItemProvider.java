@@ -86,9 +86,9 @@ public class VariantItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Variant)object).getReference();
+		String label = "Variant"; //((Variant)object).getReference();
 		String expression = ((Variant)object).getExpression();
-		String kind = getString("_UI_Witness_type"); //$NON-NLS-1$
+		String kind = getString("_UI_Variant_type"); //$NON-NLS-1$
 		return label == null || label.length() == 0 ?
 				kind : //$NON-NLS-1$
 				expression == null || expression.length() == 0 ?
