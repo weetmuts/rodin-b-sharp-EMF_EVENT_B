@@ -392,14 +392,17 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 
 	/**
 	 * Resolves a proxy associated with this element.
+	 * 
+	 * if the fragment is an xtext cross-reference, lazy URI construction below is skipped and resolution is deferred to super.
+	 * 
 	 * URI's are constructed lazily. A dummy URI with just a fragment holding the name of the referenced item, is used
 	 * until this point. When a proxy is resolved, the URI is constructed based on this elements resource URI.
 	 * Therefore, proxies will not resolve until this element has been associated with a resource.
+	 * (The construction cannot rely on the proxy being in this dummy form since the reference will be returned to a 
+	 *  (non-dummy) proxy if the target is altered. Hence the proxy is not returned to being a dummy after construction.) 
 	 *
 	 * Following construction of the URI, the proxy resolution is deferred to super
 	 *
-	 *	(The construction cannot rely on the proxy being in this dummy form since the reference will be returned to a 
-	 *  (non-dummy) proxy if the target is altered. Hence the proxy is not returned to being a dummy after construction.) 
 	 *
 	 * @custom
 	 */
@@ -408,33 +411,34 @@ public class ContextImpl extends EventBNamedCommentedComponentElementImpl implem
 	public EObject eResolveProxy(InternalEObject proxy){
 		if (proxy instanceof Context && proxy.eIsProxy() && getExtends().contains(proxy) && eResource()!=null){
 			URI proxyURI = proxy.eProxyURI();
-			try{
-				
-				String fragment = proxyURI.fragment();
-				  if (fragment.contains("::")) {
-					  fragment = fragment.substring(fragment.lastIndexOf("::",fragment.length())+2, fragment.length());
-				  }				
-				String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+fragment;
-
-				// if resolved already in the parent, do not resolve again
-				if (eContainer() != null)
-					 for (EObject component : eContainer().eContents())
-						 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
-							 return component;
-
-				//replace dummy URI with the proper one
-				proxy.eSetProxyURI(URI.createPlatformResourceURI(getURI().segment(1), true)
-					.appendSegment(fragment)
-					.appendFileExtension(External.getString("FileExtensions.context"))
-					.appendFragment(reference));
-				
-			}catch (Exception e){
-				Status st = new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e);
-				 IStatusHandler sh = DebugPlugin.getDefault().getStatusHandler(st);
-				 try {
-					sh.handleStatus(st, proxy);
-				} catch (CoreException e1) {
-					e1.printStackTrace();
+			if (!proxyURI.fragment().contains("xtextLink")) {
+				try{		
+					String fragment = proxyURI.fragment();
+					  if (fragment.contains("::")) {
+						  fragment = fragment.substring(fragment.lastIndexOf("::",fragment.length())+2, fragment.length());
+					  }				
+					String reference = ((EventBElementImpl)proxy).getElementTypePrefix()+"::"+fragment;
+	
+					// if resolved already in the parent, do not resolve again
+					if (eContainer() != null)
+						 for (EObject component : eContainer().eContents())
+							 if (((EventBNamedCommentedElementImpl) component).getReference().equals(reference))
+								 return component;
+	
+					//replace dummy URI with the proper one
+					proxy.eSetProxyURI(URI.createPlatformResourceURI(getURI().segment(1), true)
+						.appendSegment(fragment)
+						.appendFileExtension(External.getString("FileExtensions.context"))
+						.appendFragment(reference));
+					
+				}catch (Exception e){
+					Status st = new Status(Status.ERROR, "org.eventb.emf.core", "Cannot resolve: " + proxy, e);
+					 IStatusHandler sh = DebugPlugin.getDefault().getStatusHandler(st);
+					 try {
+						sh.handleStatus(st, proxy);
+					} catch (CoreException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		}
