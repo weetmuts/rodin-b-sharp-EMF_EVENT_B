@@ -78,8 +78,8 @@ public class InvariantItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return ((Invariant)object).isTheorem() ?
-				IMAGE_THM!=null ? IMAGE_THM : overlayImage(object, getResourceLocator().getImage("full/obj16/Theorem")) :
-				IMAGE_INV!=null ? IMAGE_INV : overlayImage(object, getResourceLocator().getImage("full/obj16/Invariant")) ;
+				overlayImage(object, IMAGE_THM!=null ? IMAGE_THM : getResourceLocator().getImage("full/obj16/Theorem")) :
+				overlayImage(object, IMAGE_INV!=null ? IMAGE_INV : getResourceLocator().getImage("full/obj16/Invariant")) ;
 	}
 
 	/**

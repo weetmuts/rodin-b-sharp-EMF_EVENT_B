@@ -79,8 +79,8 @@ public class GuardItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return ((Guard)object).isTheorem() ?
-				IMAGE_THM!=null ? IMAGE_THM : overlayImage(object, getResourceLocator().getImage("full/obj16/Theorem")) :
-				IMAGE_GRD!=null ? IMAGE_GRD : overlayImage(object, getResourceLocator().getImage("full/obj16/Guard")) ;
+				overlayImage(object, IMAGE_THM!=null ? IMAGE_THM : getResourceLocator().getImage("full/obj16/Theorem")) :
+				overlayImage(object, IMAGE_GRD!=null ? IMAGE_GRD : getResourceLocator().getImage("full/obj16/Guard")) ;
 	}
 
 	/**

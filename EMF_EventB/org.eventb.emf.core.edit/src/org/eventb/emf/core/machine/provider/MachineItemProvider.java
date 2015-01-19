@@ -207,8 +207,7 @@ public class MachineItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return IMAGE!=null ? IMAGE : 
-			overlayImage(object, getResourceLocator().getImage("full/obj16/Machine"));
+		return overlayImage(object, IMAGE!=null ? IMAGE : getResourceLocator().getImage("full/obj16/Machine"));
 	}
 
 	/**
