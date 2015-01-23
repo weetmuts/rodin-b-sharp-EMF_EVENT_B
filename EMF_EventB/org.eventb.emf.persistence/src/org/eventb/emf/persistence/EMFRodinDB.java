@@ -25,10 +25,10 @@ import org.rodinp.core.IRodinElement;
  * re-loaded or, if it has been deleted, removed from the resource set. Various
  * load methods are provided to obtain either the resource, an EMF root element
  * or a specific element within the contents.
- * 
- * 
+ * A save method is also provided to save an EventBElement into resource specified by URI.
+ *
  * @author cfs
- * 
+ *
  */
 public final class EMFRodinDB {
 
@@ -79,7 +79,7 @@ public final class EMFRodinDB {
 	/**
 	 * get the resource set (Clients may want to use the resource set in an
 	 * editing domain).
-	 * 
+	 *
 	 * @return
 	 */
 	public ResourceSet getResourceSet() {
@@ -88,7 +88,7 @@ public final class EMFRodinDB {
 
 	/**
 	 * loads an Event-B component (root) into EMF
-	 * 
+	 *
 	 * @param root
 	 * @return
 	 */
@@ -101,7 +101,7 @@ public final class EMFRodinDB {
 
 	/**
 	 * loads an Event-B component (URI) into EMF
-	 * 
+	 *
 	 * @param root
 	 * @return
 	 */
@@ -119,7 +119,7 @@ public final class EMFRodinDB {
 
 	/**
 	 * loads an Event-B component (root) as an EMF Resource
-	 * 
+	 *
 	 * @param root
 	 * @return
 	 */
@@ -132,7 +132,7 @@ public final class EMFRodinDB {
 
 	/**
 	 * loads an Event-B component (URI) as an EMF Resource
-	 * 
+	 *
 	 * @param root
 	 * @return
 	 */
@@ -155,13 +155,12 @@ public final class EMFRodinDB {
 		} else {
 			return null;
 		}
-
 	}
 
 	/**
-	 * 
+	 *
 	 * loads an Event-B internal element as the corresponding EMF child element
-	 * 
+	 *
 	 * @param rodinElement
 	 * @return
 	 */
@@ -176,12 +175,35 @@ public final class EMFRodinDB {
 	 * loads the EMF resource using the EMF uri and uses the uri fragment to
 	 * obtain an EMF child element to return (The uri could be from an
 	 * unresolved proxy for exaample)
-	 * 
+	 *
 	 * @param uri
 	 * @return
 	 */
 	public EventBObject loadElement(URI uri) {
 		return (EventBObject) loadResource(uri).getEObject(uri.fragment());
+	}
+
+	/**
+	 * saves an Event-B component (URI) as an EMF Resource
+	 *
+	 * @param uri
+	 * @return the saved Resource
+	 */
+	public Resource saveResource(URI fileURI, EventBElement element) {
+		Resource resource = resourceSet.getResource(fileURI, false); //n.b. do not load until notifications disabled
+		if (resource == null) {
+			resource = resourceSet.createResource(fileURI);
+		}
+		resource.getContents().clear();
+		resource.getContents().add(element);
+		try {
+			resource.save(Collections.emptyMap());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return resource;
 	}
 
 }
