@@ -59,26 +59,5 @@
             type="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem">
       </propertyTester>
    </extension>
-   <extension
-         point="org.rodinp.core.refinements">
-      <Participant
-            class="ac.soton.eventb.emf.core.extension.navigator.refiner.GeneratedCopier"
-            id="generatedCopierMachine"
-            refinement-id="org.eventb.core.machineRefinement">
-      </Participant>
-      <Participant
-            class="ac.soton.eventb.emf.core.extension.navigator.refiner.GeneratedCopier"
-            id="generatedCopierContext"
-            refinement-id="org.eventb.core.contextRefinement">
-      </Participant>
-      <Order
-            first-participant-id="org.eventb.core.machineRefiner"
-            second-participant-id="ac.soton.eventb.emf.core.extension.navigator.generatedCopierMachine">
-      </Order>
-      <Order
-            first-participant-id="org.eventb.core.contextRefiner"
-            second-participant-id="ac.soton.eventb.emf.core.extension.navigator.generatedCopierContext">
-      </Order>
-   </extension>
-
+   
 </plugin>
