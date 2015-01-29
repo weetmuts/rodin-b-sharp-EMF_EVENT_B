@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
@@ -78,12 +79,25 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	}
 	
 	/**
+	 * This enumeration gives the options for dealing with references
+	 * CHAIN = the refined reference will target the abstract parent object that contained the abstract reference
+	 * EQUIV = the refined reference will target the refined version of the target of the abstract reference if it exists,
+	 *  when no refined version of the target exists (e.g. where the target is a filtered class or in another component) then this option acts like COPY
+	 * COPY = the refined reference will target the exact same object that the abstract reference did
+	 * DROP = the refined reference is left unset (this is the default behaviour if no entry is given for a reference feature)
+	 *
+	 */
+	public enum RefHandling {
+		COPY,CHAIN,EQUIV,DROP
+	}
+	
+	/**
 	 * A map of the references which need to be dealt with in the new refined model.
 	 * For each EReference, the boolean indicates whether it should be dealt with as a reference back to 
 	 * the source element (e.g. refines) or a normal reference within the same resource level which
 	 * will be copied to simulate the abstract one..
 	 */
-	private Map<EReference,Boolean> referencemap = new HashMap<EReference,Boolean>();
+	private Map<EReference,RefHandling> referencemap = new HashMap<EReference,RefHandling>();
 	
 	/**
 	 * Extenders may override this method to populate the reference mapping with a list of 
@@ -96,9 +110,9 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * 	EVENT_BDATA_ELABORATION__ELABORATES, false and
 	 * 	EVENT_BEVENT_GROUP__ELABORATES, false
 	 */
-	protected void populateReferenceMap(Map<EReference,Boolean> referencemap){
-		referencemap.put(CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES, false);
-		referencemap.put(CoreextensionPackage.Literals.EVENT_BEVENT_GROUP__ELABORATES, false);
+	protected void populateReferenceMap(Map<EReference,RefHandling> referencemap){
+		referencemap.put(CoreextensionPackage.Literals.EVENT_BDATA_ELABORATION__ELABORATES, RefHandling.EQUIV);
+		referencemap.put(CoreextensionPackage.Literals.EVENT_BEVENT_GROUP__ELABORATES, RefHandling.EQUIV);
 	}
 	
 	/** 
@@ -152,9 +166,10 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 
 	/**
 	 * Extenders should not override this
+	 * @throws CoreException 
 	 */
 	@Override
-	public void process(IInternalElement targetRoot, IInternalElement sourceRoot, IProgressMonitor monitor) throws RodinDBException {
+	public void process(IInternalElement targetRoot, IInternalElement sourceRoot, IProgressMonitor monitor) throws CoreException {
 		final IEventBRoot concreteEventBRoot = (IEventBRoot) targetRoot;
 		final IEventBRoot abstractEventBRoot = (IEventBRoot) sourceRoot;
 		// machine URIs
@@ -163,12 +178,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		concreteComponentName = concreteEventBRoot.getComponentName();
 		abstractResourceURI = URI.createURI("platform:/resource/" + projectName + "/" + abstractEventBRoot.getComponentName() + ".bum");
 		concreteResourceURI = URI.createURI("platform:/resource/" + projectName + "/" + concreteEventBRoot.getComponentName() + ".bum");
-		try {
-			refineExtensions(concreteEventBRoot, abstractEventBRoot, monitor);
-		} catch (CoreException e) {
-			// FIXME: For Rodin 3.0 we can throw this directly
-			throw new RodinDBException(e);
-		}
+		refineExtensions(concreteEventBRoot, abstractEventBRoot, monitor);
 	}
 
 	/**
@@ -212,23 +222,20 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @return
 	 */
 	private EventBElement refineEventBElement(EventBObject extension) {
-
-		
 		copier = new Copier(true,false);
 		// create refined Component using copier.
 		// this does a deep copy of all the children and properties of the copied element
 		// but it does not copy any references
 		EventBElement concreteEventBElement = (EventBElement) copier.copy(extension); 
-
-		//copier.copyReferences();  THIS DOES NOT WORK - INSTEAD SEE BELOW
+		//copier.copyReferences();  <--THIS DOES NOT WORK - INSTEAD SEE BELOW
 		copyReferences(concreteEventBElement);
-
 		//having copied everything we may need to remove some kinds of elements that are not supposed to be
 		//copied into a refinement
 		filterElements(concreteEventBElement);
-		
 		return concreteEventBElement;
 	}
+
+	
 
 	/*
 	 * This removes any elements that are of a type (EClass) listed in filterList
@@ -266,62 +273,32 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		contents.add(concreteEventBElement);
 		// iterate through the contents looking for references corresponding to those declared in the referencemap
 		// and copy them in the appropriate way according to multiplicity and the refencemap.
-		for (EObject eObject : contents){
-			if (eObject instanceof EventBElement){
+		for (EObject concreteElement : contents){
+			if (concreteElement instanceof EventBElement){
 				EReference referenceFeature;
-				URI referenceResourceURI;
-				for (Entry<EReference, Boolean> referenceEntry : referencemap.entrySet()){
+				for (Entry<EReference, RefHandling> referenceEntry : referencemap.entrySet()){
 					referenceFeature = referenceEntry.getKey(); 
-					if (referenceFeature.getEContainingClass().isSuperTypeOf(eObject.eClass())){
+					if (referenceFeature.getEContainingClass().isSuperTypeOf(concreteElement.eClass())){
+						EObject abstractElement = getKeyByValue(copier, concreteElement);
 						//NOTE: *** Cannot use the concrete elements to create URIs because their parentage is not complete ***
 						if (referenceFeature.isMany()){
-							for (EObject abstractReferencedObject : (EList<EObject>)(getKeyByValue(copier, eObject)).eGet(referenceFeature)){
-								String fragment;
-								if (referenceEntry.getValue().booleanValue() == true){
-									referenceResourceURI = abstractResourceURI;
-									fragment = abstractReferencedObject instanceof EventBElement ?
-											((EventBElement)abstractReferencedObject).getReference()
-											: null;
-								}else{
-									referenceResourceURI = concreteResourceURI;
-									fragment = abstractReferencedObject instanceof EventBElement ? 
-											((EventBElement)abstractReferencedObject).getReference().replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".") 
-											: null;
-								}
-								if (abstractReferencedObject instanceof EObject && fragment != null){
-									((EList<EObject>)eObject.eGet(referenceFeature)).add(
-											 EMFCoreUtil.createProxy(
-													 //(EClass)referenceFeature.getEType(),
-													 ((EObject) abstractReferencedObject).eClass(),
-													 referenceResourceURI.appendFragment(fragment)
-											));
+							for (EObject abstractReferencedElement : (EList<EObject>)(getKeyByValue(copier, concreteElement)).eGet(referenceFeature)){		
+								EObject newValue = getNewReferenceValue(
+										abstractElement,
+										abstractReferencedElement,
+										referenceEntry.getValue());
+								if (newValue!=null){
+									((EList<EObject>)concreteElement.eGet(referenceFeature)).add(newValue);
 								}
 							}
 						}else{
 							if (referenceFeature.getEType() instanceof EClass){
-								Object abstractReferencedObject;
-								String fragment;
-								if (referenceEntry.getValue().booleanValue() == true){
-									//for references back to the abstract source e.g. refines
-									referenceResourceURI = abstractResourceURI;
-									abstractReferencedObject = getKeyByValue(copier, eObject);
-									fragment = abstractReferencedObject instanceof EventBElement ?
-											((EventBElement)abstractReferencedObject).getReference()
-											: null;
-								}else{
-									//for references to other objects in the concrete model
-									referenceResourceURI = concreteResourceURI;
-									abstractReferencedObject = getKeyByValue(copier, eObject).eGet(referenceFeature);
-									fragment = abstractReferencedObject instanceof EventBElement ? 
-											((EventBElement)abstractReferencedObject).getReference().replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".") 
-											: null;
-								}
-								if (abstractReferencedObject instanceof EObject && fragment != null){
-									eObject.eSet(referenceFeature, 
-										EMFCoreUtil.createProxy(
-												((EObject) abstractReferencedObject).eClass(),
-												referenceResourceURI.appendFragment(fragment)
-												));
+								EObject newValue = getNewReferenceValue(
+										abstractElement,
+										abstractElement.eGet(referenceFeature,false),
+										referenceEntry.getValue());
+								if (newValue!=null){
+									concreteElement.eSet(referenceFeature, newValue);
 								}
 							}
 						}
@@ -331,5 +308,62 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		}
 	}
 
+
+	/**
+	 * @param abstractElement
+	 * @param abstractReferencedElement
+	 * @param handling
+	 * @return
+	 */
+	private EObject getNewReferenceValue(EObject abstractElement, Object abstractReferencedElement, RefHandling handling) {
+		EClass eclass = null;
+		URI uri = null;
+		switch (handling){
+		case CHAIN:
+			uri = getURI((EObject)abstractElement);
+			uri = uri==null? uri : uri.appendFragment(EcoreUtil.getID((EObject)abstractElement));
+			eclass = abstractElement.eClass();	
+			break;
+		case EQUIV:
+			//abstractReferencedElement = abstractElement.eGet(referenceFeature,false);
+			if (abstractReferencedElement instanceof EObject){
+				uri = getURI((EObject)abstractReferencedElement);
+				if (uri !=null && uri.path().equals(abstractResourceURI.path())){ //equiv only works for intra-machine refs
+					uri = concreteResourceURI.appendFragment(
+							EcoreUtil.getID((EObject)abstractReferencedElement).replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".") );
+					eclass = ((EObject)abstractReferencedElement).eClass();
+					break;
+				}
+			//when equiv is not possible default to copy
+			}
+		case COPY:
+			//abstractReferencedElement = abstractElement.eGet(referenceFeature,false);
+			if (abstractReferencedElement instanceof EObject){
+				uri = getURI((EObject)abstractReferencedElement);
+				uri = uri==null? uri : uri.appendFragment(EcoreUtil.getID((EObject)abstractReferencedElement));
+				eclass = ((EObject)abstractReferencedElement).eClass();
+			}
+			break;
+		case DROP:
+			uri = null;
+			eclass = null;
+		}
+		return (uri==null || eclass==null)? null : EMFCoreUtil.createProxy(eclass, uri);
+	}
+
 	
+	/**
+	 * this returns the URI without loading the eObject
+	 * (copied from EventBObject to support references to non-EventBObjects in refinement)
+	 * @param eObject
+	 * @return
+	 */
+	private static  URI getURI(EObject eObject) {
+		if (eObject==null) return null;
+		if (eObject.eIsProxy()){
+			return ((InternalEObject)eObject).eProxyURI();
+		}else{
+			return  eObject.eResource()==null? null : eObject.eResource().getURI();
+		}
+	}
 }
