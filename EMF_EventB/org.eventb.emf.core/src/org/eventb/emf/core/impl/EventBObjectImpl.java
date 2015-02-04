@@ -138,7 +138,7 @@ public abstract class EventBObjectImpl extends EObjectImpl implements EventBObje
 		if (eIsProxy()){
 			return ((InternalEObject)this).eProxyURI();
 		}else{
-			return eResource().getURI();
+			return eResource()==null? null: eResource().getURI();
 		}
 	}
 
