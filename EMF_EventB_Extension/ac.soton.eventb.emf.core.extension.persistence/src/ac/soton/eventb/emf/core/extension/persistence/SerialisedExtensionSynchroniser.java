@@ -42,12 +42,10 @@ import org.rodinp.core.RodinCore;
 import org.rodinp.core.RodinDBException;
 
 /**
- * Serialised extension synchroniser abstract class.
+ * Serialised extension synchroniser.
  * 
- * Serialises EventB abstract extension to a string attribute.
- * Implements all of the methods of AbstractSynchroniser except createEventBElement(),
- * which must be provided by a client extension to create a correct EMF element
- * on loading.
+ * A SerialisedExtension is persisted in Rodin with attributes that give the EMF package nsURI and eClass 
+ * of the EMF element to be loaded. These are used at load to create the EMF element.
  * 
  * cfs (04/01/12) : when adding unique id's disable notification of changes (eventBElement.eSetDeliver(false)) to
  * 					prevent exceptions due to the change being made without a Transactional Command
