@@ -24,8 +24,8 @@ import org.rodinp.core.IRodinElement;
  * domain set up. If the underlying Rodin file changes the resource will be
  * re-loaded or, if it has been deleted, removed from the resource set. Various
  * load methods are provided to obtain either the resource, an EMF root element
- * or a specific element within the contents.
- * A save method is also provided to save an EventBElement into resource specified by URI.
+ * or a specific element within the contents. A save method is also provided to
+ * save an EventBElement into resource specified by URI.
  *
  * @author cfs
  *
@@ -194,8 +194,10 @@ public final class EMFRodinDB {
 		if (resource == null) {
 			resource = resourceSet.createResource(fileURI);
 		}
+		//resource.eSetDeliver(false); // turn off notifications
 		resource.getContents().clear();
 		resource.getContents().add(element);
+		//resource.eSetDeliver(true); // turn notifications back on
 		try {
 			resource.save(Collections.emptyMap());
 		} catch (IOException e) {
