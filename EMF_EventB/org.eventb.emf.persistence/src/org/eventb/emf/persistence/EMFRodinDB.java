@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
 import org.eventb.emf.persistence.factory.ChangeListenerRegistry;
@@ -41,6 +42,7 @@ public final class EMFRodinDB {
 	} //do not allow instantiation
 
 	private final ResourceSet resourceSet = new ListeningRodinResourceSet();
+	private final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
 
 	private final class resourceListener implements IChangeListener {
 		@Override
@@ -76,14 +78,23 @@ public final class EMFRodinDB {
 		}
 	}
 
+	
+		/**
+		 * get the resource set.
+		 *
+		 * @return
+		 */
+		public ResourceSet getResourceSet() {
+			return resourceSet;
+		}
+
 	/**
-	 * get the resource set (Clients may want to use the resource set in an
-	 * editing domain).
+	 * get the editing domain
 	 *
 	 * @return
 	 */
-	public ResourceSet getResourceSet() {
-		return resourceSet;
+	public TransactionalEditingDomain getEditingDomain() {
+		return editingDomain;
 	}
 
 	/**

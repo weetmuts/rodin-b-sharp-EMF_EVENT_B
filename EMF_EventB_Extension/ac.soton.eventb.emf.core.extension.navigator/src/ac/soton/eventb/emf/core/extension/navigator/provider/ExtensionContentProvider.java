@@ -59,18 +59,16 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 	 */
 	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public ExtensionContentProvider() {
-		myAdapterFactoryContentProvier = new AdapterFactoryContentProvider(
-				ExtensionNavigatorPlugin.getDefault()
-						.getItemProvidersAdapterFactory());
-		editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(EMFRodinDB.INSTANCE.getResourceSet());
+		myAdapterFactoryContentProvier = new AdapterFactoryContentProvider(ExtensionNavigatorPlugin.getDefault().getItemProvidersAdapterFactory());
+		editingDomain = EMFRodinDB.INSTANCE.getEditingDomain(); //TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(EMFRodinDB.INSTANCE.getResourceSet());
 		((AdapterFactoryEditingDomain) editingDomain).setResourceToReadOnlyMap(new HashMap() {
-			public Object get(Object key) {
-				if (!containsKey(key)) {
-					put(key, Boolean.TRUE);
-				}
-				return super.get(key);
-			}
-		});
+																					public Object get(Object key) {
+																						if (!containsKey(key)) {
+																							put(key, Boolean.TRUE);
+																						}
+																						return super.get(key);
+																					}
+																				});
 		
 		myViewerRefreshRunnable = new Runnable() {
 			public void run() {
@@ -168,7 +166,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 		myWorkspaceSynchronizer = null;
 		myViewerRefreshRunnable = null;
 		myViewer = null;
-		editingDomain.dispose();
+		//editingDomain.dispose();		do not dispose as we are using the EMFRodinDB editing domain
 	}
 
 	void asyncRefresh() {
