@@ -1,22 +1,34 @@
 package org.eventb.emf.persistence;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eventb.core.IContextRoot;
+import org.eventb.core.IMachineRoot;
 import org.eventb.emf.core.EventBElement;
+import org.eventb.emf.core.EventBNamedCommentedComponentElement;
 import org.eventb.emf.core.EventBObject;
+import org.eventb.emf.core.Project;
 import org.eventb.emf.persistence.factory.ChangeListenerRegistry;
 import org.eventb.emf.persistence.factory.IChangeListener;
 import org.eventb.emf.persistence.factory.ModelUpdateTool;
 import org.eventb.emf.persistence.factory.RodinResource;
 import org.rodinp.core.IInternalElement;
+import org.rodinp.core.IInternalElementType;
+import org.rodinp.core.IRodinDB;
 import org.rodinp.core.IRodinElement;
+import org.rodinp.core.IRodinProject;
+import org.rodinp.core.RodinCore;
 
 /**
  * This class maintains a ResourceSet of Rodin components loaded into EMF as
@@ -78,15 +90,14 @@ public final class EMFRodinDB {
 		}
 	}
 
-	
-		/**
-		 * get the resource set.
-		 *
-		 * @return
-		 */
-		public ResourceSet getResourceSet() {
-			return resourceSet;
-		}
+	/**
+	 * get the resource set.
+	 *
+	 * @return
+	 */
+	public ResourceSet getResourceSet() {
+		return resourceSet;
+	}
 
 	/**
 	 * get the editing domain
@@ -205,18 +216,76 @@ public final class EMFRodinDB {
 		if (resource == null) {
 			resource = resourceSet.createResource(fileURI);
 		}
-		//resource.eSetDeliver(false); // turn off notifications
+		boolean deliver = resource.eDeliver();
+		resource.eSetDeliver(false); // turn off notifications
 		resource.getContents().clear();
 		resource.getContents().add(element);
-		//resource.eSetDeliver(true); // turn notifications back on
 		try {
 			resource.save(Collections.emptyMap());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+
+		} finally {
+			resource.eSetDeliver(deliver); // turn notifications back on
 		}
 		return resource;
 	}
 
+	/**
+	 * this returns the project name by checking the uri of the given element
+	 * The element must be loaded or an npe will occur
+	 *
+	 * @param element
+	 * @return
+	 */
+	public String getProjectName(EventBElement element) {
+		URI uri = element.getURI();
+		return uri.segment(1);
+	}
+
+	/**
+	 * This loads the complete project into EMF. This is an ALTERNATIVE to
+	 * working with individual component resources.
+	 *
+	 * (remember, if you already have individual components loaded in
+	 * EMFRodinDB, loading the project creates different objects for these same
+	 * components and proxies will not resolve between the two. It is
+	 * recommended to use getReference() to test whether two elements loaded in
+	 * different resources are actually representing the same model element).
+	 *
+	 * @param project
+	 *            name
+	 * @return
+	 */
+	public Project loadEMFProject(String projectName) {
+		final URI projectURI = URI.createPlatformResourceURI(projectName + "/" + projectName + ".prj", true);
+		Resource projRes = loadResource(projectURI);
+		return (Project) projRes.getContents().get(0);
+	}
+
+	public List<EventBNamedCommentedComponentElement> loadAllComponents(String projectName) {
+		List<EventBNamedCommentedComponentElement> components = new ArrayList<EventBNamedCommentedComponentElement>();
+		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		try {
+			final IRodinDB rodinDB = RodinCore.valueOf(workspace.getRoot());
+
+			IRodinProject rp = rodinDB.getRodinProject(projectName);
+			IInternalElement[] roots = {};
+			for (IInternalElementType<?> type : supportedTypes) {
+				roots = rp.getRootElementsOfType(type);
+				for (IInternalElement root : roots) {
+					EventBElement comp = loadEventBComponent(root);
+					if (comp instanceof EventBNamedCommentedComponentElement) {
+						components.add((EventBNamedCommentedComponentElement) comp);
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return components;
+	}
+
+	private final static IInternalElementType<?>[] supportedTypes = { IMachineRoot.ELEMENT_TYPE, IContextRoot.ELEMENT_TYPE };
 }
