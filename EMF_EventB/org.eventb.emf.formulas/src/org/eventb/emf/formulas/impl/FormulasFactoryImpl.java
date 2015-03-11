@@ -31,7 +31,7 @@ public class FormulasFactoryImpl extends EFactoryImpl implements FormulasFactory
 	 */
 	public static FormulasFactory init() {
 		try {
-			FormulasFactory theFormulasFactory = (FormulasFactory)EPackage.Registry.INSTANCE.getEFactory("http://emf.eventb.org/models/core/formulas"); 
+			FormulasFactory theFormulasFactory = (FormulasFactory)EPackage.Registry.INSTANCE.getEFactory(FormulasPackage.eNS_URI);
 			if (theFormulasFactory != null) {
 				return theFormulasFactory;
 			}
@@ -160,6 +160,8 @@ public class FormulasFactoryImpl extends EFactoryImpl implements FormulasFactory
 			case FormulasPackage.INTERSECTION_EXPRESSION: return createIntersectionExpression();
 			case FormulasPackage.UNION_EXPRESSION: return createUnionExpression();
 			case FormulasPackage.PARTITION_PREDICATE: return createPartitionPredicate();
+			case FormulasPackage.EXTENDED_PREDICATE: return createExtendedPredicate();
+			case FormulasPackage.EXTENDED_EXPRESSION: return createExtendedExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1163,6 +1165,26 @@ public class FormulasFactoryImpl extends EFactoryImpl implements FormulasFactory
 	public PartitionPredicate createPartitionPredicate() {
 		PartitionPredicateImpl partitionPredicate = new PartitionPredicateImpl();
 		return partitionPredicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtendedPredicate createExtendedPredicate() {
+		ExtendedPredicateImpl extendedPredicate = new ExtendedPredicateImpl();
+		return extendedPredicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExtendedExpression createExtendedExpression() {
+		ExtendedExpressionImpl extendedExpression = new ExtendedExpressionImpl();
+		return extendedExpression;
 	}
 
 	/**

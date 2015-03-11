@@ -497,6 +497,14 @@ public class FormulasAdapterFactory extends AdapterFactoryImpl {
 				return createPartitionPredicateAdapter();
 			}
 			@Override
+			public Adapter caseExtendedPredicate(ExtendedPredicate object) {
+				return createExtendedPredicateAdapter();
+			}
+			@Override
+			public Adapter caseExtendedExpression(ExtendedExpression object) {
+				return createExtendedExpressionAdapter();
+			}
+			@Override
 			public Adapter caseEventBObject(EventBObject object) {
 				return createEventBObjectAdapter();
 			}
@@ -2013,6 +2021,34 @@ public class FormulasAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPartitionPredicateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eventb.emf.formulas.ExtendedPredicate <em>Extended Predicate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eventb.emf.formulas.ExtendedPredicate
+	 * @generated
+	 */
+	public Adapter createExtendedPredicateAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eventb.emf.formulas.ExtendedExpression <em>Extended Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eventb.emf.formulas.ExtendedExpression
+	 * @generated
+	 */
+	public Adapter createExtendedExpressionAdapter() {
 		return null;
 	}
 

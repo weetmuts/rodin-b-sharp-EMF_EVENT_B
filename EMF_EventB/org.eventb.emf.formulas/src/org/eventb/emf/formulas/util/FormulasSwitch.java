@@ -1414,6 +1414,32 @@ public class FormulasSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FormulasPackage.EXTENDED_PREDICATE: {
+				ExtendedPredicate extendedPredicate = (ExtendedPredicate)theEObject;
+				T result = caseExtendedPredicate(extendedPredicate);
+				if (result == null) result = caseMultiOperand(extendedPredicate);
+				if (result == null) result = caseBPredicateResolved(extendedPredicate);
+				if (result == null) result = caseBFormula(extendedPredicate);
+				if (result == null) result = caseExtension(extendedPredicate);
+				if (result == null) result = caseAbstractExtension(extendedPredicate);
+				if (result == null) result = caseEventBElement(extendedPredicate);
+				if (result == null) result = caseEventBObject(extendedPredicate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FormulasPackage.EXTENDED_EXPRESSION: {
+				ExtendedExpression extendedExpression = (ExtendedExpression)theEObject;
+				T result = caseExtendedExpression(extendedExpression);
+				if (result == null) result = caseMultiOperand(extendedExpression);
+				if (result == null) result = caseBExpressionResolved(extendedExpression);
+				if (result == null) result = caseBFormula(extendedExpression);
+				if (result == null) result = caseExtension(extendedExpression);
+				if (result == null) result = caseAbstractExtension(extendedExpression);
+				if (result == null) result = caseEventBElement(extendedExpression);
+				if (result == null) result = caseEventBObject(extendedExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -3005,6 +3031,36 @@ public class FormulasSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePartitionPredicate(PartitionPredicate object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extended Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extended Predicate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendedPredicate(ExtendedPredicate object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Extended Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Extended Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExtendedExpression(ExtendedExpression object) {
 		return null;
 	}
 

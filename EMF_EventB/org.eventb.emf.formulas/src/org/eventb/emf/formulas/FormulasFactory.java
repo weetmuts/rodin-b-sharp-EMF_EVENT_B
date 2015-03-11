@@ -926,6 +926,24 @@ public interface FormulasFactory extends EFactory {
 	PartitionPredicate createPartitionPredicate();
 
 	/**
+	 * Returns a new object of class '<em>Extended Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extended Predicate</em>'.
+	 * @generated
+	 */
+	ExtendedPredicate createExtendedPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Extended Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Extended Expression</em>'.
+	 * @generated
+	 */
+	ExtendedExpression createExtendedExpression();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

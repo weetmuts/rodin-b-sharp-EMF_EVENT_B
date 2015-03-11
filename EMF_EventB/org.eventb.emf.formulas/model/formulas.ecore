@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="formulas"
-    nsURI="http://emf.eventb.org/models/core/formulas" nsPrefix="formulas">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="formulas" nsURI="http://emf.eventb.org/models/core/formulas"
+    nsPrefix="formulas">
   <eClassifiers xsi:type="ecore:EClass" name="BFormula" abstract="true" eSuperTypes="../../org.eventb.emf.core/model/eventbcore.ecore#//Extension"/>
   <eClassifiers xsi:type="ecore:EClass" name="BExpressionResolved" abstract="true"
       eSuperTypes="#//BFormula"/>
@@ -192,4 +191,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="IntersectionExpression" eSuperTypes="#//MultiOperand #//BExpressionResolved"/>
   <eClassifiers xsi:type="ecore:EClass" name="UnionExpression" eSuperTypes="#//MultiOperand #//BExpressionResolved"/>
   <eClassifiers xsi:type="ecore:EClass" name="PartitionPredicate" eSuperTypes="#//MultiOperand #//BPredicateResolved"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedPredicate" eSuperTypes="#//MultiOperand #//BPredicateResolved"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExtendedExpression" eSuperTypes="#//MultiOperand #//BExpressionResolved"/>
 </ecore:EPackage>

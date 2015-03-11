@@ -41,6 +41,8 @@ import org.eventb.emf.formulas.EqualPredicate;
 import org.eventb.emf.formulas.EquivalencePredicate;
 import org.eventb.emf.formulas.ExistPredicate;
 import org.eventb.emf.formulas.ExponentiationExpression;
+import org.eventb.emf.formulas.ExtendedExpression;
+import org.eventb.emf.formulas.ExtendedPredicate;
 import org.eventb.emf.formulas.FinitePredicate;
 import org.eventb.emf.formulas.ForallPredicate;
 import org.eventb.emf.formulas.FormulasFactory;
@@ -863,6 +865,20 @@ public class FormulasPackageImpl extends EPackageImpl implements FormulasPackage
 	 * @generated
 	 */
 	private EClass partitionPredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass extendedPredicateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass extendedExpressionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -2175,6 +2191,24 @@ public class FormulasPackageImpl extends EPackageImpl implements FormulasPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getExtendedPredicate() {
+		return extendedPredicateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExtendedExpression() {
+		return extendedExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FormulasFactory getFormulasFactory() {
 		return (FormulasFactory)getEFactoryInstance();
 	}
@@ -2441,6 +2475,10 @@ public class FormulasPackageImpl extends EPackageImpl implements FormulasPackage
 		unionExpressionEClass = createEClass(UNION_EXPRESSION);
 
 		partitionPredicateEClass = createEClass(PARTITION_PREDICATE);
+
+		extendedPredicateEClass = createEClass(EXTENDED_PREDICATE);
+
+		extendedExpressionEClass = createEClass(EXTENDED_EXPRESSION);
 	}
 
 	/**
@@ -2658,6 +2696,10 @@ public class FormulasPackageImpl extends EPackageImpl implements FormulasPackage
 		unionExpressionEClass.getESuperTypes().add(this.getBExpressionResolved());
 		partitionPredicateEClass.getESuperTypes().add(this.getMultiOperand());
 		partitionPredicateEClass.getESuperTypes().add(this.getBPredicateResolved());
+		extendedPredicateEClass.getESuperTypes().add(this.getMultiOperand());
+		extendedPredicateEClass.getESuperTypes().add(this.getBPredicateResolved());
+		extendedExpressionEClass.getESuperTypes().add(this.getMultiOperand());
+		extendedExpressionEClass.getESuperTypes().add(this.getBExpressionResolved());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(bFormulaEClass, BFormula.class, "BFormula", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2903,6 +2945,10 @@ public class FormulasPackageImpl extends EPackageImpl implements FormulasPackage
 		initEClass(unionExpressionEClass, UnionExpression.class, "UnionExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(partitionPredicateEClass, PartitionPredicate.class, "PartitionPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(extendedPredicateEClass, ExtendedPredicate.class, "ExtendedPredicate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(extendedExpressionEClass, ExtendedExpression.class, "ExtendedExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
