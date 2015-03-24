@@ -131,7 +131,7 @@ public class SerialisedExtensionSynchroniser extends AbstractSynchroniser {
 					EList<EStructuralFeature> eFeatures = eClass.getEAllStructuralFeatures();
 					for (EStructuralFeature feature : eFeatures) {
 						if (eventBElement.eClass().getEStructuralFeature(feature.getName()) != null){
-							if (feature.isChangeable())
+							if (feature.isChangeable() && (!feature.isUnsettable() || ext.eIsSet(feature)))
 								eventBElement.eSet(feature, ext.eGet(feature));
 						}
 					}
