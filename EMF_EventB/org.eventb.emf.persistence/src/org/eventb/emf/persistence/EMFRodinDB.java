@@ -3,8 +3,10 @@ package org.eventb.emf.persistence;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -49,6 +51,11 @@ public final class EMFRodinDB {
 	 * the singleton instance of EMFRodinDB
 	 */
 	public final static EMFRodinDB INSTANCE = new EMFRodinDB();
+	private final static Set<IInternalElementType<?>> SupportedRoots = new HashSet<IInternalElementType<?>>();
+	static {
+		SupportedRoots.add(IMachineRoot.ELEMENT_TYPE);
+		SupportedRoots.add(IContextRoot.ELEMENT_TYPE);
+	}
 
 	private EMFRodinDB() {
 	} //do not allow instantiation
@@ -115,7 +122,7 @@ public final class EMFRodinDB {
 	 * @return
 	 */
 	public EventBElement loadEventBComponent(IInternalElement root) {
-		if (root == null || !root.exists())
+		if (root == null || !root.exists() || !SupportedRoots.contains(root.getElementType()))
 			return null;
 		URI fileURI = URI.createPlatformResourceURI(root.getResource().getFullPath().toString(), true);
 		return loadEventBComponent(fileURI);
@@ -146,7 +153,7 @@ public final class EMFRodinDB {
 	 * @return
 	 */
 	public Resource loadResource(IInternalElement root) {
-		if (root == null || !root.exists())
+		if (root == null || !root.exists() || !SupportedRoots.contains(root.getElementType()))
 			return null;
 		URI fileURI = URI.createPlatformResourceURI(root.getResource().getFullPath().toString(), true);
 		return loadResource(fileURI);
@@ -159,9 +166,15 @@ public final class EMFRodinDB {
 	 * @return
 	 */
 	public Resource loadResource(URI fileURI) {
-		Resource resource = resourceSet.getResource(fileURI, false); //n.b. do not load until notifications disabled
-		if (resource == null) {
-			resource = resourceSet.createResource(fileURI);
+		Resource resource = null;
+		try {
+			resource = resourceSet.getResource(fileURI, false); //n.b. do not load until notifications disabled
+			if (resource == null) {
+				resource = resourceSet.createResource(fileURI);
+			}
+		} catch (Exception e) {
+			System.out.println("Unable to load resource for " + fileURI + "\n" + e.getMessage());
+			return null;
 		}
 		if (!resource.isLoaded()) {
 			resource.eSetDeliver(false); // turn off notifications while loading
