@@ -483,28 +483,30 @@ public abstract class EventBElementImpl extends EventBObjectImpl implements Even
 	/**
 	 * returns the internal id of this element if it has one
 	 * (internal id is used to construct references for elements that do not have a name)
-	 * THIS METHOD IS ONLY PROVIDED FOR PERSISTENCE TO SAVE THE ID
+	 * THIS METHOD IS ONLY PROVIDED FOR INTERNAL USE WITHIN THE FRAMEWORK
 	 * OTHER USERS SHOULD NOT BE USING THIS METHOD
-	 * N.B. Named elements DO NOT have ids - they use name instead.
-	 * @return UUID string or null
+	 * 
+	 * N.B. Named elements DO NOT have ids - they use name instead. 
+	 * 
+	 * @return internalId
 	 * @generated NOT
 	 */	
 	public String getInternalId(){
-		if (this instanceof EventBNamed) return null;
+		//if (this instanceof EventBNamed) return null;   //Allow named elements to use the internal ID for now.
 		return internalId;
 	}
 	
 	/**
-	 * set the internal id of this element if it is allowed one
+	 * set the internal id of this element
 	 * (internal id is used to construct references for elements that do not have a name)
-	 * THIS METHOD IS ONLY PROVIDED FOR PERSISTENCE TO LOAD THE ID
+	 * THIS METHOD IS ONLY PROVIDED FOR INTERNAL USE WITHIN THE FRAMEWORK
 	 * OTHER USERS SHOULD NOT BE USING THIS METHOD
 	 * N.B. Named elements DO NOT have ids - they use name instead.
-	 * @param UUID string
+	 * @param newInternalId string
 	 * @generated NOT
 	 */
 	public void setInternalId(String newInternalId) {
-		if (this instanceof EventBNamed) return;
+		//if (this instanceof EventBNamed) return;  //Allow named elements to use the internal ID for now.
 		String oldInternalId = internalId;
 		internalId = newInternalId;
 		boolean oldInternalIdESet = internalIdESet;
