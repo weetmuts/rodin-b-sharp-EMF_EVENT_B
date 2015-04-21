@@ -149,10 +149,11 @@ public final class EMFRodinDB {
 	/**
 	 * loads an Event-B component (root) as an EMF Resource
 	 *
-	 * @param root
+	 * @param an internal element (possibly the root or something in it)
 	 * @return
 	 */
 	public Resource loadResource(IInternalElement root) {
+		root = root.getRoot();
 		if (root == null || !root.exists() || !SupportedRoots.contains(root.getElementType()))
 			return null;
 		URI fileURI = URI.createPlatformResourceURI(root.getResource().getFullPath().toString(), true);
@@ -177,13 +178,16 @@ public final class EMFRodinDB {
 			return null;
 		}
 		if (!resource.isLoaded()) {
+			boolean deliver = resource.eDeliver();
 			resource.eSetDeliver(false); // turn off notifications while loading
 			try {
 				resource.load(Collections.emptyMap());
 			} catch (IOException e) {
 				return null;
+			} finally {
+				resource.eSetDeliver(deliver);
 			}
-			resource.eSetDeliver(true);
+
 		}
 		if (resource.isLoaded()) {
 			return resource;
@@ -207,9 +211,9 @@ public final class EMFRodinDB {
 	}
 
 	/**
-	 * loads the EMF resource using the EMF uri and uses the uri fragment to
+	 * Loads the EMF resource using the EMF uri and uses the uri fragment to
 	 * obtain an EMF child element to return (The uri could be from an
-	 * unresolved proxy for exaample)
+	 * unresolved proxy for example)
 	 *
 	 * @param uri
 	 * @return
