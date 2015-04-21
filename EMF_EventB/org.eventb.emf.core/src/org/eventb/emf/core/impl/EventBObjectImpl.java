@@ -126,6 +126,8 @@ public abstract class EventBObjectImpl extends EObjectImpl implements EventBObje
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * deprecated - use EcoreUtil.getURI(EObject) instead
+	 * 
 	 * returns the URI of this element.
 	 * (If the element is not loaded, the URI is obtained from the proxy without loading the element)
 	 *
@@ -133,13 +135,10 @@ public abstract class EventBObjectImpl extends EObjectImpl implements EventBObje
 	 * 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
+	 * @deprecated - use EcoreUtil.getURI(EObject);
 	 */
 	public  URI getURI() {
-		if (eIsProxy()){
-			return ((InternalEObject)this).eProxyURI();
-		}else{
-			return eResource()==null? null: eResource().getURI();
-		}
+			return EcoreUtil.getURI(this);
 	}
 
 	/**

@@ -20,14 +20,6 @@
       <eParameters name="eClass" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
       <eParameters name="resolve" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
-    <eOperations name="getURI" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="if (eIsProxy()){&#xA;&#x9;return ((InternalEObject)this).eProxyURI();&#xA;}else{&#xA;&#x9;return eResource().getURI();&#xA;}"/>
-        <details key="documentation" value="returns the URI of this element.&#xD;(If the element is not loaded, the URI is obtained from the proxy without loading the element)&#xD;&#xD;[AFTER RE-GENERATING REMOVE THE TYPE PARAMETER &lt;URI>]"/>
-      </eAnnotations>
-      <eGenericType eTypeParameter="#//EventBObject/getURI/URI"/>
-      <eTypeParameters name="URI"/>
-    </eOperations>
     <eOperations name="getAnnotation" eType="#//Annotation">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="for (Annotation annotation : getAnnotations()){&#xA;&#x9;if (source.equals(annotation.getSource())) return annotation;&#xA;}&#xA;return null;"/>
