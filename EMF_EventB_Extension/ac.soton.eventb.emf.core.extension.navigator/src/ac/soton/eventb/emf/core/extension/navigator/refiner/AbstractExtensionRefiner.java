@@ -93,9 +93,9 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	
 	/**
 	 * A map of the references which need to be dealt with in the new refined model.
-	 * For each EReference, the boolean indicates whether it should be dealt with as a reference back to 
+	 * For each EReference, the RefHandling indicates whether it should be dealt with as a reference back to 
 	 * the source element (e.g. refines) or a normal reference within the same resource level which
-	 * will be copied to simulate the abstract one..
+	 * will be copied to simulate the abstract one, or it should be copied or dropped in the refined model.
 	 */
 	private Map<EReference,RefHandling> referencemap = new HashMap<EReference,RefHandling>();
 	
@@ -221,12 +221,12 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 * @param extension
 	 * @return
 	 */
-	private EventBElement refineEventBElement(EventBObject extension) {
+	private EventBElement refineEventBElement(EventBObject element) {
 		copier = new Copier(true,false);
 		// create refined Component using copier.
 		// this does a deep copy of all the children and properties of the copied element
 		// but it does not copy any references
-		EventBElement concreteEventBElement = (EventBElement) copier.copy(extension); 
+		EventBElement concreteEventBElement = (EventBElement) copier.copy(element); 
 		//copier.copyReferences();  <--THIS DOES NOT WORK - INSTEAD SEE BELOW
 		copyReferences(concreteEventBElement);
 		//having copied everything we may need to remove some kinds of elements that are not supposed to be
