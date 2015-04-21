@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="ac.soton.eventb.emf.core.extension.navigator.adapterFactories" name="%extension-point.name" schema="schema/ac.soton.eventb.emf.core.extension.navigator.adapterFactories.exsd"/>
+   <extension-point id="ac.soton.eventb.emf.core.extension.navigator.elementRefinement" name="elementRefinement" schema="schema/ac.soton.eventb.emf.core.extension.navigator.elementRefinement.exsd"/>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
@@ -58,6 +59,25 @@
             properties="eventBRootChild"
             type="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem">
       </propertyTester>
+   </extension>
+   <extension
+         point="ac.soton.eventb.emf.core.extension.navigator.elementRefinement">
+      <refinementDefinition
+            ePackage="http://emf.eventb.org/models/core/2014"
+            refiner_class="ac.soton.eventb.emf.core.extension.navigator.refiner.CoreElementRefiner">
+      </refinementDefinition>
+      <refinementDefinition
+            ePackage="http://emf.eventb.org/models/core/context/2014"
+            refiner_class="ac.soton.eventb.emf.core.extension.navigator.refiner.ContextElementRefiner">
+      </refinementDefinition>
+      <refinementDefinition
+            ePackage="http://emf.eventb.org/models/core/machine/2014"
+            refiner_class="ac.soton.eventb.emf.core.extension.navigator.refiner.MachineElementRefiner">
+      </refinementDefinition>
+      <refinementDefinition
+            ePackage="http://soton.ac.uk/models/eventb/coreextension/2014"
+            refiner_class="ac.soton.eventb.emf.core.extension.navigator.refiner.CoreextensionElementRefiner">
+      </refinementDefinition>
    </extension>
    
 </plugin>
