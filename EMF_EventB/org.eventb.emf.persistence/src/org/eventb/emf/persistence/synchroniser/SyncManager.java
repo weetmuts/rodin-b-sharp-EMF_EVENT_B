@@ -123,9 +123,6 @@ public class SyncManager {
 			throws CoreException {
 		final IRodinElement rodinElement;
 
-		if (emfElement.getClass().toString().contains("State")) {
-
-		}
 		// get mapping and call synchroniser
 		final ISynchroniser synchroniser = emfMapping.get(emfElement.eClass());
 
@@ -142,7 +139,7 @@ public class SyncManager {
 		List<EObject> childOrder = order.get(emfElement);
 		if (childOrder == null)
 			childOrder = new ArrayList<EObject>();
-		//work out whether any children have been moved 
+		//work out whether any children have been moved
 		//(and add any new children into the order) so that they precede
 		//the next element that is in the same EMF containment feature
 		for (final EObject child : emfElement.eContents()) {
@@ -169,7 +166,7 @@ public class SyncManager {
 	 * in which case the position of the next element in childOrder that it must
 	 * precede is returned.. Returns -1 if the current position is ok
 	 * (childOrder should not be changed).
-	 * 
+	 *
 	 * @param parent
 	 * @param childOrder
 	 * @param child
