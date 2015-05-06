@@ -49,6 +49,11 @@ import ac.soton.eventb.emf.core.extension.persistence.SerialisedExtensionSynchro
 public abstract class AbstractExtensionRefiner implements IRefinementParticipant {
 
 	/**
+	 * Create an EMFRodinDB for loading extensions into EMF
+	 */
+	private final static EMFRodinDB emfRodinDB = new EMFRodinDB();
+	
+	/**
 	 * The ID for this kind of Serialised Event-B EMF Extension
 	 */
 	private final String EXTENSION_ID;
@@ -208,7 +213,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 	 */
 	private void refineExtension(IEventBRoot concreteEventBRoot, IEventBRoot abstractEventBRoot, ISerialisedExtension abstractExtensionRoot, IProgressMonitor monitor) throws RodinDBException, CoreException 	{		
 		//obtain the EMF version of the abstract serialised extension by loading it into a Rodin Resource
-		EventBObject extension = EMFRodinDB.INSTANCE.loadElement(abstractExtensionRoot);
+		EventBObject extension = emfRodinDB.loadElement(abstractExtensionRoot);
 		//serialise refined extension back into the RodinDB concreteEventBRoot (not into EMF resource as this does not exist yet)
 		synchroniser.save(refineEventBElement(extension), concreteEventBRoot, monitor);
 	}

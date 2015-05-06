@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eventb.core.IContextRoot;
 import org.eventb.core.IMachineRoot;
 import org.eventb.emf.core.EventBElement;
@@ -42,26 +43,57 @@ import org.rodinp.core.RodinCore;
  * or a specific element within the contents. A save method is also provided to
  * save an EventBElement into resource specified by URI.
  *
+ * A static instance is normally sufficient for utilities (where no editing
+ * domain is pre-existing) but for editors (where an editing domain and/or
+ * resource set already exist and are used to create the new instance) it may be
+ * better to create new instances for each client instantiation.
+ *
  * @author cfs
  *
  */
 public final class EMFRodinDB {
 
 	/**
-	 * the singleton instance of EMFRodinDB
+	 * A singleton instance of EMFRodinDB
+	 *
+	 * deprecated: using a singleton means that all resources are in the same
+	 * resource set and this has been found to cause sync problems rather than
+	 * solve them. Instead it is best for each client to create an instance and
+	 * maintain its own resource set. (A static instance is normally sufficient
+	 * for utilities where no editing domain is pre-existing, but for editors,
+	 * where an editing domain and/or resource set already exist and are used to
+	 * create the new instance, it may be better to create new instances for
+	 * each client instantiation).
+	 *
 	 */
+	@Deprecated
 	public final static EMFRodinDB INSTANCE = new EMFRodinDB();
+
 	private final static Set<IInternalElementType<?>> SupportedRoots = new HashSet<IInternalElementType<?>>();
 	static {
 		SupportedRoots.add(IMachineRoot.ELEMENT_TYPE);
 		SupportedRoots.add(IContextRoot.ELEMENT_TYPE);
 	}
 
-	private EMFRodinDB() {
-	} //do not allow instantiation
+	private final ResourceSet resourceSet;
+	private final TransactionalEditingDomain editingDomain;
 
-	private final ResourceSet resourceSet = new ListeningRodinResourceSet();
-	private final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
+	public EMFRodinDB() {
+		resourceSet = new ListeningRodinResourceSet();
+		TransactionalEditingDomain ed = TransactionUtil.getEditingDomain(resourceSet);
+		editingDomain = ed == null ? TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet) : ed;
+	}
+
+	public EMFRodinDB(ResourceSet resourceSet) {
+		this.resourceSet = resourceSet;
+		TransactionalEditingDomain ed = TransactionUtil.getEditingDomain(resourceSet);
+		editingDomain = ed == null ? TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet) : ed;
+	}
+
+	public EMFRodinDB(TransactionalEditingDomain editingDomain) {
+		this.editingDomain = editingDomain;
+		this.resourceSet = editingDomain.getResourceSet();
+	}
 
 	private final class resourceListener implements IChangeListener {
 		@Override
@@ -149,7 +181,8 @@ public final class EMFRodinDB {
 	/**
 	 * loads an Event-B component (root) as an EMF Resource
 	 *
-	 * @param an internal element (possibly the root or something in it)
+	 * @param an
+	 *            internal element (possibly the root or something in it)
 	 * @return
 	 */
 	public Resource loadResource(IInternalElement root) {

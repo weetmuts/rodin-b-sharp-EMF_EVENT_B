@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
@@ -44,6 +43,12 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 	protected AdapterFactoryContentProvider myAdapterFactoryContentProvier;
 
 	protected static final Object[] EMPTY_ARRAY = new Object[0];
+	
+	/**
+	 * Create an EMFRodinDB for loading extensions into EMF
+	 */
+	private final static EMFRodinDB emfRodinDB = new EMFRodinDB();
+	
 
 	private Viewer myViewer;
 
@@ -51,14 +56,11 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 
 	private Runnable myViewerRefreshRunnable;
 
-	private TransactionalEditingDomain editingDomain;
-
 	/**
 	 * Constructor
 	 */
 	public ExtensionContentProvider() {
 		myAdapterFactoryContentProvier = new AdapterFactoryContentProvider(ExtensionNavigatorPlugin.getDefault().getItemProvidersAdapterFactory());
-		editingDomain = EMFRodinDB.INSTANCE.getEditingDomain(); //TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(EMFRodinDB.INSTANCE.getResourceSet());
 		
 		//This used to set the resource as read only but this caused problems because..
 		//  the resource may be changed by various navigator commands that also use this editing domain and resource set.
@@ -79,7 +81,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 				}
 			}
 		};
-		myWorkspaceSynchronizer = new WorkspaceSynchronizer( editingDomain,
+		myWorkspaceSynchronizer = new WorkspaceSynchronizer( emfRodinDB.getEditingDomain(),
 				new WorkspaceSynchronizer.Delegate() {
 					public void dispose() {
 					}
@@ -120,7 +122,7 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IMachineRoot || parentElement instanceof IContextRoot) {
 			IEventBRoot root = (IEventBRoot) parentElement;
-			EventBElement element = EMFRodinDB.INSTANCE.loadEventBComponent(root);
+			EventBElement element = emfRodinDB.loadEventBComponent(root);
 			if (element != null){
 				return wrapEObjects(
 						element.getExtensions().toArray(),
