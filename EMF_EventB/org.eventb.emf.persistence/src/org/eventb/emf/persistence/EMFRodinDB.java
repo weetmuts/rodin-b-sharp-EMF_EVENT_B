@@ -154,6 +154,7 @@ public final class EMFRodinDB {
 	 * @return
 	 */
 	public EventBElement loadEventBComponent(IInternalElement root) {
+		root = root.getRoot();
 		if (root == null || !root.exists() || !SupportedRoots.contains(root.getElementType()))
 			return null;
 		URI fileURI = URI.createPlatformResourceURI(root.getResource().getFullPath().toString(), true);
