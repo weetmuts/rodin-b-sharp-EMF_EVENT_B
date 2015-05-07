@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: ac.soton.eventb.emf.core.extension.navigator;singleton:=true
-Bundle-Version: 4.0.1
+Bundle-Version: 4.1.0
 Bundle-Activator: ac.soton.eventb.emf.core.extension.navigator.ExtensionNavigatorPlugin
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui;bundle-version="[3.7.0,4.0.0)",
@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.7.0,4.0.0)",
  fr.systerel.explorer;bundle-version="[2.0.0,3.0.0)",
  org.eventb.emf.core;bundle-version="[4.2.0,5.0.0)",
  org.eventb.emf.core.edit;bundle-version="[1.0.0,2.0.0)",
- org.eventb.emf.persistence;bundle-version="[3.3.0,4.0.0)",
+ org.eventb.emf.persistence;bundle-version="[3.4.0,4.0.0)",
  ac.soton.eventb.emf.core.extension;bundle-version="[4.0.0,5.0.0)",
  ac.soton.eventb.emf.core.extension.persistence;bundle-version="[2.0.0,3.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
