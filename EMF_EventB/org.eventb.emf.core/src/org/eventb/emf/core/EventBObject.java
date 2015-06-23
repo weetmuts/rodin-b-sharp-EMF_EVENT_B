@@ -103,6 +103,7 @@ public interface EventBObject extends EObject {
 	 *
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
+	 * @deprecated - use use EcoreUtil.getURI(EObject);
 	 * @generated NOT
 	 */
 	URI getURI();
