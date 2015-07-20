@@ -27,9 +27,6 @@
         <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getAllContained/eClass"/>
         <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getAllContained/resolve"/>
       </genOperations>
-      <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getURI">
-        <genTypeParameters ecoreTypeParameter="eventbcore.ecore#//EventBObject/getURI/URI"/>
-      </genOperations>
       <genOperations ecoreOperation="eventbcore.ecore#//EventBObject/getAnnotation">
         <genParameters ecoreParameter="eventbcore.ecore#//EventBObject/getAnnotation/source"/>
       </genOperations>
