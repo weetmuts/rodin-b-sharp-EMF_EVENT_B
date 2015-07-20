@@ -101,37 +101,61 @@ public abstract class AbstractElementRefiner {
 		return getEquivalentObject(concreteParent, null, abstractObject);
 	}
 	
-	public EventBObject getEquivalentObject(EObject newParent, EStructuralFeature feature, EObject abstractObject) {
-		Iterator<?> contents = null;
-		
-		if (feature != null){
-			Object featureValue =	newParent.eGet(feature);
-			if (featureValue instanceof EList<?>)
-			contents = ((EList<?>) newParent.eGet(feature)).iterator();
-		}else{
-			contents = newParent.eAllContents();
+	public EventBObject getEquivalentObject(EObject concreteParent, EStructuralFeature feature, EObject abstractObject) {
+
+		if (abstractObject instanceof EventBNamedCommentedComponentElement && concreteParent.eClass()==abstractObject.eClass()){
+			return (EventBObject) concreteParent;
 		}
 		
+		List<Object> contents = new ArrayList<Object>();
+		contents.add(concreteParent);
+		if (feature != null){
+			Object featureValue =	concreteParent.eGet(feature);
+			if (featureValue instanceof EList<?>) {
+				contents.addAll(((EList<?>) concreteParent.eGet(feature)));
+				//contents = ((EList<?>) concreteParent.eGet(feature)).iterator();
+			}
+		}else{
+			Iterator<EObject> iter = concreteParent.eAllContents();
+			while (iter.hasNext()){
+				contents.add(iter.next());
+			}
+		}
+
 		EClass clazz = abstractObject.eClass();
 		EStructuralFeature nameFeature = clazz.getEStructuralFeature("name");
 		Object name = nameFeature==null? null : abstractObject.eGet(nameFeature);
-		EStructuralFeature labelFeature = clazz.getEStructuralFeature("label");
-		Object label = labelFeature==null? null : abstractObject.eGet(labelFeature);
+		EStructuralFeature internalIdFeature = clazz.getEStructuralFeature("internalId");
+		Object internalId = internalIdFeature==null? null : abstractObject.eGet(internalIdFeature);
 		EStructuralFeature refinesFeature = clazz.getEStructuralFeature("refines");
+		
 
-		
-		while (contents.hasNext()){
-			Object possible = contents.next();
+		for (Object possible : contents){
 			if (possible instanceof EObject && ((EObject) possible).eClass() == clazz){
+				
+				// if name is the same and in the same equivalent parent
 				if (nameFeature!=null && name!=null && name.equals(((EObject) possible).eGet(nameFeature))){
-					return (EventBObject) possible;
+					
+					String r1 = ((EventBElement)abstractObject).getReference();
+					String r2 = ((EventBElement)possible).getReference();
+					EObject c1 = abstractObject.eContainer();
+					EObject c2 = ((EObject) possible).eContainer();
+					// get a refiner for the ePackage containing this abstract object
+					String nsURI = c1.eClass().getEPackage().getNsURI();
+					AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(nsURI);
+					if (refiner==null) continue;
+					EventBObject c1e = refiner.getEquivalentObject(concreteParent, c1);
+					if (c2 == c1e){
+						return (EventBObject) possible;
+					}
 				}
-			}
-		}
-		
-		while (contents.hasNext()){
-			Object possible = contents.next();
-			if (possible instanceof EObject && ((EObject) possible).eClass() == clazz){
+
+//				// if internal ID is the same
+//				if (internalIdFeature!=null && internalId!=null && internalId.equals(((EObject) possible).eGet(internalIdFeature))){
+//					return (EventBObject) possible;
+//				}
+				
+				// if refines the abstract object
 				if (refinesFeature!=null && !refinesFeature.isMany() && ((EObject) possible).eGet(refinesFeature) == abstractObject){
 					return (EventBObject) possible;
 				}
