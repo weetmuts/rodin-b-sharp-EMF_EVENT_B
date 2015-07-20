@@ -18,7 +18,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.EventBObject;
@@ -30,19 +33,19 @@ import org.rodinp.core.RodinCore;
 import org.rodinp.core.RodinDBException;
 
 /**
- * 
+ *
  * This is the serialisation of Event-B models from EMF into the Rodin database
  * We overload save and load directly as we are not interested in input or
  * output streams (because we load/save through the Rodin API)
- * 
+ *
  * We extend XMIResourceImpl (rather than ResourceImpl). This allows clients to
  * call the I/O stream versions of save and load to obtain the model content in
  * EMF's default XMI stream. For example, EMF compare uses this.
- * 
+ *
  * If file extension is "xmb", default xmi serialisation is used.
- * 
+ *
  * @author cfs/ff
- * 
+ *
  */
 
 public class RodinResource extends XMIResourceImpl {
@@ -64,7 +67,7 @@ public class RodinResource extends XMIResourceImpl {
 	/**
 	 * Returns a record of the persistence as a map from rodin elements to EMF
 	 * elements. The map is unmodifiable.
-	 * 
+	 *
 	 * @return Map<IInternalElement, EventBObject>
 	 */
 	public final Map<IRodinElement, EventBObject> getMap() {
@@ -218,7 +221,11 @@ public class RodinResource extends XMIResourceImpl {
 	 * lazily resolved. If found these are lists are re-written which will also
 	 * re-write the corresponding proxy. Hence any resolved references are reset
 	 * to unresolved proxies before saving.
-	 * 
+	 *
+	 * Also iterates through all non-containment references replacing any
+	 * resolved references with proxies. (This is a workaround because some
+	 * programmatic saves do not construct the proxy uri correctly)
+	 *
 	 */
 	@SuppressWarnings("unchecked")
 	private void unresolveRefs() {
@@ -240,8 +247,47 @@ public class RodinResource extends XMIResourceImpl {
 						}
 					}
 				}
+				for (EReference ref : eClass.getEAllReferences()) {
+					if (ref.isContainment())
+						continue;
+					Object refVal = element.eGet(ref, false);
+					if (ref.isMany() && refVal instanceof EList<?>) {
+						EList<Object> refValList = (EList<Object>) refVal;
+						for (int i = 0; i < refValList.size(); i++) {
+							Object refValItem = refValList.get(i);
+							Object newVal = unresolve(refValItem);
+							if (newVal != refValItem) {
+								refValList.set(i, newVal);
+							}
+						}
+					} else {
+						Object newVal = unresolve(refVal);
+						if (newVal != refVal) {
+							element.eSet(ref, newVal);
+						}
+					}
+
+				}
 			}
 		}
+	}
+
+	/**
+	 * @param refVal
+	 * @return
+	 */
+	private Object unresolve(Object refVal) {
+		if (!(refVal instanceof EObject) || ((EObject) refVal).eIsProxy()) {
+			return refVal;
+		}
+		URI uri = EcoreUtil.getURI((EObject) refVal);
+		if (uri == null) {
+			return refVal;
+		}
+		EClass proxyClass = ((EObject) refVal).eClass();
+		InternalEObject proxy = (InternalEObject) proxyClass.getEPackage().getEFactoryInstance().create(proxyClass);
+		proxy.eSetProxyURI(uri);
+		return proxy;
 	}
 
 	public IRodinFile getRodinFile() {
@@ -257,7 +303,7 @@ public class RodinResource extends XMIResourceImpl {
 
 	/**
 	 * Returns whether this resource exists.
-	 * 
+	 *
 	 * @exception IOException
 	 *                if the resource is not properly defined.
 	 */
