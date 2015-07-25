@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
@@ -125,8 +125,8 @@ public abstract class AbstractElementRefiner {
 		EClass clazz = abstractObject.eClass();
 		EStructuralFeature nameFeature = clazz.getEStructuralFeature("name");
 		Object name = nameFeature==null? null : abstractObject.eGet(nameFeature);
-		EStructuralFeature internalIdFeature = clazz.getEStructuralFeature("internalId");
-		Object internalId = internalIdFeature==null? null : abstractObject.eGet(internalIdFeature);
+//		EStructuralFeature internalIdFeature = clazz.getEStructuralFeature("internalId");
+//		Object internalId = internalIdFeature==null? null : abstractObject.eGet(internalIdFeature);
 		EStructuralFeature refinesFeature = clazz.getEStructuralFeature("refines");
 		
 
@@ -135,26 +135,21 @@ public abstract class AbstractElementRefiner {
 				
 				// if name is the same and in the same equivalent parent
 				if (nameFeature!=null && name!=null && name.equals(((EObject) possible).eGet(nameFeature))){
-					
-					String r1 = ((EventBElement)abstractObject).getReference();
-					String r2 = ((EventBElement)possible).getReference();
-					EObject c1 = abstractObject.eContainer();
-					EObject c2 = ((EObject) possible).eContainer();
+					if (abstractObject.eIsProxy()){
+						ResourceSet rs = concreteParent.eResource().getResourceSet();
+						abstractObject = EcoreUtil.resolve(abstractObject, rs);
+					}
+					EObject abstractsParent = abstractObject.eContainer();
 					// get a refiner for the ePackage containing this abstract object
-					String nsURI = c1.eClass().getEPackage().getNsURI();
+					String nsURI = abstractsParent.eClass().getEPackage().getNsURI();
 					AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(nsURI);
 					if (refiner==null) continue;
-					EventBObject c1e = refiner.getEquivalentObject(concreteParent, c1);
-					if (c2 == c1e){
+					EventBObject equivalentParent = refiner.getEquivalentObject(concreteParent, abstractsParent);
+					if (((EObject) possible).eContainer() == equivalentParent){
 						return (EventBObject) possible;
 					}
 				}
 
-//				// if internal ID is the same
-//				if (internalIdFeature!=null && internalId!=null && internalId.equals(((EObject) possible).eGet(internalIdFeature))){
-//					return (EventBObject) possible;
-//				}
-				
 				// if refines the abstract object
 				if (refinesFeature!=null && !refinesFeature.isMany() && ((EObject) possible).eGet(refinesFeature) == abstractObject){
 					return (EventBObject) possible;
@@ -164,26 +159,7 @@ public abstract class AbstractElementRefiner {
 		}
 		return null;
 	}
-	
-//	
-//	/**
-//	 * The URIs for the abstract and concrete Resources
-//	 */
-//	private URI abstractResourceURI;
-//	private URI concreteResourceURI;
-//
-//	/**
-//	 * The names for the abstract and concrete components
-//	 */
-//	private String abstractComponentName;
-//	private String concreteComponentName;
-//	
-//	/**
-//	 * The instance of the copier.
-//	 * Note that this is also a mapping from source to target once the copy has been performed
-//	 */
-//	private Copier copier = new EcoreUtil.Copier(true,false);
-	
+		
 	/**
 	 * Used to get the key (source element) from the copier map using the value (target element)
 	 * 
@@ -264,13 +240,13 @@ public abstract class AbstractElementRefiner {
 	 */
 	private EventBElement refine(URI abstractUri, EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent, URI concreteResourceURI, String concreteComponentName) {
 		if (abstractUri==null){
-			abstractUri = abstractElement.getURI();
+			abstractUri = EcoreUtil.getURI(abstractElement);
 		}
 		if (concreteComponentName==null && concreteComponent!=null ){
 			concreteComponentName = concreteComponent.getName();
 		}
 		if (concreteResourceURI==null && concreteComponent!=null ){
-			concreteResourceURI = concreteComponent.getURI();
+			concreteResourceURI = EcoreUtil.getURI(concreteComponent);
 		}
 		
 		Copier copier = new Copier(true,false);
@@ -285,8 +261,6 @@ public abstract class AbstractElementRefiner {
 		filterElements(concreteEventBElement);
 		return concreteEventBElement;
 	}
-
-	
 
 	/*
 	 * This removes any elements that are of a type (EClass) listed in filterList
@@ -379,19 +353,18 @@ public abstract class AbstractElementRefiner {
 		
 		EClass eclass = null;
 		URI uri = null;
+		if (abstractReferencedElement!=null && abstractReferencedElement.eIsProxy()){
+			abstractReferencedElement = (EventBObject) EcoreUtil.resolve(abstractReferencedElement, abstractElement.eResource());
+		}
 		switch (handling){
 		case CHAIN:
-//			uri = getURI((EObject)abstractElement);
-//			uri = uri==null? uri : uri.appendFragment(EcoreUtil.getID((EObject)abstractElement));
 			uri = abstractElementUri;
 			eclass = abstractElement.eClass();	
 			break;
 		case EQUIV:
-			//abstractReferencedElement = abstractElement.eGet(referenceFeature,false);
 			if (abstractReferencedElement instanceof EObject){
-				uri = getURI((EObject)abstractReferencedElement);
+				uri = EcoreUtil.getURI((EObject)abstractReferencedElement);
 				URI abstractResourceURI = ((EObject)abstractElement).eResource().getURI();
-				
 				if (uri !=null && uri.path().equals(abstractResourceURI.path())){ //equiv only works for intra-machine refs
 					EventBObject abstractComponent = ((EventBObject) abstractReferencedElement).getContaining(CorePackage.Literals.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT);
 					String abstractComponentName = "null";
@@ -410,7 +383,7 @@ public abstract class AbstractElementRefiner {
 					}else if (concreteComponent!=null){
 						EObject target = getEquivalentObject(concreteComponent, abstractReferencedElement);
 						if (target != null){
-							uri = getURI(target);
+							uri = EcoreUtil.getURI(target);
 							eclass = target.eClass();
 						}
 					}
@@ -419,9 +392,8 @@ public abstract class AbstractElementRefiner {
 			//when equiv is not possible default to copy
 			}
 		case COPY:
-			//abstractReferencedElement = abstractElement.eGet(referenceFeature,false);
 			if (abstractReferencedElement instanceof EObject){
-				uri = getURI((EObject)abstractReferencedElement);
+				uri = EcoreUtil.getURI((EObject)abstractReferencedElement);
 				uri = uri==null? uri : uri.appendFragment(EcoreUtil.getID((EObject)abstractReferencedElement));
 				eclass = ((EObject)abstractReferencedElement).eClass();
 			}
@@ -433,20 +405,5 @@ public abstract class AbstractElementRefiner {
 		return (uri==null || eclass==null)? null : EMFCoreUtil.createProxy(eclass, uri);
 	}
 
-	
-	/**
-	 * this returns the URI without loading the eObject
-	 * (copied from EventBObject to support references to non-EventBObjects in refinement)
-	 * @param eObject
-	 * @return
-	 */
-	private static  URI getURI(EObject eObject) {
-		if (eObject==null) return null;
-		if (eObject.eIsProxy()){
-			return ((InternalEObject)eObject).eProxyURI();
-		}else{
-			return  eObject.eResource()==null? null : eObject.eResource().getURI();
-		}
-	}
 
 }
