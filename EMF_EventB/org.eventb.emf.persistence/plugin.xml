@@ -20,6 +20,14 @@
    </extension>
    
    <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <file-association
+            content-type="org.eclipse.emf.compare.content.type"
+            file-extensions="xmb">
+      </file-association>
+   </extension>
+   
+   <extension
          point="org.eventb.emf.persistence.synchroniser">
             <emfPackage
                   name="MachinePackage"
