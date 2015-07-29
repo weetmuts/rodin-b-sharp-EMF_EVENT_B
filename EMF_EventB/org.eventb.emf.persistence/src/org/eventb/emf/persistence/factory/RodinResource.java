@@ -218,7 +218,7 @@ public class RodinResource extends XMIResourceImpl {
 	/**
 	 * iterates through contents looking for attributes that are lists of
 	 * Strings. These may be lists that have been derived from proxies which are
-	 * lazily resolved. If found these are lists are re-written which will also
+	 * lazily resolved. If found these lists are re-written which will also
 	 * re-write the corresponding proxy. Hence any resolved references are reset
 	 * to unresolved proxies before saving.
 	 *
@@ -234,12 +234,14 @@ public class RodinResource extends XMIResourceImpl {
 			EObject object = allContents.next();
 			if (object instanceof EventBElement) {
 				EventBElement element = (EventBElement) object;
+				boolean deliver = element.eDeliver();
+				element.eSetDeliver(false);
 				EClass eClass = element.eClass();
 				for (EAttribute attribute : eClass.getEAllAttributes()) {
 					if (attribute.getEType().getClassifierID() == EcorePackage.ESTRING && attribute.isMany() && attribute.isChangeable()) {
 						Object attributeValue = element.eGet(attribute, false);
 						if (attributeValue instanceof EList<?>) {
-							EList<String> namesList = (EList<String>) element.eGet(attribute, false);
+							EList<String> namesList = (EList<String>) attributeValue;
 							for (int i = 0; i < namesList.size(); i++) {
 								String name = namesList.get(i);
 								namesList.set(i, name);
@@ -268,6 +270,7 @@ public class RodinResource extends XMIResourceImpl {
 					}
 
 				}
+				element.eSetDeliver(deliver);
 			}
 		}
 	}
