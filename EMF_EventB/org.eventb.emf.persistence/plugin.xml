@@ -6,6 +6,10 @@
     <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
+            class="org.eventb.emf.persistence.factory.ProjectFactory"
+            type="prj">
+      </parser>
+      <parser
             class="org.eventb.emf.persistence.factory.RodinResourceFactory"
             type="xmb">
       </parser>
@@ -143,13 +147,6 @@
             </inputType>
          </extractor>
       </tool>
-   </extension>
-   <extension
-         point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            class="org.eventb.emf.persistence.factory.ProjectFactory"
-            type="prj">
-      </parser>
    </extension>
    <extension
          point="org.rodinp.core.attributeTypes">
