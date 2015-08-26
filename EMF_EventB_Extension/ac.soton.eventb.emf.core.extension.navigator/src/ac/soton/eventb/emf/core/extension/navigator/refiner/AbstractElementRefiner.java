@@ -88,7 +88,9 @@ public abstract class AbstractElementRefiner {
 	 * (In this context, equivalence means that if a reference in the abstract model refers to the abstract object,
 	 * then a corresponding reference in the concrete model should refer to the returned equivalent object).
 	 *
-	 * This default implementation returns the first element, of the same class, discovered with the same name as the abstract object or,
+	 * This default implementation returns the first element, of the same class, discovered with the same name as the abstract object 
+	 * (when a specific feature is provided this is sufficient (allowing disconnected elements to be matched), otherwise the full parentage is checked)
+	 * or,
 	 * failing that, the first element of the same class discovered with a refines relationship to the  abstract object.
 	 * 
 	 * Extenders may override this default implementation to give other equivalances.
@@ -133,20 +135,25 @@ public abstract class AbstractElementRefiner {
 		for (Object possible : contents){
 			if (possible instanceof EObject && ((EObject) possible).eClass() == clazz){
 				
-				// if name is the same and in the same equivalent parent
+				// if name is the same..
 				if (nameFeature!=null && name!=null && name.equals(((EObject) possible).eGet(nameFeature))){
-					if (abstractObject.eIsProxy()){
-						ResourceSet rs = concreteParent.eResource().getResourceSet();
-						abstractObject = EcoreUtil.resolve(abstractObject, rs);
-					}
-					EObject abstractsParent = abstractObject.eContainer();
-					// get a refiner for the ePackage containing this abstract object
-					String nsURI = abstractsParent.eClass().getEPackage().getNsURI();
-					AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(nsURI);
-					if (refiner==null) continue;
-					EventBObject equivalentParent = refiner.getEquivalentObject(concreteParent, abstractsParent);
-					if (((EObject) possible).eContainer() == equivalentParent){
+					if (feature!=null){  //if looking in specific feature this is enough (allows disconnected elements to be matched)
 						return (EventBObject) possible;
+					}else{
+						//when not looking in a specific feature be more specific by checking parentage
+						if (abstractObject.eIsProxy()){
+							ResourceSet rs = concreteParent.eResource().getResourceSet();
+							abstractObject = EcoreUtil.resolve(abstractObject, rs);
+						}
+						EObject abstractsParent = abstractObject.eContainer();
+						// get a refiner for the ePackage containing this abstract object
+						String nsURI = abstractsParent.eClass().getEPackage().getNsURI();
+						AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(nsURI);
+						if (refiner==null) continue;
+						EventBObject equivalentParent = refiner.getEquivalentObject(concreteParent, abstractsParent);
+						if (((EObject) possible).eContainer() == equivalentParent){
+							return (EventBObject) possible;
+						}
 					}
 				}
 
@@ -185,43 +192,33 @@ public abstract class AbstractElementRefiner {
 		populateReferenceMap(referencemap);
 	}
 
-
-	/**
-	 * Creates a refined component element from the given abstract one.
-	 * 
-	 * The abstract component must be contained in a resource.
-	 * 
-	 * @param abstract component element
-	 * @return
-	 */
-	public EventBNamedCommentedComponentElement refine(EventBNamedCommentedComponentElement abstractElement, URI concreteResourceURI, String concreteComponentName) {
-		return (EventBNamedCommentedComponentElement) refine(null, abstractElement, null, concreteResourceURI, concreteComponentName);
-	}
-
 	/**
 	 * Creates a refined element from the given abstract one and a separate abstract URI.
 	 * In this case the abstract element need not be contained in the abstract component.
 	 * It will be used (copied) to make a refined element but any references to the abstract element 
 	 * (e.g. refines) will be based on the given abstract URI.
 	 * 
-	 * The abstract component must be contained in a resource.
+	 * The abstract component does not need to be contained in a resource.
 	 * 
-	 * @param abstract component element
-	 * @return
+	 * @param abstractUri - uri of an element in the abstract component resource (used to complete references)
+	 * @param abstractElement  - element to be copied (does not need to be contained)
+	 * @param concrete component (optional - used for copying references to external elements) 
+	 * @return a map from the abstract elements to the concrete elements
 	 */
-	public EventBElement refine(URI abstractUri, EventBObject abstractElement, EventBNamedCommentedComponentElement concreteComponent) {
+	public Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement, EventBNamedCommentedComponentElement concreteComponent) {
 		return refine(abstractUri, abstractElement, concreteComponent, null, null);
 	}
 	
 	/**
 	 * Creates a refined element from the given abstract one.
 	 * 
-	 * The abstract component must be contained in a resource.
+	 * The abstract element must be contained in a resource.
 	 * 
-	 * @param abstract component element
-	 * @return
+	 * @param abstract element
+	 * @param concrete component (optional - used for copying references to external elements) 
+	 * @return a map from the abstract elements to the concrete elements
 	 */
-	public EventBElement refine(EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent){
+	public Map<EObject,EObject> refine(EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent){
 		return refine(null, abstractElement, concreteComponent, null, null);
 	}
 
@@ -229,7 +226,8 @@ public abstract class AbstractElementRefiner {
 	/**
 	 * Creates a refined element from the given abstract one.
 	 * 
-	 * The abstract element must be contained in a resource.
+	 * Either the abstract element must be contained in a resource or if not,
+	 * A separate URI must be given which can be used to derive a full platform uri for the refined element.
 	 * 
 	 * Optionally, a containing concrete Component may be given in order to find equivalent reference targets
 	 * when there may be references that target elements outside of the newly created concrete elements. 
@@ -238,9 +236,12 @@ public abstract class AbstractElementRefiner {
 	 * @param abstract element
 	 * @return
 	 */
-	private EventBElement refine(URI abstractUri, EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent, URI concreteResourceURI, String concreteComponentName) {
+	private Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent, URI concreteResourceURI, String concreteComponentName) {
 		if (abstractUri==null){
 			abstractUri = EcoreUtil.getURI(abstractElement);
+		}
+		if (!correctURIType(abstractUri,abstractElement.eClass())){
+			return null;
 		}
 		if (concreteComponentName==null && concreteComponent!=null ){
 			concreteComponentName = concreteComponent.getName();
@@ -259,7 +260,7 @@ public abstract class AbstractElementRefiner {
 		//having copied everything we may need to remove some kinds of elements that are not supposed to be
 		//copied into a refinement
 		filterElements(concreteEventBElement);
-		return concreteEventBElement;
+		return copier;
 	}
 
 	/*
@@ -304,12 +305,12 @@ public abstract class AbstractElementRefiner {
 				for (Entry<EReference, RefHandling> referenceEntry : referencemap.entrySet()){
 					referenceFeature = referenceEntry.getKey(); 
 					if (referenceFeature.getEContainingClass().isSuperTypeOf(concreteElement.eClass())){
-						EObject abstractElement = getKeyByValue(copier, concreteElement);
+						EventBElement abstractElement = (EventBElement) getKeyByValue(copier, (EventBElement)concreteElement);
 						//NOTE: *** Cannot use the concrete elements to create URIs because their parentage is not complete ***
 						if (referenceFeature.isMany()){
 							for (EObject abstractReferencedElement : (EList<EObject>)(getKeyByValue(copier, concreteElement)).eGet(referenceFeature)){		
 								EObject newValue = getNewReferenceValue(
-										abstractUri,
+										constructElementURI(abstractUri,abstractElement),
 										(EventBObject)abstractElement,
 										(EventBObject)abstractReferencedElement,
 										concreteResourceURI, concreteComponent, concreteComponentName,
@@ -321,7 +322,7 @@ public abstract class AbstractElementRefiner {
 						}else{
 							if (referenceFeature.getEType() instanceof EClass){
 								EObject newValue = getNewReferenceValue(
-										abstractUri,
+										constructElementURI(abstractUri,abstractElement),
 										(EventBObject)abstractElement,
 										(EventBObject)abstractElement.eGet(referenceFeature,false),
 										concreteResourceURI, concreteComponent, concreteComponentName,
@@ -337,10 +338,32 @@ public abstract class AbstractElementRefiner {
 		}
 	}
 
+	/**
+	 * constructs a uri for an orphaned element using the given potential parent uri
+	 * @param uri
+	 * @param element
+	 * @return
+	 */
+	private URI constructElementURI(URI parentUri, EventBElement element) {
+		URI uri = parentUri.trimFragment();
+		String[] ref = element.getReference().split("::");
+		String[] prefix = parentUri.fragment().split("::");
+		String fragment = ref[0]+"::"+ref[1]+"::"+prefix[2]+(ref[2].startsWith(prefix[2])? ref[2].substring(prefix[2].length()) : ref);
+		uri = uri.appendFragment(fragment);
+		return uri;
+	}
 
+	private boolean correctURIType(URI uri, EClass eclass){
+		if (uri==null || eclass==null) return true;
+		if (uri.fragment()==null) return false;
+		String[] frags = uri.fragment().split("::");
+		String className = eclass.getName();
+		return className.equals(frags[1]);
+	}
+	
 	/**
 	 * 
-	 * The abstractReferencesElement must be contained in a resource
+	 * The abstractReferencedElement must be contained in a resource
 	 * 
 	 * @param abstractElement
 	 * @param abstractReferencedElement
@@ -402,8 +425,12 @@ public abstract class AbstractElementRefiner {
 			uri = null;
 			eclass = null;
 		}
+		if (!correctURIType(uri,eclass)){
+			return null;
+		}
 		return (uri==null || eclass==null)? null : EMFCoreUtil.createProxy(eclass, uri);
 	}
+
 
 
 }
