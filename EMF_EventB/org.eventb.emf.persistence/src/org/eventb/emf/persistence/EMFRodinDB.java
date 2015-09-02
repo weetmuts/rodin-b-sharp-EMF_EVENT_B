@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eventb.core.IContextRoot;
@@ -291,7 +292,7 @@ public final class EMFRodinDB {
 	 * @return
 	 */
 	public String getProjectName(EventBElement element) {
-		URI uri = element.getURI();
+		URI uri = EcoreUtil.getURI(element);
 		return uri.segment(1);
 	}
 
