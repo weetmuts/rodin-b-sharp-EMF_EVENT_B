@@ -28,6 +28,9 @@
                   value="ac.soton.eventb.emf.core.extension.navigator.provider.ExtensionNavigatorItem">
             </instanceof>
          </possibleChildren>
+         <commonSorter
+               class="ac.soton.eventb.emf.core.extension.navigatore.sorter.AntiSorter">
+         </commonSorter>
       </navigatorContent>
       <commonFilter
             activeByDefault="true"
