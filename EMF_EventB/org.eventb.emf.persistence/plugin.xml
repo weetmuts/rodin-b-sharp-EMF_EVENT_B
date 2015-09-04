@@ -181,7 +181,7 @@
                typeId="org.eventb.emf.persistence.priority">
          </attributeType>
          <attributeType
-               typeId="org.eventb.emf.persistence.attributeType3">
+               typeId="org.eventb.emf.persistence.unknownAttributes">
          </attributeType>
          <attributeType
                typeId="org.eventb.emf.persistence.emf_id">
