@@ -156,6 +156,11 @@
             name="Generator Plugin ID">
       </attributeType>
       <attributeType
+            id="priority"
+            kind="integer"
+            name="Priority for Ordering">
+      </attributeType>
+      <attributeType
             id="unknownAttributes"
             kind="string"
             name="Unknown Attributes">
@@ -171,6 +176,9 @@
       <ubiquitous>
          <attributeType
                typeId="org.eventb.emf.persistence.generator_ID">
+         </attributeType>
+         <attributeType
+               typeId="org.eventb.emf.persistence.priority">
          </attributeType>
          <attributeType
                typeId="org.eventb.emf.persistence.attributeType3">
