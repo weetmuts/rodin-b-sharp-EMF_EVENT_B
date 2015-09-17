@@ -9,7 +9,7 @@
  *     University of Southampton - initial API and implementation
  *******************************************************************************/
 
-package org.eventb.emf.persistence.tests;
+package org.eventb.emf.internal.persistence.tests;
 
 import java.util.Iterator;
 
@@ -17,9 +17,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eventb.emf.core.context.Context;
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.Machine;
+import org.eventb.emf.persistence.tests.AbstractEventBEMFTests;
 import org.junit.Test;
 
-import ch.ethz.eventb.utils.tests.ChannelSetupTests;
+import ch.ethz.eventb.utils.tests.ChannelSetup;
 
 /**
  * <p>
@@ -32,8 +33,6 @@ import ch.ethz.eventb.utils.tests.ChannelSetupTests;
  * @since
  */
 public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
-
-	private ChannelSetupTests channelSetupTests = new ChannelSetupTests();
 
 	private Context messageCtx;
 
@@ -53,18 +52,18 @@ public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		channelSetupTests.channelSetup();
-		messageCtx = (Context) emfRodinDB.loadEventBComponent(channelSetupTests
+		ChannelSetup.setup();
+		messageCtx = (Context) emfRodinDB.loadEventBComponent(ChannelSetup
 				.getMessageContextRoot());
 
-		sizeCtx = (Context) emfRodinDB.loadEventBComponent(channelSetupTests
+		sizeCtx = (Context) emfRodinDB.loadEventBComponent(ChannelSetup
 				.getSizeContextRoot());
 
-		channelMch = (Machine) emfRodinDB.loadEventBComponent(channelSetupTests
+		channelMch = (Machine) emfRodinDB.loadEventBComponent(ChannelSetup
 				.getChannelMachineRoot());
-		EOMchRoot = (Machine) emfRodinDB.loadEventBComponent(channelSetupTests
+		EOMchRoot = (Machine) emfRodinDB.loadEventBComponent(ChannelSetup
 				.getEOMachineRoot());
-		EOIOMchRoot = (Machine) emfRodinDB.loadEventBComponent(channelSetupTests
+		EOIOMchRoot = (Machine) emfRodinDB.loadEventBComponent(ChannelSetup
 				.getEOIOMachineRoot());
 	}
 
@@ -264,7 +263,7 @@ public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 		// The refines clause is added automatically?
 		testEventRefinesClauses(
 				"Incorrect REFINES clauses for INITIALISATION for EOIO",
-				EOIO_init_evt, "INITIALISATION"); 
+				EOIO_init_evt, "INITIALISATION");
 		testEventParameters("Incorrect ANY for INITIALISATION for EOIO",
 				EOIO_init_evt);
 		testEventGuards("Incorrect WHERE for INITIALISATION for EOIO",

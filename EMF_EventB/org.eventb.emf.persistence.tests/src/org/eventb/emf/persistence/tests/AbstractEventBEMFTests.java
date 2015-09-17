@@ -13,36 +13,23 @@ package org.eventb.emf.persistence.tests;
 
 import java.util.Iterator;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eventb.core.IContextRoot;
-import org.eventb.core.IEventBProject;
-import org.eventb.core.IMachineRoot;
-import org.eventb.emf.core.EventBElement;
 import org.eventb.emf.core.context.Axiom;
 import org.eventb.emf.core.context.CarrierSet;
 import org.eventb.emf.core.context.Constant;
 import org.eventb.emf.core.context.Context;
-import org.eventb.emf.core.context.ContextFactory;
 import org.eventb.emf.core.machine.Action;
 import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.Guard;
 import org.eventb.emf.core.machine.Invariant;
 import org.eventb.emf.core.machine.Machine;
-import org.eventb.emf.core.machine.MachineFactory;
 import org.eventb.emf.core.machine.Parameter;
 import org.eventb.emf.core.machine.Variable;
 import org.eventb.emf.core.machine.Witness;
 import org.eventb.emf.persistence.EMFRodinDB;
 import org.junit.After;
 import org.junit.Before;
-import org.rodinp.core.IRodinProject;
-import org.rodinp.core.RodinCore;
-import org.rodinp.core.RodinDBException;
 
-import ch.ethz.eventb.utils.EventBUtils;
 import ch.ethz.eventb.utils.tests.AbstractEventBTests;
 
 /**
@@ -57,7 +44,7 @@ import ch.ethz.eventb.utils.tests.AbstractEventBTests;
  */
 public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 
-	protected EMFRodinDB emfRodinDB;
+	public EMFRodinDB emfRodinDB;
 
 	/**
 	 * Constructor: Create a test case.
@@ -85,7 +72,6 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		;
 
 		emfRodinDB = new EMFRodinDB();
 	}
@@ -100,344 +86,6 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	protected void tearDown() throws Exception {
 		workspace.getRoot().delete(true, null);
 		super.tearDown();
-	}
-
-	/**
-	 * Utility method to create a context with the given bare name. The context
-	 * is created as a child of the input Event-B project.
-	 * 
-	 * @param project
-	 *            an Event-B project.
-	 * @param bareName
-	 *            the bare name (without the extension .buc) of the context
-	 * @return the newly created context.
-	 * @throws RodinDBException
-	 *             if some problems occur.
-	 */
-	protected Context createContext(IEventBProject project, String bareName)
-			throws RodinDBException {
-		IContextRoot ctxRoot = EventBUtils.createContext(project, bareName,
-				nullMonitor);
-		return (Context) emfRodinDB.loadEventBComponent(ctxRoot);
-	}
-
-	/**
-	 * Utility method to create an EXTENDS clause within the input context for
-	 * an abstract context.
-	 * 
-	 * @param ctx
-	 *            a context.
-	 * @param absCtxName
-	 *            the abstract context label.
-	 */
-	protected void createExtendsContextClause(Context ctx, String absCtxName) {
-		EList<String> extendsNames = ctx.getExtendsNames();
-		extendsNames.add(absCtxName);
-	}
-
-	/**
-	 * Utility method to create a carrier set within the input context with the
-	 * given identifier string.
-	 * 
-	 * @param ctx
-	 *            a context.
-	 * @param identifierString
-	 *            the identifier string.
-	 * @return the newly created carrier set.
-	 */
-	protected CarrierSet createCarrierSet(Context ctx, String identifierString) {
-		CarrierSet set = ContextFactory.eINSTANCE.createCarrierSet();
-		set.setName(identifierString);
-
-		EList<CarrierSet> sets = ctx.getSets();
-		sets.add(set);
-
-		return set;
-	}
-
-	/**
-	 * Utility method to create a constant within the input context with the
-	 * given identifier string.
-	 * 
-	 * @param ctx
-	 *            a context.
-	 * @param identifierString
-	 *            the identifier string.
-	 * @return the newly created constant.
-	 */
-	protected Constant createConstant(Context ctx, String identifierString) {
-		Constant cst = ContextFactory.eINSTANCE.createConstant();
-		cst.setName(identifierString);
-
-		EList<Constant> csts = ctx.getConstants();
-		csts.add(cst);
-
-		return cst;
-	}
-
-	/**
-	 * Utility method to create an axiom within the input context with the given
-	 * label and predicate string.
-	 * 
-	 * @param ctx
-	 *            a context.
-	 * @param label
-	 *            the label.
-	 * @param predStr
-	 *            the predicate string.
-	 * @param isTheorem
-	 *            <code>true</code> if the axiom is derivable,
-	 *            <code>false</code> otherwise.
-	 * @return the newly created axiom.
-	 */
-	protected Axiom createAxiom(Context ctx, String label, String predStr,
-			boolean isTheorem) {
-		Axiom axm = ContextFactory.eINSTANCE.createAxiom();
-		axm.setName(label);
-		axm.setPredicate(predStr);
-		axm.setTheorem(isTheorem);
-
-		EList<Axiom> axms = ctx.getAxioms();
-		axms.add(axm);
-		return axm;
-	}
-
-	/**
-	 * Utility method to create a machine with the given bare name. The machine
-	 * is created as a child of the input Event-B project.
-	 * 
-	 * @param bareName
-	 *            the bare name (without the extension .bum) of the context
-	 * @return the newly created machine.
-	 */
-	protected Machine createMachine(IEventBProject project, String bareName)
-			throws RodinDBException {
-		IMachineRoot mchRoot = EventBUtils.createMachine(project, bareName,
-				nullMonitor);
-		return (Machine) emfRodinDB.loadEventBComponent(mchRoot);
-	}
-
-	/**
-	 * Utility method to create a REFINES machine clause within the input
-	 * machine for the abstract machine.
-	 * 
-	 * @param mch
-	 *            a machine.
-	 * @param absMchName
-	 *            an abstract machine label
-	 */
-	protected void createRefinesMachineClause(Machine mch, String absMchName) {
-		EList<String> refinesNames = mch.getRefinesNames();
-		refinesNames.add(absMchName);
-	}
-
-	/**
-	 * Utility method to create a SEES clause within the input machine for the
-	 * input context.
-	 * 
-	 * @param mch
-	 *            a machine.
-	 * @param ctxName
-	 *            a context.
-	 */
-	protected void createSeesContextClause(Machine mch, String ctxName) {
-		EList<String> seesNames = mch.getSeesNames();
-		seesNames.add(ctxName);
-	}
-
-	/**
-	 * Utility method to create a variable within the input machine with the
-	 * given identifier string.
-	 * 
-	 * @param mch
-	 *            a machine.
-	 * @param identifierString
-	 *            the identifier string.
-	 * @return the newly created variable.
-	 */
-	protected Variable createVariable(Machine mch, String identifierString) {
-		Variable var = MachineFactory.eINSTANCE.createVariable();
-		var.setName(identifierString);
-
-		EList<Variable> vars = mch.getVariables();
-		vars.add(var);
-		return var;
-	}
-
-	/**
-	 * Utility method to create an invariant within the input machine with a
-	 * given label and predicate string.
-	 * 
-	 * @param mch
-	 *            a machine.
-	 * @param label
-	 *            the label of the invariant.
-	 * @param predicate
-	 *            the predicate string of the invariant.
-	 * @return the newly created invariant.
-	 */
-	protected Invariant createInvariant(Machine mch, String label,
-			String predicate, boolean isTheorem) {
-		Invariant inv = MachineFactory.eINSTANCE.createInvariant();
-		inv.setName(label);
-		inv.setPredicate(predicate);
-		inv.setTheorem(isTheorem);
-
-		EList<Invariant> invs = mch.getInvariants();
-		invs.add(inv);
-
-		return inv;
-	}
-
-	/**
-	 * Utility method to create an event within the input machine with the given
-	 * label. By default, the extended attribute of the event is set to
-	 * <code>false</code>. and the convergence status is set to
-	 * <code>ordinary</code>
-	 * 
-	 * @param mch
-	 *            a machine.
-	 * @param label
-	 *            the label of the event.
-	 * @return the newly created event.
-	 */
-	protected Event createEvent(Machine mch, String label) {
-		Event evt = MachineFactory.eINSTANCE.createEvent();
-		evt.setName(label);
-
-		EList<Event> evts = mch.getEvents();
-		evts.add(evt);
-		return evt;
-	}
-
-	/**
-	 * Utility method to create the refines event clause within the input event
-	 * with the given abstract event label.
-	 * 
-	 * @param evt
-	 *            an event.
-	 * @param absEvtLabel
-	 *            the abstract event label.
-	 */
-	protected void createRefinesEventClause(Event evt, String absEvtLabel)
-			throws RodinDBException {
-		EList<String> refinesNames = evt.getRefinesNames();
-		refinesNames.add(absEvtLabel);
-	}
-
-	/**
-	 * Utility method to create a parameter within the input event with the
-	 * given identifier string.
-	 * 
-	 * @param evt
-	 *            an event.
-	 * @param identifierString
-	 *            the identifier string.
-	 * @return the newly created parameter.
-	 */
-	protected Parameter createParameter(Event evt, String identifierString) {
-		Parameter par = MachineFactory.eINSTANCE.createParameter();
-		par.setName(identifierString);
-
-		EList<Parameter> pars = evt.getParameters();
-		pars.add(par);
-		return par;
-	}
-
-	/**
-	 * Utility method to create a guard within the input event with the given
-	 * label and predicate string.
-	 * 
-	 * @param evt
-	 *            an event.
-	 * @param label
-	 *            the label of the guard.
-	 * @param predicateString
-	 *            the predicate string of the guard.
-	 * @param isTheorem
-	 *            if the guard is a theorem.
-	 * @return the newly created guard.
-	 */
-	protected Guard createGuard(Event evt, String label,
-			String predicateString, boolean isTheorem) throws RodinDBException {
-		Guard grd = MachineFactory.eINSTANCE.createGuard();
-		grd.setName(label);
-		grd.setPredicate(predicateString);
-		grd.setTheorem(isTheorem);
-
-		EList<Guard> grds = evt.getGuards();
-		grds.add(grd);
-		return grd;
-	}
-
-	/**
-	 * Utility method to create a witness within the input event with the given
-	 * label and predicate string.
-	 * 
-	 * @param evt
-	 *            an event.
-	 * @param label
-	 *            the label of the witness.
-	 * @param predicateString
-	 *            the predicate string of the witness.
-	 * @return the newly created witness.
-	 */
-	protected Witness createWitness(Event evt, String label,
-			String predicateString) {
-		Witness wit = MachineFactory.eINSTANCE.createWitness();
-		wit.setName(label);
-		wit.setPredicate(predicateString);
-
-		EList<Witness> wits = evt.getWitnesses();
-		wits.add(wit);
-		return wit;
-	}
-
-	/**
-	 * Utility method to create an action within the input event with the given
-	 * label and assignment string.
-	 * 
-	 * @param evt
-	 *            an event
-	 * @param label
-	 *            the label of the assignment
-	 * @param assignmentString
-	 *            the assignment string of the action
-	 * @return the newly created action
-	 */
-	protected Action createAction(Event evt, String label,
-			String assignmentString) throws RodinDBException {
-		Action act = MachineFactory.eINSTANCE.createAction();
-		act.setName(label);
-		act.setAction(assignmentString);
-
-		EList<Action> acts = evt.getActions();
-		acts.add(act);
-		return act;
-	}
-
-	protected void save(EventBElement element) {
-		emfRodinDB.saveResource(EcoreUtil.getURI(element), element);
-	}
-
-	protected IContextRoot getRoot(Context ctx) {
-		URI uri = EcoreUtil.getURI(ctx);
-		String projectName = URI.decode(uri.segment(1));
-		IProject project = workspace.getRoot().getProject(projectName);
-		IRodinProject rodinPrj = RodinCore.valueOf(project);
-		IEventBProject eventBPrj = (IEventBProject) rodinPrj
-				.getAdapter(IEventBProject.class);
-		return eventBPrj.getContextRoot(ctx.getName());
-	}
-
-	protected IMachineRoot getRoot(Machine mch) {
-		URI uri = EcoreUtil.getURI(mch);
-		String projectName = URI.decode(uri.segment(1));
-		IProject project = workspace.getRoot().getProject(projectName);
-		IRodinProject rodinPrj = RodinCore.valueOf(project);
-		IEventBProject eventBPrj = (IEventBProject) rodinPrj
-				.getAdapter(IEventBProject.class);
-		return eventBPrj.getMachineRoot(mch.getName());
 	}
 
 	// =========================================================================
