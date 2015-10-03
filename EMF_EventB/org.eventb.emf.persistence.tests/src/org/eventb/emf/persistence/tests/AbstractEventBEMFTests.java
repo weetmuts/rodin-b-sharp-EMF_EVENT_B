@@ -13,7 +13,10 @@ package org.eventb.emf.persistence.tests;
 
 import java.util.Iterator;
 
+import junit.framework.TestCase;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eventb.emf.core.context.Axiom;
 import org.eventb.emf.core.context.CarrierSet;
 import org.eventb.emf.core.context.Constant;
@@ -25,48 +28,47 @@ import org.eventb.emf.core.machine.Invariant;
 import org.eventb.emf.core.machine.Machine;
 import org.eventb.emf.core.machine.Parameter;
 import org.eventb.emf.core.machine.Variable;
+import org.eventb.emf.core.machine.Variant;
 import org.eventb.emf.core.machine.Witness;
 import org.eventb.emf.persistence.EMFRodinDB;
-import org.junit.After;
 import org.junit.Before;
 
 import ch.ethz.eventb.utils.tests.AbstractEventBTests;
 
 /**
  * <p>
- *
+ * This is the abstract class for Unit tests involving Event-B EMF. This class
+ * contains several method for testing the contents of Event-B EMF elements.
  * </p>
  *
  * @author htson
  * @version 0.1
- * @see
+ * @see AbstractEventBTests
  * @since 0.1
  */
 public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 
-	public EMFRodinDB emfRodinDB;
+	/**
+	 * The EMFRodinDB instance that can be used to create and modify Event-B EMF
+	 * elements. This is created in the {@link #setUp()} method.
+	 */
+	protected EMFRodinDB emfRodinDB;
 
 	/**
-	 * Constructor: Create a test case.
+	 * The EMF transactional editing domain corresponds to {@link #emfRodinDB}.
 	 */
-	public AbstractEventBEMFTests() {
-		super();
-	}
+	protected TransactionalEditingDomain domain;
 
 	/**
-	 * Constructor: Create a test case with the given name.
+	 * This setup method performs the following
+	 * <ol>
+	 * <li>Call the super method.</li>
 	 * 
-	 * @param name
-	 *            the name of test
-	 */
-	public AbstractEventBEMFTests(String name) {
-		super(name);
-	}
-
-	/*
-	 * (non-Javadoc)
+	 * <li>Create the EMFRodinDB instance and get the transactional editing
+	 * domain.</li>
+	 * </ol>
 	 * 
-	 * @see junit.framework.TestCase#setUp()
+	 * @see TestCase#setUp()
 	 */
 	@Before
 	@Override
@@ -74,28 +76,17 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 		super.setUp();
 
 		emfRodinDB = new EMFRodinDB();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	@After
-	@Override
-	protected void tearDown() throws Exception {
-		workspace.getRoot().delete(true, null);
-		super.tearDown();
+		domain = emfRodinDB.getEditingDomain();
 	}
 
 	// =========================================================================
-	// Utility methods for testing various Event-B EMF elements.
+	// (BEGIN) Utility methods for testing Context elements.
 	// =========================================================================
 
 	/**
 	 * Utility method for testing EXTENDS clauses of a context.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param ctx
 	 *            A context root whose EXTENDS clauses will be tested.
@@ -104,17 +95,17 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            represented by the abstract context name. The order of the
 	 *            EXTENDS clause is important.
 	 */
-	protected void testContextExtendsClauses(String message, Context ctx,
+	protected void testContextExtendsClauses(String msg, Context ctx,
 			String... expected) {
 		EList<String> extendsNames = ctx.getExtendsNames();
-		assertSameStrings(message,
+		assertSameStrings(msg,
 				extendsNames.toArray(new String[extendsNames.size()]), expected);
 	}
 
 	/**
 	 * Utility method for testing the carrier sets of a context.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param ctx
 	 *            a context whose carrier sets will be tested.
@@ -123,37 +114,35 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            represented by its identifier. The order of the carrier sets
 	 *            is important.
 	 */
-	protected void testContextCarrierSets(String message, Context ctx,
+	protected void testContextCarrierSets(String msg, Context ctx,
 			String... expected) {
 		EList<CarrierSet> sets = ctx.getSets();
-		assertEquals(message + ": Incorrect number of carrier sets",
+		assertEquals(msg + ": Incorrect number of carrier sets",
 				expected.length, sets.size());
 		Iterator<CarrierSet> iterator = sets.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testCarrierSet(message, iterator.next(), expected[i]);
+			testCarrierSet(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing a carrier set.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param carrierSet
+	 * @param set
 	 *            the carrier set under test.
 	 * @param expected
 	 *            the expected identifier of the carrier set.
 	 */
-	protected void testCarrierSet(String message, CarrierSet carrierSet,
-			String expected) {
-		assertEquals(message + ": Incorrect carrier set", expected,
-				carrierSet.getName());
+	protected void testCarrierSet(String msg, CarrierSet set, String expected) {
+		assertEquals(msg + ": Incorrect carrier set", expected, set.getName());
 	}
 
 	/**
 	 * Utility method for testing the constants of a context.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param ctx
 	 *            a context whose constants will be tested.
@@ -161,37 +150,35 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            an array of expected constants. Each constant is represented
 	 *            by its identifier. The order of the constants is important.
 	 */
-	protected void testContextConstants(String message, Context ctx,
+	protected void testContextConstants(String msg, Context ctx,
 			String... expected) {
 		EList<Constant> csts = ctx.getConstants();
-		assertEquals(message + ": Incorrect number of constants",
-				expected.length, csts.size());
+		assertEquals(msg + ": Incorrect number of constants", expected.length,
+				csts.size());
 		Iterator<Constant> iterator = csts.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testConstant(message, iterator.next(), expected[i]);
+			testConstant(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing a constant.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param set
+	 * @param cst
 	 *            the constant under test.
 	 * @param expected
 	 *            the expected identifier of the constant.
 	 */
-	protected void testConstant(String message, Constant constant,
-			String expected) {
-		assertEquals(message + ": Incorrect constant", expected,
-				constant.getName());
+	protected void testConstant(String msg, Constant cst, String expected) {
+		assertEquals(msg + ": Incorrect constant", expected, cst.getName());
 	}
 
 	/**
 	 * Utility method for testing the axioms of a context.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param ctx
 	 *            a context root whose axioms will be tested.
@@ -201,37 +188,45 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            "label:predicateString:isTheorem". The order of the axioms is
 	 *            important.
 	 */
-	protected void testContextAxioms(String message, Context ctx,
+	protected void testContextAxioms(String msg, Context ctx,
 			String... expected) {
 		EList<Axiom> axms = ctx.getAxioms();
-		assertEquals(message + ": Incorrect number of axioms", expected.length,
+		assertEquals(msg + ": Incorrect number of axioms", expected.length,
 				axms.size());
 		Iterator<Axiom> iterator = axms.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testAxiom(message, iterator.next(), expected[i]);
+			testAxiom(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing an axiom.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param axiom
+	 * @param axm
 	 *            the axiom under test.
 	 * @param expected
 	 *            the expected pretty print axiom. The axiom is "pretty-printed"
 	 *            as follows: "label:predicateString:isTheorem".
 	 */
-	protected void testAxiom(String message, Axiom axiom, String expected) {
-		assertEquals(message + ": Incorrect axiom", expected, axiom.getName()
-				+ ":" + axiom.getPredicate() + ":" + axiom.isTheorem());
+	protected void testAxiom(String msg, Axiom axm, String expected) {
+		assertEquals(msg + ": Incorrect axiom", expected, axm.getName()
+				+ ":" + axm.getPredicate() + ":" + axm.isTheorem());
 	}
+
+	// =========================================================================
+	// (END) Utility methods for testing Context elements.
+	// =========================================================================
+
+	// =========================================================================
+	// (BEGIN) Utility methods for testing Machine elements.
+	// =========================================================================
 
 	/**
 	 * Utility method for testing the REFINES clauses of a machine.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param mch
 	 *            a machine root whose REFINES clauses will be tested.
@@ -240,17 +235,17 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            represented by its abstract machine name. The order of the
 	 *            REFINES clauses is important.
 	 */
-	protected void testMachineRefinesClauses(String message, Machine mch,
+	protected void testMachineRefinesClauses(String msg, Machine mch,
 			String... expected) {
 		EList<String> refinesNames = mch.getRefinesNames();
-		assertSameStrings(message,
+		assertSameStrings(msg,
 				refinesNames.toArray(new String[refinesNames.size()]), expected);
 	}
 
 	/**
 	 * Utility method for testing the SEES clauses of a machine.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param mch
 	 *            a machine root whose SEES clauses will be tested.
@@ -259,17 +254,17 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            represented by its seen context name. The order of the SEES
 	 *            clauses is important.
 	 */
-	protected void testMachineSeesClauses(String message, Machine mch,
+	protected void testMachineSeesClauses(String msg, Machine mch,
 			String... expected) {
 		EList<String> seesNames = mch.getSeesNames();
-		assertSameStrings(message,
+		assertSameStrings(msg,
 				seesNames.toArray(new String[seesNames.size()]), expected);
 	}
 
 	/**
 	 * Utility method for testing the variables of a machine.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param mch
 	 *            the machine root whose variables will be tested.
@@ -277,21 +272,21 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            an array of expected variables. Each variable is represented
 	 *            by its identifier. The order of the variables is important.
 	 */
-	protected void testMachineVariables(String message, Machine mch,
+	protected void testMachineVariables(String msg, Machine mch,
 			String... expected) {
 		EList<Variable> vars = mch.getVariables();
-		assertEquals(message + ": Incorrect number of variables",
+		assertEquals(msg + ": Incorrect number of variables",
 				expected.length, vars.size());
 		Iterator<Variable> iterator = vars.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testVariable(message, iterator.next(), expected[i]);
+			testVariable(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing the variables of a machine.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param mch
 	 *            the machine root whose variables will be tested.
@@ -300,10 +295,10 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            by its identifier. The order of the variables is NOT
 	 *            important.
 	 */
-	protected void testMachineVariablesUnordered(String message, Machine mch,
+	protected void testMachineVariablesUnordered(String msg, Machine mch,
 			String... expected) {
 		EList<Variable> vars = mch.getVariables();
-		assertEquals(message + ": Incorrect number of variables",
+		assertEquals(msg + ": Incorrect number of variables",
 				expected.length, vars.size());
 		for (int i = 0; i < expected.length; i++) {
 			boolean b = false;
@@ -324,23 +319,23 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	/**
 	 * Utility method for testing a variable.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param variable
+	 * @param vrb
 	 *            the variable under test.
 	 * @param expected
 	 *            the expected identifier of the variable.
 	 */
-	protected void testVariable(String message, Variable variable,
+	protected void testVariable(String msg, Variable vrb,
 			String expected) {
-		assertEquals(message + ": Incorrect variable", expected,
-				variable.getName());
+		assertEquals(msg + ": Incorrect variable", expected,
+				vrb.getName());
 	}
 
 	/**
 	 * Utility method for testing the invariants of a context.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param mch
 	 *            a context root whose invariants will be tested.
@@ -350,40 +345,81 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            "label:predicateString:isTheorem". The order of the invariants
 	 *            is important.
 	 */
-	protected void testMachineInvariants(String message, Machine mch,
+	protected void testMachineInvariants(String msg, Machine mch,
 			String... expected) {
 		EList<Invariant> invs = mch.getInvariants();
-		assertEquals(message + ": Incorrect number of invariants",
+		assertEquals(msg + ": Incorrect number of invariants",
 				expected.length, invs.size());
 		Iterator<Invariant> iterator = invs.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testInvariant(message, iterator.next(), expected[i]);
+			testInvariant(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing an invariant.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param invariant
+	 * @param inv
 	 *            the invariant under test.
 	 * @param expected
 	 *            the expected pretty-print invariant. The invariant is
 	 *            "pretty-printed" as follows:
 	 *            "label:predicateString:isTheorem".
 	 */
-	protected void testInvariant(String message, Invariant invariant,
+	protected void testInvariant(String msg, Invariant inv,
 			String expected) {
-		assertEquals(message + ": Incorrect invariant", expected,
-				invariant.getName() + ":" + invariant.getPredicate() + ":"
-						+ invariant.isTheorem());
+		assertEquals(msg + ": Incorrect invariant", expected,
+				inv.getName() + ":" + inv.getPredicate() + ":"
+						+ inv.isTheorem());
+	}
+
+	/**
+	 * Utility method for testing the variants of a machine.
+	 * 
+	 * @param msg
+	 *            a message for debugging.
+	 * @param mch
+	 *            a machine root whose variants will be tested.
+	 * @param expected
+	 *            the expected pretty-print variants. The variants are
+	 *            "pretty-printed" as follows: "expressionString". The order of
+	 *            the variants is important.
+	 */
+	protected void testMachineVariants(String msg, Machine mch,
+			String... expected) {
+		Variant variant = mch.getVariant();
+		if (variant == null) {
+			assertEquals(msg + ": Incorrect number of variants",
+					expected.length, 0);
+		} else {
+			assertEquals(msg + ": Incorrect number of variants",
+					expected.length, 1);
+			testVariant(msg, variant, expected[0]);
+		}
+	}
+
+	/**
+	 * Utility method for testing a variant.
+	 * 
+	 * @param msg
+	 *            a message for debugging
+	 * @param var
+	 *            the variant to be tested
+	 * @param expected
+	 *            the expected pretty-print variant. The variant are
+	 *            "pretty-printed" as follows: "expressionString".
+	 */
+	protected void testVariant(String msg, Variant var, String expected) {
+		assertEquals(msg + ": Incorrect expression string", expected,
+				var.getExpression());
 	}
 
 	/**
 	 * Utility method for testing the events of a machine.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param mch
 	 *            a machine root whose events will be tested.
@@ -393,58 +429,58 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            "label:convergent:isExtended". The order of the events is
 	 *            important.
 	 */
-	protected void testMachineEvents(String message, Machine mch,
+	protected void testMachineEvents(String msg, Machine mch,
 			String... expected) {
 		EList<Event> evts = mch.getEvents();
-		assertEquals(message + ": Incorrect number of events", expected.length,
+		assertEquals(msg + ": Incorrect number of events", expected.length,
 				evts.size());
 		Iterator<Event> iterator = evts.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testEvent(message, iterator.next(), expected[i]);
+			testEvent(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing an event.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param event
+	 * @param evt
 	 *            the event under test.
 	 * @param expected
 	 *            the expected pretty-print event (only the signature). The
 	 *            event is "pretty-printed" as follows:
 	 *            "label:convergent:isExtended".
 	 */
-	protected void testEvent(String message, Event event, String expected) {
-		assertNotNull(message + ": The event must not be null", event);
-		assertEquals(message + ": Incorrect event", expected, event.getName()
-				+ ":" + event.getConvergence() + ":" + event.isExtended());
+	protected void testEvent(String msg, Event evt, String expected) {
+		assertNotNull(msg + ": The event must not be null", evt);
+		assertEquals(msg + ": Incorrect event", expected, evt.getName()
+				+ ":" + evt.getConvergence() + ":" + evt.isExtended());
 	}
 
 	/**
 	 * Utility method for testing the REFINES clauses of an event.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param mch
+	 * @param evt
 	 *            an event whose REFINES clauses will be tested.
 	 * @param expected
 	 *            an array of expected REFINES clause. Each REFINES clause is
 	 *            represented by its abstract event name. The order of the
 	 *            REFINES clauses is important.
 	 */
-	protected void testEventRefinesClauses(String message, Event evt,
+	protected void testEventRefinesClauses(String msg, Event evt,
 			String... expected) {
 		EList<String> refinesNames = evt.getRefinesNames();
-		assertSameStrings(message,
+		assertSameStrings(msg,
 				refinesNames.toArray(new String[refinesNames.size()]), expected);
 	}
 
 	/**
 	 * Utility method for testing the parameters of an event.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param evt
 	 *            an event whose parameters will be tested.
@@ -452,37 +488,37 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            the expected set of parameters. Each parameter is represented
 	 *            by its identifier. The order of the parameters is important.
 	 */
-	protected void testEventParameters(String message, Event evt,
+	protected void testEventParameters(String msg, Event evt,
 			String... expected) {
 		EList<Parameter> pars = evt.getParameters();
-		assertEquals(message + ": Incorrect number of parameters",
+		assertEquals(msg + ": Incorrect number of parameters",
 				expected.length, pars.size());
 		Iterator<Parameter> iterator = pars.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testParameter(message, iterator.next(), expected[i]);
+			testParameter(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing a parameter.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param parameter
+	 * @param par
 	 *            the parameter under test.
 	 * @param expected
 	 *            the expected parameter identifier.
 	 */
-	protected void testParameter(String message, Parameter parameter,
+	protected void testParameter(String msg, Parameter par,
 			String expected) {
-		assertEquals(message + ": Incorrect parameter", expected,
-				parameter.getName());
+		assertEquals(msg + ": Incorrect parameter", expected,
+				par.getName());
 	}
 
 	/**
 	 * Utility method for testing the guards of an event.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param evt
 	 *            an event whose guards will be tested.
@@ -492,37 +528,37 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            "label:predicateString:isTheorem". The order of the guards is
 	 *            important.
 	 */
-	protected void testEventGuards(String message, Event evt,
+	protected void testEventGuards(String msg, Event evt,
 			String... expected) {
 		EList<Guard> grds = evt.getGuards();
-		assertEquals(message + ": Incorrect number of guards", expected.length,
+		assertEquals(msg + ": Incorrect number of guards", expected.length,
 				grds.size());
 		Iterator<Guard> iterator = grds.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testGuard(message, iterator.next(), expected[i]);
+			testGuard(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing a guard.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param guard
+	 * @param grd
 	 *            the guard under test.
 	 * @param expected
 	 *            the expected pretty-print guard. The guard is "pretty-printed"
 	 *            as follows: "label:predicateString:isTheorem".
 	 */
-	protected void testGuard(String message, Guard guard, String expected) {
-		assertEquals(message + ": Incorrect guard", expected, guard.getName()
-				+ ":" + guard.getPredicate() + ":" + guard.isTheorem());
+	protected void testGuard(String msg, Guard grd, String expected) {
+		assertEquals(msg + ": Incorrect guard", expected, grd.getName()
+				+ ":" + grd.getPredicate() + ":" + grd.isTheorem());
 	}
 
 	/**
 	 * Utility method for testing the witnesses of an event.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param evt
 	 *            an event whose witnesses will be tested.
@@ -531,37 +567,37 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            "pretty-printed" as follows: "label:predicateString". The
 	 *            order of the witnesses is important.
 	 */
-	protected void testEventWitnesses(String message, Event evt,
+	protected void testEventWitnesses(String msg, Event evt,
 			String... expected) {
 		EList<Witness> wits = evt.getWitnesses();
-		assertEquals(message + ": Incorrect number of witnesses",
+		assertEquals(msg + ": Incorrect number of witnesses",
 				expected.length, wits.size());
 		Iterator<Witness> iterator = wits.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testWitness(message, iterator.next(), expected[i]);
+			testWitness(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing an witness.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
-	 * @param witness
+	 * @param wit
 	 *            the witness under test.
 	 * @param expected
 	 *            the expected pretty-print witness. The witness is
 	 *            "pretty-printed" as follows: "label:predicateString".
 	 */
-	protected void testWitness(String message, Witness witness, String expected) {
-		assertEquals(message + ": Incorrect witness", expected,
-				witness.getName() + ":" + witness.getPredicate());
+	protected void testWitness(String msg, Witness wit, String expected) {
+		assertEquals(msg + ": Incorrect witness", expected,
+				wit.getName() + ":" + wit.getPredicate());
 	}
 
 	/**
 	 * Utility method for testing the actions of an event.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message for debugging.
 	 * @param evt
 	 *            an event whose actions will be tested.
@@ -570,31 +606,35 @@ public abstract class AbstractEventBEMFTests extends AbstractEventBTests {
 	 *            "pretty-printed" as follows: "label:assignmentString". The
 	 *            order of the actions is important.
 	 */
-	protected void testEventActions(String message, Event evt,
+	protected void testEventActions(String msg, Event evt,
 			String... expected) {
 		EList<Action> acts = evt.getActions();
-		assertEquals(message + ": Incorrect number of actions",
+		assertEquals(msg + ": Incorrect number of actions",
 				expected.length, acts.size());
 		Iterator<Action> iterator = acts.iterator();
 		for (int i = 0; i < expected.length; i++) {
-			testAction(message, iterator.next(), expected[i]);
+			testAction(msg, iterator.next(), expected[i]);
 		}
 	}
 
 	/**
 	 * Utility method for testing an action.
 	 * 
-	 * @param message
+	 * @param msg
 	 *            a message
-	 * @param action
+	 * @param act
 	 *            the action under test
 	 * @param expected
 	 *            expected pretty-print action. The action is "pretty-printed"
 	 *            as follows: "label:assignmentString".
 	 */
-	protected void testAction(String message, Action action, String expected) {
-		assertEquals(message + ": Incorrect action", expected, action.getName()
-				+ ":" + action.getAction());
+	protected void testAction(String msg, Action act, String expected) {
+		assertEquals(msg + ": Incorrect action", expected, act.getName()
+				+ ":" + act.getAction());
 	}
+
+	// =========================================================================
+	// (BEGIN) Utility methods for testing Machine elements.
+	// =========================================================================
 
 }

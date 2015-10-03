@@ -36,7 +36,7 @@ import ch.ethz.eventb.utils.EventBUtils;
 
 /**
  * <p>
- *
+ * This class is used to create a Event-B project for testing purpose.
  * </p>
  *
  * @author htson
@@ -45,6 +45,7 @@ import ch.ethz.eventb.utils.EventBUtils;
  * @since
  */
 public class ChannelEMFSetup {
+
 	/**
 	 * Some predefined projects.
 	 */
