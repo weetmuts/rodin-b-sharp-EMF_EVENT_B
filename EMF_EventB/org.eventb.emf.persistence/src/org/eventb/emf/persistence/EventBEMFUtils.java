@@ -47,13 +47,12 @@ import org.rodinp.core.RodinDBException;
 
 /**
  * <p>
- *
+ * This class contains utility methods for manipulating Event-B EMF elements.
  * </p>
  *
  * @author htson
- * @version
- * @see
- * @since
+ * @version 0.1
+ * @since 3.4.2
  */
 public class EventBEMFUtils {
 
@@ -477,10 +476,27 @@ public class EventBEMFUtils {
 		return act;
 	}
 
+	/**
+	 * Utility method to save an Event-B EMF element to the underlying resource.
+	 *
+	 * @param emfRodinDB
+	 *            the EMF Rodin DB to save the resource.
+	 * @param element
+	 *            the element to be saved.
+	 */
 	public static void save(EMFRodinDB emfRodinDB, EventBElement element) {
 		emfRodinDB.saveResource(EcoreUtil.getURI(element), element);
 	}
 
+	/**
+	 * Utility method to return the context root (RodinDB element) corresponding
+	 * to a context (EMF element).
+	 *
+	 * @param ctx
+	 *            the input EMF context
+	 * @return the corresponding context root.
+	 * @see IEventBProject#getContextRoot(String)
+	 */
 	public static IContextRoot getRoot(Context ctx) {
 		URI uri = EcoreUtil.getURI(ctx);
 		String projectName = URI.decode(uri.segment(1));
@@ -491,6 +507,15 @@ public class EventBEMFUtils {
 		return eventBPrj.getContextRoot(ctx.getName());
 	}
 
+	/**
+	 * Utility method to return the machine root (RodinDB element) corresponding
+	 * to a machine (EMF element).
+	 *
+	 * @param ctx
+	 *            the input EMF machine
+	 * @return the corresponding machine root.
+	 * @see IEventBProject#getMachineRoot(String)
+	 */
 	public static IMachineRoot getRoot(Machine mch) {
 		URI uri = EcoreUtil.getURI(mch);
 		String projectName = URI.decode(uri.segment(1));
