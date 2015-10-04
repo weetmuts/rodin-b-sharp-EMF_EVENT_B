@@ -11,7 +11,12 @@
 
 /**
  * <p>
- *
+ * This package contains tests for the persistence of Event-B EMF elements. It contains the following classes:
+ * <ul>
+ * <li>{@link org.eventb.emf.internal.persistence.tests.ChannelEMFLoadingTests}: Tests for loading resources into Event-B EMF elements.</li>
+ * 
+ * <li>{@link org.eventb.emf.internal.persistence.tests.ChannelEMFSavingTests}: Tests for saving Event-B EMF elements into resources.</li>
+ * </ul>
  * </p>
  *
  * @author htson

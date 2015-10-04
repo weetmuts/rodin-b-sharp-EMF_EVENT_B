@@ -36,13 +36,14 @@ import ch.ethz.eventb.utils.EventBUtils;
 
 /**
  * <p>
- * This class is used to create a Event-B project for testing purpose.
+ * This class is used to create a Event-B project for testing purpose through
+ * the Event-B EMF APIs.
  * </p>
  *
  * @author htson
- * @version
- * @see
- * @since
+ * @version 0.1
+ * @see EventBEMFUtils
+ * @since 0.1
  */
 public class ChannelEMFSetup {
 
@@ -291,8 +292,7 @@ public class ChannelEMFSetup {
 		// EVENTS
 		// ...
 		// END
-		EventBEMFUtils.createSeesContextClause(domain, channelMch,
-				message_ctx);
+		EventBEMFUtils.createSeesContextClause(domain, channelMch, message_ctx);
 		channel_s_count = EventBEMFUtils.createVariable(domain, channelMch,
 				"s_count");
 		channel_r_count = EventBEMFUtils.createVariable(domain, channelMch,

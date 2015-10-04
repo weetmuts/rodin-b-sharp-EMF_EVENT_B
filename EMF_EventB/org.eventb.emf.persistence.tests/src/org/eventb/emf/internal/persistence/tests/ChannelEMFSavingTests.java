@@ -22,22 +22,30 @@ import org.eventb.emf.persistence.tests.ChannelEMFSetup;
 import org.junit.Test;
 import org.rodinp.core.RodinDBException;
 
+import ch.ethz.eventb.utils.tests.ChannelSetup;
+
 /**
  * <p>
- *
+ * This class tests the saving Event-B EMF elements into Rodin DB resource.
  * </p>
  *
  * @author htson
- * @version
- * @see
- * @since
+ * @version 0.1
+ * @see ChannelSetup
+ * @since 0.1
  */
 public class ChannelEMFSavingTests extends AbstractEventBEMFTests {
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * This class performs the following tasks:
+	 * <ol>
+	 * <li>Calls the super method.</li>
 	 * 
-	 * @see ac.soton.coda.simulator2.tests.AbstractEventBEMFTests#setUp()
+	 * <li>Setups a Channel project using the Event-B EMF APIs.</li>
+	 * </ol>
+	 * 
+	 * @see AbstractEventBEMFTests#setUp()
+	 * @see ChannelSetup
 	 */
 	@Override
 	protected void setUp() throws Exception {
@@ -45,6 +53,9 @@ public class ChannelEMFSavingTests extends AbstractEventBEMFTests {
 		ChannelEMFSetup.setup();
 	}
 
+	/**
+	 * Test the generated context <code>message_ctx</code>.
+	 */
 	@Test
 	public void testMessageContext() {
 		Context message_ctx = ChannelEMFSetup.getMessageContext();
@@ -58,6 +69,9 @@ public class ChannelEMFSavingTests extends AbstractEventBEMFTests {
 				"axm1:finite(MESSAGE):false", "thm1:card(MESSAGE) ∈ ℕ1:true");
 	}
 
+	/**
+	 * Test the generated context <code>size_ctx</code>.
+	 */
 	@Test
 	public void testMaxSizeContext() {
 		Context size_ctx = ChannelEMFSetup.getSizeContext();
@@ -71,6 +85,9 @@ public class ChannelEMFSavingTests extends AbstractEventBEMFTests {
 				"axm1:max_size ∈ ℕ1:false");
 	}
 
+	/**
+	 * Test the generated machine <code>channel</code>.
+	 */
 	@Test
 	public void testChannelMachine() {
 		Machine channelMch = ChannelEMFSetup.getChannelMachine();
@@ -138,6 +155,9 @@ public class ChannelEMFSavingTests extends AbstractEventBEMFTests {
 
 	}
 
+	/**
+	 * Test the generated machine <code>EO</code>.
+	 */
 	@Test
 	public void testEOMachine() {
 		Machine EOMch = ChannelEMFSetup.getEOMachine();
@@ -216,6 +236,9 @@ public class ChannelEMFSavingTests extends AbstractEventBEMFTests {
 
 	}
 
+	/**
+	 * Test the generated machine <code>EOIO</code>.
+	 */
 	@Test
 	public void testEOIOMachine() {
 		Machine EOIOMch = ChannelEMFSetup.getEOIOMachine();

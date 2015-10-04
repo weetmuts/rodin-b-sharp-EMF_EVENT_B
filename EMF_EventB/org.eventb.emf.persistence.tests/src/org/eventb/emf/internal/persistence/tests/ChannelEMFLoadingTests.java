@@ -24,30 +24,54 @@ import ch.ethz.eventb.utils.tests.ChannelSetup;
 
 /**
  * <p>
- *
+ * This class tests the loading Rodin DB resources into Event-B EMF elements.
  * </p>
  *
  * @author htson
- * @version
- * @see
- * @since
+ * @version 0.1
+ * @see ChannelSetup
+ * @since 0.1
  */
 public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 
+	/**
+	 * The loaded <code>message_ctx</code> context.
+	 */
 	private Context messageCtx;
 
+	/**
+	 * The loaded <code>size_ctx</code> context.
+	 */
 	private Context sizeCtx;
 
+	/**
+	 * The loaded <code>channel</code> machine.
+	 */
 	private Machine channelMch;
 
+	/**
+	 * The loaded <code>EO</code> machine.
+	 */
 	private Machine EOMchRoot;
 
+	/**
+	 * The loaded <code>EOIO</code> machine.
+	 */
 	private Machine EOIOMchRoot;
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * This class performs the following tasks:
+	 * <ol>
+	 * <li>Calls the super method.</li>
 	 * 
-	 * @see org.eventb.emf.persistence.tests.AbstractEventBEMFTests#setUp()
+	 * <li>Setups a Channel project using the RodinDB APIs.</li>
+	 * 
+	 * <li>Loads the handles of various components in the Channel project into
+	 * Event-B EMF elements.</li>
+	 * </ol>
+	 * 
+	 * @see AbstractEventBEMFTests#setUp()
+	 * @see ChannelSetup
 	 */
 	@Override
 	protected void setUp() throws Exception {
@@ -68,7 +92,7 @@ public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 	}
 
 	/**
-	 * Test the generated context message_ctx.
+	 * Test the loaded context <code>message_ctx</code>.
 	 */
 	@Test
 	public void testMessageContext() {
@@ -82,7 +106,7 @@ public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 	}
 
 	/**
-	 * Test the generated context size_ctx.
+	 * Test the loaded context <code>size_ctx</code>.
 	 */
 	@Test
 	public void testMaxSizeContext() {
@@ -96,7 +120,7 @@ public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 	}
 
 	/**
-	 * Test the generated machine channel.
+	 * Test the loaded machine <code>channel</code>.
 	 */
 	@Test
 	public void testChannelMachine() {
@@ -160,7 +184,7 @@ public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 	}
 
 	/**
-	 * Test the generated machine EO.
+	 * Test the loaded machine <code>EO</code>.
 	 */
 	@Test
 	public void testEOMachine() {
@@ -234,7 +258,7 @@ public class ChannelEMFLoadingTests extends AbstractEventBEMFTests {
 	}
 
 	/**
-	 * Test the generated machine EOIO.
+	 * Test the loaded machine <code>EOIO</code>.
 	 */
 	@Test
 	public void testEOIOMachine() {
