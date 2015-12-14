@@ -10,10 +10,14 @@ package ac.soton.eventb.emf.core.extension.navigator.refiner;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
+import org.eventb.emf.core.EventBNamedCommentedComponentElement;
 import org.eventb.emf.core.EventBObject;
+import org.eventb.emf.core.machine.Event;
 import org.eventb.emf.core.machine.MachinePackage;
 
 /**
@@ -61,6 +65,21 @@ public class MachineElementRefiner extends CoreElementRefiner {
 	 */
 	public EventBObject getEquivalentObject(EObject concreteParent, EObject abstractObject) {
 		return super.getEquivalentObject(concreteParent, abstractObject);
+	}
+	
+	/**
+	 * Overridden to ensure INITIALISATION event does not refine anything
+	 */
+	@Override
+	protected void copyReferences(EObject concreteElement, Copier copier, URI abstractUri, 
+			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName ) {
+
+		super.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponentName);
+
+		if(concreteElement instanceof Event && "INITIALISATION".equals(((Event)concreteElement).getName())){
+			((Event)concreteElement).getRefines().clear();
+		}
+		
 	}
 	
 }

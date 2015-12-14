@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -115,7 +116,6 @@ public abstract class AbstractElementRefiner {
 			Object featureValue =	concreteParent.eGet(feature);
 			if (featureValue instanceof EList<?>) {
 				contents.addAll(((EList<?>) concreteParent.eGet(feature)));
-				//contents = ((EList<?>) concreteParent.eGet(feature)).iterator();
 			}
 		}else{
 			Iterator<EObject> iter = concreteParent.eAllContents();
@@ -127,11 +127,8 @@ public abstract class AbstractElementRefiner {
 		EClass clazz = abstractObject.eClass();
 		EStructuralFeature nameFeature = clazz.getEStructuralFeature("name");
 		Object name = nameFeature==null? null : abstractObject.eGet(nameFeature);
-//		EStructuralFeature internalIdFeature = clazz.getEStructuralFeature("internalId");
-//		Object internalId = internalIdFeature==null? null : abstractObject.eGet(internalIdFeature);
 		EStructuralFeature refinesFeature = clazz.getEStructuralFeature("refines");
 		
-
 		for (Object possible : contents){
 			if (possible instanceof EObject && ((EObject) possible).eClass() == clazz){
 				
@@ -147,8 +144,7 @@ public abstract class AbstractElementRefiner {
 						}
 						EObject abstractsParent = abstractObject.eContainer();
 						// get a refiner for the ePackage containing this abstract object
-						String nsURI = abstractsParent.eClass().getEPackage().getNsURI();
-						AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(nsURI);
+						AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(abstractsParent);
 						if (refiner==null) continue;
 						EventBObject equivalentParent = refiner.getEquivalentObject(concreteParent, abstractsParent);
 						if (((EObject) possible).eContainer() == equivalentParent){
@@ -240,7 +236,8 @@ public abstract class AbstractElementRefiner {
 		if (abstractUri==null){
 			abstractUri = EcoreUtil.getURI(abstractElement);
 		}
-		if (!correctURIType(abstractUri,abstractElement.eClass())){
+
+		if (!isCorrectURIType(abstractUri,abstractElement.eClass())){
 			return null;
 		}
 		if (concreteComponentName==null && concreteComponent!=null ){
@@ -255,11 +252,26 @@ public abstract class AbstractElementRefiner {
 		// this does a deep copy of all the children and properties of the copied element
 		// but it does not copy any references
 		EventBElement concreteEventBElement = (EventBElement) copier.copy(abstractElement); 
-		//copier.copyReferences();  <--THIS DOES NOT WORK - INSTEAD SEE BELOW
-		copyReferences(abstractUri, concreteEventBElement, copier, concreteResourceURI, concreteComponent, concreteComponentName);
-		//having copied everything we may need to remove some kinds of elements that are not supposed to be
-		//copied into a refinement
-		filterElements(concreteEventBElement);
+		
+		//get all the content of the root Element including itself
+		EList<EObject> contents = concreteEventBElement.getAllContained(CorePackage.Literals.EVENT_BELEMENT, true);
+		contents.add(concreteEventBElement);
+		
+		// iterate through the contents finding the correct refiner for copying references and filtering elements
+		for (EObject concreteElement : contents){
+			AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(concreteElement);
+			if (refiner==null) continue;
+			
+			// Set up references in the new concrete model  (note that copier.copyReferences() does not work for this)
+			// (this looks for references corresponding to those declared in the reference map
+			//   and copy them in the appropriate way according to multiplicity and the reference map).
+			refiner.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponentName );
+			
+			//having copied everything we may need to remove some kinds of elements that are not supposed to be copied into a refinement
+			refiner.filterElements(concreteElement);
+			
+		}
+		
 		return copier;
 	}
 
@@ -267,10 +279,11 @@ public abstract class AbstractElementRefiner {
 	 * This removes any elements that are of a type (EClass) listed in filterList
 	 */
 	@SuppressWarnings("unchecked")
-	private void filterElements(EventBElement concreteEventBElement) {
+	protected void filterElements(EObject element) {
+		if (!(element instanceof EventBElement)) return;
 		List<EObject> removeList = new ArrayList<EObject>();
 		for (EClass removeClass : filterList){
-			removeList.addAll(concreteEventBElement.getAllContained(removeClass, true));
+			removeList.addAll(((EventBElement)element).getAllContained(removeClass, true));
 		}
 		for (EObject eObject : removeList){
 			if (eObject != null){
@@ -287,50 +300,62 @@ public abstract class AbstractElementRefiner {
 		}
 	}
 
-	/*
-	 * This sets up the references in the new refined model according to the 
-	 * settings in the referenceMap
+
+	/**
+	 * 
+	 * This constructs references for the given concreteElement according to the reference map.
+	 * The copier map is used to find corresponding elements in the abstract model.
+	 * The abstract URI is used to construct suitable proxy elements for references - hence it is not necessary for the 
+	 * abstract or concrete elements to be contained in a resource.
+	 * 
+	 * @param concreteElement
+	 * @param copier
+	 * @param abstractUri
+	 * @param concreteResourceURI
+	 * @param concreteComponent
+	 * @param concreteComponentName
 	 */
 	@SuppressWarnings("unchecked")
-	private void copyReferences(URI abstractUri, EventBElement concreteEventBElement, Copier copier, URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName) {
-		// Set up references in the new concrete model  (note that copier.copyReferences() does not work for this)
-		//get all the content of the root Element including itself
-		EList<EObject> contents = concreteEventBElement.getAllContained(CorePackage.Literals.EVENT_BELEMENT, true);
-		contents.add(concreteEventBElement);
-		// iterate through the contents looking for references corresponding to those declared in the referencemap
-		// and copy them in the appropriate way according to multiplicity and the refencemap.
-		for (EObject concreteElement : contents){
-			if (concreteElement instanceof EventBElement){
-				EReference referenceFeature;
-				for (Entry<EReference, RefHandling> referenceEntry : referencemap.entrySet()){
-					referenceFeature = referenceEntry.getKey(); 
-					if (referenceFeature.getEContainingClass().isSuperTypeOf(concreteElement.eClass())){
-						EventBElement abstractElement = (EventBElement) getKeyByValue(copier, (EventBElement)concreteElement);
-						//NOTE: *** Cannot use the concrete elements to create URIs because their parentage is not complete ***
-						if (referenceFeature.isMany()){
-							for (EObject abstractReferencedElement : (EList<EObject>)(getKeyByValue(copier, concreteElement)).eGet(referenceFeature)){		
-								EObject newValue = getNewReferenceValue(
-										constructElementURI(abstractUri,abstractElement),
-										(EventBObject)abstractElement,
-										(EventBObject)abstractReferencedElement,
-										concreteResourceURI, concreteComponent, concreteComponentName,
-										referenceEntry.getValue(), copier);
-								if (newValue!=null){
-									((EList<EObject>)concreteElement.eGet(referenceFeature)).add(newValue);
-								}
-							}
-						}else{
-							if (referenceFeature.getEType() instanceof EClass){
-								EObject newValue = getNewReferenceValue(
-										constructElementURI(abstractUri,abstractElement),
-										(EventBObject)abstractElement,
-										(EventBObject)abstractElement.eGet(referenceFeature,false),
-										concreteResourceURI, concreteComponent, concreteComponentName,
-										referenceEntry.getValue(), copier);
-								if (newValue!=null){
-									concreteElement.eSet(referenceFeature, newValue);
-								}
-							}
+	protected void copyReferences(EObject concreteElement, Copier copier, URI abstractUri, 
+			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName ) {
+		EReference referenceFeature;
+		EventBElement abstractElement = (EventBElement) getKeyByValue(copier, (EventBElement)concreteElement);
+
+		for (Entry<EReference, RefHandling> referenceEntry : referencemap.entrySet()){
+			referenceFeature = referenceEntry.getKey(); 
+			if (referenceFeature.getEContainingClass().isSuperTypeOf(concreteElement.eClass())){
+
+				//NOTE: *** Cannot use the concrete elements to create URIs because their parentage is not complete ***
+				RefHandling handling = referenceEntry.getValue();
+				if (referenceFeature.isMany()){
+					EList<EObject> refList;
+					if (handling==RefHandling.CHAIN){
+						refList = new BasicEList<EObject>();
+						refList.add(null);
+					}else{
+						refList = (EList<EObject>)(getKeyByValue(copier, concreteElement)).eGet(referenceFeature);
+					}
+					for (EObject abstractReferencedElement : refList){		
+						EObject newValue = getNewReferenceValue(
+								constructElementURI(abstractUri,abstractElement),
+								(EventBObject)abstractElement,
+								(EventBObject)abstractReferencedElement,
+								concreteResourceURI, concreteComponent, concreteComponentName,
+								referenceEntry.getValue(), copier);
+						if (newValue!=null){
+							((EList<EObject>)concreteElement.eGet(referenceFeature)).add(newValue);
+						}
+					}
+				}else{
+					if (referenceFeature.getEType() instanceof EClass){
+						EObject newValue = getNewReferenceValue(
+								constructElementURI(abstractUri,abstractElement),
+								(EventBObject)abstractElement,
+								(EventBObject)abstractElement.eGet(referenceFeature,false),
+								concreteResourceURI, concreteComponent, concreteComponentName,
+								referenceEntry.getValue(), copier);
+						if (newValue!=null){
+							concreteElement.eSet(referenceFeature, newValue);
 						}
 					}
 				}
@@ -353,7 +378,7 @@ public abstract class AbstractElementRefiner {
 		return uri;
 	}
 
-	private boolean correctURIType(URI uri, EClass eclass){
+	private boolean isCorrectURIType(URI uri, EClass eclass){
 		if (uri==null || eclass==null) return true;
 		if (uri.fragment()==null) return false;
 		String[] frags = uri.fragment().split("::");
@@ -362,15 +387,14 @@ public abstract class AbstractElementRefiner {
 	}
 	
 	/**
-	 * 
-	 * The abstractReferencedElement must be contained in a resource
+	 * Constructs a new value (possibly an element) to be referenced.
 	 * 
 	 * @param abstractElement
 	 * @param abstractReferencedElement
 	 * @param handling
 	 * @return
 	 */
-	private EObject getNewReferenceValue(URI abstractElementUri, EventBObject abstractElement, EventBObject abstractReferencedElement, 
+	protected EObject getNewReferenceValue(URI abstractElementUri, EventBObject abstractElement, EventBObject abstractReferencedElement, 
 			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName,
 			RefHandling handling, Copier copier) {
 		
@@ -425,7 +449,7 @@ public abstract class AbstractElementRefiner {
 			uri = null;
 			eclass = null;
 		}
-		if (!correctURIType(uri,eclass)){
+		if (!isCorrectURIType(uri,eclass)){
 			return null;
 		}
 		return (uri==null || eclass==null)? null : EMFCoreUtil.createProxy(eclass, uri);

@@ -7,6 +7,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 
@@ -59,9 +60,23 @@ public class ElementRefinerRegistry {
 	}
 	
 	/**
+	 * get a refiner for the given EObject
+	 * (equivalent to getRefiner(eObject.eClass().getEPackage().getNsURI()))
+	 * 
+	 * @param eObject
+	 * @return refiner
+	 */
+	public AbstractElementRefiner getRefiner(EObject eObject){
+		if (eObject==null) 
+			return null;
+		return getRefiner(eObject.eClass().getEPackage().getNsURI());
+	}
+	
+	/**
 	 * Get the Refiner for a particular eCore Package nsURI
 	 * 	
-	 * @param refiner
+	 * @param String nsURI
+	 * @return refiner
 	 */
 		
 	public AbstractElementRefiner getRefiner(String nsURI){ 
