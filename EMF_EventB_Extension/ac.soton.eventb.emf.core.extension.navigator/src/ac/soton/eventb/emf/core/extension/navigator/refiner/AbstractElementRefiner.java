@@ -106,6 +106,8 @@ public abstract class AbstractElementRefiner {
 	
 	public EventBObject getEquivalentObject(EObject concreteParent, EStructuralFeature feature, EObject abstractObject) {
 
+		if (abstractObject == null) return null;
+		
 		if (abstractObject instanceof EventBNamedCommentedComponentElement && concreteParent.eClass()==abstractObject.eClass()){
 			return (EventBObject) concreteParent;
 		}
