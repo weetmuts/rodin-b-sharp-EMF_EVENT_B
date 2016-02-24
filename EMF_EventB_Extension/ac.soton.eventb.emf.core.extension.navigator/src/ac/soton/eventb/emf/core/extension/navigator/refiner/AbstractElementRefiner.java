@@ -67,6 +67,12 @@ public abstract class AbstractElementRefiner {
 	}
 	
 	/**
+	 * this is an internal flag which is set in order to disable CHAIN references.
+	 * (see clone)
+	 */
+	private boolean breakChain = false;
+	
+	/**
 	 * A map of the references which need to be dealt with in the new refined model.
 	 * For each EReference, the RefHandling indicates whether it should be dealt with as a reference back to 
 	 * the source element (e.g. refines) or a normal reference within the same resource level which
@@ -191,24 +197,11 @@ public abstract class AbstractElementRefiner {
 	}
 
 	/**
-	 * Creates a refined element from the given abstract one and a separate abstract URI.
-	 * In this case the abstract element need not be contained in the abstract component.
-	 * It will be used (copied) to make a refined element but any references to the abstract element 
-	 * (e.g. refines) will be based on the given abstract URI.
+	 * Creates a clone from the given abstract one. 
+	 * This is equivalent to refine except that no vertical chain references (such as refines)
+	 *  will be constructed to reference the abstract model.
+	 *  Any other references will be handled as in refines.
 	 * 
-	 * The abstract component does not need to be contained in a resource.
-	 * 
-	 * @param abstractUri - uri of an element in the abstract component resource (used to complete references)
-	 * @param abstractElement  - element to be copied (does not need to be contained)
-	 * @param concrete component (optional - used for copying references to external elements) 
-	 * @return a map from the abstract elements to the concrete elements
-	 */
-	public Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement, EventBNamedCommentedComponentElement concreteComponent) {
-		return refine(abstractUri, abstractElement, concreteComponent, null, null);
-	}
-	
-	/**
-	 * Creates a refined element from the given abstract one.
 	 * 
 	 * The abstract element must be contained in a resource.
 	 * 
@@ -216,8 +209,39 @@ public abstract class AbstractElementRefiner {
 	 * @param concrete component (optional - used for copying references to external elements) 
 	 * @return a map from the abstract elements to the concrete elements
 	 */
+	public Map<EObject,EObject> clone(EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent){
+		breakChain = true;
+		Map<EObject, EObject> ret = refine(null, abstractElement, concreteComponent, null);
+		breakChain = false;
+		return ret;
+	}
+
+	
+	/**
+	 * Creates a refined element from the given abstract one and a separate abstract URI.
+	 * In this case the abstract element need not be contained in a resource.
+	 * It will be used (copied) to make a refined element but any references to the abstract element 
+	 * (e.g. refines) will be based on the given abstract URI.
+	 * 
+	 * @param abstractUri - uri of an element in the abstract component resource (used to complete references)
+	 * @param abstractElement  - element to be copied (does not need to be contained)
+	 * @param concrete component (optional - used for copying references to external elements) 
+	 * @return a map from the abstract elements to the concrete elements
+	 */
+	public Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement, EventBNamedCommentedComponentElement concreteComponent) {
+		return refine(abstractUri, abstractElement, concreteComponent, null);
+	}
+	
+	/**
+	 * Creates a refined element from the given abstract one.
+	 * The abstract element must be contained in a resource.
+	 * 
+	 * @param abstract element
+	 * @param concrete component
+	 * @return a map from the abstract elements to the concrete elements
+	 */
 	public Map<EObject,EObject> refine(EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent){
-		return refine(null, abstractElement, concreteComponent, null, null);
+		return refine(null, abstractElement, concreteComponent, null);
 	}
 
 		
@@ -234,7 +258,7 @@ public abstract class AbstractElementRefiner {
 	 * @param abstract element
 	 * @return
 	 */
-	private Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent, URI concreteResourceURI, String concreteComponentName) {
+	private Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent, URI concreteResourceURI) {
 		if (abstractUri==null){
 			abstractUri = EcoreUtil.getURI(abstractElement);
 		}
@@ -242,11 +266,19 @@ public abstract class AbstractElementRefiner {
 		if (!isCorrectURIType(abstractUri,abstractElement.eClass())){
 			return null;
 		}
-		if (concreteComponentName==null && concreteComponent!=null ){
-			concreteComponentName = concreteComponent.getName();
-		}
+
 		if (concreteResourceURI==null && concreteComponent!=null ){
-			concreteResourceURI = EcoreUtil.getURI(concreteComponent);
+			if (concreteComponent.eResource()==null){
+				concreteResourceURI= URI.createPlatformResourceURI(abstractUri.toPlatformString(true), true);
+				concreteResourceURI = concreteResourceURI.trimFragment();
+				String fileExtension = concreteResourceURI.fileExtension();
+				concreteResourceURI = concreteResourceURI.trimSegments(1);	
+				concreteResourceURI = concreteResourceURI.appendSegment(concreteComponent.getName());
+				concreteResourceURI = concreteResourceURI.appendFileExtension(fileExtension);
+				concreteResourceURI = concreteResourceURI.appendFragment(EcoreUtil.getURI(concreteComponent).fragment());
+			}else{
+				concreteResourceURI = EcoreUtil.getURI(concreteComponent);
+			}
 		}
 		
 		Copier copier = new Copier(true,false);
@@ -267,7 +299,7 @@ public abstract class AbstractElementRefiner {
 			// Set up references in the new concrete model  (note that copier.copyReferences() does not work for this)
 			// (this looks for references corresponding to those declared in the reference map
 			//   and copy them in the appropriate way according to multiplicity and the reference map).
-			refiner.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponentName );
+			refiner.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponent==null? null: concreteComponent.getName() );
 			
 			//having copied everything we may need to remove some kinds of elements that are not supposed to be copied into a refinement
 			refiner.filterElements(concreteElement);
@@ -407,38 +439,40 @@ public abstract class AbstractElementRefiner {
 		}
 		switch (handling){
 		case CHAIN:
-			uri = abstractElementUri;
-			eclass = abstractElement.eClass();	
+			uri = breakChain? null : abstractElementUri;
+			eclass = breakChain? null : abstractElement.eClass();	
 			break;
 		case EQUIV:
 			if (abstractReferencedElement instanceof EObject){
 				uri = EcoreUtil.getURI((EObject)abstractReferencedElement);
-				URI abstractResourceURI = ((EObject)abstractElement).eResource().getURI();
-				if (uri !=null && uri.path().equals(abstractResourceURI.path())){ //equiv only works for intra-machine refs
-					EventBObject abstractComponent = ((EventBObject) abstractReferencedElement).getContaining(CorePackage.Literals.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT);
-					String abstractComponentName = "null";
-					if (abstractComponent instanceof EventBNamed){
-						abstractComponentName = ((EventBNamed)abstractComponent).getName();
-					}else{
-						//FIXME: not sure if this is necessary.. or works.. better to make sure abstractReferencedElement is contained?
-						abstractComponentName = abstractElementUri.fragment();
-						abstractComponentName = abstractComponentName.substring(abstractComponentName.lastIndexOf("::")+2);
-						abstractComponentName = abstractComponentName.substring(0,abstractComponentName.indexOf("."));
-					}
-					if (copier.containsKey(abstractReferencedElement)){
-						String id = EcoreUtil.getID((EObject)abstractReferencedElement).replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".");
-						uri = concreteResourceURI.appendFragment(id);
-						eclass = ((EObject)abstractReferencedElement).eClass();						
-					}else if (concreteComponent!=null){
-						EObject target = getEquivalentObject(concreteComponent, abstractReferencedElement);
-						if (target != null){
-							uri = EcoreUtil.getURI(target);
-							eclass = target.eClass();
+				if (uri !=null && uri.path().length()>0){
+					URI abstractResourceURI = ((EObject)abstractElement).eResource().getURI();
+					if (uri.path().equals(abstractResourceURI.path())){ //equiv only works for intra-machine refs
+						EventBObject abstractComponent = ((EventBObject) abstractReferencedElement).getContaining(CorePackage.Literals.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT);
+						String abstractComponentName = "null";
+						if (abstractComponent instanceof EventBNamed){
+							abstractComponentName = ((EventBNamed)abstractComponent).getName();
+						}else{
+							//FIXME: not sure if this is necessary.. or works.. better to make sure abstractReferencedElement is contained?
+							abstractComponentName = abstractElementUri.fragment();
+							abstractComponentName = abstractComponentName.substring(abstractComponentName.lastIndexOf("::")+2);
+							abstractComponentName = abstractComponentName.substring(0,abstractComponentName.indexOf("."));
 						}
+						if (copier.containsKey(abstractReferencedElement)){
+							String id = EcoreUtil.getID((EObject)abstractReferencedElement).replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".");
+							uri = concreteResourceURI.appendFragment(id);
+							eclass = ((EObject)abstractReferencedElement).eClass();						
+						}else if (concreteComponent!=null){
+							EObject target = getEquivalentObject(concreteComponent, abstractReferencedElement);
+							if (target != null){
+								uri = EcoreUtil.getURI(target);
+								eclass = target.eClass();
+							}
+						}
+						break;
 					}
-					break;
 				}
-			//when equiv is not possible default to copy
+				break;
 			}
 		case COPY:
 			if (abstractReferencedElement instanceof EObject){
