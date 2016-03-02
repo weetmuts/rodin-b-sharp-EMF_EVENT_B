@@ -71,6 +71,8 @@ public abstract class AbstractElementRefiner {
 	 * (see clone)
 	 */
 	private boolean breakChain = false;
+
+	private boolean clone = false;
 	
 	/**
 	 * A map of the references which need to be dealt with in the new refined model.
@@ -79,6 +81,7 @@ public abstract class AbstractElementRefiner {
 	 * will be copied to simulate the abstract one, or it should be copied or dropped in the refined model.
 	 */
 	private Map<EReference,RefHandling> referencemap = new HashMap<EReference,RefHandling>();
+
 	
 	/**
 	 * Extenders provide this method to populate the reference mapping with a list of 
@@ -197,22 +200,40 @@ public abstract class AbstractElementRefiner {
 	}
 
 	/**
-	 * Creates a clone from the given abstract one. 
+	 * Creates a clone from the given source element extracting it from the refinement chain. 
 	 * This is equivalent to refine except that no vertical chain references (such as refines)
-	 *  will be constructed to reference the abstract model.
+	 *  will be set to reference the source model. (i.e. the clone is independent and not a refinement of anything)
 	 *  Any other references will be handled as in refines.
 	 * 
+	 * The source element must be contained in a resource.
 	 * 
-	 * The abstract element must be contained in a resource.
-	 * 
-	 * @param abstract element
-	 * @param concrete component (optional - used for copying references to external elements) 
-	 * @return a map from the abstract elements to the concrete elements
+	 * @param source element
+	 * @param target component (optional - used for copying references to external elements) 
+	 * @return a map from the source elements to the target elements
 	 */
-	public Map<EObject,EObject> clone(EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent){
+	public Map<EObject,EObject> cloneAndExtractFromRefinementChain(EventBObject sourceElement,  EventBNamedCommentedComponentElement targetComponent, URI concreteResourceUri){
 		breakChain = true;
-		Map<EObject, EObject> ret = refine(null, abstractElement, concreteComponent, null);
+		Map<EObject, EObject> ret = refine(null, sourceElement, targetComponent, concreteResourceUri);
 		breakChain = false;
+		return ret;
+	}
+	
+	/**
+	 * Creates a clone from the given source element adding it as an alternative refinement to the source element one. 
+	 * This is equivalent to refine except that vertical chain references (such as refines)
+	 *  are copied instead of extended (i.e. the clone is an exact copy of the source element in all ways, not a further refinement).
+	 *  Any other references will be handled as in refines.
+	 * 
+	 * The source element must be contained in a resource.
+	 * 
+	 * @param source element
+	 * @param target component (optional - used for copying references to external elements) 
+	 * @return a map from the source elements to the target elements
+	 */
+	public Map<EObject,EObject> cloneAsAlternativeRefinement(EventBObject sourceElement,  EventBNamedCommentedComponentElement targetComponent, URI concreteResourceUri){
+		clone = true;
+		Map<EObject, EObject> ret = refine(null, sourceElement, targetComponent, concreteResourceUri);
+		clone = false;
 		return ret;
 	}
 
@@ -266,20 +287,6 @@ public abstract class AbstractElementRefiner {
 		if (!isCorrectURIType(abstractUri,abstractElement.eClass())){
 			return null;
 		}
-
-		if (concreteResourceURI==null && concreteComponent!=null ){
-			if (concreteComponent.eResource()==null){
-				concreteResourceURI= URI.createPlatformResourceURI(abstractUri.toPlatformString(true), true);
-				concreteResourceURI = concreteResourceURI.trimFragment();
-				String fileExtension = concreteResourceURI.fileExtension();
-				concreteResourceURI = concreteResourceURI.trimSegments(1);	
-				concreteResourceURI = concreteResourceURI.appendSegment(concreteComponent.getName());
-				concreteResourceURI = concreteResourceURI.appendFileExtension(fileExtension);
-				concreteResourceURI = concreteResourceURI.appendFragment(EcoreUtil.getURI(concreteComponent).fragment());
-			}else{
-				concreteResourceURI = EcoreUtil.getURI(concreteComponent);
-			}
-		}
 		
 		Copier copier = new Copier(true,false);
 		// create refined Component using copier.
@@ -299,6 +306,24 @@ public abstract class AbstractElementRefiner {
 			// Set up references in the new concrete model  (note that copier.copyReferences() does not work for this)
 			// (this looks for references corresponding to those declared in the reference map
 			//   and copy them in the appropriate way according to multiplicity and the reference map).
+			if (abstractElement instanceof EventBNamedCommentedComponentElement) {
+				if (concreteComponent == null){
+					concreteComponent = (EventBNamedCommentedComponentElement) copier.get(abstractElement);
+				}
+			}
+			if (concreteResourceURI==null && concreteComponent!=null ){
+				if (concreteComponent.eResource()==null){
+					concreteResourceURI= URI.createPlatformResourceURI(abstractUri.toPlatformString(true), true);
+					concreteResourceURI = concreteResourceURI.trimFragment();
+					String fileExtension = concreteResourceURI.fileExtension();
+					concreteResourceURI = concreteResourceURI.trimSegments(1);	
+					concreteResourceURI = concreteResourceURI.appendSegment(concreteComponent.getName());
+					concreteResourceURI = concreteResourceURI.appendFileExtension(fileExtension);
+					concreteResourceURI = concreteResourceURI.appendFragment(EcoreUtil.getURI(concreteComponent).fragment());
+				}else{
+					concreteResourceURI = EcoreUtil.getURI(concreteComponent);
+				}
+			}
 			refiner.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponent==null? null: concreteComponent.getName() );
 			
 			//having copied everything we may need to remove some kinds of elements that are not supposed to be copied into a refinement
@@ -437,7 +462,15 @@ public abstract class AbstractElementRefiner {
 		if (abstractReferencedElement!=null && abstractReferencedElement.eIsProxy()){
 			abstractReferencedElement = (EventBObject) EcoreUtil.resolve(abstractReferencedElement, abstractElement.eResource());
 		}
-		switch (handling){
+		RefHandling handling1;
+		if (breakChain && handling == RefHandling.CHAIN){
+			handling1 = RefHandling.DROP;
+		}else if (clone && handling == RefHandling.CHAIN){
+			handling1 = RefHandling.COPY;
+		}else{
+			handling1 = handling;
+		}
+		switch (handling1){
 		case CHAIN:
 			uri = breakChain? null : abstractElementUri;
 			eclass = breakChain? null : abstractElement.eClass();	
