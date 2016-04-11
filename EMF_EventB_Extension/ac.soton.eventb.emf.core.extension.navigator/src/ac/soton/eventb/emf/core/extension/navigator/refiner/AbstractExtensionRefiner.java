@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eventb.core.IEventBRoot;
 import org.eventb.emf.core.CorePackage;
 import org.eventb.emf.core.EventBElement;
@@ -353,7 +352,7 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 			uri = null;
 			eclass = null;
 		}
-		return (uri==null || eclass==null)? null : EMFCoreUtil.createProxy(eclass, uri);
+		return (uri==null || eclass==null)? null : createProxy(eclass, uri);
 	}
 
 	
@@ -370,5 +369,24 @@ public abstract class AbstractExtensionRefiner implements IRefinementParticipant
 		}else{
 			return  eObject.eResource()==null? null : eObject.eResource().getURI();
 		}
+	}
+	
+	/**
+	 * COPIED FROM GMF EMFCoreUtil to avoid dependency on GMF
+	 * 
+	 * Creates a proxy of the specified type with the specified proxy URI.
+	 * 
+	 * @param classID
+	 *            The type of proxy to create.
+	 * @param uri
+	 *            The URI for the new proxy.
+	 * @return The new proxy.
+	 */
+	private static EObject createProxy(EClass eClass, URI uri) {
+		InternalEObject proxy = (InternalEObject) eClass.getEPackage()
+			.getEFactoryInstance().create(eClass);
+		proxy.eSetProxyURI(uri);
+
+		return proxy;
 	}
 }
