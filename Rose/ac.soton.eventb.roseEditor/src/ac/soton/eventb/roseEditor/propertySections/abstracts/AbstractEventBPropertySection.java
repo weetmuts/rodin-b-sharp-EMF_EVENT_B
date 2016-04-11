@@ -49,7 +49,7 @@ import ac.soton.eventb.roseEditor.RoseEditor;
 public abstract class AbstractEventBPropertySection extends AbstractPropertySection implements IPropertySourceProvider {
 
 	/**
-	 * the GMF editing domain for the current diagram editor
+	 * the editing domain for the current editor
 	 */
 	protected EditingDomain editingDomain = null;
 
@@ -58,7 +58,7 @@ public abstract class AbstractEventBPropertySection extends AbstractPropertySect
 	}
 
 	/**
-	 * The current selected UMLB element or the first object in the selection
+	 * The current selected element or the first object in the selection
 	 * when multiple objects are selected.
 	 */
 	protected EventBElement owner;
