@@ -72,9 +72,9 @@ public class MachineElementRefiner extends CoreElementRefiner {
 	 */
 	@Override
 	protected void copyReferences(EObject concreteElement, Copier copier, URI abstractUri, 
-			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName ) {
+			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName, Mode mode ) {
 
-		super.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponentName);
+		super.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponentName, mode);
 
 		if(concreteElement instanceof Event && "INITIALISATION".equals(((Event)concreteElement).getName())){
 			((Event)concreteElement).getRefines().clear();

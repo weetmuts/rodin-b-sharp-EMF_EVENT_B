@@ -10,17 +10,13 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
-
-
 public class ElementRefinerRegistry {
 
 	// The shared instance
 	private static ElementRefinerRegistry registry = null;
 	
-	
 	//cached store of generator configurations that have been loaded from extension points
 	private Map<EPackage, AbstractElementRefiner> map = new HashMap<EPackage, AbstractElementRefiner>();
-	
 	
 	/*
 	 * The constructor for the shared instance of registry,
@@ -43,16 +39,12 @@ public class ElementRefinerRegistry {
 		}
 	}
 	
-
-
 	public static ElementRefinerRegistry getRegistry(){
 		if (registry == null){
 			registry = new ElementRefinerRegistry();
 		}
 		return registry;
 	}
-
-
 
 	public boolean canRefine(String nsURI){
 		EPackage ePackage =  EPackage.Registry.INSTANCE.getEPackage(nsURI);	
@@ -77,12 +69,10 @@ public class ElementRefinerRegistry {
 	 * 	
 	 * @param String nsURI
 	 * @return refiner
-	 */
-		
+	 */	
 	public AbstractElementRefiner getRefiner(String nsURI){ 
 		EPackage ePackage =  EPackage.Registry.INSTANCE.getEPackage(nsURI);
 		return map.get(ePackage);
 	}
-	
-	
+
 }

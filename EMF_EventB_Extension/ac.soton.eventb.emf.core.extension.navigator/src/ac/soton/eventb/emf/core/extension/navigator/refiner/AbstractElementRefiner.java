@@ -67,12 +67,15 @@ public abstract class AbstractElementRefiner {
 	}
 	
 	/**
-	 * this is an internal flag which is set in order to disable CHAIN references.
-	 * (see clone)
+	 * This enumeration gives the options for dealing with clones wrt refinement
+	 * REFINE = a refinement is being made as normal - refines references will be chained to the cloned element
+	 * CLONE = an alternative refinement is being made - refines references will be copied from the cloned element
+	 * BREAK = a clone is being made separate from the refinement - refines references will be cleared
+	 *
 	 */
-	private boolean breakChain = false;
-
-	private boolean clone = false;
+	public enum Mode {
+		REFINE, CLONE, BREAK
+	}
 	
 	/**
 	 * A map of the references which need to be dealt with in the new refined model.
@@ -155,8 +158,9 @@ public abstract class AbstractElementRefiner {
 						}
 						EObject abstractsParent = abstractObject.eContainer();
 						// get a refiner for the ePackage containing this abstract object
-						AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(abstractsParent);
+						AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(abstractsParent); //getSubRefiner(abstractsParent);
 						if (refiner==null) continue;
+						
 						EventBObject equivalentParent = refiner.getEquivalentObject(concreteParent, abstractsParent);
 						if (((EObject) possible).eContainer() == equivalentParent){
 							return (EventBObject) possible;
@@ -212,9 +216,7 @@ public abstract class AbstractElementRefiner {
 	 * @return a map from the source elements to the target elements
 	 */
 	public Map<EObject,EObject> cloneAndExtractFromRefinementChain(EventBObject sourceElement,  EventBNamedCommentedComponentElement targetComponent, URI concreteResourceUri){
-		breakChain = true;
-		Map<EObject, EObject> ret = refine(null, sourceElement, targetComponent, concreteResourceUri);
-		breakChain = false;
+		Map<EObject, EObject> ret = refine(null, sourceElement, targetComponent, concreteResourceUri, Mode.BREAK);
 		return ret;
 	}
 	
@@ -231,9 +233,7 @@ public abstract class AbstractElementRefiner {
 	 * @return a map from the source elements to the target elements
 	 */
 	public Map<EObject,EObject> cloneAsAlternativeRefinement(EventBObject sourceElement,  EventBNamedCommentedComponentElement targetComponent, URI concreteResourceUri){
-		clone = true;
-		Map<EObject, EObject> ret = refine(null, sourceElement, targetComponent, concreteResourceUri);
-		clone = false;
+		Map<EObject, EObject> ret = refine(null, sourceElement, targetComponent, concreteResourceUri, Mode.CLONE);
 		return ret;
 	}
 
@@ -250,7 +250,7 @@ public abstract class AbstractElementRefiner {
 	 * @return a map from the abstract elements to the concrete elements
 	 */
 	public Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement, EventBNamedCommentedComponentElement concreteComponent) {
-		return refine(abstractUri, abstractElement, concreteComponent, null);
+		return refine(abstractUri, abstractElement, concreteComponent, null, Mode.REFINE);
 	}
 	
 	/**
@@ -262,7 +262,7 @@ public abstract class AbstractElementRefiner {
 	 * @return a map from the abstract elements to the concrete elements
 	 */
 	public Map<EObject,EObject> refine(EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent){
-		return refine(null, abstractElement, concreteComponent, null);
+		return refine(null, abstractElement, concreteComponent, null, Mode.REFINE);
 	}
 
 		
@@ -279,7 +279,7 @@ public abstract class AbstractElementRefiner {
 	 * @param abstract element
 	 * @return
 	 */
-	private Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent, URI concreteResourceURI) {
+	private Map<EObject,EObject> refine(URI abstractUri, EventBObject abstractElement,  EventBNamedCommentedComponentElement concreteComponent, URI concreteResourceURI, Mode mode) {
 		if (abstractUri==null){
 			abstractUri = EcoreUtil.getURI(abstractElement);
 		}
@@ -300,9 +300,10 @@ public abstract class AbstractElementRefiner {
 		
 		// iterate through the contents finding the correct refiner for copying references and filtering elements
 		for (EObject concreteElement : contents){
-			AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(concreteElement);
+			//if concreteElement
+			AbstractElementRefiner refiner = ElementRefinerRegistry.getRegistry().getRefiner(concreteElement); //getSubRefiner(concreteElement);
 			if (refiner==null) continue;
-			
+
 			// Set up references in the new concrete model  (note that copier.copyReferences() does not work for this)
 			// (this looks for references corresponding to those declared in the reference map
 			//   and copy them in the appropriate way according to multiplicity and the reference map).
@@ -324,7 +325,7 @@ public abstract class AbstractElementRefiner {
 					concreteResourceURI = EcoreUtil.getURI(concreteComponent);
 				}
 			}
-			refiner.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponent==null? null: concreteComponent.getName() );
+			refiner.copyReferences(concreteElement, copier, abstractUri, concreteResourceURI, concreteComponent, concreteComponent==null? null: concreteComponent.getName(), mode );
 			
 			//having copied everything we may need to remove some kinds of elements that are not supposed to be copied into a refinement
 			refiner.filterElements(concreteElement);
@@ -376,7 +377,7 @@ public abstract class AbstractElementRefiner {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void copyReferences(EObject concreteElement, Copier copier, URI abstractUri, 
-			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName ) {
+			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName, Mode mode) {
 		EReference referenceFeature;
 		EventBElement abstractElement = (EventBElement) getKeyByValue(copier, (EventBElement)concreteElement);
 
@@ -400,7 +401,7 @@ public abstract class AbstractElementRefiner {
 								(EventBObject)abstractElement,
 								(EventBObject)abstractReferencedElement,
 								concreteResourceURI, concreteComponent, concreteComponentName,
-								referenceEntry.getValue(), copier);
+								referenceEntry.getValue(), copier, mode);
 						if (newValue!=null){
 							((EList<EObject>)concreteElement.eGet(referenceFeature)).add(newValue);
 						}
@@ -412,7 +413,7 @@ public abstract class AbstractElementRefiner {
 								(EventBObject)abstractElement,
 								(EventBObject)abstractElement.eGet(referenceFeature,false),
 								concreteResourceURI, concreteComponent, concreteComponentName,
-								referenceEntry.getValue(), copier);
+								referenceEntry.getValue(), copier, mode);
 						if (newValue!=null){
 							concreteElement.eSet(referenceFeature, newValue);
 						}
@@ -455,7 +456,7 @@ public abstract class AbstractElementRefiner {
 	 */
 	protected EObject getNewReferenceValue(URI abstractElementUri, EventBObject abstractElement, EventBObject abstractReferencedElement, 
 			URI concreteResourceURI, EventBNamedCommentedComponentElement concreteComponent, String concreteComponentName,
-			RefHandling handling, Copier copier) {
+			RefHandling handling, Copier copier, Mode mode) {
 		
 		EClass eclass = null;
 		URI uri = null;
@@ -463,17 +464,17 @@ public abstract class AbstractElementRefiner {
 			abstractReferencedElement = (EventBObject) EcoreUtil.resolve(abstractReferencedElement, abstractElement.eResource());
 		}
 		RefHandling handling1;
-		if (breakChain && handling == RefHandling.CHAIN){
+		if (mode == Mode.BREAK && handling == RefHandling.CHAIN){
 			handling1 = RefHandling.DROP;
-		}else if (clone && handling == RefHandling.CHAIN){
+		}else if (mode == Mode.CLONE && handling == RefHandling.CHAIN){
 			handling1 = RefHandling.COPY;
 		}else{
 			handling1 = handling;
 		}
 		switch (handling1){
 		case CHAIN:
-			uri = breakChain? null : abstractElementUri;
-			eclass = breakChain? null : abstractElement.eClass();	
+			uri = mode == Mode.BREAK? null : abstractElementUri;
+			eclass = mode == Mode.BREAK? null : abstractElement.eClass();	
 			break;
 		case EQUIV:
 			if (abstractReferencedElement instanceof EObject){
