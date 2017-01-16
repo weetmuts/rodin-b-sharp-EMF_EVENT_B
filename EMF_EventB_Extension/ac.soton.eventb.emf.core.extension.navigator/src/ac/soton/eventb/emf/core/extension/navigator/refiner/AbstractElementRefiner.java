@@ -492,17 +492,23 @@ public abstract class AbstractElementRefiner {
 							abstractComponentName = abstractComponentName.substring(abstractComponentName.lastIndexOf("::")+2);
 							abstractComponentName = abstractComponentName.substring(0,abstractComponentName.indexOf("."));
 						}
-						if (copier.containsKey(abstractReferencedElement)){
-							String id = EcoreUtil.getID((EObject)abstractReferencedElement).replaceAll("::"+abstractComponentName+"\\.", "::"+concreteComponentName+".");
-							uri = concreteResourceURI.appendFragment(id);
-							eclass = ((EObject)abstractReferencedElement).eClass();						
-						}else if (concreteComponent!=null){
-							EObject target = getEquivalentObject(concreteComponent, abstractReferencedElement);
-							if (target != null){
-								uri = EcoreUtil.getURI(target);
-								eclass = target.eClass();
-							}
+						
+						//Find the equivalent concrete referenced element (preferably from the copier)
+						EObject concreteReferencedElement = copier.get(abstractReferencedElement);
+						if (concreteReferencedElement ==null && concreteComponent!=null){
+							concreteReferencedElement = getEquivalentObject(concreteComponent, abstractReferencedElement);
 						}
+						if (concreteReferencedElement !=null){
+							//get its id and cClass and set up the uri
+							String id = EcoreUtil.getID(concreteReferencedElement);
+							eclass = concreteReferencedElement.eClass();
+							//if it is not yet in an EventB component we need to add the concreteComponent name into the reference
+							if (((EventBElement)concreteReferencedElement).getContaining(CorePackage.Literals.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT)==null){
+								id =	id.replace("::"+eclass.getName()+"::", "::"+eclass.getName()+"::"+concreteComponentName+".");								
+							}							
+							uri = concreteResourceURI.appendFragment(id);
+						}
+						
 						break;
 					}
 				}
