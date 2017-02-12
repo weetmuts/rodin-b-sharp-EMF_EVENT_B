@@ -368,6 +368,9 @@ public abstract class AbstractElementRefiner {
 	 * The abstract URI is used to construct suitable proxy elements for references - hence it is not necessary for the 
 	 * abstract or concrete elements to be contained in a resource.
 	 * 
+	 * 	 Limitation: if the model that has been copied is not the complete the machine it should be an immediate child of it. 
+	 *     References are unlikely to be correct otherwise.
+	 * 
 	 * @param concreteElement
 	 * @param copier
 	 * @param abstractUri
@@ -448,6 +451,10 @@ public abstract class AbstractElementRefiner {
 	
 	/**
 	 * Constructs a new value (possibly an element) to be referenced.
+	 * The supplied copier map is used to obtain equivalent referenced elements. If this fails an equivalent is found be name and type.
+	 *
+	 * Limitation: if the model that has been copied is not the complete the machine it should be an immediate child of it. 
+	 *     References are unlikely to be correct otherwise.
 	 * 
 	 * @param abstractElement
 	 * @param abstractReferencedElement
