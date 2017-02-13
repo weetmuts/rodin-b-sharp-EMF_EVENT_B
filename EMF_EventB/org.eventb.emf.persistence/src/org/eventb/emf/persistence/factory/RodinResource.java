@@ -250,7 +250,7 @@ public class RodinResource extends XMIResourceImpl {
 					}
 				}
 				for (EReference ref : eClass.getEAllReferences()) {
-					if (ref.isContainment())
+					if (ref.isContainment() || ref.isDerived() || !ref.isChangeable())
 						continue;
 					Object refVal = element.eGet(ref, false);
 					if (ref.isMany() && refVal instanceof EList<?>) {
