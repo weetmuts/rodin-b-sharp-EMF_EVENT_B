@@ -104,17 +104,17 @@ public class RodinResource extends XMIResourceImpl {
 			//rodinProject = RodinCore.getRodinDB().getRodinProject(projectName);
 			//project = (IProject) rodinProject.getCorrespondingResource();
 
-			if ("xmb".equals(fileExtension)) {
+			if ("bum".equals(fileExtension) || "buc".equals(fileExtension)) {
+				rodinFile = rodinProject.getRodinFile(fileName);
+				file = rodinFile.getResource();
+				map = new HashMap<IRodinElement, EventBObject>();
+				isXmi = false;
+			} else {
 				isXmi = true;
 				encoding = ENCODING;
 				//file = project.getFile(fileName);
 				rodinFile = null;
 				map = null;
-			} else {
-				rodinFile = rodinProject.getRodinFile(fileName);
-				file = rodinFile.getResource();
-				map = new HashMap<IRodinElement, EventBObject>();
-				isXmi = false;
 			}
 		}
 		super.setURI(uri);
