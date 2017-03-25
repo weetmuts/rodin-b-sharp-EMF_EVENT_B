@@ -15,7 +15,7 @@
             class="ac.soton.eventb.roseEditor.RoseEditor"
             contributorClass="ac.soton.eventb.roseEditor.RoseEditorActionBarContributor"
             default="false"
-            extensions="core,buc,bum,xmb,changes,proxymap"
+            extensions="core,buc,bum,xmb,xmc,changes,proxymap"
             icon="icons/full/obj16/Rose.gif"
             id="ac.soton.eventb.roseEditor.editorID"
             name="%_UI_EventBStructuredEditor_label">
