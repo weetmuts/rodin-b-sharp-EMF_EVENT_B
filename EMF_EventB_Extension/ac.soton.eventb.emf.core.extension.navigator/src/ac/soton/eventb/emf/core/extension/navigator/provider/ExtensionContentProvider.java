@@ -9,7 +9,11 @@ package ac.soton.eventb.emf.core.extension.navigator.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -135,7 +139,38 @@ public class ExtensionContentProvider implements ICommonContentProvider {
 					myAdapterFactoryContentProvier.getChildren(((ExtensionNavigatorItem) parentElement)
 							.getEObject()), parentElement);
 		}
+		if (parentElement instanceof IProject){
+			Object[] emfModels = getEmfModels((IProject)parentElement);
+			return wrapEObjects(
+					emfModels, parentElement
+					);
+		}
 		return EMPTY_ARRAY;
+	}
+
+	/**
+	 * @param parentElement
+	 * @return
+	 */
+	private Object[] getEmfModels(IProject project) {
+		if (!project.isOpen()) return new Object[0];
+		List<EObject> models = new ArrayList<EObject>();
+		try {
+			List<String> f_extensions = ExtensionNavigatorPlugin.getDefault().getEmfFileExtensions();
+			for (IResource r : project.members()){
+				if (f_extensions.contains(r.getFileExtension()) ){
+					URI uri = URI.createPlatformResourceURI(r.getFullPath().toString(), true);;
+					Resource emfResource = emfRodinDB.loadResource(uri);
+					if (emfResource!=null && emfResource.getContents().size()>0){
+						models.add(emfResource.getContents().get(0));
+					}
+				}
+			}
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return models.toArray();
 	}
 
 	public Object[] wrapEObjects(Object[] objects, Object parentElement) {

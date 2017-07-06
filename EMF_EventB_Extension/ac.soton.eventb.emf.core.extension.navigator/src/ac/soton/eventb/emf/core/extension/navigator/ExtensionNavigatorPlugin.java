@@ -38,11 +38,14 @@ public class ExtensionNavigatorPlugin extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "ac.soton.eventb.emf.core.extension.navigator"; //$NON-NLS-1$
 
 	private static final String FACTORIES_EXTENSION_ID = "ac.soton.eventb.emf.core.extension.navigator.adapterFactories";
-
+	private static final String EMFMODELS_EXTENSION_ID = "ac.soton.eventb.emf.core.extension.navigator.emfFileExtensions";
+	
 	// The shared instance
 	private static ExtensionNavigatorPlugin plugin;
 
 	private ComposedAdapterFactory adapterFactory;
+	
+	private List<String> emfFileExtensions;
 	
 	/**
 	 * The constructor
@@ -58,6 +61,21 @@ public class ExtensionNavigatorPlugin extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		adapterFactory = createAdapterFactory();
+		emfFileExtensions = createEmfFileExtensions();
+	}
+
+	/**
+	 * @return
+	 */
+	private List<String> createEmfFileExtensions() {
+		List<String> ret = new ArrayList<String>();
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EMFMODELS_EXTENSION_ID);
+		for (IConfigurationElement element : config) {
+			String fext = element.getAttribute("extension");
+			if (fext!=null && fext.length()>0)
+			ret.add(fext);	
+		}
+		return ret;
 	}
 
 	/*
@@ -129,4 +147,13 @@ public class ExtensionNavigatorPlugin extends AbstractUIPlugin {
 		return adapterFactory;
 	}
 
+	/**
+	 * Returns list of file extensions for EMF models to be shown in navigator.
+	 * 
+	 * @return factory
+	 */
+	public List<String> getEmfFileExtensions() {
+		return emfFileExtensions;
+	}
+	
 }

@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="ac.soton.eventb.emf.core.extension.navigator.adapterFactories" name="%extension-point.name" schema="schema/ac.soton.eventb.emf.core.extension.navigator.adapterFactories.exsd"/>
    <extension-point id="ac.soton.eventb.emf.core.extension.navigator.elementRefinement" name="elementRefinement" schema="schema/ac.soton.eventb.emf.core.extension.navigator.elementRefinement.exsd"/>
+   <extension-point id="ac.soton.eventb.emf.core.extension.navigator.emfFileExtensions" name="emfFileExtensions" schema="schema/ac.soton.eventb.emf.core.extension.navigator.emfFileExtensions.exsd"/>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
@@ -12,6 +13,9 @@
             name="%navigatorContent.name">
          <triggerPoints>
             <or>
+               <adapt
+                     type="org.eclipse.core.resources.IProject">
+               </adapt>
                <instanceof
                      value="org.eventb.core.IMachineRoot">
                </instanceof>
