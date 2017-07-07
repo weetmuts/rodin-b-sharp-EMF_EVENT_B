@@ -485,11 +485,16 @@ public abstract class AbstractElementRefiner {
 			break;
 		case EQUIV:
 			if (abstractReferencedElement instanceof EObject){
-				uri = EcoreUtil.getURI((EObject)abstractReferencedElement);
-				if (uri !=null && uri.path().length()>0){
-					URI abstractResourceURI = ((EObject)abstractElement).eResource().getURI();
-					if (uri.path().equals(abstractResourceURI.path())){ //equiv only works for intra-machine refs
+	
+				//equiv only works for 'intra' references within the abstract component. 
+				// this check used to be done by finding URIs but this doesn't work if the abstract element is not contained in a resource.
+				// checking for a common parent component is safer and easier. 
+				// We also keep the old method in case two different instances of the same model are being used
+				if (commonParentComponent(abstractElement, abstractReferencedElement) ||
+						samePaths(abstractElement, abstractReferencedElement) 
+					){						
 						EventBObject abstractComponent = ((EventBObject) abstractReferencedElement).getContaining(CorePackage.Literals.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT);
+						
 						String abstractComponentName = "null";
 						if (abstractComponent instanceof EventBNamed){
 							abstractComponentName = ((EventBNamed)abstractComponent).getName();
@@ -516,8 +521,8 @@ public abstract class AbstractElementRefiner {
 							uri = concreteResourceURI.appendFragment(id);
 						}
 						
-						break;
-					}
+//						break;
+//					}
 				}
 				break;
 			}
@@ -538,6 +543,32 @@ public abstract class AbstractElementRefiner {
 		return (uri==null || eclass==null)? null : createProxy(eclass, uri);
 	}
 
+	/**
+	 * checks whether the paths for two elements in the workspace are the same
+	 * @param e1
+	 * @param e2
+	 * @return
+	 */
+	private boolean samePaths(EventBObject e1, EventBObject e2) {
+		URI uri1 = EcoreUtil.getURI((EObject)e1);
+		if (uri1 ==null || uri1.path().length()==0) return false;
+		URI uri2 = EcoreUtil.getURI((EObject)e2);
+		if (uri2 ==null || uri2.path().length()==0) return false;
+		return uri1.path().equals(uri2.path());
+	}
+
+	/**
+	 * checks whether two elements have a common parent component
+	 * @param e1
+	 * @param e2
+	 * @return
+	 */
+	private static boolean commonParentComponent(EventBObject e1, EventBObject e2){
+		if (e1==null || e2==null) return false;
+		EventBObject abstractElementComponent = e1.getContaining(CorePackage.Literals.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT);
+		EventBObject abstractReferencedComponent = e2.getContaining(CorePackage.Literals.EVENT_BNAMED_COMMENTED_COMPONENT_ELEMENT);
+		return abstractElementComponent==abstractReferencedComponent;
+	}
 
 	/**
 	 * COPIED FROM GMF EMFCoreUtil to avoid dependency on GMF
