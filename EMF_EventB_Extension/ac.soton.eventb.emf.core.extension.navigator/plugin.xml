@@ -87,4 +87,11 @@
       </refinementDefinition>
    </extension>
    
+     <extension
+         point="ac.soton.eventb.emf.core.extension.navigator.emfFileExtensions">
+      <model
+            extension="xmb">
+      </model>
+   </extension>
+   
 </plugin>
