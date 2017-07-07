@@ -29,6 +29,13 @@
             content-type="org.eclipse.emf.compare.content.type"
             file-extensions="xmb">
       </file-association>
+      <content-type
+            base-type="org.eclipse.emf.ecore.xmi"
+            file-extensions="xmb"
+            id="org.eventb.emf.xmb"
+            name="emfMachine"
+            priority="normal">
+      </content-type>
    </extension>
    
    <extension
