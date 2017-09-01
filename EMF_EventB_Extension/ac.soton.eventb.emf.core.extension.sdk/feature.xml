@@ -2,20 +2,18 @@
 <feature
       id="ac.soton.eventb.emf.core.extension.sdk"
       label="%featureName"
-      version="5.2.0"
-      provider-name="%featureVendor">
+      version="5.4.0.qualifier"
+      provider-name="%featureVendor"
+      license-feature="org.rodinp.license"
+      license-feature-version="1.0.0.release">
 
    <description>
-      %description
+      %featureDescription
    </description>
 
    <copyright>
-      %copyright
+      %featureCopyright
    </copyright>
-
-   <license url="%licenseURL">
-      %license
-   </license>
 
    <url>
       <update label="%updateSiteName" url="http://rodin-b-sharp.sourceforge.net/updates"/>
@@ -25,32 +23,8 @@
          id="ac.soton.eventb.emf.core.extension.feature"
          version="0.0.0"/>
 
-   <plugin
-         id="ac.soton.eventb.emf.core.extension.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ac.soton.eventb.emf.core.extension.edit.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ac.soton.eventb.emf.core.extension.navigator.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="ac.soton.eventb.emf.core.extension.persistence.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <includes
+         id="ac.soton.eventb.emf.core.extension.source.feature"
+         version="0.0.0"/>
 
 </feature>
